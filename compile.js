@@ -4,6 +4,9 @@ require('zcompile')({
 
 	minifySelectors: false,
 	files: [
+		'docs/index.html',
+		'docs/index.css',
+
 		'docs/docs.css',
 		'docs/docs.js',
 		'docs/docs.html',

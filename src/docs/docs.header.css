@@ -39,14 +39,8 @@ header {
 
 	#app-settings-menu-button {
 		font-size: 25px;
-		height: 40px;
 		margin-right: 12px;
-		padding: 0;
-		width: 40px;
 	}
-		#app-settings-menu-button::after {
-			content: '\26ED';
-		}
 	#app-settings-menu {
 		background: white;
 		border: 2px solid rgba(150, 150, 150, 0.6);

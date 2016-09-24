@@ -62,7 +62,7 @@ main {
 
 		.toc-category-entries-container {
 			display: none;
-			margin: 0 0 0 12px;
+			margin: 0;
 		}
 			.toc-category-label.active + .toc-category-entries-container {
 				display: block;
@@ -74,8 +74,13 @@ main {
 			}
 
 				.toc-category-entry {
+					cursor: pointer;
 					display: block;
-					padding: 6px;
+					padding: 9px 6px 6px 18px;
+				}
+				.toc-category-entry.active,
+				.toc-category-entry:hover {
+					background: rgba(180, 180, 180, 0.25);
 				}
 
 	article {
