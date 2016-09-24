@@ -1,0 +1,83 @@
+header {
+	align-items: center;
+	box-shadow: 0 2px 16px #999;
+	display: flex;
+	position: relative;
+	width: 100%;
+}
+	#app-logo {
+		font-size: 36px;
+		font-weight: 600;
+		margin-right: 14px;
+		padding: 14px 19px;
+	}
+
+	#app-listings {
+		margin: 0;
+		padding: 0;
+		white-space: nowrap;
+	}
+		#app-listings li {
+			color: #4d4d4d;
+			display: inline-block;
+			font-weight: 500;
+			margin: 0 5px;
+		}
+			#app-listings li.active,
+			#app-listings li:hover {
+				background: rgba(0, 0, 0, 0.12);
+			}
+		#app-listings a {
+			color: inherit;
+			display: block;
+			padding: 6px 9px;
+			text-decoration: none;
+		}
+			#app-listings li.active a {
+				cursor: default;
+			}
+
+	#app-settings-menu-button {
+		font-size: 25px;
+		height: 40px;
+		margin-right: 12px;
+		padding: 0;
+		width: 40px;
+	}
+		#app-settings-menu-button::after {
+			content: '\26ED';
+		}
+	#app-settings-menu {
+		background: white;
+		border: 2px solid rgba(150, 150, 150, 0.6);
+		box-shadow: -2px 2px 16px #ccc;
+		display: none;
+		margin: 0;
+		padding: 0;
+		position: absolute;
+		right: 12px;
+		top: 80%;
+		width: 185px;
+	}
+		#app-settings-menu-button:focus + #app-settings-menu {
+			display: block;
+		}
+		.app-settings-button {
+			background: none;
+			border: 0;
+			color: #333;
+			cursor: pointer;
+			font-size: 15px;
+			outline: 0;
+			padding: 8px 12px 8px 0;
+			text-align: right;
+			width: 100%;
+		}
+			.app-settings-button:hover {
+				background: rgba(0, 0, 0, 0.1);
+			}
+
+			.app-settings-button::before {
+				content: attr(value);
+				text-transform: capitalize;
+			}

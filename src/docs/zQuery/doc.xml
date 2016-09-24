@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<documentation>
+	<category name="Instance tools">
+		<entry>
+			<name>.each</name>
+		</entry>
+
+		<entry>
+			<name>.eq</name>
+		</entry>
+
+		<entry>
+			<name>.slice</name>
+		</entry>
+
+		<entry>
+			<name>.add</name>
+		</entry>
+	</category>
+
+	<category name="DOM iteration">
+		<entry>
+			<name>.find</name>
+		</entry>
+
+		<entry>
+			<name>.children</name>
+		</entry>
+
+		<entry>
+			<name>.filter</name>
+		</entry>
+
+		<entry>
+			<name>.parent</name>
+		</entry>
+
+		<entry>
+			<name>.index</name>
+		</entry>
+
+		<entry>
+			<name>.prev</name>
+		</entry>
+
+		<entry>
+			<name>.next</name>
+		</entry>
+
+		<entry>
+			<name>.prevAll</name>
+		</entry>
+
+		<entry>
+			<name>.nextAll</name>
+		</entry>
+
+		<entry>
+			<name>.siblings</name>
+		</entry>
+
+		<entry>
+			<name>.closest</name>
+		</entry>
+	</category>
+
+	<category name="DOM data">
+		<entry>
+			<name>.html</name>
+		</entry>
+
+		<entry>
+			<name>.text</name>
+		</entry>
+
+		<entry>
+			<name>.val</name>
+		</entry>
+
+		<entry>
+			<name>.prop</name>
+		</entry>
+
+		<entry>
+			<name>.classes</name>
+		</entry>
+
+		<entry>
+			<name>.attr</name>
+		</entry>
+	</category>
+
+	<category name="DOM manipulation">
+		<entry>
+			<name>.prepend</name>
+		</entry>
+
+		<entry>
+			<name>.append</name>
+		</entry>
+
+		<entry>
+			<name>.before</name>
+		</entry>
+
+		<entry>
+			<name>.after</name>
+		</entry>
+
+		<entry>
+			<name>.prependTo</name>
+		</entry>
+
+		<entry>
+			<name>.appendTo</name>
+		</entry>
+
+		<entry>
+			<name>.insertBefore</name>
+		</entry>
+
+		<entry>
+			<name>.insertAfter</name>
+		</entry>
+
+		<entry>
+			<name>.empty</name>
+		</entry>
+
+		<entry>
+			<name>.remove</name>
+		</entry>
+	</category>
+
+	<category name="Modularisation">
+		<entry>
+			<name>.clone</name>
+		</entry>
+
+		<entry>
+			<name>.import</name>
+		</entry>
+
+		<entry>
+			<name>.databind</name>
+		</entry>
+	</category>
+
+	<category name="Events">
+		<entry>
+			<name>.on</name>
+		</entry>
+
+		<entry>
+			<name>.off</name>
+		</entry>
+
+		<entry>
+			<name>.one</name>
+		</entry>
+
+		<entry>
+			<name>.trigger</name>
+		</entry>
+	</category>
+
+	<category name="Styling">
+		<entry>
+			<name>.reflow</name>
+		</entry>
+
+		<entry>
+			<name>.css</name>
+		</entry>
+
+		<entry>
+			<name>.display</name>
+		</entry>
+
+		<entry>
+			<name>.hasFocus</name>
+		</entry>
+	</category>
+
+	<category name="External tools">
+		<entry>
+			<name>$.ajax</name>
+		</entry>
+
+		<entry>
+			<name>$.isArrayLike</name>
+		</entry>
+
+		<entry>
+			<name>$.each</name>
+		</entry>
+
+		<entry>
+			<name>$.clone</name>
+		</entry>
+
+		<entry>
+			<name>$.escape.HTML</name>
+		</entry>
+
+		<entry>
+			<name>$.escape.RegExp</name>
+		</entry>
+
+		<entry>
+			<name>$.shuffle</name>
+		</entry>
+
+		<entry>
+			<name>$.factory</name>
+		</entry>
+	</category>
+</documentation>

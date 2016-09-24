@@ -1,0 +1,44 @@
+{
+  "patterns": {
+    "P1": {
+      "expression": "(path):(line)"
+    },
+    "P2": {
+      "expression": "(path)\\s+(line)",
+      "path": "(?:\\/[\\w\\.\\-]+)+"
+    }
+  },
+  "commands": [
+    {
+      "namespace": "Process Palette",
+      "action": "Compile",
+      "command": "node compile.js debug",
+      "arguments": [],
+      "cwd": "{configDirAbsPath}",
+      "inputDialogs": [],
+      "env": {
+        "NODE_PATH": "/usr/lib/node_modules"
+      },
+      "keystroke": "f5",
+      "stream": false,
+      "outputTarget": "panel",
+      "outputBufferSize": 0,
+      "maxCompleted": 3,
+      "autoShowOutput": false,
+      "autoHideOutput": true,
+      "scrollLockEnabled": false,
+      "singular": false,
+      "promptToSave": true,
+      "saveOption": "all",
+      "patterns": [
+        "default"
+      ],
+      "successOutput": "{stdout}",
+      "errorOutput": "{stdout}\n{stderr}",
+      "fatalOutput": "Failed to execute : {fullCommand}\n{stdout}\n{stderr}",
+      "successMessage": "Executed : {fullCommand}\n{stdout}",
+      "errorMessage": "Executed : {fullCommand}\nReturned with code {exitStatus}\n{stderr}",
+      "fatalMessage": "Failed to execute : {fullCommand}\n{stdout}\n{stderr}"
+    }
+  ]
+}
