@@ -19,7 +19,7 @@
       "env": {
         "NODE_PATH": "/usr/lib/node_modules"
       },
-      "keystroke": null,
+      "keystroke": "f5",
       "stream": false,
       "outputTarget": "panel",
       "outputBufferSize": 0,

@@ -2,7 +2,7 @@
 	"use strict";
 
 	$.ajax({
-		url: '../docs.html',
+		url: '../app.html',
 		success: function(data) {
 			$( document.body ).html(data);
 			init();
@@ -26,6 +26,11 @@
 		$( '#toc-categories' )
 			.on('click', '.toc-category-label', function() {
 				$(this).classes(['active']);
+			})
+			.on('click', '.toc-category-entry', function() {
+
+				$( 'article' ).empty();
+				this.$article.appendTo( 'article' );
 			});
 
 		$( '.toc-control' )
@@ -65,9 +70,29 @@
 									.appendTo( $html_cat_entries ),
 								$xml_entry = $(entry),
 
-								entry_name = $xml_entry.find('name').text();
+								entry_name = $xml_entry.children('name').text(),
+								entry_desc = $xml_entry.children('description').text();
 
-							$html_entry.text(entry_name);
+							$html_entry.text(entry_name).prop('title', entry_desc);
+
+							var $article = $( '#template-article' ).import();
+
+							$article.find('h1').text(entry_name);
+							$article.find('.versions').text($xml_entry.find('versions').text());
+
+							$article.find('.description').text(entry_desc);
+							$article.find('.signature').text($xml_entry.find('signature code').text());
+							var $args = $article.find('.arguments-list');
+
+							$xml_entry.find('argument').each(function(arg) {
+								arg = $(arg);
+
+								var $arg = $( '#template-article-argument' ).import().appendTo($args);
+								$arg.filter('.argument-name').text(arg.find('name').text());
+								$arg.find('.argument-description').text(arg.find('description').text());
+							});
+
+							$html_entry.prop('$article', $article);
 						});
 					});
 				}

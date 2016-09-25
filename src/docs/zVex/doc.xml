@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<documentation>
+	<category name="Direct">
+		<entry>
+			<name>open</name>
+		</entry>
+
+		<entry>
+			<name>isOpen</name>
+		</entry>
+
+		<entry>
+			<name>close</name>
+		</entry>
+
+		<entry>
+			<name>loading</name>
+		</entry>
+
+		<entry>
+			<name>setButtons</name>
+		</entry>
+	</category>
+
+	<category name="Aliases">
+		<entry>
+			<name>alert</name>
+		</entry>
+
+		<entry>
+			<name>confirm</name>
+		</entry>
+
+		<entry>
+			<name>prompt</name>
+		</entry>
+	</category>
+
+	<category name="Internals">
+		<entry>
+			<name>internal.ID.container</name>
+		</entry>
+
+		<entry>
+			<name>internal.$.container</name>
+		</entry>
+
+		<entry>
+			<name>internal.$.content</name>
+		</entry>
+
+		<entry>
+			<name>internal.$.error</name>
+		</entry>
+
+		<entry>
+			<name>internal.component.create</name>
+		</entry>
+	</category>
+</documentation>

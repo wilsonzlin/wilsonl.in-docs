@@ -7,11 +7,12 @@ require('zcompile')({
 		'docs/index.html',
 		'docs/index.css',
 
-		'docs/docs.css',
-		'docs/docs.js',
-		'docs/docs.html',
+		'docs/app.css',
+		'docs/app.js',
+		'docs/app.html',
 
 		'docs/zQuery/index.html',
+		'docs/zVex/index.html',
 	],
 	debug: process.argv.slice(2).some(arg => /^debug$/.test(arg)),
 
@@ -19,5 +20,6 @@ require('zcompile')({
 		'docs/search.png',
 
 		'docs/zQuery/doc.xml',
+		'docs/zVex/doc.xml',
 	],
 });
