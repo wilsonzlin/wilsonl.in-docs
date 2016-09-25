@@ -86,10 +86,12 @@ main {
 				}
 
 	article {
-		max-width: 1000px;
 		padding: 30px;
 		width: calc(100% - 250px);
 	}
+		article:not(:empty) {
+			max-width: 1000px;
+		}
 		article:empty {
 		}
 			article:empty::before {
