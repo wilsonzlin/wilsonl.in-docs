@@ -13,15 +13,16 @@ main {
 			top: -9999px;
 		}
 		#toc-search {
+			background: url('./search.png') no-repeat 5px center / auto 80%;
 			border: 2px solid #bfbfbf;
 			display: block;
 			margin: 0 auto 20px auto;
+			outline: 0;
 			padding: 4px 8px 4px 28px;
-			background: url('./search.png') no-repeat 5px center / auto 80%;
 			width: 86%;
 		}
 			#toc-search:focus {
-				border-color: transparent;
+				border-color: #666;
 			}
 
 		#toc-controls {
@@ -78,7 +79,7 @@ main {
 				.toc-category-entry {
 					cursor: pointer;
 					display: block;
-					padding: 9px 6px 6px 18px;
+					padding: 9px 6px 9px 18px;
 				}
 				.toc-category-entry.active,
 				.toc-category-entry:hover {
