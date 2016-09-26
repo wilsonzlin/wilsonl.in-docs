@@ -82,7 +82,8 @@
 
 							$article.find('.description').text(entry_desc);
 							$article.find('.signature').text($xml_entry.find('signature code').text());
-							var $args = $article.find('.arguments-list');
+							var $args = $article.find('.arguments-list'),
+								$rets = $article.find('.returns-list');
 
 							$xml_entry.find('argument').each(function(arg) {
 								arg = $(arg);
@@ -90,6 +91,16 @@
 								var $arg = $( '#template-article-argument' ).import().appendTo($args);
 								$arg.filter('.argument-name').text(arg.find('name').text());
 								$arg.find('.argument-description').text(arg.find('description').text());
+							});
+							if (!$xml_entry.find('?argument')) {
+								$args.closest('section').display(false);
+							}
+
+							$xml_entry.find('return').each(function(ret) {
+								ret = $(ret);
+
+								var $ret = $( '#template-article-return' ).import().appendTo($rets);
+								$ret.text(ret.text());
 							});
 
 							$html_entry.prop('$article', $article);
