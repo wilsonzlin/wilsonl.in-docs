@@ -9,6 +9,60 @@
 		}
 	});
 
+	function parseDocText(xmlNode) {
+		var html = '';
+
+		for (var i = 0; i < xmlNode.childNodes.length; ++i) {
+			var childNode = xmlNode.childNodes[i];
+			switch (childNode.nodeType) {
+				case 1:
+					var tag,
+						innerHTML,
+						attributes = '';
+
+					switch (childNode.nodeName.toLowerCase()) {
+						case 'code-snippet':
+							tag = 'code';
+							break;
+
+						case 'code-block':
+							tag = 'pre';
+							innerHTML = parseCodeBlock(childNode.textContent);
+							break;
+
+						case 'strong':
+							tag = 'strong';
+							break;
+
+						case 'em':
+							tag = 'em';
+							break;
+
+						case 'link':
+							tag = 'a';
+							attributes = 'href="' + childNode.getAttribute('url');
+							break;
+					}
+					innerHTML = innerHTML || parseDocText(childNode);
+					html += '<' + tag + ' ' + attributes + '>' + innerHTML + '</' + tag + '>';
+					break;
+
+				case 3:
+					html += $.escape.HTML(childNode.textContent);
+					break;
+			}
+		}
+
+		return html;
+	}
+
+	function parseCodeBlock(codeText) {
+		return codeText
+			.replace(/ ([A-Z][a-z0-9_]+|function|int|string|bool|float|object|array)/g, function(match) {
+				return ' <span class=type>' + match.slice(1) + '</span>';
+			});
+	}
+
 	var init = function() {
 		var currentListing;
 
@@ -42,8 +96,10 @@
 		if (currentListing) {
 			document.title = currentListing + ' | wilsonl.in';
 			$( '#app-listings a[href$="' + currentListing + '"]' )
+				.on('click', function(e) { e.preventDefault() })
 				.closest('li')
 				.classes('active', true);
+
 			$.ajax({
 				url: './doc.xml',
 				success: function(xml) {
@@ -81,26 +137,32 @@
 							$article.find('.versions').text($xml_entry.find('versions').text());
 
 							$article.find('.description').text(entry_desc);
-							$article.find('.signature').text($xml_entry.find('signature code').text());
+							var signatureHTML = parseCodeBlock($xml_entry.find('signature code').text());
+
+							$article.find('.signature').html(signatureHTML);
 							var $args = $article.find('.arguments-list'),
 								$rets = $article.find('.returns-list');
 
 							$xml_entry.find('argument').each(function(arg) {
-								arg = $(arg);
-
 								var $arg = $( '#template-article-argument' ).import().appendTo($args);
-								$arg.filter('.argument-name').text(arg.find('name').text());
-								$arg.find('.argument-description').text(arg.find('description').text());
+
+								$arg.filter('.argument-name').text(
+									$(arg).find('name').text()
+								);
+
+								$arg.find('.argument-description').html(
+									parseDocText( $(arg).find('description').get(0) )
+								);
 							});
 							if (!$xml_entry.find('?argument')) {
 								$args.closest('section').display(false);
 							}
 
 							$xml_entry.find('return').each(function(ret) {
-								ret = $(ret);
 
 								var $ret = $( '#template-article-return' ).import().appendTo($rets);
-								$ret.text(ret.text());
+								var html = parseDocText(ret);
+								$ret.html(html);
 							});
 
 							$html_entry.prop('$article', $article);

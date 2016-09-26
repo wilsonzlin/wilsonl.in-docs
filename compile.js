@@ -12,14 +12,14 @@ require('zcompile')({
 		'docs/app.html',
 
 		'docs/zQuery/index.html',
+		'docs/zQuery/doc.xml',
+
 		'docs/zVex/index.html',
+		'docs/zVex/doc.xml',
 	],
 	debug: process.argv.slice(2).some(arg => /^debug$/.test(arg)),
 
 	copy: [
 		'docs/search.png',
-
-		'docs/zQuery/doc.xml',
-		'docs/zVex/doc.xml',
 	],
 });

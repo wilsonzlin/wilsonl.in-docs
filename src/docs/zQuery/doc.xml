@@ -4,11 +4,11 @@
 		<entry>
 			<name>.length</name>
 			<versions>All</versions>
-			<description>The count of elements in the instance</description>
+			<description>The number of elements in the instance</description>
 
 			<signature>
 				<code>amountOfElems = zq.length</code>
-				<warning>This should not be set. Create a new instance to change the set of elements.</warning>
+				<warning>This property should not be modified manually. Create a new instance to change the set of elements.</warning>
 			</signature>
 			<arguments>
 			</arguments>
@@ -33,22 +33,25 @@
 			</arguments>
 			<returns>
 				<return>The element positioned at the index</return>
-				<return><code-snippet>null</code-snippet> if no element exists at the index</return>
+				<return><code-snippet>null</code-snippet><zc-xml-spacer />if no element exists at the index</return>
 			</returns>
 		</entry>
 
 		<entry>
 			<name>.each</name>
 			<versions>All</versions>
-			<description>Iterates over all elements using a provided function</description>
+			<description>Iterate over all elements using a provided function</description>
 
 			<signature>
-				<code>zq = zq.each( function iterator(Element elem, int index, int elemsCount) )</code>
+				<code>zq = zq.each( function iterator )</code>
 			</signature>
 			<arguments>
 				<argument>
 					<name>iterator</name>
-					<description>The function which will be called for each element. It will be provided the element, its index and the total amount of elements, in that order. Any return value is discarded.</description>
+					<description>
+						<code-block>iterator = ( Node node, int index, int nodeCount ) =&gt; {}</code-block>
+						The function which will be called for each node. It will be provided the node, its index and the total amount of nodes, in that order. Any return value is discarded.
+					</description>
 				</argument>
 			</arguments>
 			<returns>
@@ -59,7 +62,7 @@
 		<entry>
 			<name>.eq</name>
 			<versions>All</versions>
-			<description>Constructs a new instance from an element in the current instance</description>
+			<description>Construct a new instance from an element in the current instance</description>
 
 			<signature>
 				<code>zq_oneElem = zq.eq( int index )</code>
@@ -72,18 +75,18 @@
 			</arguments>
 			<returns>
 				<return>A new zQuery instance containing one element</return>
-				<return><code-snippet>null</code-snippet> if the index provided is invalid</return>
+				<return><code-snippet>null</code-snippet><zc-xml-spacer />if the index provided is invalid</return>
 			</returns>
 		</entry>
 
 		<entry>
 			<name>.slice</name>
 			<versions>All</versions>
-			<description>Constructs a new instance from a subset of the current instance's elements</description>
+			<description>Construct a new instance from a subset of the current instance's elements</description>
 
 			<signature>
 				<code>zq_subset = zq.slice( int start, int end )</code>
-				<info>This functions the same as <code-snippet>Array.prototype.slice<code-snippet>.</info>
+				<info>This functions the same as<zc-xml-spacer /><code-snippet>Array.prototype.slice</code-snippet>.</info>
 			</signature>
 			<arguments>
 				<argument>
@@ -92,7 +95,7 @@
 				</argument>
 				<argument>
 					<name>end</name>
-					<description>The subset will include elements up to, but not including, <code-snippet>end</code-snippet>.</description>
+					<description>The subset will include elements up to, but not including,<zc-xml-spacer /><code-snippet>end</code-snippet>.</description>
 				</argument>
 			</arguments>
 			<returns>
