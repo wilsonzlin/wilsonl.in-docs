@@ -33,7 +33,7 @@
 			</arguments>
 			<returns>
 				<return>The element positioned at the index</return>
-				<return><code-snippet>null</code-snippet><zc-xml-spacer />if no element exists at the index</return>
+				<return><code-snippet>null</code-snippet><zc-space />if no element exists at the index</return>
 			</returns>
 		</entry>
 
@@ -75,7 +75,7 @@
 			</arguments>
 			<returns>
 				<return>A new zQuery instance containing one element</return>
-				<return><code-snippet>null</code-snippet><zc-xml-spacer />if the index provided is invalid</return>
+				<return><code-snippet>null</code-snippet><zc-space />if the index provided is invalid</return>
 			</returns>
 		</entry>
 
@@ -86,7 +86,7 @@
 
 			<signature>
 				<code>zq_subset = zq.slice( int start, int end )</code>
-				<info>This functions the same as<zc-xml-spacer /><code-snippet>Array.prototype.slice</code-snippet>.</info>
+				<info>This functions the same as<zc-space /><code-snippet>Array.prototype.slice</code-snippet>.</info>
 			</signature>
 			<arguments>
 				<argument>
@@ -95,7 +95,7 @@
 				</argument>
 				<argument>
 					<name>end</name>
-					<description>The subset will include elements up to, but not including,<zc-xml-spacer /><code-snippet>end</code-snippet>.</description>
+					<description>The subset will include elements up to, but not including,<zc-space /><code-snippet>end</code-snippet>.</description>
 				</argument>
 			</arguments>
 			<returns>
