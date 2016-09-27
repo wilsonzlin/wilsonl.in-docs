@@ -1,4 +1,9 @@
 #app-header {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
 	align-items: center;
 	box-shadow: 0 2px 16px #999;
 	display: flex;

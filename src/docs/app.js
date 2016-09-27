@@ -10,55 +10,19 @@
 	});
 
 	function parseDocText(xmlNode) {
-		var html = '';
-
-		for (var i = 0; i < xmlNode.childNodes.length; ++i) {
-			var childNode = xmlNode.childNodes[i];
-			switch (childNode.nodeType) {
-				case 1:
-					var tag,
-						innerHTML,
-						attributes = '';
-
-					switch (childNode.nodeName.toLowerCase()) {
-						case 'code-snippet':
-							tag = 'code';
-							break;
-
-						case 'code-block':
-							tag = 'pre';
-							innerHTML = parseCodeBlock(childNode.textContent);
-							break;
-
-						case 'strong':
-							tag = 'strong';
-							break;
-
-						case 'em':
-							tag = 'em';
-							break;
-
-						case 'link':
-							tag = 'a';
-							attributes = 'href="' + childNode.getAttribute('url');
-							break;
-					}
-					innerHTML = innerHTML || parseDocText(childNode);
-					html += '<' + tag + ' ' + attributes + '>' + innerHTML + '</' + tag + '>';
-					break;
-
-				case 3:
-					html += $.escape.HTML(childNode.textContent);
-					break;
-			}
-		}
-
-		return html;
+		var renderer = new marked.Renderer();
+		renderer.code = function(code) {
+			return '<pre>' + parseCodeBlock(code) + '</pre>';
+		};
+		renderer.paragraph = function(text) {
+			return marked(text).slice(3, -5); // Remove <p> wrapping
+		};
+		return marked(xmlNode.textContent, { renderer: renderer });
 	}
 
 	function parseCodeBlock(codeText) {
 		return codeText
-			.replace(/ ([A-Z][a-z0-9_]+|function|int|string|bool|float|object|array)/g, function(match) {
+			.replace(/ ([A-Z][a-z0-9_]+|function|int|float|string|bool|object|array)/g, function(match) {
 				return ' <span class=type>' + match.slice(1) + '</span>';
 			});
 	}
@@ -137,9 +101,15 @@
 							$article.find('.versions').text($xml_entry.find('versions').text());
 
 							$article.find('.description').text(entry_desc);
-							var signatureHTML = parseCodeBlock($xml_entry.find('signature code').text());
 
-							$article.find('.signature').html(signatureHTML);
+							var $synopsis = $article.filter( '.section-synopsis' );
+							$xml_entry.find('signature code').each(function(codeElem) {
+								$( '#template-article-signature' )
+									.import()
+									.appendTo( $synopsis.get() )
+									.html( parseCodeBlock(codeElem.textContent) );
+							});
+
 							var $args = $article.find('.arguments-list'),
 								$rets = $article.find('.returns-list');
 

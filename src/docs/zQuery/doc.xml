@@ -20,20 +20,22 @@
 		<entry>
 			<name>.get</name>
 			<versions>All</versions>
-			<description>Get an element in the instance</description>
+			<description>Get one or all elements in the instance</description>
 
 			<signature>
-				<code>zq = zq.get( int index )</code>
+				<code>oneElem = zq.get( int index )</code>
+				<code>allElems = zq.get()</code>
 			</signature>
 			<arguments>
 				<argument>
 					<name>index</name>
-					<description>The index of the element to return. If it's negative, the resulting index will the the size of the instance minus the absolute value of the provided index.</description>
+					<description>The index of the element to return. If `undefined`, an array containing all elements will be returned. If it's negative, the resulting index will the the size of the instance minus the absolute value of the provided index.</description>
 				</argument>
 			</arguments>
 			<returns>
 				<return>The element positioned at the index</return>
-				<return><code-snippet>null</code-snippet><zc-space />if no element exists at the index</return>
+				<return>An array containing all elements if index not provided</return>
+				<return>`null` if no element exists at the index</return>
 			</returns>
 		</entry>
 
@@ -49,7 +51,9 @@
 				<argument>
 					<name>iterator</name>
 					<description>
-						<code-block>iterator = ( Node node, int index, int nodeCount ) =&gt; {}</code-block>
+						```<zc-newline />
+						iterator = ( Node node, int index, int nodeCount ) => {}<zc-newline />
+						```<zc-newline />
 						The function which will be called for each node. It will be provided the node, its index and the total amount of nodes, in that order. Any return value is discarded.
 					</description>
 				</argument>
@@ -75,7 +79,7 @@
 			</arguments>
 			<returns>
 				<return>A new zQuery instance containing one element</return>
-				<return><code-snippet>null</code-snippet><zc-space />if the index provided is invalid</return>
+				<return>`null` if the index provided is invalid</return>
 			</returns>
 		</entry>
 
@@ -86,7 +90,7 @@
 
 			<signature>
 				<code>zq_subset = zq.slice( int start, int end )</code>
-				<info>This functions the same as<zc-space /><code-snippet>Array.prototype.slice</code-snippet>.</info>
+				<info>This functions the same as `Array.prototype.slice`.</info>
 			</signature>
 			<arguments>
 				<argument>
@@ -95,7 +99,7 @@
 				</argument>
 				<argument>
 					<name>end</name>
-					<description>The subset will include elements up to, but not including,<zc-space /><code-snippet>end</code-snippet>.</description>
+					<description>The subset will include elements up to, but not including, `end`.</description>
 				</argument>
 			</arguments>
 			<returns>

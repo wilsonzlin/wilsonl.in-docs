@@ -20,6 +20,7 @@ require('zcompile')({
 	debug: process.argv.slice(2).some(arg => /^debug$/.test(arg)),
 
 	copy: [
+		'docs/marked.js',
 		'docs/search.png',
 	],
 });
