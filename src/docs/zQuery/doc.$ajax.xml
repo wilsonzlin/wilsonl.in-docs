@@ -1,3 +1,54 @@
 <entry>
-			<name>$.ajax</name>
-		</entry>
+	<name>$.ajax</name>
+	<versions>All</versions>
+	<description>Make an asynchronous XHR request</description>
+
+	<signature>
+		<code>zqAjax = $.ajax( object settings )</code>
+	</signature>
+
+	<arguments>
+		<argument>
+			<name>settings (Overview)</name>
+			<description>
+				```<zc-newline />
+				settings = {<zc-newline />
+				<zc-tab />url: 'https://some.url/resource.php',<zc-newline />
+				<zc-tab />method: 'GET',<zc-newline />
+				<zc-tab />data: { // This can also be FormData<zc-newline />
+				<zc-tab /><zc-tab />this: 'object',<zc-newline />
+				<zc-tab /><zc-tab />will: 'be',<zc-newline />
+				<zc-tab /><zc-tab />serialised: true,<zc-newline />
+				<zc-tab />},<zc-newline />
+				<zc-newline />
+				<zc-tab />beforeSend: ( xhr ) => {},<zc-newline />
+				<zc-tab />headers: {<zc-newline />
+				<zc-tab /><zc-tab />'Some-HTTP-Header': 'associated data',<zc-newline />
+				<zc-tab /><zc-tab />'Another-HTTP-Header': 'even more stuff',<zc-newline />
+				<zc-tab /><zc-tab />...<zc-newline />
+				<zc-tab />},<zc-newline />
+				<zc-newline />
+				<zc-tab />success: ( responseText ) => {},<zc-newline />
+				<zc-tab />error: ( errorObject, xhrStatus, xhrStatusText ) => {},<zc-newline />
+				<zc-tab />complete: () => {},<zc-newline />
+				<zc-newline />
+				<zc-tab />upload: {<zc-newline />
+				<zc-tab /><zc-tab />someEvent: ( ... ) => {},<zc-newline />
+				<zc-tab /><zc-tab />anotherEvent: ( ... ) => {},<zc-newline />
+				<zc-tab /><zc-tab />...<zc-newline />
+				<zc-tab />},<zc-newline />
+				<zc-tab />download: {<zc-newline />
+				<zc-tab /><zc-tab />someEvent: ( ... ) => {},<zc-newline />
+				<zc-tab /><zc-tab />anotherEvent: ( ... ) => {},<zc-newline />
+				<zc-tab /><zc-tab />...<zc-newline />
+				<zc-tab />},<zc-newline />
+				}
+				```<zc-newline />
+			</description>
+		</argument>
+	</arguments>
+
+	<returns>
+
+	</returns>
+</entry>

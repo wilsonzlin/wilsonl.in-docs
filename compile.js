@@ -20,7 +20,9 @@ require('zcompile')({
 	debug: process.argv.slice(2).some(arg => /^debug$/.test(arg)),
 
 	copy: [
-		'docs/marked.js',
+		'docs/lib/marked.js',
+		'docs/lib/highlight.js/highlight.pack.js',
+		'docs/lib/highlight.js/styles/atom-one-light.css',
 		'docs/search.png',
 	],
 });

@@ -12,7 +12,8 @@
 	function parseDocText(xmlNode) {
 		var renderer = new marked.Renderer();
 		renderer.code = function(code) {
-			return '<pre>' + parseCodeBlock(code) + '</pre>';
+			// return '<pre>' + parseCodeBlock(code) + '</pre>';
+			return '<pre>' + hljs.highlight('js', code, true).value + '</pre>';
 		};
 		renderer.paragraph = function(text) {
 			return marked(text).slice(3, -5); // Remove <p> wrapping
@@ -41,15 +42,23 @@
 			};
 		});
 
+		var articles = {},
+			loadArticle = function($articleEntry) {
+				var articleEntryElem = this || $articleEntry.get(0);
+
+				document.body.scrollTop = 0;
+				$( 'article' ).empty();
+				articleEntryElem.$article.appendTo( 'article' );
+				if (location.hash.slice(1) !== articleEntryElem.articleName) {
+					location.hash = '#' + articleEntryElem.articleName;
+				}
+			};
+
 		$( '#toc-categories' )
 			.on('click', '.toc-category-label', function() {
 				$(this).classes(['active']);
 			})
-			.on('click', '.toc-category-entry', function() {
-
-				$( 'article' ).empty();
-				this.$article.appendTo( 'article' );
-			});
+			.on('click', '.toc-category-entry', loadArticle);
 
 		$( '.toc-control' )
 			.on('click', function() {
@@ -136,8 +145,15 @@
 							});
 
 							$html_entry.prop('$article', $article);
+							$html_entry.prop('articleName', entry_name);
+							articles[entry_name] = $html_entry;
 						});
 					});
+
+					var currentHash = location.hash.slice(1),
+						hashArticle = articles[currentHash];
+
+					if (hashArticle) loadArticle(hashArticle);
 				}
 			});
 		}
