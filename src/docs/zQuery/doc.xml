@@ -1,312 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <documentation>
 	<category name="Instance tools">
-		<entry>
-			<name>.length</name>
-			<versions>All</versions>
-			<description>The number of elements in the instance</description>
-
-			<signature>
-				<code>amountOfElems = zq.length</code>
-				<warning>This property should not be modified manually. Create a new instance to change the set of elements.</warning>
-			</signature>
-			<arguments>
-			</arguments>
-			<returns>
-				<return>The size of the instance</return>
-			</returns>
-		</entry>
-
-		<entry>
-			<name>.get</name>
-			<versions>All</versions>
-			<description>Get one or all elements in the instance</description>
-
-			<signature>
-				<code>oneElem = zq.get( int index )</code>
-				<code>allElems = zq.get()</code>
-			</signature>
-			<arguments>
-				<argument>
-					<name>index</name>
-					<description>The index of the element to return. If `undefined`, an array containing all elements will be returned. If it's negative, the resulting index will the the size of the instance minus the absolute value of the provided index.</description>
-				</argument>
-			</arguments>
-			<returns>
-				<return>The element positioned at the index</return>
-				<return>An array containing all elements if index not provided</return>
-				<return>`null` if no element exists at the index</return>
-			</returns>
-		</entry>
-
-		<entry>
-			<name>.each</name>
-			<versions>All</versions>
-			<description>Iterate over all elements using a provided function</description>
-
-			<signature>
-				<code>zq = zq.each( function iterator )</code>
-			</signature>
-			<arguments>
-				<argument>
-					<name>iterator</name>
-					<description>
-						```<zc-newline />
-						iterator = ( Node node, int index, int nodeCount ) => {}<zc-newline />
-						```<zc-newline />
-						The function which will be called for each node. It will be provided the node, its index and the total amount of nodes, in that order. Any return value is discarded.
-					</description>
-				</argument>
-			</arguments>
-			<returns>
-				<return>The zQuery instance</return>
-			</returns>
-		</entry>
-
-		<entry>
-			<name>.eq</name>
-			<versions>All</versions>
-			<description>Construct a new instance from an element in the current instance</description>
-
-			<signature>
-				<code>zq_oneElem = zq.eq( int index )</code>
-			</signature>
-			<arguments>
-				<argument>
-					<name>index</name>
-					<description>The index of the element in the current instance to create a new instance from. If it's negative, the index of the element to be retrieved will be the size of the instance minus the absolute value of the provided index.</description>
-				</argument>
-			</arguments>
-			<returns>
-				<return>A new zQuery instance containing one element</return>
-				<return>`null` if the index provided is invalid</return>
-			</returns>
-		</entry>
-
-		<entry>
-			<name>.slice</name>
-			<versions>All</versions>
-			<description>Construct a new instance from a subset of the current instance's elements</description>
-
-			<signature>
-				<code>zq_subset = zq.slice( int start, int end )</code>
-				<info>This functions the same as `Array.prototype.slice`.</info>
-			</signature>
-			<arguments>
-				<argument>
-					<name>start</name>
-					<description>The index of the element in the current instance to start the subset.</description>
-				</argument>
-				<argument>
-					<name>end</name>
-					<description>The subset will include elements up to, but not including, `end`.</description>
-				</argument>
-			</arguments>
-			<returns>
-				<return>A new zQuery instance containing the subset elements</return>
-			</returns>
-		</entry>
-
-		<entry>
-			<name>.add</name>
-		</entry>
+		<ZC-IMPORT[length]>
+		<ZC-IMPORT[get]>
+		<ZC-IMPORT[each]>
+		<ZC-IMPORT[eq]>
+		<ZC-IMPORT[slice]>
+		<ZC-IMPORT[add]>
 	</category>
 
 	<category name="DOM iteration">
-		<entry>
-			<name>.find</name>
-		</entry>
-
-		<entry>
-			<name>.children</name>
-		</entry>
-
-		<entry>
-			<name>.filter</name>
-		</entry>
-
-		<entry>
-			<name>.parent</name>
-		</entry>
-
-		<entry>
-			<name>.index</name>
-		</entry>
-
-		<entry>
-			<name>.prev</name>
-		</entry>
-
-		<entry>
-			<name>.next</name>
-		</entry>
-
-		<entry>
-			<name>.prevAll</name>
-		</entry>
-
-		<entry>
-			<name>.nextAll</name>
-		</entry>
-
-		<entry>
-			<name>.siblings</name>
-		</entry>
-
-		<entry>
-			<name>.closest</name>
-		</entry>
+		<ZC-IMPORT[find]>
+		<ZC-IMPORT[children]>
+		<ZC-IMPORT[filter]>
+		<ZC-IMPORT[parent]>
+		<ZC-IMPORT[index]>
+		<ZC-IMPORT[prev]>
+		<ZC-IMPORT[next]>
+		<ZC-IMPORT[prevAll]>
+		<ZC-IMPORT[nextAll]>
+		<ZC-IMPORT[siblings]>
+		<ZC-IMPORT[closest]>
 	</category>
 
 	<category name="DOM data">
-		<entry>
-			<name>.html</name>
-		</entry>
-
-		<entry>
-			<name>.text</name>
-		</entry>
-
-		<entry>
-			<name>.val</name>
-		</entry>
-
-		<entry>
-			<name>.prop</name>
-		</entry>
-
-		<entry>
-			<name>.classes</name>
-		</entry>
-
-		<entry>
-			<name>.attr</name>
-		</entry>
+		<ZC-IMPORT[html]>
+		<ZC-IMPORT[text]>
+		<ZC-IMPORT[val]>
+		<ZC-IMPORT[prop]>
+		<ZC-IMPORT[classes]>
+		<ZC-IMPORT[attr]>
 	</category>
 
 	<category name="DOM manipulation">
-		<entry>
-			<name>.prepend</name>
-		</entry>
-
-		<entry>
-			<name>.append</name>
-		</entry>
-
-		<entry>
-			<name>.before</name>
-		</entry>
-
-		<entry>
-			<name>.after</name>
-		</entry>
-
-		<entry>
-			<name>.prependTo</name>
-		</entry>
-
-		<entry>
-			<name>.appendTo</name>
-		</entry>
-
-		<entry>
-			<name>.insertBefore</name>
-		</entry>
-
-		<entry>
-			<name>.insertAfter</name>
-		</entry>
-
-		<entry>
-			<name>.empty</name>
-		</entry>
-
-		<entry>
-			<name>.remove</name>
-		</entry>
+		<ZC-IMPORT[prepend]>
+		<ZC-IMPORT[append]>
+		<ZC-IMPORT[before]>
+		<ZC-IMPORT[after]>
+		<ZC-IMPORT[prependTo]>
+		<ZC-IMPORT[appendTo]>
+		<ZC-IMPORT[insertBefore]>
+		<ZC-IMPORT[insertAfter]>
+		<ZC-IMPORT[empty]>
+		<ZC-IMPORT[remove]>
 	</category>
 
 	<category name="Modularisation">
-		<entry>
-			<name>.clone</name>
-		</entry>
-
-		<entry>
-			<name>.import</name>
-		</entry>
-
-		<entry>
-			<name>.databind</name>
-		</entry>
+		<ZC-IMPORT[clone]>
+		<ZC-IMPORT[import]>
+		<ZC-IMPORT[databind]>
 	</category>
 
 	<category name="Events">
-		<entry>
-			<name>.on</name>
-		</entry>
-
-		<entry>
-			<name>.off</name>
-		</entry>
-
-		<entry>
-			<name>.one</name>
-		</entry>
-
-		<entry>
-			<name>.trigger</name>
-		</entry>
+		<ZC-IMPORT[on]>
+		<ZC-IMPORT[off]>
+		<ZC-IMPORT[one]>
+		<ZC-IMPORT[trigger]>
 	</category>
 
 	<category name="Styling">
-		<entry>
-			<name>.reflow</name>
-		</entry>
-
-		<entry>
-			<name>.css</name>
-		</entry>
-
-		<entry>
-			<name>.display</name>
-		</entry>
-
-		<entry>
-			<name>.hasFocus</name>
-		</entry>
+		<ZC-IMPORT[reflow]>
+		<ZC-IMPORT[css]>
+		<ZC-IMPORT[display]>
+		<ZC-IMPORT[hasFocus]>
 	</category>
 
 	<category name="External tools">
-		<entry>
-			<name>$.ajax</name>
-		</entry>
-
-		<entry>
-			<name>$.isArrayLike</name>
-		</entry>
-
-		<entry>
-			<name>$.each</name>
-		</entry>
-
-		<entry>
-			<name>$.clone</name>
-		</entry>
-
-		<entry>
-			<name>$.escape.HTML</name>
-		</entry>
-
-		<entry>
-			<name>$.escape.RegExp</name>
-		</entry>
-
-		<entry>
-			<name>$.shuffle</name>
-		</entry>
-
-		<entry>
-			<name>$.factory</name>
-		</entry>
+		<ZC-IMPORT[$ajax]>
+		<ZC-IMPORT[$isArrayLike]>
+		<ZC-IMPORT[$each]>
+		<ZC-IMPORT[$clone]>
+		<ZC-IMPORT[$escape-HTML]>
+		<ZC-IMPORT[$escape-RegExp]>
+		<ZC-IMPORT[$shuffle]>
+		<ZC-IMPORT[$factory]>
 	</category>
 </documentation>

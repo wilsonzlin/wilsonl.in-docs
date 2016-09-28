@@ -1,0 +1,21 @@
+<entry>
+	<name>.get</name>
+	<versions>All</versions>
+	<description>Get one or all elements in the instance</description>
+
+	<signature>
+		<code>oneElem = zq.get( int index )</code>
+		<code>allElems = zq.get()</code>
+	</signature>
+	<arguments>
+		<argument>
+			<name>index</name>
+			<description>The index of the element to return. If `undefined`, an array containing all elements will be returned. If it's negative, the resulting index will the the size of the instance minus the absolute value of the provided index.</description>
+		</argument>
+	</arguments>
+	<returns>
+		<return>The element positioned at the index</return>
+		<return>An array containing all elements if index not provided</return>
+		<return>`null` if no element exists at the index</return>
+	</returns>
+</entry>

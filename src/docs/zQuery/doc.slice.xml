@@ -1,0 +1,22 @@
+<entry>
+	<name>.slice</name>
+	<versions>All</versions>
+	<description>Construct a new instance from a subset of the current instance's elements</description>
+
+	<signature>
+		<code>zq_subset = zq.slice( int start, int end )</code>
+	</signature>
+	<arguments>
+		<argument>
+			<name>start</name>
+			<description>The index of the element in the current instance to start the subset.</description>
+		</argument>
+		<argument>
+			<name>end</name>
+			<description>The subset will include elements up to, but not including, `end`.</description>
+		</argument>
+	</arguments>
+	<returns>
+		<return>A new zQuery instance containing the subset elements</return>
+	</returns>
+</entry>

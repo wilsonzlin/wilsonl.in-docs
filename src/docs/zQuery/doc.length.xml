@@ -1,0 +1,14 @@
+<entry>
+	<name>.length</name>
+	<versions>All</versions>
+	<description>The number of elements in the instance</description>
+
+	<signature>
+		<code>amountOfElems = zq.length</code>
+	</signature>
+	<arguments>
+	</arguments>
+	<returns>
+		<return>The size of the instance</return>
+	</returns>
+</entry>
