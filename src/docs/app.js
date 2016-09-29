@@ -43,16 +43,33 @@
 		});
 
 		var articles = {},
+			hashManuallyChanged = false,
 			loadArticle = function($articleEntry) {
 				var articleEntryElem = this || $articleEntry.get(0);
 
 				document.body.scrollTop = 0;
+				document.title = articleEntryElem.articleName + ' - ' + currentListing + ' | wilsonl.in';
 				$( 'article' ).empty();
 				articleEntryElem.$article.appendTo( 'article' );
-				if (location.hash.slice(1) !== articleEntryElem.articleName) {
-					location.hash = '#' + articleEntryElem.articleName;
-				}
+				history.replaceState(undefined, undefined, '#' + articleEntryElem.articleName);
 			};
+
+		// $(window)
+		// 	.on('hashchange', function() {
+		// 		if (hashManuallyChanged) {
+		// 			hashManuallyChanged = false;
+		// 		} else {
+		// 			var currentHash = location.hash.slice(1),
+		// 				hashArticle = articles[currentHash];
+		//
+		// 			if (hashArticle) {
+		// 				loadArticle(hashArticle);
+		// 			} else {
+		// 				document.title = currentListing + ' | wilsonl.in';
+		// 				$( 'article' ).empty();
+		// 			}
+		// 		}
+		// 	});
 
 		$( '#toc-categories' )
 			.on('click', '.toc-category-label', function() {
