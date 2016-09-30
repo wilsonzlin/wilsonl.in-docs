@@ -46,6 +46,23 @@
 				```<zc-newline />
 			</description>
 		</argument>
+
+		<argument>
+			<name>settings.url</name>
+			<description>
+				The URL to send the request to.
+			</description>
+		</argument>
+
+		<argument>
+			<name>settings.method</name>
+			<description>
+				```<zc-newline />
+				OPTIONS | GET | HEAD | POST | PUT | DELETE | TRACE | CONNECT | PATCH<zc-newline />
+				```<zc-newline />
+				The [HTTP method](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html) to use.
+			</description>
+		</argument>
 	</arguments>
 
 	<returns>
