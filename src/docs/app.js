@@ -12,7 +12,6 @@
 	function parseDocText(xmlNode) {
 		var renderer = new marked.Renderer();
 		renderer.code = function(code) {
-			// return '<pre>' + parseCodeBlock(code) + '</pre>';
 			return '<pre>' + hljs.highlight('js', code, true).value + '</pre>';
 		};
 		renderer.paragraph = function(text) {
@@ -53,23 +52,6 @@
 				articleEntryElem.$article.appendTo( 'article' );
 				history.replaceState(undefined, undefined, '#' + articleEntryElem.articleName);
 			};
-
-		// $(window)
-		// 	.on('hashchange', function() {
-		// 		if (hashManuallyChanged) {
-		// 			hashManuallyChanged = false;
-		// 		} else {
-		// 			var currentHash = location.hash.slice(1),
-		// 				hashArticle = articles[currentHash];
-		//
-		// 			if (hashArticle) {
-		// 				loadArticle(hashArticle);
-		// 			} else {
-		// 				document.title = currentListing + ' | wilsonl.in';
-		// 				$( 'article' ).empty();
-		// 			}
-		// 		}
-		// 	});
 
 		$( '#toc-categories' )
 			.on('click', '.toc-category-label', function() {
