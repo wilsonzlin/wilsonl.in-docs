@@ -1,6 +1,6 @@
 <entry>
 	<name>$.ajax</name>
-	<versions>All</versions>
+	<versions>1.x.x</versions>
 	<description>Make an asynchronous XHR request</description>
 
 	<signature>
