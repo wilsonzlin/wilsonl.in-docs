@@ -1,0 +1,16 @@
+<entry>
+	<name>for...of</name>
+	<versions>>= 2.0.0</versions>
+	<description>Iterate over a zQuery instance's elements and construct a zQuery instance for each element for use during iteration</description>
+
+	<signatures>
+		<signature>for (let zq_oneElem of zq)</signature>
+	</signatures>
+
+	<arguments>
+		<argument>
+			<name>zq_oneElem</name>
+			<description>A zQuery instance constructed from one element in the zQuery instance.</description>
+		</argument>
+	</arguments>
+</entry>

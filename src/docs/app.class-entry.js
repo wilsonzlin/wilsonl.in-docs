@@ -28,6 +28,7 @@ class Entry {
 			}, true).appendTo( $artArguments );
 		}
 
+		if (!rets.length) $artReturns.closest( 'section' ).display( false );
 		for (let ret of rets) {
 			let $ret = $( '#template-article-return' ).import().appendTo( $artReturns );
 			$ret.html( parseMarkdown(ret) );

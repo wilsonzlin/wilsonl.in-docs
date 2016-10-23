@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <documentation>
 	<category name="Instance tools">
+		<ZC-IMPORT[for-of]>
 		<ZC-IMPORT[length]>
 		<ZC-IMPORT[get]>
 		<ZC-IMPORT[each]>
