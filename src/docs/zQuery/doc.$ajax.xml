@@ -3,15 +3,15 @@
 	<versions>1.x.x</versions>
 	<description>Make an asynchronous XHR request</description>
 
-	<signature>
-		<code>zqAjax = $.ajax( object settings )</code>
-	</signature>
+	<signatures>
+		<signature>zqAjax = $.ajax( object settings )</signature>
+	</signatures>
 
 	<arguments>
 		<argument>
 			<name>settings (Overview)</name>
 			<description>
-				```<zc-newline />
+				```js<zc-newline />
 				settings = {<zc-newline />
 				<zc-tab />url: 'https://some.url/resource.php',<zc-newline />
 				<zc-tab />method: 'GET',<zc-newline />
@@ -66,6 +66,5 @@
 	</arguments>
 
 	<returns>
-
 	</returns>
 </entry>

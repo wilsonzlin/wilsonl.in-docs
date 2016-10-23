@@ -1,3 +1,26 @@
 <entry>
 	<name>.add</name>
+	<versions>All</versions>
+	<description>Construct a new instance from the current instance's elements and the provided elements</description>
+
+	<signatures>
+		<signature>zq_superset = zq.add( Node|zQuery|string|ArrayLike elems )</signature>
+	</signatures>
+
+	<arguments>
+		<argument>
+			<name>elems</name>
+			<description>
+				The element(s) to combine with the current elements forming the new instance. Can be any of the following:<zc-newline />
+				- Node<zc-newline />
+				- zQuery instance<zc-newline />
+				- Selector to query for elements in the whole document<zc-newline />
+				- Array-like object of elements
+			</description>
+		</argument>
+	</arguments>
+
+	<returns>
+		<return>A new zQuery instance containing the superset elements</return>
+	</returns>
 </entry>

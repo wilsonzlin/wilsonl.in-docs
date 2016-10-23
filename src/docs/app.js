@@ -1,160 +1,70 @@
-(function() {
+(async function() {
 	"use strict";
 
-	$.ajax({
-		url: '../app.html',
-		success: function(data) {
-			$( document.body ).html(data);
-			init();
-		}
-	});
+	const VIEWPORT_TITLE_SUFFIX = ' | wilsonl.in';
 
-	function parseDocText(xmlNode) {
+	var currentListing;
+
+	try {
+		let req = await fetch('../app.html');
+		let html = await req.text();
+
+		$( document.body ).html( html );
+		main();
+	} catch (err) {
+		// TODO
+		return;
+	}
+
+	function parseMarkdown(mdText) {
 		var renderer = new marked.Renderer();
-		renderer.code = function(code) {
-			return '<pre>' + hljs.highlight('js', code, true).value + '</pre>';
+		renderer.code = function(code, language) {
+			var html;
+
+			if (language && language.indexOf('_wldoc_') == 0) {
+				switch (language.slice(7)) {
+					case 'typedline':
+						html = parseTypedCodeLine(code);
+						break;
+				}
+			} else if (language) {
+				html = hljs.highlight(language, code, true).value;
+			} else {
+				html = $.escape.HTML( code );
+			}
+			return `<pre>${ html }</pre>`;
 		};
 		renderer.paragraph = function(text) {
 			return marked(text).slice(3, -5); // Remove <p> wrapping
 		};
-		return marked(xmlNode.textContent, { renderer: renderer });
+		return marked(mdText, { renderer: renderer });
 	}
 
-	function parseCodeBlock(codeText) {
+	function parseTypedCodeLine(codeText) {
 		return codeText
-			.replace(/ ([A-Z][a-z0-9_]+|function|int|float|string|bool|object|array)/g, function(match) {
-				return ' <span class=type>' + match.slice(1) + '</span>';
-			});
+			.replace(/([| ])((?:[A-Z][a-z0-9_]+)+|zQuery|function|int|float|string|bool|object|array)/g, (_, charBefore, type) => `${charBefore}<span class=type>${ type }</span>`);
 	}
 
-	var init = function() {
-		var currentListing;
+	function loadArticle($articleEntry) {
+		// Function may be called by DOM element event handler or manually
+		var articleEntryElem = this || $articleEntry.get(0);
 
-		var listings = ['zQuery', 'zVex', 'zSelectPro', 'zc', 'StackUI', 'JSVF'].map(function(listing) {
-			var matchesURI = RegExp('^\\/docs\\/' + listing + '(\\/?$|\\/.+)');
-			if (matchesURI.test(location.pathname)) {
-				currentListing = listing;
-			}
-			return {
-				title: listing,
-				matchesURI: matchesURI
-			};
-		});
+		// Update viewport
+		document.body.scrollTop = 0;
+		document.title = `${articleEntryElem.articleName} - ${currentListing}${VIEWPORT_TITLE_SUFFIX}`;
 
-		var articles = {},
-			hashManuallyChanged = false,
-			loadArticle = function($articleEntry) {
-				var articleEntryElem = this || $articleEntry.get(0);
+		// Load article
+		$( 'article' ).empty();
+		articleEntryElem.$article.appendTo( 'article' );
 
-				document.body.scrollTop = 0;
-				document.title = articleEntryElem.articleName + ' - ' + currentListing + ' | wilsonl.in';
-				$( 'article' ).empty();
-				articleEntryElem.$article.appendTo( 'article' );
-				history.replaceState(undefined, undefined, '#' + articleEntryElem.articleName);
-			};
+		// Add hash to URL without creating history
+		history.replaceState(undefined, undefined, '#' + articleEntryElem.articleName);
+	}
 
-		$( '#toc-categories' )
-			.on('click', '.toc-category-label', function() {
-				$(this).classes(['active']);
-			})
-			.on('click', '.toc-category-entry', loadArticle);
+	<ZC-IMPORT[class-category]>
+	<ZC-IMPORT[class-entry]>
 
-		$( '.toc-control' )
-			.on('click', function() {
-				$( '.toc-category-label' )
-					.classes('active', this.value == 'expand all');
-			});
-
-		if (currentListing) {
-			document.title = currentListing + ' | wilsonl.in';
-			$( '#app-listings a[href$="' + currentListing + '"]' )
-				.on('click', function(e) { e.preventDefault() })
-				.closest('li')
-				.classes('active', true);
-
-			$.ajax({
-				url: './doc.xml',
-				success: function(xml) {
-					var $xml = $(xml, 'xml');
-
-					$xml.children('category').each(function(category) {
-						var $html_cat = $( '#template-toc-category' )
-								.import()
-								.appendTo( '#toc-categories' ),
-							$xml_cat = $(category),
-
-							category_name = $xml_cat.attr('name');
-
-						$html_cat
-							.filter('.toc-category-label')
-							.text(category_name);
-
-						var $html_cat_entries = $html_cat
-								.find('.toc-category-entries');
-
-						$xml_cat.children('entry').each(function(entry) {
-							var $html_entry = $( '#template-toc-category-entry' )
-									.import()
-									.appendTo( $html_cat_entries ),
-								$xml_entry = $(entry),
-
-								entry_name = $xml_entry.children('name').text(),
-								entry_desc = $xml_entry.children('description').text();
-
-							$html_entry.text(entry_name).prop('title', entry_desc);
-
-							var $article = $( '#template-article' ).import();
-
-							$article.find('h1').text(entry_name);
-							$article.find('.versions').text($xml_entry.find('versions').text());
-
-							$article.find('.description').text(entry_desc);
-
-							var $synopsis = $article.filter( '.section-synopsis' );
-							$xml_entry.find('signature code').each(function(codeElem) {
-								$( '#template-article-signature' )
-									.import()
-									.appendTo( $synopsis.get() )
-									.html( parseCodeBlock(codeElem.textContent) );
-							});
-
-							var $args = $article.find('.arguments-list'),
-								$rets = $article.find('.returns-list');
-
-							$xml_entry.find('argument').each(function(arg) {
-								var $arg = $( '#template-article-argument' ).import().appendTo($args);
-
-								$arg.filter('.argument-name').text(
-									$(arg).find('name').text()
-								);
-
-								$arg.find('.argument-description').html(
-									parseDocText( $(arg).find('description').get(0) )
-								);
-							});
-							if (!$xml_entry.find('?argument')) {
-								$args.closest('section').display(false);
-							}
-
-							$xml_entry.find('return').each(function(ret) {
-
-								var $ret = $( '#template-article-return' ).import().appendTo($rets);
-								var html = parseDocText(ret);
-								$ret.html(html);
-							});
-
-							$html_entry.prop('$article', $article);
-							$html_entry.prop('articleName', entry_name);
-							articles[entry_name] = $html_entry;
-						});
-					});
-
-					var currentHash = location.hash.slice(1),
-						hashArticle = articles[currentHash];
-
-					if (hashArticle) loadArticle(hashArticle);
-				}
-			});
-		}
-	};
+	async function main() {
+		<ZC-IMPORT[main]>
+	}
 })();

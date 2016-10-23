@@ -2,13 +2,13 @@
 
 <template id="template-article">
 	<header>
-		<h1></h1>
-		<div class="versions"></div>
+		<h1>{{ name }}</h1>
+		<div class="versions">{{ versions }}</div>
 	</header>
 
 	<section class="section-synopsis">
 		<h2>Synopsis</h2>
-		<p class="description"></p>
+		<p class="description">{{ description }}</p>
 	</section>
 
 	<section>
@@ -27,9 +27,9 @@
 </template>
 
 <template id="template-article-argument">
-	<dt class="argument-name"></dt>
+	<dt class="argument-name">{{ name }}</dt>
 	<dd>
-		<p class="argument-description"></p>
+		<p class="argument-description">[[ description ]]</p>
 	</dd>
 </template>
 
