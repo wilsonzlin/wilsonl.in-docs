@@ -1,3 +1,26 @@
 <entry>
-			<name>.filter</name>
-		</entry>
+	<name>.filter</name>
+	<versions>All</versions>
+	<description>Construct a new instance from current elements that match pass the provided test, or match the provided selector or element(s)</description>
+
+	<signatures>
+		<signature>$filtered = zq.filter( function comparisonFunction )</signature>
+		<signature>$filtered = zq.filter( string|Element|zQuery|ArrayLike comparison )</signature>
+	</signatures>
+
+	<arguments>
+		<argument>
+			<name>comparisonFunction</name>
+			<description>A function that will be passed the element and its index, in that order. Return `true` to add it to the returned instance, otherwise it won't be.</description>
+		</argument>
+
+		<argument>
+			<name>comparison</name>
+			<description>The selector or element(s) to compare descendants to. If it's an array-like or zQuery object, only one element in the object must match for it to count as a match.</description>
+		</argument>
+	</arguments>
+
+	<returns>
+		<return>A new zQuery instance containing the filtered elements</return>
+	</returns>
+</entry>

@@ -4,7 +4,7 @@
 	<description>Construct a new instance from an element in the current instance</description>
 
 	<signatures>
-		<signature>zq_oneElem = zq.eq( int index )</signature>
+		<signature>$theChosenOne = zq.eq( int index )</signature>
 	</signatures>
 
 	<arguments>

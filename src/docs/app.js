@@ -50,7 +50,8 @@
 		var articleEntryElem = this || $articleEntry.get(0);
 
 		// Update viewport
-		document.body.scrollTop = 0;
+		document.body.scrollTop = 0; // Chrome
+		document.documentElement.scrollTop = 0; // Firefox
 		document.title = `${articleEntryElem.articleName} - ${currentListing}${VIEWPORT_TITLE_SUFFIX}`;
 
 		// Load article

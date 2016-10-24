@@ -4,7 +4,7 @@
 	<description>Construct a new instance from a subset of the current instance's elements</description>
 
 	<signatures>
-		<signature>zq_subset = zq.slice( int start, int end )</signature>
+		<signature>$subset = zq.slice( int start, int end )</signature>
 	</signatures>
 
 	<arguments>

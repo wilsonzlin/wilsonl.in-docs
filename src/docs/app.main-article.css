@@ -78,6 +78,7 @@ article {
 			color: #abb2bf;
 			padding: 10px;
 			font-size: 18px;
+			overflow: auto;
 		}
 
 		article pre .type {

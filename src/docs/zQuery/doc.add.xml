@@ -4,7 +4,7 @@
 	<description>Construct a new instance from the current instance's elements and the provided elements</description>
 
 	<signatures>
-		<signature>zq_superset = zq.add( Node|zQuery|string|ArrayLike elems )</signature>
+		<signature>$superset = zq.add( Node|zQuery|string|ArrayLike elems )</signature>
 	</signatures>
 
 	<arguments>

@@ -1,3 +1,40 @@
 <entry>
-			<name>.children</name>
-		</entry>
+	<name>.children</name>
+	<versions>All</versions>
+	<description>Get all children, or get or check for children that match the provided selector or element(s)</description>
+
+	<signatures>
+		<signature>$children = zq.children()</signature>
+		<signature>$matchingChildren = zq.children( string|Element|zQuery|ArrayLike comparison )</signature>
+		<signature>allChildrenOfAllElemsMatch = zq.children( string selectorWithExclamation )</signature>
+		<signature>someChildrenOfAllElemsMatch = zq.children( string selectorWithAsterisk )</signature>
+		<signature>someChildrenOfSomeElemsMatch = zq.children( string selectorWithQuestion )</signature>
+	</signatures>
+
+	<arguments>
+		<argument>
+			<name>comparison</name>
+			<description>The selector or element(s) to compare children to. If it's an array-like or zQuery object, only one element in the object must match for it to count as a match.</description>
+		</argument>
+
+		<argument>
+			<name>selectorWithExclamation</name>
+			<description>A string that contains a selector and the exclamation mark (!) as its first character. This checks if all children of all elements in the current instance match the selector.</description>
+		</argument>
+
+		<argument>
+			<name>selectorWithAsterisk</name>
+			<description>A string that contains a selector and the exclamation mark (*) as its first character. This checks if at least one child of all elements in the current instance matches the selector.</description>
+		</argument>
+
+		<argument>
+			<name>selectorWithQuestion</name>
+			<description>A string that contains a selector and the question mark (?) as its first character. This checks if at least one child of one element in the current instance matches the selector.</description>
+		</argument>
+	</arguments>
+
+	<returns>
+		<return>A new zQuery instance containing the matching descendants</return>
+		<return>A boolean that is `true` if all/some children match of all/some elements and `false` otherwise</return>
+	</returns>
+</entry>

@@ -1,3 +1,21 @@
 <entry>
-			<name>.nextAll</name>
-		</entry>
+	<name>.nextAll</name>
+	<versions>All</versions>
+	<description>Get all following siblings for each of the current elements, optionally matching the provided selector or element(s)</description>
+
+	<signatures>
+		<signature>$allSibingsAfter = zq.nextAll()</signature>
+		<signature>$allMatchingSiblingsAfter = zq.nextAll( string|Element|zQuery|ArrayLike comparison )</signature>
+	</signatures>
+
+	<arguments>
+		<argument>
+			<name>comparison</name>
+			<description>The selector or element(s) to compare the siblings to. If it's an array-like or zQuery object, only one element in the object must match for it to count as a match.</description>
+		</argument>
+	</arguments>
+
+	<returns>
+		<return>A new zQuery instance containing every element that is after the current elements</return>
+	</returns>
+</entry>

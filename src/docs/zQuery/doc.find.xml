@@ -4,7 +4,7 @@
 	<description>Find all or check for descendants that match the provided selector or element(s)</description>
 
 	<signatures>
-		<signature>zq_descendants = zq.find( string|Element|zQuery|ArrayLike comparison )</signature>
+		<signature>$matchingDescendants = zq.find( string|Element|zQuery|ArrayLike comparison )</signature>
 		<signature>allDescendantsMatch = zq.find( string selectorWithExclamation )</signature>
 		<signature>someDescendantsMatch = zq.find( string selectorWithQuestion )</signature>
 	</signatures>
@@ -17,12 +17,12 @@
 
 		<argument>
 			<name>selectorWithExclamation</name>
-			<description>A string that contains a selector and the exclamation mark (!) as its first character. This checks if all descendants match the selector and returns a boolean.</description>
+			<description>A string that contains a selector and the exclamation mark (!) as its first character. This checks if all descendants match the selector.</description>
 		</argument>
 
 		<argument>
 			<name>selectorWithQuestion</name>
-			<description>A string that contains a selector and the question mark (?) as its first character. This checks if at least one descendant matches the selector and returns a boolean.</description>
+			<description>A string that contains a selector and the question mark (?) as its first character. This checks if at least one descendant matches the selector.</description>
 		</argument>
 	</arguments>
 
