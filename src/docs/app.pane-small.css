@@ -1,0 +1,14 @@
+@media (max-width: 1000px) {
+	nav {
+		display: none;
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		z-index: 5; /* #app-header is 6 so that its shadow can overlap */
+		overflow: auto;
+	}
+		nav.mobile-visible {
+			display: block;
+		}
+}

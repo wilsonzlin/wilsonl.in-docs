@@ -9,12 +9,12 @@
 	display: flex;
 	position: relative;
 	width: 100%;
+	height: 74px;
+	z-index: 6;
 }
 	#app-logo {
 		font-size: 36px;
 		font-weight: 600;
-		margin-right: 14px;
-		padding: 14px 19px;
 	}
 
 	#app-listings {
@@ -44,7 +44,6 @@
 
 	#app-settings-menu-button {
 		font-size: 25px;
-		margin-right: 12px;
 	}
 	#app-settings-menu {
 		background: white;

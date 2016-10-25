@@ -2,9 +2,6 @@ article {
 	padding: 30px;
 	width: calc(100% - 250px);
 }
-	article:not(:empty) {
-		max-width: 1000px;
-	}
 	article:empty {
 	}
 		article:empty::before {
@@ -17,9 +14,10 @@ article {
 	article header {
 		margin-bottom: 25px;
 	}
-	article section {
+	article section:not(:last-of-type) {
 		margin-bottom: 62px;
 	}
+
 
 	article h1 {
 		font-size: 30px;
@@ -55,7 +53,6 @@ article {
 	article dl,
 	article ul {
 		line-height: 1.5;
-		margin: 0 0 18px 0;
 	}
 		article dt, article dd, article li {
 			margin-bottom: 12px;
@@ -71,6 +68,7 @@ article {
 		display: block;
 		padding: 8px 10px;
 		font-size: 14px;
+		overflow: auto;
 	}
 		article pre.signature {
 			background: #282c34;
@@ -78,10 +76,9 @@ article {
 			color: #abb2bf;
 			padding: 10px;
 			font-size: 18px;
-			overflow: auto;
 		}
 
-		article pre .type {
+		article pre .type { /* .type exists in _wldoc_typedline code */
 			color: #1a1a1a;
 		}
 			article pre.signature .type {

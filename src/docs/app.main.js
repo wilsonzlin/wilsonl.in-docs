@@ -18,18 +18,6 @@ var listings = ['zQuery', 'zVex', 'zSelectPro', 'zc', 'StackUI', 'JSVF'].map(fun
 var articles = {},
 	hashManuallyChanged = false;
 
-$( '#toc-categories' )
-	.on('click', '.toc-category-label', function() {
-		$(this).classes(['active']);
-	})
-	.on('click', '.toc-category-entry', loadArticle);
-
-$( '.toc-control' )
-	.on('click', function() {
-		$( '.toc-category-label' )
-			.classes('active', this.value == 'expand all');
-	});
-
 if (currentListing) {
 
 	document.title = `${currentListing}${VIEWPORT_TITLE_SUFFIX}`;
@@ -52,10 +40,12 @@ if (currentListing) {
 	}
 
 	for (let catxml of docxml.children()) {
-		let category = new Category( catxml.attr('name') );
+		let categoryName = catxml.attr('name'),
+			category = new Category( categoryName );
 
 		for (let entxml of catxml.children()) {
 			let entry = new Entry({
+				category: categoryName,
 				name: entxml.children( 'name' ).text(),
 				description: entxml.children( 'description' ).text(),
 				versions: entxml.children( 'versions' ).text(),

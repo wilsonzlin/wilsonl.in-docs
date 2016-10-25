@@ -1,0 +1,13 @@
+@media (min-width: 1000px) {
+	#app-logo {
+		margin-right: 14px;
+		padding: 0 19px;
+	}
+
+	#app-settings-menu-button {
+		margin-right: 12px;
+	}
+	#app-settings-menu {
+		right: 12px;
+	}
+}

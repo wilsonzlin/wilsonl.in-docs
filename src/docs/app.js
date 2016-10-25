@@ -62,6 +62,26 @@
 		history.replaceState(undefined, undefined, '#' + articleEntryElem.articleName);
 	}
 
+	$( '#toc-categories' )
+		.on('click', '.toc-category-label', function() {
+			$(this).classes(['active']);
+		})
+		.on('click', '.toc-category-entry', function() {
+			loadArticle.call(this);
+			$( 'nav' ).classes('mobile-visible', false);
+		});
+
+	$( '.toc-control' )
+		.on('click', function() {
+			$( '.toc-category-label' )
+				.classes('active', this.value == 'expand all');
+		});
+
+	$( 'article' )
+		.on('click', '.category', e => {
+			$( 'nav' ).classes('mobile-visible', true);
+		});
+
 	<ZC-IMPORT[class-category]>
 	<ZC-IMPORT[class-entry]>
 

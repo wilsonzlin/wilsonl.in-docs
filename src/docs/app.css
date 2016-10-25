@@ -21,7 +21,15 @@ button::-moz-focus-inner {
 }
 
 <ZC-IMPORT[header]>
+<ZC-IMPORT[header-large]>
+<ZC-IMPORT[header-small]>
 <ZC-IMPORT[main]>
-<ZC-IMPORT[main-pane]>
-<ZC-IMPORT[main-article]>
+<ZC-IMPORT[main-large]>
+<ZC-IMPORT[main-small]>
+<ZC-IMPORT[pane]>
+<ZC-IMPORT[pane-large]>
+<ZC-IMPORT[pane-small]>
+<ZC-IMPORT[article]>
+<ZC-IMPORT[article-large]>
+<ZC-IMPORT[article-small]>
 <ZC-IMPORT[footer]>

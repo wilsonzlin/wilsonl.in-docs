@@ -1,11 +1,12 @@
 class Entry {
-	constructor({ name, description, versions, sigs, args, rets }) {
+	constructor({ category, name, description, versions, sigs, args, rets }) {
 		let $ent = $( '#template-toc-category-entry' ).import().databind({
 			name: name,
 			description: description,
 		}, true);
 
 		let $art = $( '#template-article' ).import().databind({
+			category: category,
 			name: name,
 			description: description,
 			versions: versions,

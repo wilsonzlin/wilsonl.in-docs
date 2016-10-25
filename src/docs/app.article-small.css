@@ -1,0 +1,31 @@
+@media (max-width: 1000px) {
+	article {
+		height: 100%;
+		overflow: auto;
+		padding: 20px 8px 0 8px;
+		width: 100%;
+	}
+
+	article .category {
+		/* Identical to .toc-category-label */
+		background: #ccc;
+		color: gray;
+		display: inline-block;
+		cursor: pointer;
+		font-size: 13px;
+		margin-bottom: 6px;
+		padding: 4px 8px;
+		position: relative;
+		text-transform: uppercase;
+	}
+
+	article p,
+	article pre,
+	article dl,
+	article ul {
+		margin: 0 0 12px 0;
+	}
+		article dd {
+			margin-left: 0;
+		}
+}
