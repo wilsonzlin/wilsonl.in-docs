@@ -1,3 +1,27 @@
 <entry>
-			<name>.text</name>
-		</entry>
+	<name>.text</name>
+	<versions>All</versions>
+	<description>Get or set every element's text content</description>
+
+	<signatures>
+		<signature>text = zq.text( bool getTextAsArray )</signature>
+		<signature>zq = zq.text( setTextContentTo )</signature>
+	</signatures>
+
+	<arguments>
+		<argument>
+			<name>getTextAsArray</name>
+			<description>If `true`, an array will be returned with each element's text content; otherwise, a string containing the text content of each element concatenated will be returned.</description>
+		</argument>
+
+		<argument>
+			<name>setTextContentTo</name>
+			<description>The text to set each element's text content to. This will be cast to a string.</description>
+		</argument>
+	</arguments>
+
+	<returns>
+		<return>The current zQuery instance</return>
+		<return>An array containing or string formed from all elements' text content</return>
+	</returns>
+</entry>

@@ -42,7 +42,7 @@
 
 	function parseTypedCodeLine(codeText) {
 		return codeText
-			.replace(/([| ])((?:[A-Z][a-z0-9_]+)+|zQuery|function|int|float|string|bool|object|array)/g, (_, charBefore, type) => `${charBefore}<span class=type>${ type }</span>`);
+			.replace(/([| ])((?:[A-Z][a-z0-9_]+)+|zQuery|function|int|float|number|string|bool|object|array)/g, (_, charBefore, type) => `${charBefore}<span class=type>${ type }</span>`);
 	}
 
 	function loadArticle($articleEntry) {

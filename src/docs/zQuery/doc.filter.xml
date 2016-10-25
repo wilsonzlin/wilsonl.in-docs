@@ -1,7 +1,7 @@
 <entry>
 	<name>.filter</name>
 	<versions>All</versions>
-	<description>Construct a new instance from current elements that match pass the provided test, or match the provided selector or element(s)</description>
+	<description>Construct a new instance from current elements that pass the provided test or match the provided selector or element(s)</description>
 
 	<signatures>
 		<signature>$filtered = zq.filter( function comparisonFunction )</signature>
