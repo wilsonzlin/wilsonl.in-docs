@@ -4,10 +4,17 @@
 		padding: 0 19px;
 	}
 
+	#app-listings li:hover {
+		background: rgba(0, 0, 0, 0.12);
+	}
+
 	#app-settings-menu-button {
 		margin-right: 12px;
 	}
 	#app-settings-menu {
 		right: 12px;
 	}
+		.app-settings-button:hover {
+			background: rgba(0, 0, 0, 0.1);
+		}
 }

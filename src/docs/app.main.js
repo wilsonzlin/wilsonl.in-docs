@@ -60,7 +60,7 @@ if (currentListing) {
 			});
 
 			category.addEntry(entry);
-			articles[entry.name] = entry.$.entry;
+			articles[entry.name] = entry.$.entry.get(0);
 		}
 	}
 

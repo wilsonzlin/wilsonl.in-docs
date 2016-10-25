@@ -52,9 +52,6 @@ nav {
 		position: relative;
 		text-transform: uppercase;
 	}
-		.toc-category-label:hover {
-			background: #bfbfbf;
-		}
 		.toc-category-label::after {
 			content: '\25A2';
 			display: block;
@@ -84,7 +81,6 @@ nav {
 				display: block;
 				padding: 9px 6px 9px 18px;
 			}
-			.toc-category-entry.active,
-			.toc-category-entry:hover {
+			.toc-category-entry.active {
 				background: rgba(180, 180, 180, 0.25);
 			}

@@ -28,8 +28,7 @@
 			font-weight: 500;
 			margin: 0 5px;
 		}
-			#app-listings li.active,
-			#app-listings li:hover {
+			#app-listings li.active {
 				background: rgba(0, 0, 0, 0.12);
 			}
 		#app-listings a {
@@ -53,11 +52,10 @@
 		margin: 0;
 		padding: 0;
 		position: absolute;
-		right: 12px;
 		top: 80%;
 		width: 185px;
 	}
-		#app-settings-menu-button:focus + #app-settings-menu {
+		#app-settings-menu.visible {
 			display: block;
 		}
 		.app-settings-button {
@@ -67,14 +65,10 @@
 			cursor: pointer;
 			font-size: 15px;
 			outline: 0;
-			padding: 8px 12px 8px 0;
+			padding: 8px 12px;
 			text-align: right;
 			width: 100%;
 		}
-			.app-settings-button:hover {
-				background: rgba(0, 0, 0, 0.1);
-			}
-
 			.app-settings-button::before {
 				content: attr(value);
 				text-transform: capitalize;

@@ -1,2 +1,9 @@
 @media (min-width: 1000px) {
+	.toc-category-label:hover {
+		background: #bfbfbf;
+	}
+
+	.toc-category-entry:hover {
+		background: rgba(180, 180, 180, 0.25);
+	}
 }

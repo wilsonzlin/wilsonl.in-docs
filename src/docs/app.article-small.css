@@ -5,9 +5,12 @@
 		padding: 20px 8px 0 8px;
 		width: 100%;
 	}
+		article:empty::before {
+			content: 'Tap my initials to open the pane';
+		}
 
-	article .category {
-		/* Identical to .toc-category-label */
+	/* article .category {
+		/* Identical to .toc-category-label *
 		background: #ccc;
 		color: gray;
 		display: inline-block;
@@ -17,7 +20,7 @@
 		padding: 4px 8px;
 		position: relative;
 		text-transform: uppercase;
-	}
+	} */
 
 	article p,
 	article pre,

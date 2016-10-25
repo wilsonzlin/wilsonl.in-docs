@@ -45,10 +45,7 @@
 			.replace(/([| ])((?:[A-Z][a-z0-9_]+)+|zQuery|function|int|float|number|string|bool|object|array)/g, (_, charBefore, type) => `${charBefore}<span class=type>${ type }</span>`);
 	}
 
-	function loadArticle($articleEntry) {
-		// Function may be called by DOM element event handler or manually
-		var articleEntryElem = this || $articleEntry.get(0);
-
+	function loadArticle(articleEntryElem) {
 		// Update viewport
 		document.body.scrollTop = 0; // Chrome
 		document.documentElement.scrollTop = 0; // Firefox
@@ -56,18 +53,40 @@
 
 		// Load article
 		$( 'article' ).empty();
+		let test = $( '.toc-category-entry.active' ).add(articleEntryElem).classes(['active']);
 		articleEntryElem.$article.appendTo( 'article' );
 
 		// Add hash to URL without creating history
 		history.replaceState(undefined, undefined, '#' + articleEntryElem.articleName);
 	}
 
+
+	$( document.body )
+		.on('click', function() {
+			$( '#app-settings-menu' ).classes('visible', false);
+		});
+
+	$( '#app-logo' )
+		.on('click', () => {
+			$( 'nav' ).classes(['mobile-visible']);
+		});
+
+	$( '#app-settings-menu-button' )
+		.on('click', (e) => {
+			$( '#app-settings-menu' ).classes('visible', true);
+			e.stopPropagation();
+		});
+
+	$( '.app-settings-button' )
+		.on('click', function() {
+		});
+
 	$( '#toc-categories' )
 		.on('click', '.toc-category-label', function() {
 			$(this).classes(['active']);
 		})
 		.on('click', '.toc-category-entry', function() {
-			loadArticle.call(this);
+			loadArticle(this);
 			$( 'nav' ).classes('mobile-visible', false);
 		});
 

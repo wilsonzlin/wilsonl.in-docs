@@ -6,10 +6,9 @@
 		article:not(:empty) {
 			max-width: 1000px;
 		}
-
-	article .category {
-		display: none;
-	}
+		article:empty::before {
+			content: 'Choose something in the pane on your left';
+		}
 
 	article p,
 	article pre,
