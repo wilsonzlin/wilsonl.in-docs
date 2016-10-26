@@ -71,6 +71,9 @@ article {
 		article dt, article li {
 			margin-bottom: 12px;
 		}
+		article dt {
+			font-weight: 600;
+		}
 		article dd {
 			margin-bottom: 36px;
 		}
