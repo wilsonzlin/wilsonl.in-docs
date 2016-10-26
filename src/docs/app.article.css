@@ -19,7 +19,18 @@ article {
 
 
 	article .category {
-	display: none;
+		display: none;
+
+		/* Identical to .toc-category-label */
+		background: #ccc;
+		color: gray;
+		/*display: inline-block;*/
+		cursor: pointer;
+		font-size: 13px;
+		margin-bottom: 6px;
+		padding: 4px 8px;
+		position: relative;
+		text-transform: uppercase;
 	}
 
 	article h1 {
@@ -57,11 +68,11 @@ article {
 	article ul {
 		line-height: 1.5;
 	}
-		article dt, article dd, article li {
+		article dt, article li {
 			margin-bottom: 12px;
 		}
-		article dt {
-			font-weight: 500;
+		article dd {
+			margin-bottom: 36px;
 		}
 
 	article pre {

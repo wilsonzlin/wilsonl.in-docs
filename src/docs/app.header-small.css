@@ -1,6 +1,6 @@
 @media (max-width: 1000px) {
 	#app-logo {
-		margin-right: 7px;
+		margin-right: 5px;
 		padding: 0 14px;
 	}
 
@@ -11,9 +11,9 @@
 	}
 
 	#app-settings-menu-button {
-		margin-right: 6px;
+		margin-right: 10px;
 	}
 	#app-settings-menu {
-		right: 6px;
+		right: 10px;
 	}
 }

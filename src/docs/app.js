@@ -73,7 +73,7 @@
 
 	$( '#app-settings-menu-button' )
 		.on('click', (e) => {
-			$( '#app-settings-menu' ).classes('visible', true);
+			$( '#app-settings-menu' ).classes(['visible']);
 			e.stopPropagation();
 		});
 
