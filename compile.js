@@ -2,7 +2,7 @@ const babel = require('babel-core');
 
 require('zcompile')({
 	src: __dirname + '/src',
-	dst: '/var/www/html',
+	dst: __dirname + '/dist',
 
 	minifySelectors: false,
 	onloadfile: function(code, ext, path) {
