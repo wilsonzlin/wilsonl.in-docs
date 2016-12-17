@@ -6,7 +6,7 @@
 	var currentListing;
 
 
-	fetch('../app.html')
+	fetch('../app/app.html')
 		.then(res => res.text())
 		.then(html => document.body.innerHTML = html)
 		.then(main);

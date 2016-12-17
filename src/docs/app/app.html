@@ -1,6 +1,16 @@
-<ZC-IMPORT[header]>
-<main>
-	<ZC-IMPORT[pane]>
-	<ZC-IMPORT[article]>
-</main>
-<ZC-IMPORT[footer]>
+<ZC-IMPORT[article/class.html]>
+<ZC-IMPORT[footer/class.html]>
+<ZC-IMPORT[header/class.html]>
+<ZC-IMPORT[pane/class.html]>
+
+<template ooml-class="App">
+    <div id="app">
+        { AppHeader this.header }
+        <main>
+            { AppPane this.pane }
+            { AppArticle this.article }
+        </main>
+        { AppFooter this.footer }
+    </div>
+</template>
+<div ooml-instantiate="App app"></div>

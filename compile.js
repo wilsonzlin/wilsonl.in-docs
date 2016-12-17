@@ -16,9 +16,9 @@ require('zcompile')({
 		'docs/index.html',
 		'docs/index.css',
 
-		'docs/app.css',
-		'docs/app.js',
-		'docs/app.html',
+		'docs/app/app.css',
+		'docs/app/app.js',
+		'docs/app/app.html',
 
 		'docs/zQuery/index.html',
 		'docs/zQuery/doc.xml',
@@ -33,6 +33,6 @@ require('zcompile')({
 		'docs/lib/marked.js',
 		'docs/lib/highlight.js/highlight.pack.js',
 		'docs/lib/highlight.js/styles/atom-one-light.css',
-		'docs/search.png',
+		'docs/images/search.png',
 	],
 });
