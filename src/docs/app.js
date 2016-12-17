@@ -5,16 +5,11 @@
 
 	var currentListing;
 
-	try {
-		let req = await fetch('../app.html');
-		let html = await req.text();
 
-		$( document.body ).html( html );
-		main();
-	} catch (err) {
-		// TODO
-		return;
-	}
+	fetch('../app.html')
+		.then(res => res.text())
+		.then(html => document.body.innerHTML = html)
+		.then(main);
 
 	function parseMarkdown(mdText) {
 		var renderer = new marked.Renderer();
