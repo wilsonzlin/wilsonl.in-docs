@@ -1,0 +1,17 @@
+{
+    "name": ".add",
+    "versions": "All",
+    "description": "Construct a new instance from the current instance's elements and the provided elements",
+    "signatures": [
+        "$superset = zq.add( Node|zQuery|string|ArrayLike elems )"
+    ],
+    "arguments": [
+        {
+            "name": "elems",
+            "description": "The element(s) to combine with the current elements forming the new instance. Can be any of the following:\n- Node\n- zQuery instance\n- Selector to query for elements in the whole document\n- Array-like object of elements"
+        }
+    ],
+    "returns": [
+        "A new zQuery instance containing the superset elements"
+    ]
+}

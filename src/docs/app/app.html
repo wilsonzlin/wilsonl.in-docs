@@ -4,13 +4,47 @@
 <ZC-IMPORT[pane/class.html]>
 
 <template ooml-class="App">
+    <ooml-attribute name="currentArticle">null</ooml-attribute>
+
+    <ooml-method name="loadArticle">
+        function(article) {
+            /* Update viewport */
+            document.body.scrollTop = 0; /* Chrome */
+            document.documentElement.scrollTop = 0; /* Firefox */
+            document.title = `${ wl.Docs.currentListing }${ wl.Docs.DOCUMENT_TITLE_SUFFIX }`;
+
+            /* Load article */
+            if (this.attributes.currentArticle) {
+                this.attributes.currentArticle.attributes.hidden = true;
+            }
+
+            if (article) {
+                article.attributes.hidden = false;
+                document.title = `${ article.name } - ${ wl.Docs.currentListing }${ wl.Docs.DOCUMENT_TITLE_SUFFIX }`;
+
+                /* Add hash to URL without creating history */
+                history.replaceState(undefined, undefined, '#' + article.name);
+            }
+            this.attributes.currentArticle = article || null;
+        }
+    </ooml-method>
+
     <div id="app">
-        { AppHeader this.header }
+        <ooml-substitution property="header" class="AppHeader"></ooml-substitution>
         <main>
-            { AppPane this.pane }
-            { AppArticle this.article }
+            <ooml-substitution property="pane" class="AppPane" dispatchonclickentry="
+                console.log(data);
+                this.loadArticle(data.entry.attributes.article);
+            "></ooml-substitution>
+            <div id="articles">
+                <ooml-substitution array property="articles" class="AppArticle"></ooml-substitution>
+            </div>
         </main>
-        { AppFooter this.footer }
+        <ooml-substitution property="footer" class="AppFooter"></ooml-substitution>
     </div>
 </template>
-<div ooml-instantiate="App app"></div>
+<div ooml-instantiate="App app">{
+    header: {},
+    pane: {},
+    footer: {},
+}</div>

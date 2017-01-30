@@ -1,0 +1,23 @@
+{
+    "name": ".val",
+    "versions": "All",
+    "description": "Get the first or set every element's value",
+    "signatures": [
+        "zq = zq.val( newValue )",
+        "value = zq.val()"
+    ],
+    "arguments": [
+        {
+            "name": "newValue",
+            "description": "The value to set to each element that can have a value. `<select>` elements will not be set."
+        },
+        {
+            "name": "(no argument)",
+            "description": "Return the value of the first element in the current instance.\n- Will return `null` if the element is `<select disabled>`.\n- Will return an array containing selected and enabled option values if the element is a `<select multiple>`.\n- Will return the chosen file for an `<input type=\"file\">`.\n- Will return an array containing chosen files of an `<input type=\"file\" multiple>`."
+        }
+    ],
+    "returns": [
+        "The current zQuery instance",
+        "An array containing or string formed from all elements' text content"
+    ]
+}

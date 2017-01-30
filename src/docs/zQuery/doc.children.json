@@ -1,0 +1,34 @@
+{
+    "name": ".children",
+    "versions": "All",
+    "description": "Get all children, or get or check for children that match the provided selector or element(s)",
+    "signatures": [
+        "$children = zq.children()",
+        "$matchingChildren = zq.children( string|Element|zQuery|ArrayLike comparison )",
+        "allChildrenOfAllElemsMatch = zq.children( string selectorWithExclamation )",
+        "someChildrenOfAllElemsMatch = zq.children( string selectorWithAsterisk )",
+        "someChildrenOfSomeElemsMatch = zq.children( string selectorWithQuestion )"
+    ],
+    "arguments": [
+        {
+            "name": "comparison",
+            "description": "The selector or element(s) to compare children to. If it's an array-like or zQuery object, only one element in the object must match for it to count as a match."
+        },
+        {
+            "name": "selectorWithExclamation",
+            "description": "A string that contains a selector and the exclamation mark (!) as its first character. This checks if all children of all elements in the current instance match the selector."
+        },
+        {
+            "name": "selectorWithAsterisk",
+            "description": "A string that contains a selector and the exclamation mark (*) as its first character. This checks if at least one child of all elements in the current instance matches the selector."
+        },
+        {
+            "name": "selectorWithQuestion",
+            "description": "A string that contains a selector and the question mark (?) as its first character. This checks if at least one child of one element in the current instance matches the selector."
+        }
+    ],
+    "returns": [
+        "A new zQuery instance containing the matching descendants",
+        "A boolean that is `true` if all/some children match of all/some elements and `false` otherwise"
+    ]
+}

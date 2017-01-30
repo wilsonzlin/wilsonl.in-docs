@@ -33,16 +33,22 @@ button::-moz-focus-inner {
     padding: 0;
 }
 
-<ZC-IMPORT[header]>
-<ZC-IMPORT[header-large]>
-<ZC-IMPORT[header-small]>
-<ZC-IMPORT[main]>
-<ZC-IMPORT[main-large]>
-<ZC-IMPORT[main-small]>
-<ZC-IMPORT[pane]>
-<ZC-IMPORT[pane-large]>
-<ZC-IMPORT[pane-small]>
-<ZC-IMPORT[article]>
-<ZC-IMPORT[article-large]>
-<ZC-IMPORT[article-small]>
-<ZC-IMPORT[footer]>
+#app {
+	position: fixed;
+	top: 0; bottom: 0; left: 0; right: 0;
+	overflow: auto;
+}
+
+<ZC-IMPORT[header/base.css]>
+<ZC-IMPORT[header/large.css]>
+<ZC-IMPORT[header/small.css]>
+<ZC-IMPORT[main/base.css]>
+<ZC-IMPORT[main/large.css]>
+<ZC-IMPORT[main/small.css]>
+<ZC-IMPORT[pane/base.css]>
+<ZC-IMPORT[pane/large.css]>
+<ZC-IMPORT[pane/small.css]>
+<ZC-IMPORT[article/base.css]>
+<ZC-IMPORT[article/large.css]>
+<ZC-IMPORT[article/small.css]>
+<ZC-IMPORT[footer/base.css]>

@@ -1,0 +1,28 @@
+{
+    "name": ".html",
+    "versions": "All",
+    "description": "Get or set every element's inner HTML",
+    "signatures": [
+        "zq = zq.html( string|number replaceHtmlWith )",
+        "zq = zq.html( array pushHtmlTo )",
+        "html = zq.html( bool getHtmlAsArray )"
+    ],
+    "arguments": [
+        {
+            "name": "replaceHtmlWith",
+            "description": "The HTML to replace each element's inner HTML with. This will be cast to string."
+        },
+        {
+            "name": "pushHtmlTo",
+            "description": "Each element's inner HTML will be pushed to the provided array as a string."
+        },
+        {
+            "name": "getHtmlAsArray",
+            "description": "If `true`, an array will be returned with each element's inner HTML; otherwise, a string containing the inner HTML of each element concatenated will be returned."
+        }
+    ],
+    "returns": [
+        "The current zQuery instance",
+        "An array containing or string formed from all elements' inner HTML"
+    ]
+}

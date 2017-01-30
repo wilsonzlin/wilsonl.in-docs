@@ -1,19 +1,21 @@
 @media (min-width: 1000px) {
-	article {
-		padding: 30px;
-		width: calc(100% - 250px);
-	}
-		article:not(:empty) {
-			max-width: 1000px;
-		}
-		article:empty::before {
-			content: 'Choose something in the pane on your left';
-		}
+    #articles {
+        padding: 30px;
+        width: calc(100% - 250px);
+    }
 
-	article p,
-	article pre,
-	article dl,
-	article ul {
-		margin: 0 0 18px 0;
-	}
+    article {
+        max-width: 1000px;
+    }
+
+    #app[data-current-article="null"] #articles::before {
+        content: 'Choose something in the pane on your left';
+    }
+
+    article p,
+    article pre,
+    article dl,
+    article ul {
+        margin: 0 0 18px 0;
+    }
 }

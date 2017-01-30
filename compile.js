@@ -1,14 +1,15 @@
 const babel = require('babel-core');
+const fs = require('fs-extra');
+
+fs.removeSync(__dirname + '/dist');
 
 require('zcompile')({
-	src: __dirname + '/src',
-	dst: __dirname + '/dist',
+	source: __dirname + '/src',
+	destination: __dirname + '/dist',
 
 	minifySelectors: false,
-	onloadfile: function(code, ext, path) {
-		if (ext == 'js' && !/\/lib\//.test(path)) { // Don't babelify external JS libraries
-			return babel.transform(code, { presets: ['latest'] }).code;
-		}
+	onloadjs: function(code) {
+		return babel.transform(code, { presets: ['latest'] }).code;
 	},
 	files: [
 		'docs/lib/fetch-polyfill.js', // Needs minification
@@ -21,14 +22,13 @@ require('zcompile')({
 		'docs/app/app.html',
 
 		'docs/zQuery/index.html',
-		'docs/zQuery/doc.xml',
-
+		'docs/zQuery/doc.json',
+        //
 		'docs/zVex/index.html',
-		'docs/zVex/doc.xml',
 	],
-	debug: process.argv.slice(2).some(arg => /^debug$/.test(arg)),
 
 	copy: [
+		'docs/lib/ooml.js',
 		'docs/lib/babel-polyfill.js',
 		'docs/lib/marked.js',
 		'docs/lib/highlight.js/highlight.pack.js',

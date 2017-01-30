@@ -1,21 +1,27 @@
 @media (max-width: 1000px) {
-	article {
-		height: 100%;
-		overflow: auto;
-		padding: 20px 8px 0 8px;
-		width: 100%;
-	}
-		article:empty::before {
-			content: 'Tap my initials to open the pane';
-		}
+    #articles {
+        height: 100%;
+        overflow: auto;
+        padding: 20px 8px 0 8px;
+        width: 100%;
+    }
 
-	article p,
-	article pre,
-	article dl,
-	article ul {
-		margin: 0 0 12px 0;
-	}
-		article dd {
-			margin-left: 0;
-		}
+    #app[data-current-article="null"] #articles::before {
+        content: 'Open the pane and choose something';
+    }
+
+    article .category {
+        display: block;
+    }
+
+    article p,
+    article pre,
+    article dl,
+    article ul {
+        margin: 0 0 12px 0;
+    }
+
+    article dd {
+        margin-left: 0;
+    }
 }

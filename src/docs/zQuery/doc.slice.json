@@ -1,0 +1,21 @@
+{
+    "name": ".slice",
+    "versions": "All",
+    "description": "Construct a new instance from a subset of the current instance's elements",
+    "signatures": [
+        "$subset = zq.slice( int start, int end )"
+    ],
+    "arguments": [
+        {
+            "name": "start",
+            "description": "The index of the element in the current instance to start the subset."
+        },
+        {
+            "name": "end",
+            "description": "The subset will include elements up to, but not including, `end`."
+        }
+    ],
+    "returns": [
+        "A new zQuery instance containing the subset elements"
+    ]
+}

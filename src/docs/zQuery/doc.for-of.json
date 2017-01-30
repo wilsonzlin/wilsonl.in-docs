@@ -1,0 +1,15 @@
+{
+    "name": "for...of",
+    "versions": ">= 2.0.0",
+    "description": "Iterate over a zQuery instance's elements and construct a zQuery instance for each element for use during iteration",
+    "signatures": [
+        "for (let $oneElem of zq)"
+    ],
+    "arguments": [
+        {
+            "name": "$oneElem",
+            "description": "A zQuery instance constructed from one element in the zQuery instance."
+        }
+    ],
+    "returns": []
+}

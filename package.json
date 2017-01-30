@@ -1,6 +1,9 @@
 {
   "dependencies": {
     "babel-core": "^6.17.0",
-    "babel-preset-latest": "^6.16.0"
+    "babel-preset-latest": "^6.16.0",
+    "fs-extra": "^2.0.0",
+    "ooml": "^10.2.1",
+    "zcompile": "^4.0.1"
   }
 }

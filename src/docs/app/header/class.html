@@ -1,21 +1,24 @@
-<header id="app-header">
-	<span id="app-logo">w.l</span>
-	<ul id="app-listings">
-		<li><a href="../zQuery">zQuery</a>
-		<li><a href="../zVex">zVex</a>
-		<li><a href="../zSelectPro">zSelectPro</a>
-		<li><a href="../zc">zc</a>
-		<li><a href="../StackUI">StackUI</a>
-		<li><a href="../JSVF">JSVF</a>
-	</ul>
+<template ooml-class="Listing">
+    <ooml-attribute name="current" type="boolean">false</ooml-attribute>
 
-	<flex-spacer></flex-spacer>
+    <li><a href="../{{ this.name }}">{{ this.name }}</a></li>
+</template>
 
-	<button id="app-settings-menu-button">&hellip;<!--&#9965;--></button>
-	<menu id="app-settings-menu">
-		<button class="app-settings-button" value="pane settings"></button>
-		<button class="app-settings-button" value="toggle dark theme"></button>
-		<button class="app-settings-button" value="return to docs"></button>
-		<button class="app-settings-button" value="about"></button>
-	</menu>
-</header>
+<template ooml-class="AppHeader">
+    <header id="app-header">
+        <span id="app-logo">w.l</span>
+        <ul id="app-listings">
+            <ooml-substitution array property="listings" class="Listing"></ooml-substitution>
+        </ul>
+
+        <flex-spacer></flex-spacer>
+
+        <button id="app-settings-menu-button">&hellip;<!--&#9965;--></button>
+        <menu id="app-settings-menu">
+            <button class="app-settings-button" value="pane settings"></button>
+            <button class="app-settings-button" value="toggle dark theme"></button>
+            <button class="app-settings-button" value="return to docs"></button>
+            <button class="app-settings-button" value="about"></button>
+        </menu>
+    </header>
+</template>

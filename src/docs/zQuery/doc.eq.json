@@ -1,0 +1,18 @@
+{
+    "name": ".eq",
+    "versions": "All",
+    "description": "Construct a new instance from an element in the current instance",
+    "signatures": [
+        "$theChosenOne = zq.eq( int index )"
+    ],
+    "arguments": [
+        {
+            "name": "index",
+            "description": "The index of the element in the current instance to create a new instance from. If it's negative, the index of the element to be retrieved will be the size of the instance minus the absolute value of the provided index."
+        }
+    ],
+    "returns": [
+        "A new zQuery instance containing one element",
+        "`null` if the index provided is invalid"
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "name": ".prevAll",
+    "versions": "All",
+    "description": "Get all preceding siblings for each of the current elements, optionally matching the provided selector or element(s)",
+    "signatures": [
+        "$allSibingsBefore = zq.prevAll()",
+        "$allMatchingSiblingsBefore = zq.prevAll( string|Element|zQuery|ArrayLike comparison )"
+    ],
+    "arguments": [
+        {
+            "name": "comparison",
+            "description": "The selector or element(s) to compare the siblings to. If it's an array-like or zQuery object, only one element in the object must match for it to count as a match."
+        }
+    ],
+    "returns": [
+        "A new zQuery instance containing every element that is before the current elements"
+    ]
+}

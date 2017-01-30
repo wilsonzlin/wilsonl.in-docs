@@ -1,46 +1,93 @@
-<article></article>
+<template ooml-class="ArticleSignature">
+    <ooml-method name="serialise">
+        function() {
+            return this.code;
+        }
+    </ooml-method>
+    <ooml-method name="unserialise">
+        function(code) {
+            return { code: code };
+        }
+    </ooml-method>
 
-<template id="template-article">
-	<header>
-		<div class="category">{{ category }}</div>
-		<h1>{{ name }}</h1>
-		<div class="versions">{{ versions }}</div>
-	</header>
-
-	<section class="section-synopsis">
-		<h2>Synopsis</h2>
-		<p class="description">{{ description }}</p>
-	</section>
-
-	<section>
-		<h2>Arguments</h2>
-		<dl class="arguments-list"></dl>
-	</section>
-
-	<section>
-		<h2>Returns</h2>
-		<ul class="returns-list"></ul>
-	</section>
+    <pre class="signature">{{ this.code }}</pre>
 </template>
 
-<template id="template-article-signature">
-	<pre class="signature"></pre>
+<template ooml-class="ArticleArgument">
+    <ooml-property name="description"
+                   set="return { HTML: newValue ? wl.Docs.parseMarkdown(newValue) : '' }"
+    >null</ooml-property>
+
+    <div>
+        <dt class="argument-name">{{ this.name }}</dt>
+        <dd>
+            <p class="argument-description">{{ this.description }}</p>
+        </dd>
+    </div>
 </template>
 
-<template id="template-article-argument">
-	<dt class="argument-name">{{ name }}</dt>
-	<dd>
-		<p class="argument-description">[[ description ]]</p>
-	</dd>
+<template ooml-class="ArticleReturn">
+    <ooml-method name="serialise">
+        function() {
+            return this.value;
+        }
+    </ooml-method>
+    <ooml-method name="unserialise">
+        function(value) {
+            return { value: value };
+        }
+    </ooml-method>
+
+    <li>{{ this.value }}</li>
 </template>
 
-<template id="template-article-return">
-	<li></li>
+<template ooml-class="ArticleNotice">
+    <div class="notice">
+        <h3></h3>
+        <p></p>
+    </div>
 </template>
 
-<template id="template-article-notice">
-	<div class="notice">
-		<h3></h3>
-		<p></p>
-	</div>
+<template ooml-class="AppArticle">
+    <ooml-attribute name="hidden" type="boolean">true</ooml-attribute>
+    <ooml-attribute name="categoryName" type="string">''</ooml-attribute>
+
+    <ooml-method name="constructor">
+        function() {
+            if (!this.arguments.length) {
+                this.$argumentsSection.style.display = 'none';
+            }
+            if (!this.returns.length) {
+                this.$returnsSection.style.display = 'none';
+            }
+        }
+    </ooml-method>
+
+    <article>
+        <header>
+            <div class="category">{{ this.attributes.categoryName }}</div>
+            <h1>{{ this.name }}</h1>
+            <div class="versions">{{ this.versions }}</div>
+        </header>
+
+        <section class="section-synopsis">
+            <h2>Synopsis</h2>
+            <p class="description">{{ this.description }}</p>
+            <ooml-substitution array property="signatures" class="ArticleSignature"></ooml-substitution>
+        </section>
+
+        <section ooml-expose="argumentsSection">
+            <h2>Arguments</h2>
+            <dl class="arguments-list">
+                <ooml-substitution array property="arguments" class="ArticleArgument"></ooml-substitution>
+            </dl>
+        </section>
+
+        <section ooml-expose="returnsSection">
+            <h2>Returns</h2>
+            <ul class="returns-list">
+                <ooml-substitution array property="returns" class="ArticleReturn"></ooml-substitution>
+            </ul>
+        </section>
+    </article>
 </template>
