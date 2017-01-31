@@ -1,4 +1,8 @@
 @media (min-width: 1000px) {
+	#app-header {
+        z-index: 6; /* Overlap pane with shadow */
+	}
+
 	#app-logo {
 		margin-right: 14px;
 		padding: 0 19px;

@@ -1,4 +1,8 @@
 @media (min-width: 1000px) {
+	nav {
+		width: 250px;
+	}
+
 	.toc-category-label:hover {
 		background: #bfbfbf;
 	}

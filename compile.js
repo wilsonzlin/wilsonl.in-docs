@@ -12,27 +12,27 @@ require('zcompile')({
 		return babel.transform(code, { presets: ['latest'] }).code;
 	},
 	files: [
-		'docs/lib/fetch-polyfill.js', // Needs minification
+		'lib/fetch-polyfill.js', // Needs minification
 
-		'docs/index.html',
-		'docs/index.css',
+		'index.html',
+		'index.css',
 
-		'docs/app/app.css',
-		'docs/app/app.js',
-		'docs/app/app.html',
+		'app/app.css',
+		'app/app.js',
+		'app/app.html',
 
-		'docs/zQuery/index.html',
-		'docs/zQuery/doc.json',
-        //
-		'docs/zVex/index.html',
+		'zQuery/index.html',
+		'zQuery/doc.json',
+
+		'zVex/index.html',
 	],
 
 	copy: [
-		'docs/lib/ooml.js',
-		'docs/lib/babel-polyfill.js',
-		'docs/lib/marked.js',
-		'docs/lib/highlight.js/highlight.pack.js',
-		'docs/lib/highlight.js/styles/atom-one-light.css',
-		'docs/images/search.png',
+		'lib/ooml.js',
+		'lib/babel-polyfill.js',
+		'lib/marked.js',
+		'lib/highlight.js/highlight.pack.js',
+		'lib/highlight.js/styles/atom-one-light.css',
+		'images/search.png',
 	],
 });

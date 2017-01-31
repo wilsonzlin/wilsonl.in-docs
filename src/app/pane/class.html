@@ -1,4 +1,6 @@
 <template ooml-class="PaneTocCategoryEntry">
+    <ooml-attribute name="active" type="boolean">false</ooml-attribute>
+    <ooml-attribute name="hidden" type="boolean">false</ooml-attribute>
     <ooml-attribute name="article">null</ooml-attribute>
 
     <li class="toc-category-entry" title="{{ this.description }}" domonclick="dispatch('click', { entry: this })">{{ this.name }}</li>
@@ -18,9 +20,16 @@
 </template>
 
 <template ooml-class="AppPane">
+    <ooml-attribute name="mobileVisible" type="boolean">true</ooml-attribute>
+
     <nav>
         <h1>Table of Contents</h1>
-        <input id="toc-search">
+        <input id="toc-search" domoninput="
+            let term = $self.value.trim() || false;
+            let regexp = term && RegExp(wl.Docs.escapeRegExp($self.value.trim()), 'i');
+
+            this.categories.forEach(c => c.entries.forEach(entry => entry.attributes.hidden = term && !regexp.test(entry.name)));
+        ">
         <span id="toc-controls">
             <button class="toc-control" domonclick="this.categories.forEach(cat => cat.attributes.expanded = true)">Expand all</button>
             <button class="toc-control" domonclick="this.categories.forEach(cat => cat.attributes.expanded = false)">Collapse all</button>

@@ -11,19 +11,20 @@ nav {
 	padding-top: 20px; /* For toc-search, as if margin is applied on toc-search, it exceeds nav */
 
 	min-height: 100%;
-	width: 250px;
+	z-index: 5; /* #app-header is 6 so that its shadow can overlap */
 }
 	nav > h1 {
 		position: fixed;
 		top: -9999px;
 	}
 	#toc-search {
-		background: url('./search.png') no-repeat 5px center / auto 80%;
+		background: url('../images/search.png') no-repeat 5px center / auto 80%;
 		border: 2px solid #bfbfbf;
 		display: block;
 		margin: 0 auto 20px auto;
 		outline: 0;
-		padding: 4px 8px 4px 28px;
+		height: 25px;
+		padding: 0 8px 0 28px;
 		width: 86%;
 	}
 		#toc-search:focus {
@@ -31,12 +32,14 @@ nav {
 		}
 
 	#toc-controls {
-		display: block;
+		display: flex;
+        justify-content: flex-end;
+
 		margin-bottom: 3px;
-		text-align: right;
+        height: 21px;
 	}
 		.toc-control {
-			margin-right: 3px;
+			margin: 0 3px 0 0;
 		}
 			.toc-control::after {
 				content: attr(value);
@@ -83,6 +86,9 @@ nav {
 				display: block;
 				padding: 9px 6px 9px 18px;
 			}
-			.toc-category-entry.active {
+			.toc-category-entry[data-hidden="true"] {
+                display: none;
+			}
+			.toc-category-entry[data-active="true"] {
 				background: rgba(180, 180, 180, 0.25);
 			}

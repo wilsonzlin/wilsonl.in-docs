@@ -1,4 +1,8 @@
 <template ooml-class="ArticleSignature">
+    <ooml-property name="code"
+                   set="return { HTML: newValue ? ('<span>' + wl.Docs.parseTypedCodeLine(newValue) + '</span>') : '' }"
+    >null</ooml-property>
+
     <ooml-method name="serialise">
         function() {
             return this.code;
@@ -27,6 +31,10 @@
 </template>
 
 <template ooml-class="ArticleReturn">
+    <ooml-property name="value"
+                   set="return { HTML: newValue ? wl.Docs.parseMarkdown(newValue) : '' }"
+    >null</ooml-property>
+
     <ooml-method name="serialise">
         function() {
             return this.value;
@@ -65,7 +73,7 @@
 
     <article>
         <header>
-            <div class="category">{{ this.attributes.categoryName }}</div>
+            <div class="category" domonclick="dispatch('clickcategory')">{{ this.attributes.categoryName }}</div>
             <h1>{{ this.name }}</h1>
             <div class="versions">{{ this.versions }}</div>
         </header>

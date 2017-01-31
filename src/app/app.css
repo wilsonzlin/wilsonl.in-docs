@@ -10,6 +10,7 @@ body {
 }
 body, button, select, input, textarea {
 	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Ubuntu, Cantarell, Oxygen, Droid Sans, Fira Sans, sans-serif;
+	border-radius: 0;
 }
 flex-spacer {
 	flex-grow: 1;

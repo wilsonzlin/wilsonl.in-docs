@@ -13,6 +13,7 @@ window.wl = {
         },
         currentListing: undefined,
         escapeHTML: str => ("" + str).replace(/[&<>"'\/]/g, entity => wl.Docs.HTML_ENTITY_MAP[entity]),
+        escapeRegExp: str => str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'),
         parseMarkdown: (mdText) => {
             var renderer = new marked.Renderer();
 
@@ -38,7 +39,7 @@ window.wl = {
 
             return `<div>${ marked(mdText, { renderer: renderer }) }</div>`;
         },
-        parseTypedCodeLine: codeText => codeText.replace(/([| ])((?:[A-Z][a-z0-9_]+)+|zQuery|function|int|float|number|string|bool|object|array)/g, (_, charBefore, type) => `${charBefore}<span class=type>${ type }</span>`)
+        parseTypedCodeLine: codeText => codeText.replace(/([| ])((?:[A-Z][a-z0-9_]+)+|zQuery|function|int|float|number|string|bool|object|array)/g, (_, charBefore, type) => `${charBefore}<span class=type>${ type }</span>`),
     }
 };
 
@@ -47,8 +48,6 @@ window.wl = {
 
 	let ooml = new OOML.Namespace();
 	let app = ooml.objects.app;
-
-	window.app = app;
 
     app.header.listings = ['zQuery', 'zVex', 'zSelectPro', 'zc', 'StackUI', 'JSVF'].map(listing => {
         let matchesURI = new RegExp('^\\/docs\\/' + listing + '(\\/?$|\\/.+)').test(location.pathname);
@@ -103,5 +102,14 @@ window.wl = {
 
     if (article) {
         app.loadArticle(article);
+        app.pane.categories.some(category => {
+            return category.entries.some(entry => {
+                if (entry.name === currentHash) {
+                    app.attributes.currentArticleEntry = entry;
+                    entry.attributes.active = true;
+                    return true;
+                }
+            });
+        });
     }
 })();

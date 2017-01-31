@@ -10,7 +10,6 @@
 	position: relative; /* For settings menu */
 	width: 100%;
 	height: 74px;
-	z-index: 6;
 }
 	#app-logo {
 		font-size: 36px;
