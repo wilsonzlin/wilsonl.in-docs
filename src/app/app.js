@@ -50,7 +50,7 @@ window.wl = {
 	let app = ooml.objects.app;
 
     app.header.listings = ['zQuery', 'zVex', 'zSelectPro', 'zc', 'StackUI', 'JSVF'].map(listing => {
-        let matchesURI = new RegExp('^\\/docs\\/' + listing + '(\\/?$|\\/.+)').test(location.pathname);
+        let matchesURI = new RegExp('\\/' + listing + '\\/?$').test(location.pathname);
         if (matchesURI) {
             wl.Docs.currentListing = listing;
         }
