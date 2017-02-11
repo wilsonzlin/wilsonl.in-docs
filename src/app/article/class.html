@@ -56,10 +56,19 @@
     </div>
 </template>
 
-<template ooml-class="AppArticle">
+<template ooml-abstract-class="AppArticle">
     <ooml-attribute name="hidden" type="boolean">true</ooml-attribute>
     <ooml-attribute name="categoryName" type="string">''</ooml-attribute>
 
+    <ooml-method name="abstractFactory">
+        function(initState, classes) {
+            console.log(initState, classes);
+            return new (initState.content ? classes.ContentArticle : classes.ReferenceArticle)(initState);
+        }
+    </ooml-method>
+</template>
+
+<template ooml-class="ReferenceArticle extends AppArticle">
     <ooml-method name="constructor">
         function() {
             if (!this.arguments.length) {
@@ -97,5 +106,20 @@
                 <ooml-substitution array property="returns" class="ArticleReturn"></ooml-substitution>
             </ul>
         </section>
+    </article>
+</template>
+
+<template ooml-class="ContentArticle extends AppArticle">
+    <ooml-property name="content" type="string" set="console.log(newValue);if (typeof newValue == 'string') return { HTML: '<div>' + marked(newValue) + '</div>' }">''</ooml-property>
+    <ooml-property name="description" type="string">''</ooml-property>
+
+    <article>
+        <header>
+            <div class="category" domonclick="dispatch('clickcategory')">{{ this.attributes.categoryName }}</div>
+            <h1>{{ this.name }}</h1>
+            <div class="versions">{{ this.versions }}</div>
+        </header>
+
+        <section>{{ this.content }}</section>
     </article>
 </template>

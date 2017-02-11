@@ -49,7 +49,7 @@ window.wl = {
 	let ooml = new OOML.Namespace();
 	let app = ooml.objects.app;
 
-    app.header.listings = ['zQuery', 'zVex', 'zSelectPro', 'zc', 'StackUI', 'JSVF'].map(listing => {
+    app.header.listings = ['OOML', 'zQuery', 'zVex', 'zSelectPro', 'zc', 'StackUI', 'JSVF'].map(listing => {
         let matchesURI = new RegExp('\\/' + listing + '\\/?$').test(location.pathname);
         if (matchesURI) {
             wl.Docs.currentListing = listing;
