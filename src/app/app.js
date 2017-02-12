@@ -97,19 +97,28 @@ window.wl = {
 
     app.articles = articles;
 
-    let currentHash = location.hash.slice(1);
-    let article = app.articles.find(article => article.name === currentHash);
+    function loadArticleFromHash() {
+        let currentHash = location.hash.slice(1);
+        let article = app.articles.find(article => article.name === currentHash);
 
-    if (article) {
-        app.loadArticle(article);
-        app.pane.categories.some(category => {
-            return category.entries.some(entry => {
-                if (entry.name === currentHash) {
-                    app.attributes.currentArticleEntry = entry;
-                    entry.attributes.active = true;
-                    return true;
-                }
+        if (article) {
+            app.pane.categories.some(category => {
+                return category.entries.some(entry => {
+                    if (entry.name === currentHash) {
+                        if (app.attributes.currentArticleEntry) {
+                            app.attributes.currentArticleEntry.attributes.active = false;
+                        }
+                        app.attributes.currentArticleEntry = entry;
+                        entry.attributes.active = true;
+                        return true;
+                    }
+                });
             });
-        });
+            app.loadArticle(article);
+        }
     }
+    loadArticleFromHash();
+    window.onhashchange = function() {
+        loadArticleFromHash();
+    };
 })();
