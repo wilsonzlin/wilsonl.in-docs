@@ -87,3 +87,6 @@
                 content: attr(value);
                 text-transform: capitalize;
             }
+            .app-settings-button:active {
+                background: rgba(0, 0, 0, 0.1);
+            }
