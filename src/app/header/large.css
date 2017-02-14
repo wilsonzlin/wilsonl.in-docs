@@ -11,6 +11,10 @@
 	#app-listings li:hover {
 		background: rgba(0, 0, 0, 0.12);
 	}
+		#app[data-dark-theme="true"] #app-listings li:hover {
+			background: transparent;
+			color: white;
+		}
 
 	#app-settings-menu-button {
 		margin-right: 12px;

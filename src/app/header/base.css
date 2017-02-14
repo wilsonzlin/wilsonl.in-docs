@@ -41,6 +41,7 @@
                 background: rgba(0, 0, 0, 0.12);
             }
                 #app[data-dark-theme="true"] #app-listings li[data-current="true"] {
+                    background: transparent;
                     color: white;
                 }
         #app-listings a {
