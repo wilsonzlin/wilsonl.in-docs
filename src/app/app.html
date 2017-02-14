@@ -6,6 +6,7 @@
 <template ooml-class="App">
     <ooml-attribute name="currentArticle">null</ooml-attribute>
     <ooml-attribute name="currentArticleEntry">null</ooml-attribute>
+    <ooml-attribute name="darkTheme" type="boolean">false</ooml-attribute>
 
     <ooml-method name="loadArticle">
         function(article) {
@@ -31,7 +32,9 @@
     </ooml-method>
 
     <div id="app" ooml-expose="app">
-        <ooml-substitution property="header" class="AppHeader"></ooml-substitution>
+        <ooml-substitution property="header" class="AppHeader"
+            dispatchontoggledarktheme="localStorage.wilsonlin_docs_darkTheme = this.attributes.darkTheme = !this.attributes.darkTheme"
+        ></ooml-substitution>
         <main>
             <ooml-substitution property="pane" class="AppPane" dispatchonclickentry="
                 if (this.attributes.currentArticleEntry) {

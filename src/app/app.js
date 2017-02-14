@@ -121,4 +121,6 @@ window.wl = {
     window.onhashchange = function() {
         loadArticleFromHash();
     };
+
+    app.attributes.darkTheme = localStorage.wilsonlin_docs_darkTheme == 'true';
 })();

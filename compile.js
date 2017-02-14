@@ -5,7 +5,8 @@ const SRC_DIR = __dirname + '/src';
 
 fs.removeSync(__dirname + '/dist');
 
-const JS_DOC_FOLDERS = ['OOML'];
+// const JS_DOC_FOLDERS = ['OOML'];
+const JS_DOC_FOLDERS = [];
 
 JS_DOC_FOLDERS.forEach(dir => {
 	dir = `${SRC_DIR}/${dir}`;
@@ -45,8 +46,8 @@ require('zcompile')({
 
 		'zVex/index.html',
 
-		'OOML/index.html',
-		'OOML/doc.json',
+		// 'OOML/index.html',
+		// 'OOML/doc.json',
 	],
 
 	copy: [

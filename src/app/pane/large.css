@@ -1,13 +1,16 @@
 @media (min-width: 1000px) {
-	nav {
-		width: 250px;
-	}
+    nav {
+        width: 250px;
+    }
 
-	.toc-category-label:hover {
-		background: #bfbfbf;
-	}
+    .toc-category-label:hover {
+        background: #bfbfbf;
+    }
 
-	.toc-category-entry:hover {
-		background: rgba(180, 180, 180, 0.25);
-	}
+    .toc-category-entry:hover {
+        background: rgba(180, 180, 180, 0.25);
+    }
+        #app[data-dark-theme="true"] .toc-category-entry:hover {
+            background: #111;
+        }
 }

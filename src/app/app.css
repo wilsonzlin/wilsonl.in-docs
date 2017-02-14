@@ -1,38 +1,42 @@
 * {
-	box-sizing: border-box;
+    box-sizing: border-box;
 }
 body, button, select, input, textarea {
-	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Ubuntu, Cantarell, Oxygen, Droid Sans, Fira Sans, sans-serif;
-	border-radius: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Ubuntu, Cantarell, Oxygen, Droid Sans, Fira Sans, sans-serif;
+    border-radius: 0;
     outline: none;
 }
 flex-spacer {
-	flex-grow: 1;
+    flex-grow: 1;
 }
 
 button {
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 
-	border: 1px solid #949494;
-	background: linear-gradient(to bottom, #f8f8f8 0%, #dddddd 100%);
-	color: black;
+    border: 1px solid #949494;
+    background: linear-gradient(to bottom, #f8f8f8 0%, #dddddd 100%);
+    color: black;
     padding: 3px 8px;
 }
-	button:active {
-		background: linear-gradient(to bottom, #dfdfdf 0%, #f7f7f7 100%);
-	}
+    button:active {
+        background: linear-gradient(to bottom, #dfdfdf 0%, #f7f7f7 100%);
+    }
 ::-moz-focus-inner {
     border: 0;
     padding: 0;
 }
 
 #app {
-	position: fixed;
-	top: 0; bottom: 0; left: 0; right: 0;
-	overflow: auto;
+    position: fixed;
+    top: 0; bottom: 0; left: 0; right: 0;
+    overflow: auto;
 }
+    #app[data-dark-theme="true"] {
+        background: black;
+        color: white;
+    }
 
 <ZC-IMPORT[header/base.css]>
 <ZC-IMPORT[header/large.css]>
