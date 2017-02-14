@@ -36,10 +36,13 @@ nav {
         #app[data-dark-theme="true"] #toc-search {
             border-color: #333;
             border-width: 0 0 2px 0;
-            color: #777;
+            color: #909090;
+
+            transition: 0.4s;
         }
             #app[data-dark-theme="true"] #toc-search:focus {
-                border-color: #777;
+                border-color: #909090;
+                background-color: rgba(230, 230, 230, 0.05);
             }
 
     #toc-controls {

@@ -37,9 +37,12 @@
             #app-listings li:not(:last-child) {
                 margin-right: 10px;
             }
-            #app-listings li.active {
+            #app-listings li[data-current="true"] {
                 background: rgba(0, 0, 0, 0.12);
             }
+                #app[data-dark-theme="true"] #app-listings li[data-current="true"] {
+                    color: white;
+                }
         #app-listings a {
             color: inherit;
             display: block;
@@ -63,6 +66,8 @@
         position: absolute;
         top: 80%;
         width: 185px;
+
+        z-index: 10;
     }
         #app-settings-menu.open {
             display: block;

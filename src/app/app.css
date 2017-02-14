@@ -18,6 +18,7 @@ button {
     border: 1px solid #949494;
     background: linear-gradient(to bottom, #f8f8f8 0%, #dddddd 100%);
     color: black;
+    font-size: 11px;
     padding: 3px 8px;
 }
     button:active {
