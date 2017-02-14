@@ -62,7 +62,6 @@
 
     <ooml-method name="abstractFactory">
         function(initState, classes) {
-            console.log(initState, classes);
             return new (initState.content ? classes.ContentArticle : classes.ReferenceArticle)(initState);
         }
     </ooml-method>
@@ -110,7 +109,7 @@
 </template>
 
 <template ooml-class="ContentArticle extends AppArticle">
-    <ooml-property name="content" type="string" set="console.log(newValue);if (typeof newValue == 'string') return { HTML: '<div>' + marked(newValue) + '</div>' }">''</ooml-property>
+    <ooml-property name="content" type="string" set="if (typeof newValue == 'string') return { HTML: '<div>' + marked(newValue) + '</div>' }">''</ooml-property>
     <ooml-property name="description" type="string">''</ooml-property>
 
     <article>
