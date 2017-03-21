@@ -2,7 +2,7 @@
     {
         "name": "Introduction",
         "entries": [
-            <ZC-IMPORT[welcome]>,
+            <ZC-IMPORT[welcome]>, // 1) How to use guide. 2) Providing feedback. 3) Required knowledge (HTML, JS, OO)
             <ZC-IMPORT[about-OOML]>,
             <ZC-IMPORT[compatibility-and-support]>, // 1) Browser support. 2) Reporting bugs and ideas. 3) Webpack, browserify, require, babel (no need). 4) Building from source.
             <ZC-IMPORT[core-principles]>,
@@ -18,6 +18,7 @@
             <ZC-IMPORT[properties]>,
             <ZC-IMPORT[attributes]>,
             <ZC-IMPORT[methods]>,
+            <ZC-IMPORT[events]>,
             <ZC-IMPORT[DOM]>,
         ],
     },
@@ -39,6 +40,21 @@
             <ZC-IMPORT[typing]>,
             <ZC-IMPORT[getters-and-setters]>,
             <ZC-IMPORT[default-property-values]>,
+        ],
+    },
+    {
+        "name": "Attributes",
+        "entries": [
+        ],
+    },
+    {
+        "name": "Methods",
+        "entries": [
+        ],
+    },
+    {
+        "name": "Events",
+        "entries": [
         ],
     },
     {
@@ -68,7 +84,9 @@
         "entries": [
             <ZC-IMPORT[older-versions]>,
             <ZC-IMPORT[exceptions]>,
-            <ZC-IMPORT[abstractions]>, // Topics: 1) Don't be stupid. 2) Don't try to circumvent OOML. 3) Things that might trip you up (e.g. setTimeout on attrs). 4) There's probably a way to do it -- it's you're fault.
+            <ZC-IMPORT[identifiers]>, // Recommendations and restrictions on names for attributes, properties, methods, and classes
+            <ZC-IMPORT[abstractions]>, // Topics: 1) Don't be stupid. 2) Don't try to circumvent OOML. 3) Things that might trip you up (e.g. setTimeout on attrs). 4) There's probably a way to do it -- it's your fault.
+            <ZC-IMPORT[pitfalls]>, // 1) Single-line comments in OOML methods will break the method if the HTML is minified. 2) Escape HTML special chars in default values, inline code and method functions.
         ]
     },
     {
