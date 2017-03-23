@@ -1,15 +1,12 @@
-#settings-menu-button {
-    display: none;
+<ZC-IMPORT[header/base.noscript.css]>
+<ZC-IMPORT[main/base.noscript.css]>
+<ZC-IMPORT[pane/base.noscript.css]>
+
+@media (min-width: 1001px) {
+    <ZC-IMPORT[pane/large.noscript.css]>
 }
 
-#pane {
-    padding: 0;
+@media (max-width: 1000px) {
+    <ZC-IMPORT[pane/small.noscript.css]>
 }
 
-#toc-search, #toc-controls {
-    display: none;
-}
-
-.toc-category-label::after {
-    display: none;
-}

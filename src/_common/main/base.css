@@ -2,8 +2,18 @@
     height: calc(100% - 74px);
 }
 
+#article-container {
+    height: 100%;
+}
+
+#article-noload-message {
+    color: gray;
+    text-align: center;
+    padding: 28px;
+}
+
 #article {
-    background: white;
     border: 0;
     height: 100%;
+    width: 100%;
 }

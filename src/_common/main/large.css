@@ -1,6 +1,4 @@
-#article {
+#article-container {
     float: right;
     width: calc(100% - 250px);
-
-    padding: 30px;
 }

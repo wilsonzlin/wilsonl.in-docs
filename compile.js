@@ -2,6 +2,7 @@
 
 const fs = require('fs-extra');
 const marked = require('marked');
+const hljs = require('highlight.js');
 
 function parseMarkdown(mdText) {
     var renderer = new marked.Renderer();
@@ -24,9 +25,40 @@ function parseMarkdown(mdText) {
         return `<pre>${ html }</pre>`;
     };
 
-    renderer.paragraph = (text) => marked(text).slice(3, -5); // Remove <p> wrapping
+    renderer.paragraph = text => {
+        let ret = marked(text).slice(3, -5); // Remove <p> wrapping
+        ret = ret.replace(/ </g, "<zc-space /><").replace(/> /g, "><zc-space />");
+        return ret;
+    };
 
-    return `<div>${ marked(mdText, { renderer: renderer }) }</div>`;
+    renderer.list = (body, ordered) => {
+        let ret = marked(body, ordered);
+        ret = ret.replace(/ </g, "<zc-space /><").replace(/> /g, "><zc-space />");
+        return '<ul>' + ret + '</ul>';
+    };
+
+    renderer.link = (href, title, text) => {
+        let html = `<a `;
+
+        if (href[0] != '#') {
+            html += 'target=_blank ';
+        }
+        html += 'href="' + escapeHTML(href) + '" ';
+
+        title = (title || "").trim();
+        if (title) {
+            html += 'title="' + escapeHTML(title) + '" ';
+        }
+
+        html += '>';
+        if (text) {
+            html += escapeHTML(text);
+        }
+        html += "</a>";
+        return html;
+    };
+
+    return marked(mdText, { renderer: renderer });
 }
 
 function parseTypedCodeLine(codeText) {
@@ -57,15 +89,17 @@ function escapeHTML(str) {
 
 const HeaderListing = function (name) {
     return `
-        <li class="listing"><a class="listing-link" href="../${ escapeHTML(name) }">${ escapeHTML(name) }</a></li>
+        <li class="listing">
+            <a class="listing-link" href="../${ escapeHTML(name) }">${ escapeHTML(name) }</a>
+        </li>
     `;
-}
+};
 
 const PaneTocCategoryEntry = function (id, name, description) {
     return `
         <li class="toc-category-entry-wrapper" title="${ escapeHTML(description) }">
             <input class="toc-category-entry-radio" type="radio" name="toc-category-entry-active">
-            <a class="toc-category-entry-link" href="${ escapeHTML(id) }.html" target="article">${ escapeHTML(name) }</a>
+            <a class="toc-category-entry-link" href="${ escapeHTML(id) }.html" target="2" data-name="${ escapeHTML(name) }"></a>
         </li>
     `;
 };
@@ -185,20 +219,20 @@ JS_DOC_FOLDERS.forEach(listing => {
                     let name = f.slice(f.indexOf('.') + 1, f.lastIndexOf('.'));
                     let markdown = fs.readFileSync(path + '/arguments/' + f, 'utf8');
 
-                    return { name: name, html: marked(markdown) };
+                    return { name: name, html: parseMarkdown(markdown) };
                 });
 
                 let returns = fs.readdirSync(path + '/returns').filter(p => /\.md/.test(p)).sort(sortIdFiles).map(f => {
                     let markdown = fs.readFileSync(path + '/returns/' + f, 'utf8');
 
-                    return { html: marked(markdown) };
+                    return { html: parseMarkdown(markdown) };
                 });
 
                 articleHtml = ReferenceArticle(categoryName, entry, versions, description, signatures, args, returns);
 
                 ret = { id: articleId, name: entry, description: description };
             } else {
-                let contentHtml = marked(fs.readFileSync(path, 'utf8'));
+                let contentHtml = parseMarkdown(fs.readFileSync(path, 'utf8'));
 
                 articleHtml = ContentArticle(categoryName, entry, "", contentHtml);
 
@@ -226,6 +260,10 @@ require('zcompile')({
     destination: __dirname + '/dist',
 
     minifySelectors: false,
+    minifyHTML: {
+        minifyInlineCSS: true,
+        minifyInlineJS: true,
+    },
     files: [
         'index.html',
         '_common/app.css',

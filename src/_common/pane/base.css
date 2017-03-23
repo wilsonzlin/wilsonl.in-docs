@@ -1,14 +1,12 @@
-#pane {
-    background: white;
-    border-right: 1px solid rgba(0, 0, 0, 0.13);
+#pane-container {
     padding-top: 20px; /* For toc-search, as if margin is applied on toc-search, it exceeds #pane */
-
-    height: 100%;
-    overflow: auto;
-    z-index: 5; /* #app-header is 6 so that its shadow can overlap */
 }
 
-.dark-theme nav {
+#pane {
+    background: white;
+}
+
+.dark-theme #pane {
     background: black;
     border-color: transparent;
 }
@@ -72,6 +70,7 @@
     font-size: 13px;
     padding: 5px 12px;
     text-transform: uppercase;
+    position: relative; /* For ::after */
 }
 
 .dark-theme .toc-category-label {
@@ -103,8 +102,12 @@
     padding: 0;
 }
 
-.toc-category-entry {
+.toc-category-entry-wrapper {
     display: block;
+}
+
+.toc-category-entry-wrapper.hidden {
+    display: none;
 }
 
 .toc-category-entry-link {
@@ -114,8 +117,8 @@
     padding: 9px 6px 9px 18px;
 }
 
-.toc-category-entry.hidden {
-    display: none;
+.toc-category-entry-link::before {
+    content: attr(data-name);
 }
 
 .toc-category-entry-radio:checked + .toc-category-entry-link {

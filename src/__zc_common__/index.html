@@ -34,18 +34,25 @@
     </header>
 
     <main id="main">
-        <nav id="pane" class="no-select">
-            <input id="toc-search">
-            <span id="toc-controls">
-                <button class="toc-control">Expand all</button>
-                <button class="toc-control">Collapse all</button>
-            </span>
-            <dl id="toc-categories">
-                {{ tocCategories }}
-            </dl>
-        </nav>
+        <div id="pane-container" class="no-select" tabindex="0">
+            <div id="pane-open-button">w.l</div>
+            <nav id="pane">
+                <input id="toc-search">
+                <span id="toc-controls">
+                    <button class="toc-control">Expand all</button>
+                    <button class="toc-control">Collapse all</button>
+                </span>
+                <dl id="toc-categories">
+                    {{ tocCategories }}
+                </dl>
+            </nav>
+        </div>
 
-        <iframe name="article" id="article" src="data:text/html,<div style=color:gray;text-align:center>Choose an article in the pane<div>"></iframe>
+
+        <div id="article-container">
+            <div id="article-noload-message">Choose an article from the pane</div>
+            <iframe name="2" id="article"></iframe>
+        </div>
     </main>
 </body>
 
