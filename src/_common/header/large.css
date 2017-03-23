@@ -1,28 +1,29 @@
-@media (min-width: 1000px) {
-	#app-header {
-        z-index: 6; /* Overlap pane with shadow */
-	}
+#header {
+    z-index: 6; /* Overlap pane with shadow */
+}
 
-	#app-logo {
-		margin-right: 14px;
-		padding: 0 19px;
-	}
+#logo {
+    margin-right: 14px;
+    padding: 0 19px;
+}
 
-	#app-listings li:hover {
-		background: rgba(0, 0, 0, 0.12);
-	}
-		#app[data-dark-theme="true"] #app-listings li:hover {
-			background: transparent;
-			color: white;
-		}
+.listing:hover {
+    background: rgba(0, 0, 0, 0.12);
+}
 
-	#app-settings-menu-button {
-		margin-right: 12px;
-	}
-	#app-settings-menu {
-		right: 12px;
-	}
-		.app-settings-button:hover {
-			background: rgba(0, 0, 0, 0.1);
-		}
+.dark-theme .listing:hover {
+    background: transparent;
+    color: white;
+}
+
+#settings-menu-button {
+    margin-right: 12px;
+}
+
+#settings-menu {
+    right: 12px;
+}
+
+.settings-button:hover {
+    background: rgba(0, 0, 0, 0.1);
 }

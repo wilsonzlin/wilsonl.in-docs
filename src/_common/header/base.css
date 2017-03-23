@@ -1,93 +1,102 @@
-#app-header {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-
-    align-items: center;
-    box-shadow: 0 2px 16px #999;
+#header {
     display: flex;
+    align-items: center;
+
+    box-shadow: 0 2px 16px #999;
     position: relative; /* For settings menu */
     width: 100%;
     height: 74px;
 }
-    #app[data-dark-theme="true"] #app-header {
-        box-shadow: none;
-        border-bottom: 2px solid #909090;
-    }
 
-    #app-logo {
-        font-size: 36px;
-        font-weight: 600;
-    }
+.dark-theme #header {
+    box-shadow: none;
+    border-bottom: 2px solid #909090;
+}
 
-    #app-listings {
-        margin: 0;
-        padding: 0;
-        white-space: nowrap;
-    }
-        #app-listings li {
-            color: #4d4d4d;
-            display: inline-block;
-            font-weight: 500;
-        }
-            #app[data-dark-theme="true"] #app-listings li {
-                color: #909090;
-            }
-            #app-listings li:not(:last-child) {
-                margin-right: 10px;
-            }
-            #app-listings li[data-current="true"] {
-                background: rgba(0, 0, 0, 0.12);
-            }
-                #app[data-dark-theme="true"] #app-listings li[data-current="true"] {
-                    background: transparent;
-                    color: white;
-                }
-        #app-listings a {
-            color: inherit;
-            display: block;
-            padding: 6px 9px;
-            text-decoration: none;
-        }
-            #app-listings li.active a {
-                cursor: default;
-            }
+#logo {
+    font-size: 36px;
+    font-weight: 600;
+}
 
-    #app-settings-menu-button {
-        font-size: 25px;
-    }
-    #app-settings-menu {
-        background: white;
-        border: 2px solid rgba(150, 150, 150, 0.6);
-        box-shadow: -2px 2px 16px #ccc;
-        display: none;
-        margin: 0;
-        padding: 0;
-        position: absolute;
-        top: 80%;
-        width: 185px;
+#listings {
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+}
 
-        z-index: 10;
-    }
-        #app-settings-menu.open {
-            display: block;
-        }
-        .app-settings-button {
-            background: none;
-            border: 0;
-            color: #333;
-            cursor: pointer;
-            font-size: 15px;
-            outline: 0;
-            padding: 8px 12px;
-            text-align: right;
-            width: 100%;
-        }
-            .app-settings-button::before {
-                content: attr(value);
-                text-transform: capitalize;
-            }
-            .app-settings-button:active {
-                background: rgba(0, 0, 0, 0.1);
-            }
+.listing {
+    color: #4d4d4d;
+    display: inline-block;
+    font-weight: 500;
+}
+
+.dark-theme .listing {
+    color: #909090;
+}
+
+.listing:not(:last-child) {
+    margin-right: 10px;
+}
+
+.listing.current {
+    background: rgba(0, 0, 0, 0.12);
+}
+
+.dark-theme .listing.current {
+    background: transparent;
+    color: white;
+}
+
+.listing-link {
+    color: inherit;
+    display: block;
+    padding: 6px 9px;
+    text-decoration: none;
+}
+
+.listing.current > .listing-link {
+    cursor: default;
+}
+
+#settings-menu-button {
+    font-size: 25px;
+}
+
+#settings-menu {
+    background: white;
+    border: 2px solid rgba(150, 150, 150, 0.6);
+    box-shadow: -2px 2px 16px #ccc;
+    display: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 80%;
+    width: 185px;
+
+    z-index: 10;
+}
+
+#settings-menu.open {
+    display: block;
+}
+
+.settings-button {
+    background: none;
+    border: 0;
+    color: #333;
+    cursor: pointer;
+    font-size: 15px;
+    outline: 0;
+    padding: 8px 12px;
+    text-align: right;
+    width: 100%;
+}
+
+.settings-button::before {
+    content: attr(value);
+    text-transform: capitalize;
+}
+
+.settings-button:active {
+    background: rgba(0, 0, 0, 0.1);
+}

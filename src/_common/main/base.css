@@ -1,4 +1,9 @@
-main {
-	position: relative;
-	min-height: calc(100% - 74px);
+#main {
+    height: calc(100% - 74px);
+}
+
+#article {
+    background: white;
+    border: 0;
+    height: 100%;
 }

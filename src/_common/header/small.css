@@ -1,19 +1,18 @@
-@media (max-width: 1000px) {
-	#app-logo {
-		margin-right: 5px;
-		padding: 0 14px;
-	}
+#logo {
+    margin-right: 5px;
+    padding: 0 14px;
+}
 
-	#app-listings {
-		flex-shrink: 1;
-		margin-right: 10px;
-		overflow: auto;
-	}
+#listings {
+    flex-shrink: 1;
+    margin-right: 10px;
+    overflow: auto;
+}
 
-	#app-settings-menu-button {
-		margin-right: 10px;
-	}
-	#app-settings-menu {
-		right: 10px;
-	}
+#settings-menu-button {
+    margin-right: 10px;
+}
+
+#settings-menu {
+    right: 10px;
 }

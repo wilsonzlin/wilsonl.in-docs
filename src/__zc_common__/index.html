@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <title><ZC-USE[viewport-title]> | wilsonl.in Docs</title>
+    <title>{{ viewportTitle }} | wilsonl.in Docs</title>
 
     <link rel="stylesheet" href="../_common/app.css">
     <noscript>
@@ -16,38 +16,37 @@
 </head>
 
 <body>
-
-<div id="app">
-    <header id="app-header">
-        <span id="app-logo">w.l</span>
-        <ul id="app-listings">
-            <ZC-USE[headerListings]>
+    <header id="header" class="no-select">
+        <span id="logo">w.l</span>
+        <ul id="listings">
+            {{ headerListings }}
         </ul>
 
-        <flex-spacer></flex-spacer>
+        <div class="flex-spacer"></div>
 
-        <button id="app-settings-menu-button">&hellip;</button>
-        <menu id="app-settings-menu">
-            <button class="app-settings-button" value="pane settings"></button>
-            <button class="app-settings-button" value="toggle dark theme"></button>
-            <button class="app-settings-button" value="send feedback"></button>
-            <button class="app-settings-button" value="about"></button>
+        <button id="settings-menu-button">&hellip;</button>
+        <menu id="settings-menu">
+            <button class="settings-button" value="pane settings"></button>
+            <button class="settings-button" value="toggle dark theme"></button>
+            <button class="settings-button" value="send feedback"></button>
+            <button class="settings-button" value="about"></button>
         </menu>
     </header>
 
-    <main>
-        <nav>
-            <h1>Table of Contents</h1>
+    <main id="main">
+        <nav id="pane" class="no-select">
             <input id="toc-search">
             <span id="toc-controls">
                 <button class="toc-control">Expand all</button>
                 <button class="toc-control">Collapse all</button>
             </span>
             <dl id="toc-categories">
-                <ZC-USE[tocCategories]>
+                {{ tocCategories }}
             </dl>
         </nav>
 
-        <iframe id="article"></iframe>
+        <iframe name="article" id="article" src="data:text/html,<div style=color:gray;text-align:center>Choose an article in the pane<div>"></iframe>
     </main>
-</div>
+</body>
+
+</html>

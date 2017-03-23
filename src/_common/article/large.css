@@ -1,21 +1,10 @@
-@media (min-width: 1000px) {
-    #articles {
-        padding: 30px;
-        width: calc(100% - 250px);
-    }
+body {
+    max-width: 1000px;
+}
 
-    article {
-        max-width: 1000px;
-    }
-
-    #app[data-current-article="null"] #articles::before {
-        content: 'Choose something in the pane on your left';
-    }
-
-    article p,
-    article pre,
-    article dl,
-    article ul {
-        margin: 0 0 18px 0;
-    }
+article p,
+article pre,
+article dl,
+article ul {
+    margin: 0 0 18px 0;
 }

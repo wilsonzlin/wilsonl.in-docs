@@ -1,5 +1,6 @@
-@media (min-width: 1000px) {
-	main {
-		display: flex;
-	}
+#article {
+    float: right;
+    width: calc(100% - 250px);
+
+    padding: 30px;
 }

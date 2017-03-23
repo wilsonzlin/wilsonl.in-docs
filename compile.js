@@ -57,17 +57,15 @@ function escapeHTML(str) {
 
 const HeaderListing = function (name) {
     return `
-        <li><a href="../${ escapeHTML(name) }">${ escapeHTML(name) }</a></li>
+        <li class="listing"><a class="listing-link" href="../${ escapeHTML(name) }">${ escapeHTML(name) }</a></li>
     `;
 }
 
 const PaneTocCategoryEntry = function (id, name, description) {
     return `
-        <li class="toc-category-entry" title="${ escapeHTML(description) }">
-            <label>
-                <input type="radio" name="toc-category-entry-active">
-                <a href="${ escapeHTML(id) }.html" target="article">${ escapeHTML(name) }</a>
-            </label>
+        <li class="toc-category-entry-wrapper" title="${ escapeHTML(description) }">
+            <input class="toc-category-entry-radio" type="radio" name="toc-category-entry-active">
+            <a class="toc-category-entry-link" href="${ escapeHTML(id) }.html" target="article">${ escapeHTML(name) }</a>
         </li>
     `;
 };
@@ -75,7 +73,7 @@ const PaneTocCategoryEntry = function (id, name, description) {
 const PaneTocCategory = function (name, entries) {
     return `
         <div class="toc-category">
-            <dt class="toc-category-label" domonclick="this.attributes.expanded = !this.attributes.expanded">${ escapeHTML(name) }</dt>
+            <dt class="toc-category-label">${ escapeHTML(name) }</dt>
             <dd class="toc-category-entries-container">
                 <ul class="toc-category-entries">
                     ${ entries.map(e => PaneTocCategoryEntry(e.id, e.name, e.description)).join("") }
@@ -123,19 +121,19 @@ const ReferenceArticle = function (category, name, versions, description, signat
             ${ signatures.map(s => ReferenceArticleSignature(s.html)).join("") }
         </section>
 
-        <section>
+        ${ !args.length ? "" : `<section>
             <h2>Arguments</h2>
             <dl class="arguments-list">
                 ${ args.map(a => ReferenceArticleArgument(a.name, a.html)).join("") }
             </dl>
-        </section>
+        </section>` }
 
-        <section>
+        ${ !returns.length ? "" : `<section>
             <h2>Returns</h2>
             <ul class="returns-list">
                 ${ returns.map(r => ReferenceArgumentReturn(r.html)).join("") }
             </ul>
-        </section>
+        </section>` }
     `;
 };
 
@@ -160,7 +158,7 @@ let generatedHtmlFiles = [];
 
 JS_DOC_FOLDERS.forEach(listing => {
     let categories = Function('"use strict"; return ' + fs.readFileSync(__dirname + '/src/' + listing + '/__metadata__.js'))();
-    let categoriesHtml = [];
+    let categoriesHtml = "";
     let articleAutoIncrement = 0;
 
     categories.forEach(category => {
@@ -212,15 +210,14 @@ JS_DOC_FOLDERS.forEach(listing => {
             return ret;
         });
 
-        categoriesHtml.push(PaneTocCategory(categoryName, categoryEntries));
+        categoriesHtml += PaneTocCategory(categoryName, categoryEntries);
     });
 
-    fs.writeFileSync(__dirname + '/src/' + listing + '/index.html', `
-        <ZC-SET[viewportTitle][${listing}]>
-        <ZC-SET[headerListings][${LISTINGS_HTML}]>
-        <ZC-SET[tocCategories][${categoriesHtml}]>
-        <ZC-IMPORT[../__zc_common__/index.html]>
-    `);
+    fs.writeFileSync(__dirname + '/src/' + listing + '/index.html', fs.readFileSync(__dirname + '/src/__zc_common__/index.html', 'utf8')
+        .replace(/\{\{ *viewportTitle *\}\}/g, escapeHTML(listing))
+        .replace(/\{\{ *headerListings *\}\}/g, LISTINGS_HTML)
+        .replace(/\{\{ *tocCategories *\}\}/g, categoriesHtml)
+    );
     generatedHtmlFiles.push(listing + '/index.html');
 });
 

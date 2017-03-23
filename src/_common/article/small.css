@@ -1,27 +1,14 @@
-@media (max-width: 1000px) {
-    #articles {
-        height: 100%;
-        overflow: auto;
-        padding: 15px 8px 0 8px;
-        width: 100%;
-    }
+.category {
+    display: block;
+}
 
-    #app[data-current-article="null"] #articles::before {
-        content: 'Open the pane and choose something';
-    }
+p,
+pre,
+dl,
+ul {
+    margin: 0 0 12px 0;
+}
 
-    article .category {
-        display: block;
-    }
-
-    article p,
-    article pre,
-    article dl,
-    article ul {
-        margin: 0 0 12px 0;
-    }
-
-    article dd {
-        margin-left: 0;
-    }
+dd {
+    margin-left: 0;
 }

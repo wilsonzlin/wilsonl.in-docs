@@ -1,0 +1,15 @@
+#settings-menu-button {
+    display: none;
+}
+
+#pane {
+    padding: 0;
+}
+
+#toc-search, #toc-controls {
+    display: none;
+}
+
+.toc-category-label::after {
+    display: none;
+}

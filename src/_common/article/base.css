@@ -1,22 +1,17 @@
-#app[data-current-article="null"] #articles::before {
-    color: gray;
-    display: block;
-    text-align: center;
+body {
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Ubuntu, Cantarell, Oxygen, Droid Sans, Fira Sans, sans-serif;
+    margin: 0;
 }
 
-article[data-hidden="true"] {
-    display: none;
-}
-
-article > header {
+header {
     margin-bottom: 25px;
 }
-article > section:not(:last-of-type) {
+
+section:not(:last-of-type) {
     margin-bottom: 62px;
 }
 
-
-article .category {
+.category {
     display: none;
 
     /* Identical to .toc-category-label */
@@ -30,34 +25,38 @@ article .category {
     position: relative;
     text-transform: uppercase;
 }
-    #app[data-dark-theme="true"] article .category {
-        background: #222;
-    }
 
-article h1 {
+.dark-theme .category {
+    background: #222;
+}
+
+h1 {
     font-size: 30px;
     font-weight: 400;
     margin: 0 0 12px 0;
 }
-    article h1::after {
-        background: #333;
-        content: '';
-        display: block;
-        height: 2px;
-        margin-top: 6px;
-    }
 
-    article .versions {
-        color: gray;
-    }
-        article .versions::after {
-            content: ' versions';
-        }
-        #app[data-dark-theme="true"] article .versions {
-            color: #444;
-        }
+h1::after {
+    background: #333;
+    content: '';
+    display: block;
+    height: 2px;
+    margin-top: 6px;
+}
 
-article h2 {
+.versions {
+    color: gray;
+}
+
+.versions::after {
+    content: ' versions';
+}
+
+.dark-theme .versions {
+    color: #444;
+}
+
+h2 {
     background: #999;
     color: white;
     display: inline-block;
@@ -67,23 +66,26 @@ article h2 {
     padding: 6px 12px;
 }
 
-article p,
-article pre,
-article dl,
-article ul {
+p,
+pre,
+dl,
+ul {
     line-height: 1.5;
 }
-    article dt, article li {
-        margin-bottom: 12px;
-    }
-    article dt {
-        font-weight: 600;
-    }
-    article dd {
-        margin-bottom: 36px;
-    }
 
-article pre {
+dt, li {
+    margin-bottom: 12px;
+}
+
+dt {
+    font-weight: 600;
+}
+
+dd {
+    margin-bottom: 36px;
+}
+
+pre {
     background: #f2f2f2;
     border: 1px solid #666;
     color: #595959;
@@ -92,22 +94,24 @@ article pre {
     font-size: 14px;
     overflow: auto;
 }
-    article pre.signature {
-        background: #282c34;
-        border: 1px solid #181a1f;
-        color: #abb2bf;
-        padding: 10px;
-        font-size: 18px;
-    }
 
-    article pre .type { /* .type exists in _wldoc_typedline code */
-        color: #1a1a1a;
-    }
-        article pre.signature .type {
-            color: #98c379;
-        }
+pre.signature {
+    background: #282c34;
+    border: 1px solid #181a1f;
+    color: #abb2bf;
+    padding: 10px;
+    font-size: 18px;
+}
 
-article code {
+pre .type { /* .type exists in _wldoc_typedline code */
+    color: #1a1a1a;
+}
+
+pre.signature .type {
+    color: #98c379;
+}
+
+code {
     color: #4d4d4d;
     display: inline-block;
     font-size: 15px;
