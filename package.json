@@ -5,6 +5,7 @@
     "babel-preset-latest": "^6.16.0",
     "express": "^4.14.1",
     "fs-extra": "^2.0.0",
+    "marked": "^0.3.6",
     "mime-types": "^2.1.14",
     "recursive-readdir-sync": "^1.0.6",
     "zcompile": "^4.0.1"

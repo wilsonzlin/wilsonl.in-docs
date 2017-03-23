@@ -1,0 +1,1 @@
+$matchingSiblingBefore = zq.prev( string|Element|zQuery|ArrayLike comparison )

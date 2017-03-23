@@ -1,0 +1,1 @@
+$matchingSiblingAfter = zq.next( string|Element|zQuery|ArrayLike comparison )

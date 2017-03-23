@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "babel-polyfill": "*",
-    "ooml": "*",
-    "whatwg-fetch": "*"
-  }
-}

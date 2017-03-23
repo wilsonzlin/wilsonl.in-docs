@@ -1,0 +1,1 @@
+Get the current elements or their closest ancestors that match the provided selector or element(s)

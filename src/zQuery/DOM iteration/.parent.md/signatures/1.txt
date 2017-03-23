@@ -1,0 +1,1 @@
+$matchingParents = zq.parent( string|Element|zQuery|ArrayLike comparison )

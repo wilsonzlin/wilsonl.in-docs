@@ -1,0 +1,1 @@
+$filtered = zq.filter( string|Element|zQuery|ArrayLike comparison )

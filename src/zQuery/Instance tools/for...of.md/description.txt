@@ -1,0 +1,1 @@
+Iterate over a zQuery instance's elements and construct a zQuery instance for each element for use during iteration

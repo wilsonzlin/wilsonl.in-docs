@@ -1,0 +1,1 @@
+allDescendantsMatch = zq.find( string selectorWithExclamation )

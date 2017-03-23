@@ -1,0 +1,1 @@
+zq = zq.each( function iterator )

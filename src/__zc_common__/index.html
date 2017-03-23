@@ -2,26 +2,52 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-	<title>Loading... | wilsonl.in Docs</title>
-	<noscript>
-		<meta http-equiv="refresh" content="0;URL=http://enable-javascript.com">
-	</noscript>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title><ZC-USE[viewport-title]> | wilsonl.in Docs</title>
 
-	<link rel="stylesheet" href="../lib/highlight.js/styles/atom-one-light.css">
-	<link rel="stylesheet" href="../app/app.css">
+    <link rel="stylesheet" href="../_common/app.css">
+    <noscript>
+        <link rel="stylesheet" href="../_common/app.noscript.css">
+    </noscript>
 
-	<script src="../lib/ooml.js"></script>
-	<script src="../lib/babel-polyfill.js"></script>
-	<script src="../lib/fetch-polyfill.js"></script>
-	<script src="../lib/marked.js"></script>
-	<script src="../lib/highlight.js/highlight.pack.js"></script>
-	<script defer src="../app/app.js"></script>
+    <script defer src="../_common/app.js"></script>
 </head>
 
 <body>
-</body>
 
-</html>
+<div id="app">
+    <header id="app-header">
+        <span id="app-logo">w.l</span>
+        <ul id="app-listings">
+            <ZC-USE[headerListings]>
+        </ul>
+
+        <flex-spacer></flex-spacer>
+
+        <button id="app-settings-menu-button">&hellip;</button>
+        <menu id="app-settings-menu">
+            <button class="app-settings-button" value="pane settings"></button>
+            <button class="app-settings-button" value="toggle dark theme"></button>
+            <button class="app-settings-button" value="send feedback"></button>
+            <button class="app-settings-button" value="about"></button>
+        </menu>
+    </header>
+
+    <main>
+        <nav>
+            <h1>Table of Contents</h1>
+            <input id="toc-search">
+            <span id="toc-controls">
+                <button class="toc-control">Expand all</button>
+                <button class="toc-control">Collapse all</button>
+            </span>
+            <dl id="toc-categories">
+                <ZC-USE[tocCategories]>
+            </dl>
+        </nav>
+
+        <iframe id="article"></iframe>
+    </main>
+</div>
