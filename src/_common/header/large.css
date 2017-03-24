@@ -1,3 +1,7 @@
+#header {
+    z-index: 10; /* So box-shadow is over #pane ONLY in large mode (in small mode, 1) #pane should hide box-shadow 2) #pane-open-button needs to be on top */
+}
+
 #pane-open-button {
     display: none;
 }

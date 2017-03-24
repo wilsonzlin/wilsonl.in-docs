@@ -17,15 +17,13 @@ section:not(:last-of-type) {
 
 .category {
     display: none;
+    margin-bottom: 8px;
 
     /* Identical to .toc-category-label */
     background: #ccc;
     color: gray;
-    /*display: inline-block;*/
-    cursor: pointer;
     font-size: 13px;
-    margin-bottom: 6px;
-    padding: 4px 8px;
+    padding: 5px 12px;
     position: relative;
     text-transform: uppercase;
 }

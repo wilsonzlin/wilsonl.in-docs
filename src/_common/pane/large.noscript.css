@@ -1,0 +1,4 @@
+.toc-category-label:hover {
+    background: #ccc; /* Same as without :hover */
+    cursor: default;
+}

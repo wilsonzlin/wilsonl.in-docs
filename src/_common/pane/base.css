@@ -1,5 +1,6 @@
 #pane-container {
     padding-top: 20px; /* For toc-search, as if margin is applied on toc-search, it exceeds #pane */
+    outline: 0;
 }
 
 #pane {

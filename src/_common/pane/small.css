@@ -1,5 +1,4 @@
 #pane-container {
-    outline: 0;
     position: fixed; /* Just to remove from flow */
 }
 
