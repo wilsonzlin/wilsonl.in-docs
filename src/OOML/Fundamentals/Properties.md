@@ -1,10 +1,10 @@
-Properties are the **[fields](https://en.wikipedia.org/wiki/Field_(computer_science))** in a class, sometimes called **instance or member variables, attributes or properties** in other object-orientated languages. They are like properties in JavaScript; they are values attached to an object, and can be accessed and assigned to using the notation `obj.prop` or `obj["prop"]`. OOML introduces more safety when dealing with properties by:
+**Properties** are the [fields](https://en.wikipedia.org/wiki/Field_(computer_science)) of a class, sometimes called **instance or member variables, attributes or properties** in other object-orientated languages. They are like properties in JavaScript; they are values attached to an object, and can be accessed and assigned to using the notation `obj.prop` or `obj["prop"]`. OOML introduces more safety when dealing with properties by:
 
 - Requiring properties to be declared, with an initial value, before they can be used
 - Allowing type declarations to ensure type safety at runtime
 - Preventing the access and assignment of properties that have not been declared
 
-There are two ways to declare properties in OOML. The first way, using `ooml-property` tags, will be explained below. The other way, using text substitutions in the DOM, is explained in [Text substitution](#Text substitution).
+There are two ways to declare properties in OOML. This article will use the first way, using `ooml-property` tags. The other way, using text substitutions in the DOM, is explained in [Text substitution](#Text substitution).
 
 To declare a property called "myProp" in a class, use `ooml-property` tag:
 

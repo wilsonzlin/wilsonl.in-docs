@@ -6,15 +6,16 @@
             "About OOML",
             "Compatibility and support", // 1) Browser support. 2) Reporting bugs and ideas. 3) Webpack, browserify, require, babel (no need). 4) Building from source.
             "Core principles",
-            "Short overview",
-            "Environment setup and usage",
+            "How it works",
+            "Environment, setup and usage",
         ],
     },
     {
         "name": "Fundamentals",
         "entries": [
-            "Namespaces",
+            "Objects",
             "Classes",
+            "Namespaces",
             "Properties",
             "Attributes",
             "Methods",

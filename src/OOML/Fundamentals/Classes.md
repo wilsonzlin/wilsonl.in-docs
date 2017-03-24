@@ -1,4 +1,4 @@
-Classes are very similar to classes in most other object-orientated languages:
+**Classes** are the templates for creating OOML objects. They are very similar to classes in most other object-orientated languages:
 
 - They have properties and methods
 - Classes can be extended, inheriting properties and methods from ancestor classes
