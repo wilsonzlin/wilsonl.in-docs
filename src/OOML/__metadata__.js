@@ -61,6 +61,7 @@
     {
         "name": "DOM",
         "entries": [
+            "Substitution",
             "Text substitution",
             "Element substitution",
             "Array substitution",
