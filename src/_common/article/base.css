@@ -105,12 +105,20 @@ pre.signature {
     font-size: 18px;
 }
 
-pre .type { /* .type exists in _wldoc_typedline code */
+pre .type { /* .type exists in x-wldoc-typedline code */
     color: #1a1a1a;
+}
+
+pre .literal { /* .literal exists in x-wldoc-typedline code */
+    color: #d19a66;
 }
 
 pre.signature .type {
     color: #98c379;
+}
+
+pre.signature .literal {
+    color: #61aeee;
 }
 
 code {
