@@ -1,0 +1,1 @@
+Empty the contents of every element in the current instance

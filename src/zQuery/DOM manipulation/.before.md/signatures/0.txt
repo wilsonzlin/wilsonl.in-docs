@@ -1,0 +1,1 @@
+zq = zq.before( string|Node|zQuery|ArrayLike toInsertBefore )

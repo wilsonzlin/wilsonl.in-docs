@@ -206,8 +206,8 @@ JS_DOC_FOLDERS.forEach(listing => {
 
             let stats = fs.lstatSync(path);
             if (stats.isDirectory()) {
-                let versions = fs.readFileSync(path + '/versions.txt');
-                let description = fs.readFileSync(path + '/description.txt');
+                let versions = fs.readFileSync(path + '/versions.txt', 'utf8').trim();
+                let description = fs.readFileSync(path + '/description.txt', 'utf8').trim();
 
                 let signatures;
                 if (fs.existsSync(path + '/signatures')) {

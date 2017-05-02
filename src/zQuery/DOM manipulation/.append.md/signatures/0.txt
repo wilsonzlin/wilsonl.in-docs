@@ -1,0 +1,1 @@
+zq = zq.append( string|Node|zQuery|ArrayLike toAppend )

@@ -1,0 +1,1 @@
+Removes the elements in the current instance from the DOM

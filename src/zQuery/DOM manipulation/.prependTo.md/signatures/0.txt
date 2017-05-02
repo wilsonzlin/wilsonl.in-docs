@@ -1,0 +1,1 @@
+zq = zq.prependTo( Node|zQuery|ArrayLike prependTo )
