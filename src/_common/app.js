@@ -18,10 +18,10 @@
         $article = qs("#article"),
         $articleEntries = qsa('.toc-category-entry-wrapper'),
         onClickArticle = function (a) {
-            $article.src = a.getAttribute("data-link");
+            $article.contentWindow.location.replace(a.getAttribute("data-link"));
             a.previousSibling.checked = true;
             $noloadMessage.style.display = "none";
-            location.hash = a.getAttribute('data-name');
+            history.replaceState(undefined, undefined, '#' + a.getAttribute('data-name'));
             $pane.classList.remove('open');
         },
         parseHash = function () {
@@ -30,7 +30,6 @@
                 var link = qs('a[data-name="' + hash + '"]');
                 if (link) {
                     link.click();
-                    onClickArticle(link);
                 }
             }
         };
@@ -67,6 +66,5 @@
         });
     };
 
-    window.onhashchange = parseHash;
     parseHash();
 })();
