@@ -1,0 +1,1 @@
+allElemsHaveAllClasses = zq.classes( string spaceSeparatedClassesWithAsterisk )

@@ -152,17 +152,17 @@ const ReferenceArticle = function (category, name, versions, description, signat
         <section class="section-synopsis">
             <h2>Synopsis</h2>
             <p class="description">${ escapeHTML(description) }</p>
-            ${ signatures.map(s => ReferenceArticleSignature(s.html)).join("") }
+            ${ !signatures ? "" : signatures.map(s => ReferenceArticleSignature(s.html)).join("") }
         </section>
 
-        ${ !args.length ? "" : `<section>
+        ${ !args || !args.length ? "" : `<section>
             <h2>Arguments</h2>
             <dl class="arguments-list">
                 ${ args.map(a => ReferenceArticleArgument(a.name, a.html)).join("") }
             </dl>
         </section>` }
 
-        ${ !returns.length ? "" : `<section>
+        ${ !returns || !returns.length ? "" : `<section>
             <h2>Returns</h2>
             <ul class="returns-list">
                 ${ returns.map(r => ReferenceArgumentReturn(r.html)).join("") }
@@ -209,24 +209,33 @@ JS_DOC_FOLDERS.forEach(listing => {
                 let versions = fs.readFileSync(path + '/versions.txt');
                 let description = fs.readFileSync(path + '/description.txt');
 
-                let signatures = fs.readdirSync(path + '/signatures').filter(p => /\.txt$/.test(p)).sort(sortIdFiles).map(f => {
-                    let code = fs.readFileSync(path + '/signatures/' + f, 'utf8');
+                let signatures;
+                if (fs.existsSync(path + '/signatures')) {
+                    signatures = fs.readdirSync(path + '/signatures').filter(p => /\.txt$/.test(p)).sort(sortIdFiles).map(f => {
+                        let code = fs.readFileSync(path + '/signatures/' + f, 'utf8');
 
-                    return { html: parseTypedCodeLine(code) };
-                });
+                        return {html: parseTypedCodeLine(code)};
+                    });
+                }
 
-                let args = fs.readdirSync(path + '/arguments').filter(p => /\.md/.test(p)).sort(sortIdFiles).map(f => {
-                    let name = f.slice(f.indexOf('.') + 1, f.lastIndexOf('.'));
-                    let markdown = fs.readFileSync(path + '/arguments/' + f, 'utf8');
+                let args;
+                if (fs.existsSync(path + '/arguments')) {
+                    args = fs.readdirSync(path + '/arguments').filter(p => /\.md/.test(p)).sort(sortIdFiles).map(f => {
+                        let name = f.slice(f.indexOf('.') + 1, f.lastIndexOf('.'));
+                        let markdown = fs.readFileSync(path + '/arguments/' + f, 'utf8');
 
-                    return { name: name, html: parseMarkdown(markdown) };
-                });
+                        return {name: name, html: parseMarkdown(markdown)};
+                    });
+                }
 
-                let returns = fs.readdirSync(path + '/returns').filter(p => /\.md/.test(p)).sort(sortIdFiles).map(f => {
-                    let markdown = fs.readFileSync(path + '/returns/' + f, 'utf8');
+                let returns;
+                if (fs.existsSync(path + '/returns')) {
+                    returns = fs.readdirSync(path + '/returns').filter(p => /\.md/.test(p)).sort(sortIdFiles).map(f => {
+                        let markdown = fs.readFileSync(path + '/returns/' + f, 'utf8');
 
-                    return { html: parseMarkdown(markdown) };
-                });
+                        return { html: parseMarkdown(markdown) };
+                    });
+                }
 
                 articleHtml = ReferenceArticle(categoryName, entry, versions, description, signatures, args, returns);
 

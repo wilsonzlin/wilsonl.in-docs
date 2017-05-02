@@ -1,0 +1,1 @@
+zq = zq.prop( string propName, function callback )
