@@ -9,7 +9,7 @@ const Crypto = require('crypto');
 const RecursiveReaddir = require('recursive-readdir-sync');
 
 AWS.config.credentials = new AWS.SharedIniFileCredentials({profile: 'wilsonl.in-docs'});
-const WLM = JSON.parse(fs.readFileSync(process.env['HOME'] + '/.aws/wilsonl.in-music', 'utf8'));
+const WLM = JSON.parse(fs.readFileSync(process.env['HOME'] + '/.aws/wilsonl.in', 'utf8'));
 
 let s3 = new AWS.S3();
 let cloudFront = new AWS.CloudFront();

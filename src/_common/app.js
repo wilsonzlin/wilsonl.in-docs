@@ -12,7 +12,7 @@
             return str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
         },
 
-        $currentListingLink = qs('a[href="../' + location.pathname.replace(/^\/+|\/+$/g, '') + '"]'),
+        $currentListingLink = qs('a[href="../' + location.pathname.replace(/\/\/+/g, '').replace(/^\/+|\/+$/g, '').split('/').pop() + '"]'),
         $pane = qs("#pane"),
         $noloadMessage = qs("#article-noload-message"),
         $article = qs("#article"),
