@@ -1,1 +1,1 @@
-Make an asynchronous XHR request
+Send and receive data to/from a server asynchronously

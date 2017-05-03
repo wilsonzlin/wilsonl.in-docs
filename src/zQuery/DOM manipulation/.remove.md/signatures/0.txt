@@ -1,1 +1,1 @@
-zq = zq.empty()
+zq = zq.remove()
