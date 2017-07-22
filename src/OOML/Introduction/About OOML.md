@@ -1,6 +1,6 @@
 OOML is a JavaScript front-end UI library.
 
-It was born in late 2016, as the UI library for [etyude](https://etyude.com), as other libraries at the time were too unfriendly or bloated, or required specialised, complicated development.
+It was born in late 2016, as other libraries at the time were too unfriendly or bloated, or required specialised, complicated development.
 
 It is designed to easily create very complex UIs using modular components, in a manner similar to object orientation.
 

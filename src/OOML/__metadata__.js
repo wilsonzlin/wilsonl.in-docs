@@ -1,8 +1,9 @@
+//noinspection BadExpressionStatementJS
 [
     {
         "name": "Introduction",
         "entries": [
-            "Welcome", // 1) How to use guide. 2) Providing feedback. 3) Required knowledge (HTML, JS, OO)
+            "Welcome",
             "About OOML",
             "Compatibility and support", // 1) Browser support. 2) Reporting bugs and ideas. 3) Webpack, browserify, require, babel (no need). 4) Building from source.
             "Core principles",

@@ -1,8 +1,8 @@
-OOML is designed to have a "inverse learning curve" — that is, it's designed to allow beginners to start developing serious apps very quickly, only requiring them to learn the rest when necessary.
+OOML is designed to have an "gradual learning curve" — that is, it's designed to allow beginners to start developing serious apps very quickly, only requiring them to learn the rest when necessary.
 
-This is possible because the fundamental concepts and techniques of OOML are based on popular and well-known concepts like object orientation and HTML templating.
+This is possible because the fundamental concepts and techniques of OOML are based on popular and well-known concepts like object orientation, JSON, and HTML templating.
 
-OOML is also designed to be incredibly easy to set up and develop in. Unlike some other frameworks, there is only one file weighing in at around 30 KB, which can be included in a `<script>` tag. It takes just one line to initialise OOML.
+OOML is also designed to be incredibly easy to set up and develop in. Unlike some other frameworks, there is only one file weighing in at around 11 KB GZipped, which can be included in a `<script>` tag. It takes just one line to initialise OOML.
 
 Also, interacting with OOML is designed to be almost identical to interacting with JavaScript. This makes the code intuitive and easy to understand, and look like regular JavaScript logic.
 
@@ -12,7 +12,7 @@ Here is a simple to-do list app:
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="ooml.js"></script>
+        <script src="https://wilsonl.in/ooml.js"></script>
     </head>
     <body>
         <template ooml-class="ListEntry">
