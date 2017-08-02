@@ -3,4 +3,4 @@ node_modules/
 /dist
 /.idea
 *.iml
-package-lock.json
+package-lock.json*

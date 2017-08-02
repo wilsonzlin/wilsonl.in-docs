@@ -11,16 +11,12 @@ Classes are declared using HTML templates in the HTML file:
 <template ooml-class="MyClass"></template>
 ```
 
-`<template>` elements ensure faster processing as browsers that support it will not try to parse the contents.
+`<template>` elements ensure faster processing as browsers that support it will not try to render the contents.
 
-Inside the template element, there are a few tags that describe the [attributes](#Attributes), [properties](#Properties) and [methods](#Methods) of the class, and then the DOM of the class is laid out:
+Inside the template element, there are a few tags that describe the [properties](#Properties) and [methods](#Methods) of the class, and then the view of the class is laid out:
 
 ```html
 <template ooml-class="MyClass">
-    <ooml-attribute name="attr1">null</ooml-attribute>
-    <ooml-attribute name="attr2">null</ooml-attribute>
-    <ooml-attribute name="attr3">null</ooml-attribute>
-
     <ooml-property name="prop1">null</ooml-property>
     <ooml-property name="prop2">null</ooml-property>
     <ooml-property name="prop3">null</ooml-property>
@@ -37,7 +33,7 @@ Inside the template element, there are a few tags that describe the [attributes]
         }
     </ooml-method>
     
-    <div class="my-class">
+    <div>
         <h1>Instance of my class</h1>
         <em>Hooray!</em>
     </div>

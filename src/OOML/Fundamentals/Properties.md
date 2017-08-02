@@ -2,9 +2,7 @@
 
 - Requiring properties to be declared, with an initial value, before they can be used
 - Allowing type declarations to ensure type safety at runtime
-- Preventing the access and assignment of properties that have not been declared
-
-There are two ways to declare properties in OOML. This article will describe the first way, using `ooml-property` tags. The other way, using substitutions in the DOM, is explained in [Substitution](#Substitution).
+- Preventing the assignment of properties that have not been declared
 
 ## Declaring
 
@@ -18,15 +16,15 @@ To declare a property called "myProp" in a class, use an `ooml-property` tag:
 
 The name of the property is declared using the `name` attribute. It is recommended to use camelCase when naming properties. There are restrictions on names for properties and other identifiers — see [Identifiers](#Identifiers) for more details.
 
-## Type system
+## Type checking
 
-Properties may have a declared type. Only [primitive types](#Primitives) may be specified. The default value must match the declared type. If there is no declared type, the value can be of any primitive type. To declare a type, use the `type` attribute:
+Properties may have a declared type. Only [primitive types](#Primitives) and OOML classes may be specified. The default value must match the declared type. If there is no declared type, the value can be of any primitive type. To declare a type, use the `type` attribute:
 
 ```html
 <ooml-property name="myProp" type="natural">1</ooml-property>
 ```
 
-A union type can be declared, by listing the subtypes separated with a bar. Subtypes can also only be [primitive types](#Primitives). Union types ensure that the value must be one of the subtypes. There is no limit to the amount of subtypes, but there cannot be duplicates.
+A union type can be declared, by listing the subtypes separated with a bar. Subtypes can only be [primitive types](#Primitives). Union types ensure that the value must be one of the subtypes. There is no limit to the amount of subtypes, but there cannot be duplicates or overlaps.
 
 This property's value can be a `natural`, `boolean` or `string`:
 
@@ -61,11 +59,11 @@ Ensure that string values are quoted; there is a slim possibility that OOML cann
 </template>
 ```
 
-OOML properties must have a default value. Generally, if you don't have a specific default value, consider `null`. `undefined` is not allowed in almost every part of OOML, including property values — see [Undefined](#Undefined) for more details.
+OOML properties must have a default value. Generally, if you don't have a specific default value in mind, consider `null`. `undefined` is not allowed in almost every part of OOML, including property values — see [Undefined](#Undefined) for more details.
 
 ## Events
 
-OOML properties also emit events that extend the functionality of properites. They can be handled using declared inline functions. They can alter or even prevent the behaviour that caused the event, and allow additional side effects when fundamental operations occur.
+OOML properties also emit events that extend the functionality of properites. They can be handled using declared methods on the class. They can alter or even prevent the behaviour that caused the event, and allow additional side effects when fundamental operations occur.
 
 There are three events:
 
@@ -73,16 +71,39 @@ There are three events:
 - `set`: Emitted when a property is assigned to. Can be handled to change the new value, set custom HTML where the property is substituted in the DOM, or prevent the assignment.
 - `change`: Emitted when a property's value has changed. The initial assignment of a property value, which always happens during construction of a new instance, also causes this event.
 
-To add a handler for any event, use the appropriate attribute:
+To set a handler for any event, use the appropriate attribute:
 
 ```html
+<ooml-method name="getProp1">
+    function(property) {
+        alert(`Getting ${ property }`);
+    }
+</ooml-method>
+
+<ooml-method name="setProp1">
+    function(property) {
+        alert(`Setting ${ property }`);
+    }
+</ooml-method>
+
+<ooml-method name="onChangeProp1">
+    function(property) {
+        alert(`The property ${ property } has changed`);
+    }
+</ooml-method>
+
 <ooml-property name="prop1"
-    get="alert('Getting ' + property);"
-    set="alert('Setting ' + property);"
-    change="alert('The property ' + property + ' has changed');"
+    get="this.getProp1"
+    set="this.setProp1"
+    change="this.onChangeProp1"
 >null</ooml-property>
 ```
 
 # Serialisation
 
-Properties can be suppressed by declaring the boolean attribute `supressed`. Suppressing a property prevents it from being serialised. See more at [Supression](#Supression).
+Properties can be prevented from being included in the JSON by declaring the boolean attribute `transient`. Marking a property as transient allows it to have any type of value (except `undefined`). See more at [Transient](#Transient).
+
+
+```html
+<ooml-property name="transientProperty" transient>null</ooml-property>
+```
