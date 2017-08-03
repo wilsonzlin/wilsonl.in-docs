@@ -1,6 +1,7 @@
 node_modules/
 /npm-debug.log
-/dist
-/.idea
+/dist/
+/.idea/
 *.iml
 package-lock.json*
+/src/*/*.html

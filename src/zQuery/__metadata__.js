@@ -1,4 +1,4 @@
-[
+module.exports = [
     {
         "name": "Instance tools",
         "entries": [
@@ -92,4 +92,4 @@
             "$.factory"
         ]
     }
-]
+];

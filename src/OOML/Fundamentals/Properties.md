@@ -1,4 +1,4 @@
-**Properties** are the [fields](https://en.wikipedia.org/wiki/Field_(computer_science)) of a class, sometimes called **instance or member variables, attributes or properties** in other object-orientated languages. They are like properties in JavaScript; they are values attached to an object, and can be accessed and assigned to using the notation `obj.prop` or `obj["prop"]`. OOML introduces more safety when dealing with properties by:
+**Properties** are the [fields](https://en.wikipedia.org/wiki/Field_%28computer_science%29) of a class, sometimes called **instance or member variables, attributes or properties** in other object-orientated languages. They are like properties in JavaScript; they are values attached to an object, and can be accessed and assigned to using the notation `obj.prop` or `obj["prop"]`. OOML introduces more safety when dealing with properties by:
 
 - Requiring properties to be declared, with an initial value, before they can be used
 - Allowing type declarations to ensure type safety at runtime
@@ -37,13 +37,13 @@ This property's value can be a `natural`, `boolean` or `string`:
 The default value is inferred by evaluating it as JavaScript code. This means that strings must be quoted:
 
 ```html
-<!-- Valid --!>
+<!-- Valid -->
 <ooml-property name="myProp">"default string"</ooml-property>
 
-<!-- Also valid --!>
+<!-- Also valid -->
 <ooml-property name="myProp">'default string'</ooml-property>
 
-<!-- INVALID --!>
+<!-- INVALID -->
 <ooml-property name="myProp">default string</ooml-property>
 ```
 
@@ -99,7 +99,7 @@ To set a handler for any event, use the appropriate attribute:
 >null</ooml-property>
 ```
 
-# Serialisation
+## Serialisation
 
 Properties can be prevented from being included in the JSON by declaring the boolean attribute `transient`. Marking a property as transient allows it to have any type of value (except `undefined`). See more at [Transient](#Transient).
 

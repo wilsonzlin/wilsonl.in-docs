@@ -1,5 +1,4 @@
-//noinspection BadExpressionStatementJS
-[
+module.exports = [
     {
         "name": "Introduction",
         "entries": [
@@ -14,7 +13,7 @@
     {
         "name": "Fundamentals",
         "entries": [
-            "Objects",
+            "Instances",
             "Classes",
             "Namespaces",
             "Properties",
@@ -45,11 +44,6 @@
         ],
     },
     {
-        "name": "Attributes",
-        "entries": [
-        ],
-    },
-    {
         "name": "Methods",
         "entries": [
         ],
@@ -63,9 +57,6 @@
         "name": "DOM",
         "entries": [
             "Substitution",
-            "Text substitution",
-            "Element substitution",
-            "Array substitution",
             "Event listeners",
             "Table tags",
             "HTML attributes",
@@ -96,9 +87,9 @@
         "name": "Reference",
         "entries": [
             "OOML Namespace",
-            "OOML Element",
+            "OOML Instance",
             "OOML Array",
             "HTML syntax", // Every single special HTML tag, attribute or textContent
         ],
     },
-]
+];

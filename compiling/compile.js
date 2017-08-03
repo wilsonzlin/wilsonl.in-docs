@@ -4,11 +4,13 @@ const fs = require('fs-extra');
 const marked = require('marked');
 const hljs = require('highlight.js');
 
-function parseMarkdown(mdText) {
-    var renderer = new marked.Renderer();
+__dirname = __dirname + '/..';
+
+function parseMarkdown(mdText, removeParagraphTags) {
+    let renderer = new marked.Renderer();
 
     renderer.code = (code, language) => {
-        var html;
+        let html;
 
         if (language && language.indexOf('x-wldoc-') == 0) {
             switch (language.slice(8)) {
@@ -26,7 +28,10 @@ function parseMarkdown(mdText) {
     };
 
     renderer.paragraph = text => {
-        let ret = marked(text).slice(3, -5); // Remove <p> wrapping
+        let ret = marked(text);
+        if (removeParagraphTags) {
+            ret = ret.slice(3, -5); // Remove <p> wrapping
+        }
         ret = ret.replace(/ </g, "<zc-space /><").replace(/> /g, "><zc-space />");
         return ret;
     };
@@ -62,9 +67,12 @@ function parseMarkdown(mdText) {
 }
 
 function parseTypedCodeLine(codeText) {
-    return codeText.replace(/(true|false)/g, `<span class="literal">$1</span>`).replace(
-        /([| ])((?:[A-Z][a-z0-9_]*)+|zQuery|function|int|float|number|string|bool|object|array|null|undefined)/g,
-        (_, charBefore, type) => `${charBefore}<span class="type">${ type }</span>`
+    return codeText.replace(
+        /(true|false)/g,
+        `<span class="literal">$1</span>`
+    ).replace(
+        /(?=[| ])((?:[A-Z][a-z0-9_]*)+|zQuery|function|int|float|number|string|bool|object|array|null|undefined)/g,
+        (_, type) => `<span class="type">${ type }</span>`
     );
 }
 
@@ -87,7 +95,7 @@ function escapeHTML(str) {
     return ("" + str).replace(/[&<>"'\/]/g, entity => entityMap[entity]);
 }
 
-const HeaderListing = function (name) {
+const HeaderListing = (name) => {
     return `
         <li class="listing">
             <a class="listing-link" href="../${ escapeHTML(name) }">${ escapeHTML(name) }</a>
@@ -95,7 +103,7 @@ const HeaderListing = function (name) {
     `;
 };
 
-const PaneTocCategoryEntry = function (id, name, description) {
+const PaneTocCategoryEntry = (id, name, description) => {
     return `
         <li class="toc-category-entry-wrapper" title="${ escapeHTML(description) }">
             <input class="toc-category-entry-radio" type="radio" name="toc-category-entry-active">
@@ -104,7 +112,7 @@ const PaneTocCategoryEntry = function (id, name, description) {
     `;
 };
 
-const PaneTocCategory = function (name, entries) {
+const PaneTocCategory = (name, entries) => {
     return `
         <div class="toc-category">
             <dt class="toc-category-label">${ escapeHTML(name) }</dt>
@@ -117,13 +125,13 @@ const PaneTocCategory = function (name, entries) {
     `;
 };
 
-const ReferenceArticleSignature = function (codeHtml) {
+const ReferenceArticleSignature = (codeHtml) => {
     return `
         <pre class="signature">${ codeHtml }</pre>
     `;
 };
 
-const ReferenceArticleArgument = function (name, descriptionHtml) {
+const ReferenceArticleArgument = (name, descriptionHtml) => {
     return `
         <div>
             <dt class="argument-name">${ escapeHTML(name) }</dt>
@@ -134,13 +142,13 @@ const ReferenceArticleArgument = function (name, descriptionHtml) {
     `;
 };
 
-const ReferenceArgumentReturn = function (valueHtml) {
+const ReferenceArgumentReturn = (valueHtml) => {
     return `
         <li>${ valueHtml }</li>
     `;
 };
 
-const ReferenceArticle = function (category, name, versions, description, signatures, args, returns) {
+const ReferenceArticle = (category, name, versions, description, signatures, args, returns) => {
     return `
         <link rel="stylesheet" href="../_common/article.css">
         <header>
@@ -171,8 +179,9 @@ const ReferenceArticle = function (category, name, versions, description, signat
     `;
 };
 
-const ContentArticle = function (category, name, versions, contentHtml) {
+const ContentArticle = (category, name, versions, contentHtml) => {
     return `
+        <link rel="stylesheet" href="../_common/article.css">
         <header>
             <div class="category">${ escapeHTML(category) }</div>
             <h1>${ escapeHTML(name) }</h1>
@@ -185,13 +194,13 @@ const ContentArticle = function (category, name, versions, contentHtml) {
 
 fs.removeSync(__dirname + '/dist');
 
-const JS_DOC_FOLDERS = ['zQuery'];
+const JS_DOC_FOLDERS = ['OOML', 'zQuery'];
 const LISTINGS_HTML = JS_DOC_FOLDERS.map(f => HeaderListing(f)).join("");
 
 let generatedHtmlFiles = [];
 
 JS_DOC_FOLDERS.forEach(listing => {
-    let categories = Function('"use strict"; return ' + fs.readFileSync(__dirname + '/src/' + listing + '/__metadata__.js'))();
+    let categories = require(__dirname + '/src/' + listing + '/__metadata__.js');
     let categoriesHtml = "";
     let articleAutoIncrement = 0;
 
@@ -224,7 +233,7 @@ JS_DOC_FOLDERS.forEach(listing => {
                         let name = f.slice(f.indexOf('.') + 1, f.lastIndexOf('.'));
                         let markdown = fs.readFileSync(path + '/arguments/' + f, 'utf8');
 
-                        return {name: name, html: parseMarkdown(markdown)};
+                        return {name: name, html: parseMarkdown(markdown, true)};
                     });
                 }
 
@@ -233,7 +242,7 @@ JS_DOC_FOLDERS.forEach(listing => {
                     returns = fs.readdirSync(path + '/returns').filter(p => /\.md/.test(p)).sort(sortIdFiles).map(f => {
                         let markdown = fs.readFileSync(path + '/returns/' + f, 'utf8');
 
-                        return { html: parseMarkdown(markdown) };
+                        return { html: parseMarkdown(markdown, true) };
                     });
                 }
 
