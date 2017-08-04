@@ -1,4 +1,4 @@
-**Classes** are the templates for creating OOML objects. They are very similar to classes in most other object-orientated languages:
+**Classes** are the templates for creating ooml instances. They are very similar to classes in most other object-orientated languages:
 
 - They have properties and methods
 - Classes can be extended, inheriting properties and methods from ancestor classes
@@ -39,3 +39,5 @@ Inside the template element, there are a few tags that describe the [properties]
     </div>
 </template>
 ```
+
+If a class doesn't explicitly declare its parent (i.e. doesn't have `extends` in its `ooml-class` tag), it implicitly extends `OOML.Instance`. This means that `OOML.Instance` is the base class/type of all OOML classes.

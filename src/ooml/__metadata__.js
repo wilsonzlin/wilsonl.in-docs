@@ -77,7 +77,6 @@ module.exports = [
         "name": "Type system",
         "entries": [
             "Primitives",
-            "Method arguments",
             "Undefined",
             "Objects and arrays",
             "Numbers",
