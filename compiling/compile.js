@@ -194,7 +194,7 @@ const ContentArticle = (category, name, versions, contentHtml) => {
 
 fs.removeSync(__dirname + '/dist');
 
-const JS_DOC_FOLDERS = ['OOML', 'zQuery'];
+const JS_DOC_FOLDERS = ['ooml', 'zQuery'];
 const LISTINGS_HTML = JS_DOC_FOLDERS.map(f => HeaderListing(f)).join("");
 
 let generatedHtmlFiles = [];

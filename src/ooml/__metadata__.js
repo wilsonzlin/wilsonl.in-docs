@@ -3,7 +3,7 @@ module.exports = [
         "name": "Introduction",
         "entries": [
             "Welcome",
-            "About OOML",
+            "About ooml",
             "Compatibility and support", // 1) Browser support. 2) Reporting bugs and ideas. 3) Webpack, browserify, require, babel (no need). 4) Building from source.
             "Core principles",
             "How it works",
@@ -13,14 +13,15 @@ module.exports = [
     {
         "name": "Fundamentals",
         "entries": [
-            "Instances",
-            "Classes",
             "Namespaces",
+            "Classes",
             "Properties",
-            "Attributes",
             "Methods",
-            "Events",
-            "DOM",
+            "Views",
+            "Instances",
+            "Dispatch events",
+            "Global store",
+            "Message brokering",
         ],
     },
     {
@@ -28,10 +29,10 @@ module.exports = [
         "entries": [
             "Inheritance",
             "Abstract classes",
-            "DOM extension",
+            "View extension",
             "Serialisation and unserialisation",
             "Constructors",
-            "Events",
+            "Class events",
         ],
     },
     {
@@ -39,13 +40,17 @@ module.exports = [
         "entries": [
             "Supression",
             "Typing",
-            "Getters and setters",
+            "Getters, setters, and change listeners",
+            "Binding",
             "Default property values",
         ],
     },
     {
         "name": "Methods",
         "entries": [
+            "Static methods",
+            "Factory methods",
+            "Serialisation methods",
         ],
     },
     {
@@ -54,7 +59,7 @@ module.exports = [
         ],
     },
     {
-        "name": "DOM",
+        "name": "View",
         "entries": [
             "Substitution",
             "Event listeners",
