@@ -19,9 +19,6 @@ module.exports = [
             "Methods",
             "Views",
             "Instances",
-            "Dispatch events",
-            "Global store",
-            "Message brokering",
         ],
     },
     {
@@ -32,13 +29,12 @@ module.exports = [
             "View extension",
             "Serialisation and unserialisation",
             "Constructors",
-            "Class events",
         ],
     },
     {
         "name": "Properties",
         "entries": [
-            "Supression",
+            "Transient properties",
             "Typing",
             "Getters, setters, and change listeners",
             "Binding",
@@ -54,11 +50,6 @@ module.exports = [
         ],
     },
     {
-        "name": "Events",
-        "entries": [
-        ],
-    },
-    {
         "name": "View",
         "entries": [
             "Substitution",
@@ -66,6 +57,20 @@ module.exports = [
             "Table tags",
             "HTML attributes",
             "OOML attributes",
+        ],
+    },
+    {
+        "name": "Events",
+        "entries": [
+            "Mutation events",
+            "Dispatch events",
+        ],
+    },
+    {
+        "name": "Hive",
+        "entries": [
+            "Global store",
+            "Message brokering",
         ],
     },
     {

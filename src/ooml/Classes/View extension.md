@@ -19,6 +19,7 @@ Now, when classes inherit *ParentClass* (i.e. `extend ParentClass`), a copy of *
     </p>
     
     <!--
+    
         ChildClass's **actual** view is:
         
         <div>
@@ -27,6 +28,7 @@ Now, when classes inherit *ParentClass* (i.e. `extend ParentClass`), a copy of *
                 This is ChildClass's view.
             </p>
         </div>
+        
     -->
 </template>
 ```
