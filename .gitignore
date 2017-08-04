@@ -4,4 +4,7 @@ node_modules/
 /.idea/
 *.iml
 package-lock.json*
+
+# Ignore compiled
 /src/*/*.html
+!/src/__zc_common__/index.html
