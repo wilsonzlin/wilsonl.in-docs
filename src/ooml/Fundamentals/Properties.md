@@ -1,4 +1,4 @@
-**Properties** are the [fields](https://en.wikipedia.org/wiki/Field_%28computer_science%29) of a class, sometimes called **instance or member variables, attributes or properties** in other object-orientated languages. They are like properties in JavaScript; they are values attached to an object, and can be accessed and assigned to using the notation `obj.prop` or `obj["prop"]`. OOML introduces more safety when dealing with properties by:
+**Properties** are the [fields](https://en.wikipedia.org/wiki/Field_%28computer_science%29) of a class, sometimes called **instance or member variables, attributes or properties** in other object-orientated languages. They are like properties in JavaScript; they are values attached to an object, and can be accessed and assigned to using the notation `obj.prop` or `obj["prop"]`. ooml introduces more safety when dealing with properties by:
 
 - Requiring properties to be declared, with an initial value, before they can be used
 - Allowing type declarations to ensure type safety at runtime
@@ -18,7 +18,7 @@ The name of the property is declared using the `name` attribute. It is recommend
 
 ## Type checking
 
-Properties may have a declared type. Only [primitive types](#Primitives) and OOML classes may be specified. The default value must match the declared type. If there is no declared type, the value can be of any primitive type. To declare a type, use the `type` attribute:
+Properties may have a declared type. Only [primitive types](#Primitives) and ooml classes may be specified. The default value must match the declared type. If there is no declared type, the value can be of any primitive type. To declare a type, use the `type` attribute:
 
 ```html
 <ooml-property name="myProp" type="natural">1</ooml-property>
@@ -47,7 +47,7 @@ The default value is inferred by evaluating it as JavaScript code. This means th
 <ooml-property name="myProp">default string</ooml-property>
 ```
 
-Ensure that string values are quoted; there is a slim possibility that OOML cannot pickup that it is invalid, and that is when the default value is a global string variable. In the next example, the default value of `myProp` is `"global string"`, *not* `"oops"`:
+Ensure that string values are quoted; there is a slim possibility that ooml cannot pickup that it is invalid, and that is when the default value is a global string variable. In the next example, the default value of `myProp` is `"global string"`, *not* `"oops"`:
 
 ```html
 <script>
@@ -59,11 +59,11 @@ Ensure that string values are quoted; there is a slim possibility that OOML cann
 </template>
 ```
 
-OOML properties must have a default value. Generally, if you don't have a specific default value in mind, consider `null`. `undefined` is not allowed in almost every part of OOML, including property values — see [Undefined](#Undefined) for more details.
+ooml properties must have a default value. Generally, if you don't have a specific default value in mind, consider `null`. `undefined` is not allowed in almost every part of ooml, including property values — see [Undefined](#Undefined) for more details.
 
 ## Events
 
-OOML properties also emit events that extend the functionality of properites. They can be handled using declared methods on the class. They can alter or even prevent the behaviour that caused the event, and allow additional side effects when fundamental operations occur.
+ooml properties also emit events that extend the functionality of properites. They can be handled using declared methods on the class. They can alter or even prevent the behaviour that caused the event, and allow additional side effects when fundamental operations occur.
 
 There are three events:
 

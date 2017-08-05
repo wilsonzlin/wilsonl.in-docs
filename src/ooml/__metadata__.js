@@ -53,10 +53,10 @@ module.exports = [
         "name": "View",
         "entries": [
             "Substitution",
-            "Event listeners",
+            "DOM event handlers",
             "Table tags",
             "HTML attributes",
-            "OOML attributes",
+            "DOM exposing",
         ],
     },
     {
@@ -89,15 +89,15 @@ module.exports = [
             "Exceptions",
             "Identifiers", // Recommendations and restrictions on names for attributes, properties, methods, and classes
             "Abstractions", // Topics: 1) Don't be stupid. 2) Don't try to circumvent OOML. 3) Things that might trip you up (e.g. setTimeout on attrs). 4) There's probably a way to do it -- it's your fault.
-            "Pitfalls", // 1) Single-line comments in OOML methods will break the method if the HTML is minified. 2) Escape HTML special chars in default values, inline code and method functions.
+            "Pitfalls", // 1) Single-line comments in ooml methods will break the method if the HTML is minified. 2) Escape HTML special chars in default values, inline code and method functions.
         ]
     },
     {
         "name": "Reference",
         "entries": [
-            "OOML Namespace",
-            "OOML Instance",
-            "OOML Array",
+            "OOML.Namespace",
+            "OOML.Instance",
+            "OOML.Array",
             "HTML syntax", // Every single special HTML tag, attribute or textContent
         ],
     },

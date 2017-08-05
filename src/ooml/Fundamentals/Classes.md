@@ -40,4 +40,4 @@ Inside the template element, there are a few tags that describe the [properties]
 </template>
 ```
 
-If a class doesn't explicitly declare its parent (i.e. doesn't have `extends` in its `ooml-class` tag), it implicitly extends `OOML.Instance`. This means that `OOML.Instance` is the base class/type of all OOML classes.
+If a class doesn't explicitly declare its parent (i.e. doesn't have `extends` in its `ooml-class` tag), it implicitly extends `OOML.Instance`. This means that `OOML.Instance` is the base class/type of all ooml classes.

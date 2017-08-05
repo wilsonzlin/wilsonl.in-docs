@@ -1,6 +1,6 @@
 Namespaces group together classes and isolate them from classes in other namespaces.
 
-Namespaces are created by initialising a new OOML.Namespace instance with the DOM element containing the OOML class declarations.
+Namespaces are created by initialising a new OOML.Namespace instance with the DOM element containing the ooml class declarations.
 
 Here is an example of a namespace containing two (empty) classes:
 
@@ -57,7 +57,7 @@ let MyNamespace = new OOML.Namespace(document.body, {
 });
 ```
 
-In the second argument, provide a property called `imports`, and make its value an *imports object*. An *imports object* is an object literal, where the keys are the import names, and the values are OOML classes. The import name provided has to be a valid class name, but **does not have to be the same as the name of the class**.
+In the second argument, provide a property called `imports`, and make its value an *imports object*. An *imports object* is an object literal, where the keys are the import names, and the values are ooml classes. The import name provided has to be a valid class name, but **does not have to be the same as the name of the class**.
 
 Once imported, the class can be referred to using the import name:
 
