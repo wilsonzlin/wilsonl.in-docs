@@ -2,15 +2,8 @@
     display: flex;
     align-items: center;
 
-    box-shadow: 0 2px 16px #999;
-    position: relative; /* For settings menu */
     width: 100%;
     height: 74px;
-}
-
-.dark-theme #header {
-    box-shadow: none;
-    border-bottom: 2px solid #909090;
 }
 
 #logo, #pane-open-button {
@@ -40,11 +33,6 @@
 
 .listing.current {
     background: rgba(0, 0, 0, 0.12);
-}
-
-.dark-theme .listing.current {
-    background: transparent;
-    color: white;
 }
 
 .listing-link {

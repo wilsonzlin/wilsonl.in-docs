@@ -1,20 +1,7 @@
 #pane-container {
-    border-right: 1px solid rgba(0, 0, 0, 0.13);
-
-    width: 250px;
-    height: 100%;
-    float: left;
-    overflow: auto;
-}
-
-.toc-category-label:hover {
-    background: #bfbfbf;
+    width: 18rem;
 }
 
 .toc-category-entry-link:hover {
     background: rgba(180, 180, 180, 0.25);
-}
-
-.dark-theme .toc-category-entry:hover {
-    background: #111;
 }

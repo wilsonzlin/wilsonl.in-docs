@@ -53,8 +53,6 @@
         if (target.nodeName == 'A' && target.target == 2) {
             e.preventDefault();
             onClickArticle(target);
-        } else if (target.nodeName == 'DT') {
-            target.parentNode.classList.toggle("hidden");
         }
     }, true);
 

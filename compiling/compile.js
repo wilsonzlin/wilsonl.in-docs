@@ -11,6 +11,7 @@ const HeaderListing = require('./Views/HeaderListing');
 const ReferenceArticle = require('./Views/ReferenceArticle');
 const ContentArticle = require('./Views/ContentArticle');
 const PaneTocCategory = require('./Views/PaneTocCategory');
+const Page = require('./Views/Page');
 
 // All directory paths should have a trailing slash
 const PROJECT_DIR = __dirname + '/../';
@@ -25,6 +26,7 @@ fs.removeSync(OUTPUT_DIR);
 
 let listingsViewHtml = DOCUMENTATION_LISTINGS.map(f => HeaderListing(f)).join("");
 let generatedHtmlFiles = [];
+let directoriesToDelete = [];
 
 for (let listing of DOCUMENTATION_LISTINGS) {
     let documentationSourceDir = SOURCE_DIR + listing + '/';
@@ -32,6 +34,7 @@ for (let listing of DOCUMENTATION_LISTINGS) {
     let categoriesHtml = "";
 
     let lastUsedArticleId = 0;
+    let pagesToCreate = [];
 
     for (let category of categories) {
         let categoryName = category.name;
@@ -106,8 +109,12 @@ for (let listing of DOCUMENTATION_LISTINGS) {
                 ret = { id: articleId, name: entry, description: entry };
             }
 
-            fs.writeFileSync(documentationSourceDir + articleId + '.html', articleHtml);
-            generatedHtmlFiles.push(`${ listing }/${ articleId }.html`);
+            pagesToCreate.push({
+                articleHtml,
+                articleName: entry,
+                articleCategory: categoryName,
+            });
+
             return ret;
         });
 
@@ -117,6 +124,21 @@ for (let listing of DOCUMENTATION_LISTINGS) {
 
         categoriesHtml += PaneTocCategory(categoryName, categoryEntries);
     }
+
+    pagesToCreate.forEach(({ articleName, articleCategory, articleHtml }) => {
+        let pageHtml = Page({
+            viewportTitle: listing,
+            tocCategories: categoriesHtml,
+            headerListings: listingsViewHtml,
+            articleHtml: articleHtml,
+        });
+
+        let articleDir = documentationSourceDir + articleCategory + '/' + articleName + '/';
+        fs.ensureDirSync(articleDir);
+        fs.writeFileSync(articleDir + 'index.html', pageHtml);
+        directoriesToDelete.push(documentationSourceDir + articleCategory);
+        generatedHtmlFiles.push(listing + '/' + articleCategory + '/' + articleName + '/index.html');
+    });
 
     fs.writeFileSync(documentationSourceDir + 'index.html', fs.readFileSync(SOURCE_DIR + '__zc_common__/index.html', 'utf8')
         .replace(/\{\{ *viewportTitle *\}\}/g, escapeHTML(listing))
@@ -140,8 +162,7 @@ zc({
         '_common/app.css',
         '_common/app.noscript.css',
         '_common/app.js',
-        '_common/article.css',
     ].concat(generatedHtmlFiles),
 });
 
-generatedHtmlFiles.forEach(p => fs.removeSync(SOURCE_DIR + p));
+directoriesToDelete.forEach(p => fs.removeSync(p));
