@@ -1,246 +1,93 @@
 "use strict";
 
 const fs = require('fs-extra');
-const marked = require('marked');
-const hljs = require('highlight.js');
+const zc = require('zcompile');
+const escapeHTML = require('./Utils/escapeHTML');
+const parseMarkdown = require('./Utils/parseMarkdown');
+const parseTypedCodeLine = require('./Utils/parseTypedCodeLine');
+const sortOrderPrefixedFilenames = require('./Utils/sortOrderPrefixedFilenames');
 
-__dirname = __dirname + '/..';
+const HeaderListing = require('./Views/HeaderListing');
+const ReferenceArticle = require('./Views/ReferenceArticle');
+const ContentArticle = require('./Views/ContentArticle');
+const PaneTocCategory = require('./Views/PaneTocCategory');
 
-function parseMarkdown(mdText, removeParagraphTags) {
-    let renderer = new marked.Renderer();
+// All directory paths should have a trailing slash
+const PROJECT_DIR = __dirname + '/../';
+const SOURCE_DIR = PROJECT_DIR + 'src/';
+const OUTPUT_DIR = PROJECT_DIR + 'dist/';
 
-    renderer.code = (code, language) => {
-        let html;
+const DOCUMENTATION_LISTINGS = ['ooml', 'zQuery'];
+const METADATA_FILE_NAME = '__metadata__.js';
 
-        if (language && language.indexOf('x-wldoc-') == 0) {
-            switch (language.slice(8)) {
-                case 'typedline':
-                    html = parseTypedCodeLine(code);
-                    break;
-            }
-        } else if (language) {
-            html = hljs.highlight(language, code, true).value;
-        } else {
-            html = escapeHTML(code);
-        }
+// Ensure clean output directory
+fs.removeSync(OUTPUT_DIR);
 
-        return `<pre>${ html }</pre>`;
-    };
-
-    renderer.paragraph = text => {
-        let ret = marked(text);
-        if (removeParagraphTags) {
-            ret = ret.slice(3, -5); // Remove <p> wrapping
-        }
-        ret = ret.replace(/ </g, "<zc-space /><").replace(/> /g, "><zc-space />");
-        return ret;
-    };
-
-    renderer.list = (body, ordered) => {
-        let ret = marked(body, ordered);
-        ret = ret.replace(/ </g, "<zc-space /><").replace(/> /g, "><zc-space />");
-        return '<ul>' + ret + '</ul>';
-    };
-
-    renderer.link = (href, title, text) => {
-        let html = `<a `;
-
-        if (href[0] != '#') {
-            html += 'target=_blank ';
-        }
-        html += 'href="' + escapeHTML(href) + '" ';
-
-        title = (title || "").trim();
-        if (title) {
-            html += 'title="' + escapeHTML(title) + '" ';
-        }
-
-        html += '>';
-        if (text) {
-            html += escapeHTML(text);
-        }
-        html += "</a>";
-        return html;
-    };
-
-    return marked(mdText, { renderer: renderer });
-}
-
-function parseTypedCodeLine(codeText) {
-    return codeText.replace(
-        /(true|false)/g,
-        `<span class="literal">$1</span>`
-    ).replace(
-        /(?=[| ])((?:[A-Z][a-z0-9_]*)+|zQuery|function|int|float|number|string|bool|object|array|null|undefined)/g,
-        (_, type) => `<span class="type">${ type }</span>`
-    );
-}
-
-function sortIdFiles(a, b) {
-    let idA = Number.parseInt(a.slice(0, a.indexOf('.')), 10);
-    let idB = Number.parseInt(b.slice(0, b.indexOf('.')), 10);
-
-    return idA < idB ? -1 : idA > idB ? 1 : 0;
-}
-
-function escapeHTML(str) {
-    let entityMap = {
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': '&quot;',
-        "'": '&#39;',
-        "/": '&#x2F;'
-    };
-    return ("" + str).replace(/[&<>"'\/]/g, entity => entityMap[entity]);
-}
-
-const HeaderListing = (name) => {
-    return `
-        <li class="listing">
-            <a class="listing-link" href="../${ escapeHTML(name) }">${ escapeHTML(name) }</a>
-        </li>
-    `;
-};
-
-const PaneTocCategoryEntry = (id, name, description) => {
-    return `
-        <li class="toc-category-entry-wrapper" title="${ escapeHTML(description) }">
-            <input class="toc-category-entry-radio" type="radio" name="toc-category-entry-active">
-            <a class="toc-category-entry-link" href="${ escapeHTML(id) }.html" target="2" data-name="${ escapeHTML(name) }"></a>
-        </li>
-    `;
-};
-
-const PaneTocCategory = (name, entries) => {
-    return `
-        <div class="toc-category">
-            <dt class="toc-category-label">${ escapeHTML(name) }</dt>
-            <dd class="toc-category-entries-container">
-                <ul class="toc-category-entries">
-                    ${ entries.map(e => PaneTocCategoryEntry(e.id, e.name, e.description)).join("") }
-                </ul>
-            </dd>
-        </div>
-    `;
-};
-
-const ReferenceArticleSignature = (codeHtml) => {
-    return `
-        <pre class="signature">${ codeHtml }</pre>
-    `;
-};
-
-const ReferenceArticleArgument = (name, descriptionHtml) => {
-    // Use div instead of p as p doesn't support some children
-    // Don't wrap in div because it's no longer necessary and Firefox doesn't support it
-    return `
-        <dt class="argument-name">${ escapeHTML(name) }</dt>
-        <dd>
-            <div class="argument-description">${ descriptionHtml }</div>
-        </dd>
-    `;
-};
-
-const ReferenceArgumentReturn = (valueHtml) => {
-    return `
-        <li>${ valueHtml }</li>
-    `;
-};
-
-const ReferenceArticle = (category, name, versions, description, signatures, args, returns) => {
-    return `
-        <link rel="stylesheet" href="../_common/article.css">
-        <header>
-            <div class="category">${ escapeHTML(category) }</div>
-            <h1>${ escapeHTML(name) }</h1>
-            <div class="versions">${ escapeHTML(versions) }</div>
-        </header>
-
-        <section class="section-synopsis">
-            <h2>Synopsis</h2>
-            <p class="description">${ escapeHTML(description) }</p>
-            ${ !signatures ? "" : signatures.map(s => ReferenceArticleSignature(s.html)).join("") }
-        </section>
-
-        ${ !args || !args.length ? "" : `<section>
-            <h2>Arguments</h2>
-            <dl class="arguments-list">
-                ${ args.map(a => ReferenceArticleArgument(a.name, a.html)).join("") }
-            </dl>
-        </section>` }
-
-        ${ !returns || !returns.length ? "" : `<section>
-            <h2>Returns</h2>
-            <ul class="returns-list">
-                ${ returns.map(r => ReferenceArgumentReturn(r.html)).join("") }
-            </ul>
-        </section>` }
-    `;
-};
-
-const ContentArticle = (category, name, versions, contentHtml) => {
-    return `
-        <link rel="stylesheet" href="../_common/article.css">
-        <header>
-            <div class="category">${ escapeHTML(category) }</div>
-            <h1>${ escapeHTML(name) }</h1>
-            <div class="versions">${ escapeHTML(versions) }</div>
-        </header>
-
-        <section>${ contentHtml }</section>
-    `;
-};
-
-fs.removeSync(__dirname + '/dist');
-
-const JS_DOC_FOLDERS = ['ooml', 'zQuery'];
-const LISTINGS_HTML = JS_DOC_FOLDERS.map(f => HeaderListing(f)).join("");
-
+let listingsViewHtml = DOCUMENTATION_LISTINGS.map(f => HeaderListing(f)).join("");
 let generatedHtmlFiles = [];
 
-JS_DOC_FOLDERS.forEach(listing => {
-    let categories = require(__dirname + '/src/' + listing + '/__metadata__.js');
+for (let listing of DOCUMENTATION_LISTINGS) {
+    let documentationSourceDir = SOURCE_DIR + listing + '/';
+    let categories = require(documentationSourceDir + METADATA_FILE_NAME);
     let categoriesHtml = "";
-    let articleAutoIncrement = 0;
 
-    categories.forEach(category => {
+    let lastUsedArticleId = 0;
+
+    for (let category of categories) {
         let categoryName = category.name;
+        let categorySourceDir = documentationSourceDir + categoryName + '/';
+        let categoryFiles = new Set(fs.readdirSync(categorySourceDir));
 
         let categoryEntries = category.entries.map(entry => {
-            let path = `${__dirname}/src/${listing}/${categoryName}/${entry}.md`;
+            let entryFilename = `${entry}.md`;
+            let entryFilePath = categorySourceDir + entryFilename;
+            categoryFiles.delete(entryFilename);
+
             let articleHtml;
-            let articleId = articleAutoIncrement++;
+            let articleId = ++lastUsedArticleId;
             let ret;
 
-            let stats = fs.lstatSync(path);
+            let stats;
+            try {
+                stats = fs.lstatSync(entryFilePath);
+            } catch (e) {
+                if (e.code === 'ENOENT') {
+                    console.warn(entryFilePath + ' not found, creating...');
+                    fs.writeFileSync(entryFilePath, '');
+                    stats = fs.lstatSync(entryFilePath);
+                }
+            }
+
             if (stats.isDirectory()) {
-                let versions = fs.readFileSync(path + '/versions.txt', 'utf8').trim();
-                let description = fs.readFileSync(path + '/description.txt', 'utf8').trim();
+                // If it's a directory, then it's a reference
+                let entrySourceDir = entryFilePath + '/';
+
+                let versions = fs.readFileSync(entrySourceDir + 'versions.txt', 'utf8').trim();
+                let description = fs.readFileSync(entrySourceDir + 'description.txt', 'utf8').trim();
 
                 let signatures;
-                if (fs.existsSync(path + '/signatures')) {
-                    signatures = fs.readdirSync(path + '/signatures').filter(p => /\.txt$/.test(p)).sort(sortIdFiles).map(f => {
-                        let code = fs.readFileSync(path + '/signatures/' + f, 'utf8');
+                if (fs.existsSync(entrySourceDir + 'signatures')) {
+                    signatures = fs.readdirSync(entrySourceDir + 'signatures').filter(p => /\.txt$/.test(p)).sort(sortOrderPrefixedFilenames).map(f => {
+                        let code = fs.readFileSync(entrySourceDir + 'signatures/' + f, 'utf8');
 
-                        return {html: parseTypedCodeLine(code)};
+                        return { html: parseTypedCodeLine(code) };
                     });
                 }
 
                 let args;
-                if (fs.existsSync(path + '/arguments')) {
-                    args = fs.readdirSync(path + '/arguments').filter(p => /\.md/.test(p)).sort(sortIdFiles).map(f => {
+                if (fs.existsSync(entrySourceDir + 'arguments')) {
+                    args = fs.readdirSync(entrySourceDir + 'arguments').filter(p => /\.md/.test(p)).sort(sortOrderPrefixedFilenames).map(f => {
                         let name = f.slice(f.indexOf('.') + 1, f.lastIndexOf('.'));
-                        let markdown = fs.readFileSync(path + '/arguments/' + f, 'utf8');
+                        let markdown = fs.readFileSync(entrySourceDir + 'arguments/' + f, 'utf8');
 
-                        return {name: name, html: parseMarkdown(markdown, true)};
+                        return { name: name, html: parseMarkdown(markdown, true) };
                     });
                 }
 
                 let returns;
-                if (fs.existsSync(path + '/returns')) {
-                    returns = fs.readdirSync(path + '/returns').filter(p => /\.md/.test(p)).sort(sortIdFiles).map(f => {
-                        let markdown = fs.readFileSync(path + '/returns/' + f, 'utf8');
+                if (fs.existsSync(entrySourceDir + 'returns')) {
+                    returns = fs.readdirSync(entrySourceDir + 'returns').filter(p => /\.md/.test(p)).sort(sortOrderPrefixedFilenames).map(f => {
+                        let markdown = fs.readFileSync(entrySourceDir + 'returns/' + f, 'utf8');
 
                         return { html: parseMarkdown(markdown, true) };
                     });
@@ -249,33 +96,39 @@ JS_DOC_FOLDERS.forEach(listing => {
                 articleHtml = ReferenceArticle(categoryName, entry, versions, description, signatures, args, returns);
 
                 ret = { id: articleId, name: entry, description: description };
+
             } else {
-                let contentHtml = parseMarkdown(fs.readFileSync(path, 'utf8'));
+                // Otherwise, it's a content article
+                let contentHtml = parseMarkdown(fs.readFileSync(entryFilePath, 'utf8'));
 
                 articleHtml = ContentArticle(categoryName, entry, "", contentHtml);
 
                 ret = { id: articleId, name: entry, description: entry };
             }
 
-            fs.writeFileSync(__dirname + '/src/' + listing + '/' + articleId + '.html', articleHtml);
-            generatedHtmlFiles.push(listing + '/' + articleId + '.html');
+            fs.writeFileSync(documentationSourceDir + articleId + '.html', articleHtml);
+            generatedHtmlFiles.push(`${ listing }/${ articleId }.html`);
             return ret;
         });
 
-        categoriesHtml += PaneTocCategory(categoryName, categoryEntries);
-    });
+        if (categoryFiles.size > 0) {
+            throw new Error(`Extraneous files in "${ categoryName }": ${ Array.from(categoryFiles).join(', ') }`);
+        }
 
-    fs.writeFileSync(__dirname + '/src/' + listing + '/index.html', fs.readFileSync(__dirname + '/src/__zc_common__/index.html', 'utf8')
+        categoriesHtml += PaneTocCategory(categoryName, categoryEntries);
+    }
+
+    fs.writeFileSync(documentationSourceDir + 'index.html', fs.readFileSync(SOURCE_DIR + '__zc_common__/index.html', 'utf8')
         .replace(/\{\{ *viewportTitle *\}\}/g, escapeHTML(listing))
-        .replace(/\{\{ *headerListings *\}\}/g, LISTINGS_HTML)
+        .replace(/\{\{ *headerListings *\}\}/g, listingsViewHtml)
         .replace(/\{\{ *tocCategories *\}\}/g, categoriesHtml)
     );
     generatedHtmlFiles.push(listing + '/index.html');
-});
+}
 
-require('zcompile')({
-    source: __dirname + '/src',
-    destination: __dirname + '/dist',
+zc({
+    source: SOURCE_DIR,
+    destination: OUTPUT_DIR,
 
     minifySelectors: false,
     minifyHTML: {
@@ -291,4 +144,4 @@ require('zcompile')({
     ].concat(generatedHtmlFiles),
 });
 
-generatedHtmlFiles.forEach(p => fs.removeSync(`${__dirname}/src/${p}`));
+generatedHtmlFiles.forEach(p => fs.removeSync(SOURCE_DIR + p));

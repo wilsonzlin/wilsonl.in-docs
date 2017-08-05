@@ -7,4 +7,5 @@ package-lock.json*
 
 # Ignore compiled
 /src/*/*.html
-!/src/__zc_common__/index.html
+!/src/__zc_common__/*
+!/src/_common/*
