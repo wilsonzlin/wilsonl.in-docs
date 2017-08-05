@@ -4,7 +4,6 @@ const escapeHTML = require('../Utils/escapeHTML');
 
 const ContentArticle = (category, name, versions, contentHtml) => {
     return `
-        <link rel="stylesheet" href="../_common/article.css">
         <header>
             <div class="category">${ escapeHTML(category) }</div>
             <h1>${ escapeHTML(name) }</h1>

@@ -7,7 +7,6 @@ const ReferenceArgumentReturn = require('./ReferenceArgumentReturn');
 
 const ReferenceArticle = (category, name, versions, description, signatures, args, returns) => {
     return `
-        <link rel="stylesheet" href="../_common/article.css">
         <header>
             <div class="category">${ escapeHTML(category) }</div>
             <h1>${ escapeHTML(name) }</h1>

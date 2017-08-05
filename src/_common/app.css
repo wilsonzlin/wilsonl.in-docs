@@ -54,6 +54,11 @@ button {
     user-select: none;
 }
 
+#pane-container, #article {
+    display: inline-block;
+    vertical-align: top;
+}
+
 <ZC-IMPORT[../../node_modules/highlight.js/styles/atom-one-dark.css]>
 <ZC-IMPORT[article/base.css]>
 <ZC-IMPORT[header/base.css]>

@@ -1,26 +1,8 @@
-* {
-    box-sizing: border-box;
-}
-
-html {
-    line-height: 1.5;
-    font-size: 16px;
-}
-
-body {
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Ubuntu, Cantarell, Oxygen, Droid Sans, Fira Sans, sans-serif;
-    margin: 0;
-}
-
-header {
-    margin-bottom: 1.5rem;
-}
-
-section:not(:last-of-type) {
+#article section:not(:last-of-type) {
     margin-bottom: 4rem;
 }
 
-.category {
+#article .category {
     display: none;
     margin-bottom: 0.5rem;
 
@@ -33,17 +15,13 @@ section:not(:last-of-type) {
     text-transform: uppercase;
 }
 
-.dark-theme .category {
-    background: #222;
-}
-
-h1 {
+#article h1 {
     font-size: 2rem;
     font-weight: 400;
     margin: 0 0 0.75rem 0;
 }
 
-h1::after {
+#article h1::after {
     background: #333;
     content: '';
     display: block;
@@ -59,11 +37,7 @@ h1::after {
     content: ' versions';
 }
 
-.dark-theme .versions {
-    color: #444;
-}
-
-h2 {
+#article h2 {
     background: #999;
     color: white;
     display: inline-block;
@@ -73,19 +47,19 @@ h2 {
     padding: 0.5rem 0.75rem;
 }
 
-dt, li {
+#article dt, #article li {
     margin-bottom: 0.75rem;
 }
 
-dt {
+#article dt {
     font-weight: 600;
 }
 
-dd {
+#article dd {
     margin-bottom: 2rem;
 }
 
-pre {
+#article pre {
     background: #f2f2f2;
     border: 1px solid #666;
     color: #595959;
@@ -94,30 +68,30 @@ pre {
     overflow: auto;
 }
 
-pre.signature {
+#article pre.signature {
     background: #282c34;
     border: 1px solid #181a1f;
     color: #abb2bf;
     padding: 0.75rem;
 }
 
-pre .type { /* .type exists in x-wldoc-typedline code */
+#article pre .type { /* .type exists in x-wldoc-typedline code */
     color: #1a1a1a;
 }
 
-pre .literal { /* .literal exists in x-wldoc-typedline code */
+#article pre .literal { /* .literal exists in x-wldoc-typedline code */
     color: #d19a66;
 }
 
-pre.signature .type {
+#article pre.signature .type {
     color: #98c379;
 }
 
-pre.signature .literal {
+#article pre.signature .literal {
     color: #61aeee;
 }
 
-code {
+#article code {
     color: #4d4d4d;
     display: inline-block;
 }

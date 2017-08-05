@@ -10,12 +10,12 @@ const Page = ({ viewportTitle, headerListings, tocCategories, articleHtml }) => 
         
                 <title>${ viewportTitle } | wilsonl.in Docs</title>
         
-                <link rel="stylesheet" href="../_common/app.css">
+                <link rel="stylesheet" href="/docs/_common/app.css">
                 <noscript>
-                    <link rel="stylesheet" href="../_common/app.noscript.css">
+                    <link rel="stylesheet" href="/docs/_common/app.noscript.css">
                 </noscript>
         
-                <script defer src="../_common/app.js"></script>
+                <script defer src="/docs/_common/app.js"></script>
             </head>
         
             <body>
@@ -50,7 +50,7 @@ const Page = ({ viewportTitle, headerListings, tocCategories, articleHtml }) => 
                 </header>
         
                 <main id="main">
-                    <div id="pane-container" class="no-select" tabindex="0">
+                    <aside id="pane-container" class="no-select" tabindex="0">
                         <div id="pane-open-button">w.l</div>
                         <nav id="pane">
                             <input id="toc-search" placeholder="Search for an article">
@@ -58,12 +58,12 @@ const Page = ({ viewportTitle, headerListings, tocCategories, articleHtml }) => 
                                 ${ tocCategories }
                             </dl>
                         </nav>
-                    </div>
+                    </aside>
         
         
-                    <div id="article-container">
+                    <article id="article">
                         ${ articleHtml }
-                    </div>
+                    </article>
                 </main>
             </body>
         </html>

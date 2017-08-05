@@ -6,6 +6,7 @@ const escapeHTML = require('./Utils/escapeHTML');
 const parseMarkdown = require('./Utils/parseMarkdown');
 const parseTypedCodeLine = require('./Utils/parseTypedCodeLine');
 const sortOrderPrefixedFilenames = require('./Utils/sortOrderPrefixedFilenames');
+const createURLPathComponent = require('./Utils/createURLPathComponent');
 
 const HeaderListing = require('./Views/HeaderListing');
 const ReferenceArticle = require('./Views/ReferenceArticle');
@@ -26,20 +27,19 @@ fs.removeSync(OUTPUT_DIR);
 
 let listingsViewHtml = DOCUMENTATION_LISTINGS.map(f => HeaderListing(f)).join("");
 let generatedHtmlFiles = [];
-let directoriesToDelete = [];
+let pathsToDelete = [];
 
 for (let listing of DOCUMENTATION_LISTINGS) {
     let documentationSourceDir = SOURCE_DIR + listing + '/';
     let categories = require(documentationSourceDir + METADATA_FILE_NAME);
     let categoriesHtml = "";
 
-    let lastUsedArticleId = 0;
     let pagesToCreate = [];
 
     for (let category of categories) {
         let categoryName = category.name;
         let categorySourceDir = documentationSourceDir + categoryName + '/';
-        let categoryFiles = new Set(fs.readdirSync(categorySourceDir));
+        let categoryFiles = new Set(fs.readdirSync(categorySourceDir).filter(f => /\.md$/.test(f)));
 
         let categoryEntries = category.entries.map(entry => {
             let entryFilename = `${entry}.md`;
@@ -47,7 +47,6 @@ for (let listing of DOCUMENTATION_LISTINGS) {
             categoryFiles.delete(entryFilename);
 
             let articleHtml;
-            let articleId = ++lastUsedArticleId;
             let ret;
 
             let stats;
@@ -98,7 +97,7 @@ for (let listing of DOCUMENTATION_LISTINGS) {
 
                 articleHtml = ReferenceArticle(categoryName, entry, versions, description, signatures, args, returns);
 
-                ret = { id: articleId, name: entry, description: description };
+                ret = { name: entry, description: description };
 
             } else {
                 // Otherwise, it's a content article
@@ -106,7 +105,7 @@ for (let listing of DOCUMENTATION_LISTINGS) {
 
                 articleHtml = ContentArticle(categoryName, entry, "", contentHtml);
 
-                ret = { id: articleId, name: entry, description: entry };
+                ret = { name: entry, description: entry };
             }
 
             pagesToCreate.push({
@@ -133,19 +132,15 @@ for (let listing of DOCUMENTATION_LISTINGS) {
             articleHtml: articleHtml,
         });
 
-        let articleDir = documentationSourceDir + articleCategory + '/' + articleName + '/';
+        let articleCategoryPathComponent = createURLPathComponent(articleCategory);
+        let articleNamePathComponent = createURLPathComponent(articleName);
+
+        let articleDir = documentationSourceDir + articleCategoryPathComponent + '/' + articleNamePathComponent + '/';
         fs.ensureDirSync(articleDir);
         fs.writeFileSync(articleDir + 'index.html', pageHtml);
-        directoriesToDelete.push(documentationSourceDir + articleCategory);
-        generatedHtmlFiles.push(listing + '/' + articleCategory + '/' + articleName + '/index.html');
+        pathsToDelete.push(articleDir);
+        generatedHtmlFiles.push(listing + '/' + articleCategoryPathComponent + '/' + articleNamePathComponent + '/index.html');
     });
-
-    fs.writeFileSync(documentationSourceDir + 'index.html', fs.readFileSync(SOURCE_DIR + '__zc_common__/index.html', 'utf8')
-        .replace(/\{\{ *viewportTitle *\}\}/g, escapeHTML(listing))
-        .replace(/\{\{ *headerListings *\}\}/g, listingsViewHtml)
-        .replace(/\{\{ *tocCategories *\}\}/g, categoriesHtml)
-    );
-    generatedHtmlFiles.push(listing + '/index.html');
 }
 
 zc({
@@ -165,4 +160,4 @@ zc({
     ].concat(generatedHtmlFiles),
 });
 
-directoriesToDelete.forEach(p => fs.removeSync(p));
+pathsToDelete.forEach(p => fs.removeSync(p));

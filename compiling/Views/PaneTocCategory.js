@@ -9,7 +9,7 @@ const PaneTocCategory = (name, entries) => {
             <dt class="toc-category-label">${ escapeHTML(name) }</dt>
             <dd class="toc-category-entries-container">
                 <ul class="toc-category-entries">
-                    ${ entries.map(e => PaneTocCategoryEntry(e.id, e.name, e.description)).join("") }
+                    ${ entries.map(e => PaneTocCategoryEntry(name, e.name, e.description)).join("") }
                 </ul>
             </dd>
         </div>

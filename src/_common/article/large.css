@@ -1,12 +1,12 @@
-body {
+#article {
     max-width: 60rem;
-
+    width: calc(100% - 18rem);
     padding: 2rem;
 }
 
-p,
-pre,
-dl,
-ul {
+#article p,
+#article pre,
+#article dl,
+#article ul {
     margin: 0 0 1rem 0;
 }

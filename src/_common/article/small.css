@@ -1,18 +1,18 @@
-body {
+#article {
     padding: 1rem;
 }
 
-.category {
+#article .category {
     display: block;
 }
 
-p,
-pre,
-dl,
-ul {
+#article p,
+#article pre,
+#article dl,
+#article ul {
     margin: 0 0 0.75rem 0;
 }
 
-dd {
+#article dd {
     margin-left: 0;
 }
