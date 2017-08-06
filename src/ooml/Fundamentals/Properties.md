@@ -101,7 +101,7 @@ To set a handler for any event, use the appropriate attribute:
 
 ## Serialisation
 
-Properties can be prevented from being included in the JSON by declaring the boolean attribute `transient`. Marking a property as transient allows it to have any type of value (except `undefined`). See more at [Transient](#Transient).
+Properties can be prevented from being included in the JSON by declaring the boolean attribute `transient`. Marking a property as transient allows it to have any type of value (except `undefined`). See more at [Transient properties](#Transient properties).
 
 
 ```html

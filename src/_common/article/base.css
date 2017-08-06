@@ -6,27 +6,23 @@
     display: none;
     margin-bottom: 0.5rem;
 
-    /* Identical to .toc-category-label */
-    background: #ccc;
+    background: #ddd;
     color: gray;
     font-size: 0.75rem;
     padding: 0.5rem 0.75rem;
-    position: relative;
     text-transform: uppercase;
 }
 
-#article h1 {
+#article > header > h1 {
     font-size: 2rem;
     font-weight: 400;
-    margin: 0 0 0.75rem 0;
 }
 
-#article h1::after {
+#article > header > h1::after {
     background: #333;
     content: '';
     display: block;
     height: 0.125rem;
-    margin-top: 0.5rem;
 }
 
 #article h2 {

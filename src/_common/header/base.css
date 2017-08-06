@@ -1,13 +1,17 @@
 #header {
-    display: flex;
-    align-items: center;
-
+    display: table;
+    table-layout: fixed;
     width: 100%;
-    height: 74px;
+    height: 5rem;
 }
 
-#logo, #pane-open-button {
-    font-size: 36px;
+#header > * {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#logo {
+    font-size: 2.25rem;
     font-weight: 600;
 }
 
@@ -24,54 +28,17 @@
     margin: 0.5rem;
 }
 
-#documentations-list .active {
+#documentations-list > li.active {
     background: rgba(0, 0, 0, 0.12);
 }
 
-#documentations-list a {
+#documentations-list > li > a {
     color: inherit;
     display: block;
     padding: 0.5rem 0.75rem;
     text-decoration: none;
 }
 
-#settings-menu-button {
-    font-size: 25px;
-}
-
-#settings-menu {
-    background: white;
-    border: 2px solid rgba(150, 150, 150, 0.6);
-    box-shadow: -2px 2px 16px #ccc;
-    display: none;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    top: 80%;
-    width: 185px;
-}
-
-#settings-menu.open {
-    display: block;
-}
-
-.settings-button {
-    background: none;
-    border: 0;
-    color: #333;
-    cursor: pointer;
-    font-size: 15px;
-    outline: 0;
-    padding: 8px 12px;
-    text-align: right;
-    width: 100%;
-}
-
-.settings-button::before {
-    content: attr(value);
-    text-transform: capitalize;
-}
-
-.settings-button:active {
-    background: rgba(0, 0, 0, 0.1);
+#header-controls {
+    width: 8rem;
 }

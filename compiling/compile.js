@@ -166,13 +166,35 @@ for (let documentation of documentations) {
         for (let entry of categoryEntries) {
             let entryName = entry.name;
 
-            let articleDirRelPath = ['', documentationName, createURLPathComponent(categoryName), createURLPathComponent(entryName), ''].join('/');
+            // Don't put trailing slash at end of directory path, as this is used for all the URLs
+            let articleDirRelPath = ['', documentationName, createURLPathComponent(categoryName), createURLPathComponent(entryName)].join('/');
             articlePathsRelToUrlPrefix[categoryName][entryName] = {
-                file: articleDirRelPath + 'index.html',
+                file: articleDirRelPath + '/index.html',
                 directory: articleDirRelPath,
             };
         }
     }
+
+    let internalLinkCallback = id => {
+        let category;
+        let entry;
+        documentationCategories.some(c => {
+            return c.entries.some(e => {
+                if (e.name == id) {
+                    category = c.name;
+                    entry = e.name;
+
+                    return true;
+                }
+            });
+        });
+
+        if (!category) {
+            throw new ReferenceError(`Non-existent internal link reference "${ id }"`);
+        }
+
+        return URL_PATH_PREFIX + articlePathsRelToUrlPrefix[category][entry].directory;
+    };
 
     let documentationLandingArticleCategory = documentationLandingArticle.category;
     let documentationLandingArticleEntry = documentationLandingArticle.entry;
@@ -199,9 +221,9 @@ for (let documentation of documentations) {
 
                 let signaturesHtml = signatures.map(s => ReferenceArticleSignature(parseTypedCodeLine(s.definition))).join('');
 
-                let argumentsHtml = parameters.map(p => ReferenceArticleArgument(p.name, parseMarkdown(p.definition, true))).join('');
+                let argumentsHtml = parameters.map(p => ReferenceArticleArgument(p.name, parseMarkdown(p.definition, true, internalLinkCallback))).join('');
 
-                let returnsHtml = returns.map(r => ReferenceArticleReturn(parseMarkdown(r.definition, true))).join('');
+                let returnsHtml = returns.map(r => ReferenceArticleReturn(parseMarkdown(r.definition, true, internalLinkCallback))).join('');
 
                 articleHtml = ReferenceArticle({
                     category: categoryName,
@@ -216,7 +238,7 @@ for (let documentation of documentations) {
 
                 let { content } = entry;
 
-                let contentHtml = parseMarkdown(content, false);
+                let contentHtml = parseMarkdown(content, false, internalLinkCallback);
 
                 articleHtml = ContentArticle({
                     category: categoryName,
@@ -253,7 +275,7 @@ for (let documentation of documentations) {
             }
 
             let pageHtml = Page({
-                viewportTitle: documentationName,
+                viewportTitle: `${ entryName } | ${ documentationName }`,
                 documentationsListItemsHtml: documentationsListItemsHtml,
                 tocCategoriesHtml: tocCategoriesHtml,
                 articleHtml: articleHtml,

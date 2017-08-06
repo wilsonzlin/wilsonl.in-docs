@@ -12,4 +12,5 @@ If you notice a mistake or have comments, please send them using the feedback to
 
 - [ooml on GitHub](https://github.com/lerouche/ooml)
 - [ooml on npm](https://www.npmjs.com/package/ooml)
-- [ooml.js on a CDN](https://wilsonl.in/ooml.js)
+- [ooml on yarn](https://yarn.fyi/ooml)
+- [Latest ooml.js, hosted on a CDN](https://wilsonl.in/ooml.latest.js)

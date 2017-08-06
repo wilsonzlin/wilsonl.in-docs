@@ -1,29 +1,8 @@
-#pane-open-button {
-    display: none;
-}
-
 #logo {
-    margin-right: 14px;
-    padding: 0 19px;
+    width: 5.5rem;
+    padding-left: 1.25rem;
 }
 
-.listing:hover {
+#documentations-list > li:hover {
     background: rgba(0, 0, 0, 0.12);
-}
-
-.dark-theme .listing:hover {
-    background: transparent;
-    color: white;
-}
-
-#settings-menu-button {
-    margin-right: 12px;
-}
-
-#settings-menu {
-    right: 12px;
-}
-
-.settings-button:hover {
-    background: rgba(0, 0, 0, 0.1);
 }

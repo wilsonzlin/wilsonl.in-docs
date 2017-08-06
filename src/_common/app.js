@@ -12,18 +12,24 @@
             return str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
         },
 
-        $pane = qs("#pane"),
         $articleEntries = qsa('.toc-category-entry');
 
-    qs("#pane-open-button").onclick = function() {
-        $pane.classList.toggle('open');
-    };
-
-    qs("#toc-search").oninput = function(e) {
+    qs('#toc-search').onkeyup = function(e) {
         var term = this.value.trim() || false;
-        var regex = term && RegExp(escapeRegExp(term), "i");
+        var regex = term && RegExp(escapeRegExp(term), 'i');
         $articleEntries.forEach(function(entry) {
-            entry.classList.toggle("hidden", term && !regex.test(entry.children[0].textContent));
+            var classes = entry.className.split(/\s+/);
+            var indexOfHiddenClass = classes.indexOf('hidden');
+            if (term && !regex.test(entry.children[0].textContent)) {
+                if (!~indexOfHiddenClass) {
+                    classes.push('hidden');
+                }
+            } else {
+                if (~indexOfHiddenClass) {
+                    classes.splice(indexOfHiddenClass, 1);
+                }
+            }
+            entry.className = classes.join(' ');
         });
     };
 })();

@@ -26,32 +26,27 @@ const Page = ({ viewportTitle, documentationsListItemsHtml, tocCategoriesHtml, a
                     <ul id="documentations-list">
                         ${ documentationsListItemsHtml }
                     </ul>
-        
-                    <button id="settings-menu-button">&hellip;</button>
-                    <select>
-                        <option>Lacklustre</option>
-                        <option>Verbose</option>
-                        <option>Unclear</option>
-                        <option>Confusing</option>
-                        <option>Digressive</option>
-                        <option>Misleading</option>
-                        <option>Misplaced</option>
-                        <option>Disorganised</option>
-                        <option>Erroneous</option>
-                        <option>Substandard</option>
-                        <option>Stale</option>
-                    </select>
-                    <menu id="settings-menu">
-                        <button class="settings-button" value="pane settings"></button>
-                        <button class="settings-button" value="toggle dark theme"></button>
-                        <button class="settings-button" value="send feedback"></button>
-                        <button class="settings-button" value="about"></button>
-                    </menu>
+                    
+                    <div id="header-controls">
+                        <select>
+                            <option>Incomplete</option>
+                            <option>Lacklustre</option>
+                            <option>Verbose</option>
+                            <option>Unclear</option>
+                            <option>Confusing</option>
+                            <option>Digressive</option>
+                            <option>Misleading</option>
+                            <option>Misplaced</option>
+                            <option>Disorganised</option>
+                            <option>Erroneous</option>
+                            <option>Substandard</option>
+                            <option>Stale</option>
+                        </select>
+                    </div>
                 </header>
         
                 <main id="main">
                     <aside id="pane-container" class="no-select" tabindex="0">
-                        <div id="pane-open-button">w.l</div>
                         <nav id="pane">
                             <input id="toc-search" placeholder="Search for an article">
                             <dl id="toc-categories">

@@ -5,6 +5,7 @@
 html {
     font-size: 16px;
     line-height: 1.5;
+    color: #333;
 }
 
 body {
@@ -12,9 +13,22 @@ body {
     min-height: 100%;
 }
 
+a {
+    color: #61aeee;
+    text-decoration: none;
+}
+
+a:hover, a:focus {
+    text-decoration: underline;
+}
+
 #gradient-body-background {
     background: white;
-    background: linear-gradient(to bottom, #e8e8e8 0%, #fff 100%);
+    background: -moz-linear-gradient(top, #e8e8e8 0%, #ffffff 100%);
+    background: -webkit-linear-gradient(top, #e8e8e8 0%, #ffffff 100%);
+    background: linear-gradient(to bottom, #e8e8e8 0%, #ffffff 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e8e8e8', endColorstr='#ffffff', GradientType=0);
+
     position: absolute;
     top: 0;
     bottom: 0;

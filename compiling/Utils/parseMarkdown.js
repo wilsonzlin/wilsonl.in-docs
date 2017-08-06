@@ -5,7 +5,7 @@ const hljs = require('highlight.js');
 const parseTypedCodeLine = require('./parseTypedCodeLine');
 const escapeHTML = require('./escapeHTML');
 
-const parseMarkdown = (mdText, removeParagraphTags) => {
+const parseMarkdown = (mdText, removeParagraphTags, internalLinkCallback) => {
     let renderer = new marked.Renderer();
 
     renderer.code = (code, language) => {
@@ -46,6 +46,8 @@ const parseMarkdown = (mdText, removeParagraphTags) => {
 
         if (href[0] != '#') {
             html += 'target=_blank ';
+        } else {
+            href = internalLinkCallback(href.slice(1));
         }
         html += 'href="' + escapeHTML(href) + '" ';
 

@@ -6,6 +6,10 @@
     display: block;
 }
 
+#article > header > h1 {
+    margin: 0 0 1rem 0;
+}
+
 #article p,
 #article pre,
 #article dl,

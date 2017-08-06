@@ -4,6 +4,14 @@
     padding: 2rem;
 }
 
+#article > header > h1 {
+    margin: 0 0 1.5rem 0;
+}
+
+#article > header > h1::after {
+    margin-top: 0.5rem;
+}
+
 #article p,
 #article pre,
 #article dl,

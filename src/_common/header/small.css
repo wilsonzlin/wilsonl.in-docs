@@ -1,28 +1,4 @@
-#logo, #pane-open-button {
-    margin-right: 5px;
-    padding: 0 14px;
-}
-
-#pane-open-button {
-    cursor: pointer;
-    background: transparent;
-    border: 0;
-    display: block;
-    position: fixed;
-    top: 16px;
-    left: 0;
-}
-
-#listings {
-    flex-shrink: 1;
-    margin-right: 10px;
-    overflow: auto;
-}
-
-#settings-menu-button {
-    margin-right: 10px;
-}
-
-#settings-menu {
-    right: 10px;
+#logo {
+    width: 4.5rem;
+    padding-left: 1rem;
 }
