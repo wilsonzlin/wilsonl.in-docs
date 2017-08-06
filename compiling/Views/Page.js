@@ -1,6 +1,6 @@
 "use strict";
 
-const Page = ({ viewportTitle, headerListings, tocCategories, articleHtml }) => {
+const Page = ({ viewportTitle, documentationsListItemsHtml, tocCategoriesHtml, articleHtml }) => {
     return `
         <!DOCTYPE html>
         <html>
@@ -24,7 +24,7 @@ const Page = ({ viewportTitle, headerListings, tocCategories, articleHtml }) => 
                 <header id="header" class="no-select">
                     <span id="logo">w.l</span>
                     <ul id="listings">
-                        ${ headerListings }
+                        ${ documentationsListItemsHtml }
                     </ul>
         
                     <button id="settings-menu-button">&hellip;</button>
@@ -55,7 +55,7 @@ const Page = ({ viewportTitle, headerListings, tocCategories, articleHtml }) => 
                         <nav id="pane">
                             <input id="toc-search" placeholder="Search for an article">
                             <dl id="toc-categories">
-                                ${ tocCategories }
+                                ${ tocCategoriesHtml }
                             </dl>
                         </nav>
                     </aside>
