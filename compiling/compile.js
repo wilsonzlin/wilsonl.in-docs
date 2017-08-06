@@ -149,9 +149,9 @@ for (let documentation of documentations) {
     let documentationCategories = documentation.categories;
 
     let documentationsListItemsHtml = documentations.map(d => HeaderDocumentationsListItem({
-        name: documentationName,
-        url: `${ URL_PATH_PREFIX }/${ d }`,
-        isActive: documentationName == d,
+        name: d.name,
+        url: `${ URL_PATH_PREFIX }/${ d.name }`,
+        isActive: documentationName == d.name,
     })).join('');
 
     let articlePathsRelToUrlPrefix = Object.create(null);
@@ -165,7 +165,12 @@ for (let documentation of documentations) {
 
         for (let entry of categoryEntries) {
             let entryName = entry.name;
-            articlePathsRelToUrlPrefix[categoryName][entryName] = ['', documentationName, createURLPathComponent(categoryName), createURLPathComponent(entryName), 'index.html'].join('/');
+
+            let articleDirRelPath = ['', documentationName, createURLPathComponent(categoryName), createURLPathComponent(entryName), ''].join('/');
+            articlePathsRelToUrlPrefix[categoryName][entryName] = {
+                file: articleDirRelPath + 'index.html',
+                directory: articleDirRelPath,
+            };
         }
     }
 
@@ -174,7 +179,7 @@ for (let documentation of documentations) {
 
     fs.ensureDirSync(INTERMEDIATE_DIR + documentationName);
     fs.writeFileSync(INTERMEDIATE_DIR + documentationName + '/index.html', `
-        <meta http-equiv="refresh" content="0; URL=${ URL_PATH_PREFIX + articlePathsRelToUrlPrefix[documentationLandingArticleCategory][documentationLandingArticleEntry].split('/').slice(0, -1).join('/') }">
+        <meta http-equiv="refresh" content="0; URL=${ URL_PATH_PREFIX + articlePathsRelToUrlPrefix[documentationLandingArticleCategory][documentationLandingArticleEntry].directory }">
     `);
     generatedHtmlFiles.push(documentationName + '/index.html');
 
@@ -234,7 +239,7 @@ for (let documentation of documentations) {
                 for (let tocEntry of tocCategoryEntries) {
                     let tocEntryName = tocEntry.name;
                     let tocEntryDescription = tocEntry.description || tocEntryName;
-                    let tocArticlePathRelToUrlPrefix = articlePathsRelToUrlPrefix[tocCategoryName][tocEntryName];
+                    let tocArticlePathRelToUrlPrefix = articlePathsRelToUrlPrefix[tocCategoryName][tocEntryName].directory;
 
                     tocCategoryEntriesHtml += PaneTocCategoryEntry({
                         url: URL_PATH_PREFIX + tocArticlePathRelToUrlPrefix,
@@ -256,9 +261,9 @@ for (let documentation of documentations) {
 
             let articlePathRelToUrlPrefix = articlePathsRelToUrlPrefix[categoryName][entryName];
 
-            fs.ensureDirSync(INTERMEDIATE_DIR + articlePathRelToUrlPrefix.split('/').slice(0, -1).join('/'));
-            fs.writeFileSync(INTERMEDIATE_DIR + articlePathRelToUrlPrefix, pageHtml);
-            generatedHtmlFiles.push(articlePathRelToUrlPrefix);
+            fs.ensureDirSync(INTERMEDIATE_DIR + articlePathRelToUrlPrefix.directory);
+            fs.writeFileSync(INTERMEDIATE_DIR + articlePathRelToUrlPrefix.file, pageHtml);
+            generatedHtmlFiles.push(articlePathRelToUrlPrefix.file);
         }
     }
 }
