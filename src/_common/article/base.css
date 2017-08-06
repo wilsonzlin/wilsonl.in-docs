@@ -29,14 +29,6 @@
     margin-top: 0.5rem;
 }
 
-.versions {
-    color: gray;
-}
-
-.versions::after {
-    content: ' versions';
-}
-
 #article h2 {
     background: #999;
     color: white;

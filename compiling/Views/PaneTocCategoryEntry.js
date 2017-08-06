@@ -4,8 +4,8 @@ const escapeHTML = require('../Utils/escapeHTML');
 
 const PaneTocCategoryEntry = ({ url, name, description, isActive }) => {
     return `
-        <li class="toc-category-entry-wrapper ${ isActive ? "active" : "" }" title="${ escapeHTML(description) }">
-            <a class="toc-category-entry-link" href="${ escapeHTML(url) }" data-name="${ escapeHTML(name) }"></a>
+        <li class="toc-category-entry ${ isActive ? "active" : "" }" title="${ escapeHTML(description) }">
+            <a href="${ isActive ? "#" : escapeHTML(url) }">${ escapeHTML(name) }</a>
         </li>
     `;
 };

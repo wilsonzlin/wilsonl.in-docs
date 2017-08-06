@@ -249,7 +249,7 @@ for (let documentation of documentations) {
                     });
                 }
 
-                tocCategoriesHtml += PaneTocCategory(categoryName, tocCategoryEntriesHtml);
+                tocCategoriesHtml += PaneTocCategory(tocCategoryName, tocCategoryEntriesHtml);
             }
 
             let pageHtml = Page({

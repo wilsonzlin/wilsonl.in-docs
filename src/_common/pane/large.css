@@ -2,6 +2,6 @@
     width: 18rem;
 }
 
-.toc-category-entry-link:hover {
+.toc-category-entry:hover {
     background: rgba(180, 180, 180, 0.25);
 }

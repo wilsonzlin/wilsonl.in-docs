@@ -33,13 +33,9 @@ body, button, select, input, textarea {
 button {
     border-radius: 2px;
     border: 1px solid #949494;
-    background: linear-gradient(to bottom, #f8f8f8 0%, #dddddd 100%);
-    color: black;
-    font-size: 11px;
-    padding: 3px 8px;
+    padding: 0.25rem 0.5rem;
 }
     button:active {
-        background: linear-gradient(to bottom, #dfdfdf 0%, #f7f7f7 100%);
     }
 
 ::-moz-focus-inner {

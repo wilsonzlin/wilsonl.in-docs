@@ -11,39 +11,28 @@
     font-weight: 600;
 }
 
-#listings {
+#documentations-list {
     margin: 0;
     padding: 0;
     white-space: nowrap;
 }
 
-.listing {
+#documentations-list > li {
     color: #4d4d4d;
     display: inline-block;
     font-weight: 500;
+    margin: 0.5rem;
 }
 
-.dark-theme .listing {
-    color: #909090;
-}
-
-.listing:not(:last-child) {
-    margin-right: 10px;
-}
-
-.listing.current {
+#documentations-list .active {
     background: rgba(0, 0, 0, 0.12);
 }
 
-.listing-link {
+#documentations-list a {
     color: inherit;
     display: block;
-    padding: 6px 9px;
+    padding: 0.5rem 0.75rem;
     text-decoration: none;
-}
-
-.listing.current > .listing-link {
-    cursor: default;
 }
 
 #settings-menu-button {
