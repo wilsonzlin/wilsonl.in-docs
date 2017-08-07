@@ -24,7 +24,7 @@ Properties may have a declared type. Only [primitive types](#Primitives) and oom
 <ooml-property name="myProp" type="natural">1</ooml-property>
 ```
 
-A union type can be declared, by listing the subtypes separated with a bar. Subtypes can only be [primitive types](#Primitives). Union types ensure that the value must be one of the subtypes. There is no limit to the amount of subtypes, but there cannot be duplicates or overlaps.
+A union type can be declared, by listing the subtypes separated with a bar. Subtypes can only be [primitive types](#Primitives). Union types ensure that the value must be one of the subtypes. There is no limit to the amount of subtypes, but there cannot be duplicates or overlaps. Note that a union type is still one atomic type (but it is composed of one or more subtypes), and because the subtypes can only be primitive types, a union type is also a primitive type.
 
 This property's value can be a `natural`, `boolean` or `string`:
 

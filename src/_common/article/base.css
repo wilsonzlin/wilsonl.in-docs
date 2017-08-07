@@ -11,6 +11,8 @@
     font-size: 0.75rem;
     padding: 0.5rem 0.75rem;
     text-transform: uppercase;
+
+    white-space: pre-wrap;
 }
 
 #article > header > h1 {

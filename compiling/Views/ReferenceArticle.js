@@ -5,7 +5,7 @@ const escapeHTML = require('../Utils/escapeHTML');
 const ReferenceArticle = ({ category, name, description, signaturesHtml, argumentsHtml, returnsHtml }) => {
     return `
         <header>
-            <div class="category">${ escapeHTML(category) }</div>
+            <a href="#pane" class="category">&lt;<zc-space /><zc-space /><zc-space />${ escapeHTML(category) }</a>
             <h1>${ escapeHTML(name) }</h1>
         </header>
 

@@ -6,7 +6,7 @@ Inheritance is achieved in ooml by using the `extends` syntax when declaring the
 
 When ooml parses this, it will copy the parent class's properties to this class. Properties can be overriden on the child class, but there are rules:
 
-- If the parent property is a primitive property (i.e. has a primitive type or no type), the child property's type must be exactly the same.
+- If the parent property is a primitive property (i.e. has a primitive type, union type, or no type), the child property's type must be exactly the same.
 - If the parent property has an ooml class as its type, the child property's type must be the same class or a descendant.
 - If the parent property is an array, transient, or attribute property, the child property must be the same.
 

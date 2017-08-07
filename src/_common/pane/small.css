@@ -1,5 +1,7 @@
 #pane {
     position: fixed;
+    padding: 1rem;
+
     display: none;
     top: 5rem; /* Same as #header height */
     left: 0;
@@ -14,5 +16,15 @@
 }
 
 #pane:target + #article {
-    opacity: 0;
+    /*
+
+        Need to hide #article because:
+
+        1) #pane is transparent so gradient background is visible
+        2) #article will likely cause page to overflow if content is long enough,
+            which means scrolling down will push the app header up (as the <body>
+            is scrolled behind the #pane)
+
+     */
+    display: none;
 }
