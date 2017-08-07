@@ -1,5 +1,7 @@
 "use strict";
 
+// TODO REFACTOR ALL THE THINGS
+
 const AWS = require('aws-sdk');
 const fs = require('fs');
 const ReadLine = require('readline');
@@ -8,7 +10,9 @@ const Path = require('path');
 const Crypto = require('crypto');
 const RecursiveReaddir = require('recursive-readdir-sync');
 
-AWS.config.credentials = new AWS.SharedIniFileCredentials({profile: 'wilsonl.in-docs'});
+__dirname = __dirname + '/..';
+
+AWS.config.credentials = new AWS.SharedIniFileCredentials({ profile: 'wilsonl.in-docs' });
 const WLM = JSON.parse(fs.readFileSync(process.env['HOME'] + '/.aws/wilsonl.in', 'utf8'));
 
 let s3 = new AWS.S3();
@@ -125,7 +129,7 @@ function deleteMulti(objects) {
         s3.deleteObjects({
             Bucket: WLM.S3_BUCKET_NAME,
             Delete: {
-                Objects: objects.map(o => ({Key: o})),
+                Objects: objects.map(o => ({ Key: o })),
             },
         }, (err, data) => {
             if (err) {
@@ -166,7 +170,7 @@ function getMetadata(objectKey) {
                 return;
             }
 
-            resolve({key: objectKey, metadata: data.Metadata});
+            resolve({ key: objectKey, metadata: data.Metadata });
         });
     });
 }
@@ -184,7 +188,7 @@ function sha512stream(stream, metadata) {
         });
 
         hash.on('finish', () => {
-            resolve({hash: sha512, metadata: metadata});
+            resolve({ hash: sha512, metadata: metadata });
         });
 
         hash.on('error', err => {
@@ -197,7 +201,7 @@ function sha512stream(stream, metadata) {
 
 function main() {
     console.log("======================= COMPILING ====================\n");
-    require('./compile.js');
+    require('../compiling/compile.js');
     console.log("\n=============== COMPILATION FINISHED ===============\n");
 
     s3.listObjectsV2({
@@ -228,7 +232,7 @@ function main() {
                     return sha512stream(s3.getObject({
                         Bucket: WLM.S3_BUCKET_NAME,
                         Key: obj.key,
-                    }).createReadStream(), {key: obj.key});
+                    }).createReadStream(), { key: obj.key });
                 }));
             })
             .then(hashes => {
@@ -247,7 +251,7 @@ function main() {
                 }));
             })
             .then(() => {
-                return Promise.all(localFileNames.map(file => sha512stream(fs.createReadStream(`${__dirname}/dist/${file}`), {file: file})));
+                return Promise.all(localFileNames.map(file => sha512stream(fs.createReadStream(`${__dirname}/dist/${file}`), { file: file })));
             })
             .then(hashes => {
                 hashes.forEach(hash => {
