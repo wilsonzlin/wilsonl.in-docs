@@ -1,5 +1,7 @@
 #article {
     padding: 1rem;
+    /* Although unlikely, if an article has no/near no content, #article width collapses */
+    width: 100%;
 }
 
 #article .category {
