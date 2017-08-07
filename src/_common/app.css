@@ -15,6 +15,7 @@ body {
 a {
     color: #61aeee;
     text-decoration: none;
+    outline: none;
 }
 
 a:hover, a:focus {
@@ -69,89 +70,20 @@ button {
     z-index: -10;
 }
 
-#feedback-form {
-    height: 30rem;
-    width: 35rem;
-    overflow: auto;
-
-    display: none;
-
-    background: rgba(230, 230, 230, 0.9);
-    border-radius: 0.25rem;
-    box-shadow: 0.25rem 0.25rem 1rem rgb(180, 180, 180);
-
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
-    z-index: 10;
-}
-
-#feedback-form:target {
-    display: block;
-}
-
-#feedback-form > * {
-    display: block;
-    margin: 1.5rem;
-}
-
-#feedback-form > label {
-    display: block;
-}
-
-.feedback-form-label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-}
-
-#feedback-form input, #feedback-form textarea {
-    display: block;
-    width: 100%;
-    padding: 0.5rem;
-}
-
-#feedback-form-keywords > label {
-    display: inline-block;
-    vertical-align: top;
-}
-
-#feedback-form-keywords > label > input {
-    display: none;
-}
-
-#feedback-form-keywords > label > span {
-    display: block;
-    color: red;
-    border-radius: 0.25rem;
-    padding: 0.5rem;
-    margin: 0 0.75rem 0.75rem 0;
-    border: 1px solid red;
-    background: white;
-    cursor: pointer;
-
-    text-transform: uppercase;
-    font-size: 0.75rem;
-}
-
-#feedback-form-keywords > label > input:checked + span {
-    background: red;
-    color: white;
-    font-weight: 600;
-}
-
-#pane-container, #article {
+#pane, #article {
     display: inline-block;
     vertical-align: top;
 }
 
 <ZC-IMPORT[../../node_modules/highlight.js/styles/atom-one-dark.css]>
+<ZC-IMPORT[feedback/base.css]>
 <ZC-IMPORT[article/base.css]>
 <ZC-IMPORT[header/base.css]>
 <ZC-IMPORT[main/base.css]>
 <ZC-IMPORT[pane/base.css]>
 
 @media (min-width: 1001px) {
+    <ZC-IMPORT[feedback/large.css]>
     <ZC-IMPORT[article/large.css]>
     <ZC-IMPORT[header/large.css]>
     <ZC-IMPORT[main/large.css]>
@@ -159,6 +91,7 @@ button {
 }
 
 @media (max-width: 1000px) {
+    <ZC-IMPORT[feedback/small.css]>
     <ZC-IMPORT[article/small.css]>
     <ZC-IMPORT[header/small.css]>
     <ZC-IMPORT[main/small.css]>

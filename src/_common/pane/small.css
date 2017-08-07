@@ -1,17 +1,18 @@
-#pane-container {
-    position: fixed; /* Just to remove from flow */
-}
-
 #pane {
     position: fixed;
     display: none;
-    top: 74px;
+    top: 5rem; /* Same as #header height */
     left: 0;
     bottom: 0;
     right: 0;
     overflow: auto;
+    z-index: 5; /* Lower than #feedback */
 }
 
-#pane.open {
+#pane:target {
     display: block;
+}
+
+#pane:target + #article {
+    opacity: 0;
 }
