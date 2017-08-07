@@ -1,6 +1,8 @@
 "use strict";
 
-const Page = ({ viewportTitle, documentationsListItemsHtml, tocCategoriesHtml, articleHtml }) => {
+const escapeHTML = require('../Utils/escapeHTML');
+
+const Page = ({ url, viewportTitle, documentationsListItemsHtml, tocCategoriesHtml, articleHtml }) => {
     return `
         <!DOCTYPE html>
         <html>
@@ -20,6 +22,82 @@ const Page = ({ viewportTitle, documentationsListItemsHtml, tocCategoriesHtml, a
         
             <body>
                 <div id="gradient-body-background"></div>
+                
+                <form id="feedback-form" method="post" action="https://fb.wilsonl.in/feedback">
+                    <input type="hidden" name="page" value="${ escapeHTML(url) }">
+                    
+                    <h2>Help improve this page</h2>
+                    
+                    <label>
+                        <span class="feedback-form-label">Title</span>
+                        <input name="title" maxlength="200" placeholder="Optional">
+                    </label>
+                    
+                    <label>
+                        <span class="feedback-form-label">Message</span>
+                        <textarea name="message" rows="8" maxlength="1000" placeholder="Optional"></textarea>
+                    </label>
+                    
+                    <div>
+                        <span class="feedback-form-label">Rating</span>
+                        <input name="rating" type="range" min="1" max="5" step="1">
+                    </div>
+                    
+                    <div id="feedback-form-keywords">
+                        <span class="feedback-form-label">Keywords</span>
+                        <label>
+                            <input type="checkbox" name="keywords" value="Incomplete">
+                            <span>Incomplete</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="keywords" value="Lacklustre">
+                            <span>Lacklustre</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="keywords" value="Verbose">
+                            <span>Verbose</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="keywords" value="Unclear">
+                            <span>Unclear</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="keywords" value="Confusing">
+                            <span>Confusing</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="keywords" value="Digressive">
+                            <span>Digressive</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="keywords" value="Misleading">
+                            <span>Misleading</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="keywords" value="Misplaced">
+                            <span>Misplaced</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="keywords" value="Disorganised">
+                            <span>Disorganised</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="keywords" value="Erroneous">
+                            <span>Erroneous</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="keywords" value="Substandard">
+                            <span>Substandard</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="keywords" value="Stale">
+                            <span>Stale</span>
+                        </label>
+                    </div>
+                    
+                    <button>Send feedback</button>
+                    <a href="#">Close</a>
+                </form>
         
                 <header id="header" class="no-select">
                     <span id="logo">w.l</span>
@@ -28,20 +106,7 @@ const Page = ({ viewportTitle, documentationsListItemsHtml, tocCategoriesHtml, a
                     </ul>
                     
                     <div id="header-controls">
-                        <select>
-                            <option>Incomplete</option>
-                            <option>Lacklustre</option>
-                            <option>Verbose</option>
-                            <option>Unclear</option>
-                            <option>Confusing</option>
-                            <option>Digressive</option>
-                            <option>Misleading</option>
-                            <option>Misplaced</option>
-                            <option>Disorganised</option>
-                            <option>Erroneous</option>
-                            <option>Substandard</option>
-                            <option>Stale</option>
-                        </select>
+                        <a href="#feedback-form">Feedback</a>
                     </div>
                 </header>
         

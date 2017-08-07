@@ -3,7 +3,7 @@
     "aws-sdk": "2.x",
     "compression": "1.x",
     "express": "4.x",
-    "fs-extra": "^4.0.1",
+    "fs-extra": "4.x",
     "highlight.js": "9.x",
     "marked": "0.3.x",
     "mime-types": "2.x",

@@ -274,14 +274,15 @@ for (let documentation of documentations) {
                 tocCategoriesHtml += PaneTocCategory(tocCategoryName, tocCategoryEntriesHtml);
             }
 
+            let articlePathRelToUrlPrefix = articlePathsRelToUrlPrefix[categoryName][entryName];
+
             let pageHtml = Page({
+                url: URL_PATH_PREFIX + articlePathRelToUrlPrefix.directory,
                 viewportTitle: `${ entryName } | ${ documentationName }`,
                 documentationsListItemsHtml: documentationsListItemsHtml,
                 tocCategoriesHtml: tocCategoriesHtml,
                 articleHtml: articleHtml,
             });
-
-            let articlePathRelToUrlPrefix = articlePathsRelToUrlPrefix[categoryName][entryName];
 
             fs.ensureDirSync(INTERMEDIATE_DIR + articlePathRelToUrlPrefix.directory);
             fs.writeFileSync(INTERMEDIATE_DIR + articlePathRelToUrlPrefix.file, pageHtml);

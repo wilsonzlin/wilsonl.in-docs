@@ -5,7 +5,6 @@
 html {
     font-size: 16px;
     line-height: 1.5;
-    color: #333;
 }
 
 body {
@@ -20,6 +19,39 @@ a {
 
 a:hover, a:focus {
     text-decoration: underline;
+}
+
+textarea {
+    resize: vertical;
+}
+
+body, button, select, input, textarea {
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Ubuntu, Cantarell, Oxygen, Droid Sans, Fira Sans, sans-serif;
+    border-radius: 0;
+    outline: none;
+    margin: 0;
+    color: #333;
+}
+
+button {
+    background: #e2e2e2;
+    border-radius: 2px;
+    border: 1px solid #aaa;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+.no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 #gradient-body-background {
@@ -37,31 +69,75 @@ a:hover, a:focus {
     z-index: -10;
 }
 
-body, button, select, input, textarea {
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Ubuntu, Cantarell, Oxygen, Droid Sans, Fira Sans, sans-serif;
-    border-radius: 0;
-    outline: none;
-    margin: 0;
+#feedback-form {
+    height: 30rem;
+    width: 35rem;
+    overflow: auto;
+
+    display: none;
+
+    background: rgba(230, 230, 230, 0.9);
+    border-radius: 0.25rem;
+    box-shadow: 0.25rem 0.25rem 1rem rgb(180, 180, 180);
+
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    z-index: 10;
 }
 
-button {
-    border-radius: 2px;
-    border: 1px solid #949494;
-    padding: 0.25rem 0.5rem;
-}
-    button:active {
-    }
-
-::-moz-focus-inner {
-    border: 0;
-    padding: 0;
+#feedback-form:target {
+    display: block;
 }
 
-.no-select {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+#feedback-form > * {
+    display: block;
+    margin: 1.5rem;
+}
+
+#feedback-form > label {
+    display: block;
+}
+
+.feedback-form-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+#feedback-form input, #feedback-form textarea {
+    display: block;
+    width: 100%;
+    padding: 0.5rem;
+}
+
+#feedback-form-keywords > label {
+    display: inline-block;
+    vertical-align: top;
+}
+
+#feedback-form-keywords > label > input {
+    display: none;
+}
+
+#feedback-form-keywords > label > span {
+    display: block;
+    color: red;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    margin: 0 0.75rem 0.75rem 0;
+    border: 1px solid red;
+    background: white;
+    cursor: pointer;
+
+    text-transform: uppercase;
+    font-size: 0.75rem;
+}
+
+#feedback-form-keywords > label > input:checked + span {
+    background: red;
+    color: white;
+    font-weight: 600;
 }
 
 #pane-container, #article {
