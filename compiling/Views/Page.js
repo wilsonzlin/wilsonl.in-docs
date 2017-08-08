@@ -41,7 +41,7 @@ const Page = ({ url, viewportTitle, documentationsListItemsHtml, tocCategoriesHt
                         
                         <div>
                             <span class="feedback-form-section-heading">Rating</span>
-                            <input name="rating" type="range" min="1" max="5" step="1">
+                            <input name="rating" type="range" min="1" max="5" step="0.01">
                         </div>
                         
                         <div id="feedback-form-keywords">

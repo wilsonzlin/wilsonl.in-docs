@@ -18,6 +18,7 @@ module.exports = {
         {
             name: "Fundamentals",
             entries: [
+                "Terminology",
                 "Namespaces",
                 "Classes",
                 "Properties",
@@ -44,6 +45,7 @@ module.exports = {
                 "Getters, setters, and change listeners",
                 "Binding",
                 "Default property values",
+                "Initial state",
             ],
         },
         {
