@@ -38,7 +38,8 @@ const parseMarkdown = (mdText, removeParagraphTags, internalLinkCallback) => {
     renderer.list = (body, ordered) => {
         let ret = marked(body, ordered);
         ret = ret.replace(/ </g, "<zc-space /><").replace(/> /g, "><zc-space />");
-        return '<ul>' + ret + '</ul>';
+        let tagName = ordered ? 'ol' : 'ul';
+        return `<${ tagName }>${ ret }</${ tagName }>`;
     };
 
     renderer.link = (href, title, text) => {
