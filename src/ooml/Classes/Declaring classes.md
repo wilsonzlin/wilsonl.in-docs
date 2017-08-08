@@ -13,7 +13,7 @@ Classes are declared using HTML templates in the HTML file:
 
 `<template>` elements ensure faster processing as browsers that support it will not try to render the contents.
 
-Inside the template element, there are a few tags that describe the [properties](#Properties) and [methods](#Methods) of the class, and then the view of the class is laid out:
+Inside the template element, there are a few tags that describe the [properties](#Declaring properties) and [methods](#Using methods) of the class, and then the view of the class is laid out:
 
 ```html
 <template ooml-class="MyClass">

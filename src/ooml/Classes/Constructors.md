@@ -12,7 +12,28 @@ Constructors are special methods that are called automatically when creating a n
 
 The return value of the constructor is not used and discarded, so it can return anything.
 
-The `this` special variable is available inside the method, just like any other method, and refers to the newly-instantiated OOML instance. It has all declared and inherited properties and methods, and all properties have their values set to [default](#Default property values) or [initial state](#Initial state) values.
+**Note that the meaning of "constructor" here is not the same as "constructor" in JavaScript.** Declaring this method does not make it the constructor of the JavaScript class that represents the the ooml class:
+
+```javascript
+let SomeClass = new OOML.Namespace(`
+    <template ooml-class="SomeClass">
+        <ooml-method name="constructor">
+            function() {
+                console.log("AEDBASD0458304534");
+            }
+        </ooml-method>
+    </template>
+`).classes.SomeClass;
+
+// SomeClass is also a JavaScript class, because ooml classes are represented as
+// JavaScript classes. But its JavaScript class constructor is not the same as
+// the declared constructor of the declared ooml class:
+let javascriptConstructor = SomeClass.constructor;
+// Can't find the code
+SomeClass.constructor.toString.indexOf("AEDBASD0458304534") === -1;
+```
+
+The `this` special variable is available inside the method, just like any other method, and refers to the newly-instantiated ooml instance. It has all declared and inherited properties and methods, and all properties have their values set to [default](#Default property values) or [initial state](#Initial state) values.
 
 The first and only argument passed into the constructor method is the constructor of the closest ancestor with a constructor. If such a constructor exists, it can be called with no arguments:
 

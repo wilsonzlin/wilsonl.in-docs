@@ -35,4 +35,4 @@ Now, when classes inherit *ParentClass* (i.e. `extend ParentClass`), a copy of *
 
 Essentially, the child class's view is wrapped around the parent class's view, instead of being on its own.
 
-The child class's view still has the same limitations as a normal view. These limitations are described at [Views](#Views).
+The child class's view still has the same limitations as a normal view. These limitations are described at [Views](#Declaring views).

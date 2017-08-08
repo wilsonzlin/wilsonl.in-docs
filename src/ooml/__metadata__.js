@@ -13,64 +13,72 @@ module.exports = {
                 "Core principles",
                 "How it works",
                 "Environment, setup and usage",
+                "Terminology",
             ],
         },
         {
-            name: "Fundamentals",
+            name: "Namespaces",
             entries: [
-                "Terminology",
-                "Namespaces",
-                "Classes",
-                "Properties",
-                "Methods",
-                "Views",
-                "Instances",
+                "Declaring namespaces",
             ],
         },
         {
             name: "Classes",
             entries: [
+                "Declaring classes",
                 "Inheritance",
                 "Abstract classes",
                 "View extension",
-                "Serialisation and unserialisation",
+                "Serialisation and deserialisation",
                 "Constructors",
+                "Instance dispatch events",
+                "Instance mutation events",
             ],
         },
         {
             name: "Properties",
             entries: [
-                "Transient properties",
+                "Declaring properties",
+                "Default property values",
                 "Typing",
+                "Transient properties",
                 "Getters, setters, and change listeners",
                 "Binding",
-                "Default property values",
-                "Initial state",
             ],
         },
         {
             name: "Methods",
             entries: [
+                "Using methods",
                 "Static methods",
                 "Factory methods",
                 "Serialisation methods",
             ],
         },
         {
-            name: "View",
+            name: "Views",
             entries: [
+                "Declaring views",
                 "Substitution",
                 "DOM event handlers",
+                "DOM exposing",
                 "Table tags",
                 "HTML attributes",
-                "DOM exposing",
             ],
         },
         {
-            name: "Events",
+            name: "Instances",
             entries: [
-                "Mutation events",
-                "Dispatch events",
+                "Instantiating", // ooml-instantiate and new SomeClass(initState)
+                "Initial state",
+            ]
+        },
+        {
+            name: "Arrays",
+            entries: [
+                "Instantiating",
+                "Instance dispatch events",
+                "Instance mutation events",
             ],
         },
         {

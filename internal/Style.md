@@ -5,3 +5,5 @@
     - `The dependencies are automatically loaded`
 - When referring/linking to another article, use the article's exact title:
     - `For more information, see Getters and setters`
+- Everything should be person-agnostic
+    - Don't use words like `you`, `we`, `they` (when referring to people), `users`, `developers`, etc.
