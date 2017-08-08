@@ -81,15 +81,6 @@ module.exports = {
             ],
         },
         {
-            name: "Type system",
-            entries: [
-                "Primitives",
-                "Undefined",
-                "Objects and arrays",
-                "Numbers",
-            ],
-        },
-        {
             name: "Additional information",
             entries: [
                 "Older versions",

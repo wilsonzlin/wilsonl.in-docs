@@ -1,4 +1,4 @@
-**Properties** are the [fields](https://en.wikipedia.org/wiki/Field_%28computer_science%29) of a class, sometimes called **instance or member variables, attributes or properties** in other object-orientated languages. They are like properties in JavaScript; they are values attached to an object, and can be accessed and assigned to using the notation `obj.prop` or `obj["prop"]`. ooml introduces more safety when dealing with properties by:
+**Properties** are the [fields](https://en.wikipedia.org/wiki/Field_%28computer_science%29) of a class. They are like properties in JavaScript; they are values on an object, and can be accessed and assigned to using the notation `obj.prop` or `obj["prop"]`. ooml introduces more safety when dealing with properties by:
 
 - Requiring properties to be declared, with an initial value, before they can be used
 - Allowing type declarations to ensure type safety at runtime
@@ -16,25 +16,9 @@ To declare a property called "myProp" in a class, use an `ooml-property` tag:
 
 The name of the property is declared using the `name` attribute. It is recommended to use camelCase when naming properties. There are restrictions on names for properties and other identifiers — see [Identifiers](#Identifiers) for more details.
 
-## Type checking
-
-Properties may have a declared type. Only [primitive types](#Primitives) and ooml classes may be specified. The default value must match the declared type. If there is no declared type, the value can be of any primitive type. To declare a type, use the `type` attribute:
-
-```html
-<ooml-property name="myProp" type="natural">1</ooml-property>
-```
-
-A union type can be declared, by listing the subtypes separated with a bar. Subtypes can only be [primitive types](#Primitives). Union types ensure that the value must be one of the subtypes. There is no limit to the amount of subtypes, but there cannot be duplicates or overlaps. Note that a union type is still one atomic type (but it is composed of one or more subtypes), and because the subtypes can only be primitive types, a union type is also a primitive type.
-
-This property's value can be a `natural`, `boolean` or `string`:
-
-```html
-<ooml-property name="myProp" type="natural|boolean|string">true</ooml-property>
-```
-
 ## Default value
 
-The default value is inferred by evaluating it as JavaScript code. This means that strings must be quoted:
+All properties have a default value. A default value is inferred by evaluating the contents of the `ooml-property` tag as JavaScript code. This means that strings must be quoted:
 
 ```html
 <!-- Valid -->
@@ -59,7 +43,7 @@ Ensure that string values are quoted; there is a slim possibility that ooml cann
 </template>
 ```
 
-ooml properties must have a default value. Generally, if you don't have a specific default value in mind, consider `null`. `undefined` is not allowed in almost every part of ooml, including property values — see [Undefined](#Undefined) for more details.
+ooml properties must have a default value. Generally, if you don't have a specific default value in mind, consider `null`, `0`, `false`, or `""`.
 
 ## Events
 
@@ -99,11 +83,9 @@ To set a handler for any event, use the appropriate attribute:
 >null</ooml-property>
 ```
 
-## Serialisation
+## Advanced
 
-Properties can be prevented from being included in the JSON by declaring the boolean attribute `transient`. Marking a property as transient allows it to have any type of value (except `undefined`). See more at [Transient properties](#Transient properties).
+Other features related to properties:
 
-
-```html
-<ooml-property name="transientProperty" transient>null</ooml-property>
-```
+- [Typing](#Typing)
+- [Transient properties](#Transient properties)
