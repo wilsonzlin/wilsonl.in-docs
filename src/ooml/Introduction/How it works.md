@@ -1,1 +1,0 @@
-ooml works primarily by turning the DOM into an object-orientated interface. Instead of having one giant static document, small templates describing parts of the document are declared using [classes](#Declaring classes), and instances are constructed from them to represent, modify and isolate a realisation of the template somewhere in the DOM.

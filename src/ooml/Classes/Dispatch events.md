@@ -1,4 +1,4 @@
-Communication between an instance and the instance it's [attached](#Attachment) to can be done using **dispatch events**. When an instance is attached, it is referred to as the *child instance*, and the instance it's attached to as the *parent instance*.
+Communication between an instance and the instance it's [attached](#Instance attachment) to can be done using **dispatch events**. When an instance is attached, it is referred to as the *child instance*, and the instance it's attached to as the *parent instance*.
 
 While not the only way to do parent-child communication, it is the preferred way. Every instance has a `.dispatch` method, inherited from the base class `OOML.Instance`. Calling this method will notify the parent that an event has occurred on the child instance:
 

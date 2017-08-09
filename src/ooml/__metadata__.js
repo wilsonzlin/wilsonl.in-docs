@@ -9,9 +9,8 @@ module.exports = {
             entries: [
                 "Welcome",
                 "About ooml",
-                "Compatibility and support", // 1) Version lifespan and development cycle. 2) Reporting bugs and ideas.
                 "Core principles",
-                "How it works",
+                "Compatibility and support", // 1) Version lifespan and development cycle. 2) Reporting bugs and ideas.
                 "Environment, setup and usage", // 1) Webpack, browserify, require, babel (no need). 2) Building from source.
                 "Terminology",
             ],
@@ -71,15 +70,16 @@ module.exports = {
         {
             name: "Instances",
             entries: [
-                "Instantiating", // ooml-instantiate and new SomeClass(initState)
+                "Instantiating",
                 "Initial state",
-                "Attachment",
+                "Instance attachment",
             ]
         },
         {
             name: "Arrays",
             entries: [
-                "Instantiating",
+                "Using OOML.Array",
+                "Array attachment",
             ],
         },
         {

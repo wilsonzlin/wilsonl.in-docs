@@ -5,15 +5,15 @@
 - Advanced features like abstract classes, constructors, serialisation and deserialisation, and factory methods are available
 - They are also JavaScript classes, making it very easy to use them in JavaScript logic
 
-Classes are declared using HTML templates in the HTML file:
+Classes are declared using HTML `template` tags in the HTML file:
 
 ```html
 <template ooml-class="MyClass"></template>
 ```
 
-`<template>` elements ensure faster processing as browsers that support it will not try to render the contents.
+`<template>` ensures faster processing as browsers that support it will not try to render the contents of it.
 
-Inside the template element, there are a few tags that describe the [properties](#Declaring properties) and [methods](#Using methods) of the class, and then the view of the class is laid out:
+Inside the tag, there are a few tags that describe the [properties](#Declaring properties) and [methods](#Using methods) of the class, and then the [view](#Declaring views) of the class is laid out:
 
 ```html
 <template ooml-class="MyClass">
@@ -40,4 +40,4 @@ Inside the template element, there are a few tags that describe the [properties]
 </template>
 ```
 
-If a class doesn't explicitly declare its parent (i.e. doesn't have `extends` in its `ooml-class` tag), it implicitly extends `OOML.Instance`. This means that `OOML.Instance` is the base class/type of all ooml classes.
+If a class doesn't explicitly declare its parent (i.e. doesn't have `extends` in its `ooml-class` attribute), it implicitly extends `OOML.Instance`. This means that `OOML.Instance` is the base class/type of all ooml classes.

@@ -4,7 +4,7 @@ ooml properties must have a default value. Generally, if you don't have a specif
 
 ## Primitive default values
 
-Examples of primitive default values:
+Only properties with a [primitive type](#Typing) can have a non-null primitive default value. Examples of primitive default values are:
 
 ```html
 <ooml-property name="myProp">null</ooml-property>
@@ -58,9 +58,9 @@ Because the value is inferred by evaluating the tag contents as JavaScript, stri
 </ooml-property>
 
 <!-- INVALID -->
-<ooml-property name="myProp">"The HTML4 & HTML5 tag for paragraphs is <p />"</ooml-property>
+<ooml-property name="myProp">"Are 4 & 5 < 6?"</ooml-property>
 <!-- Should be -->
-<ooml-property name="myProp">"The HTML4 &amp; HTML5 tag for paragraphs is &lt;p /&gt;"</ooml-property>
+<ooml-property name="myProp">"Are 4 &amp; 5 &lt; 6?"</ooml-property>
 ```
 
 Ensure that string values are quoted; there is a slim possibility that ooml cannot pickup that it is invalid, and that is when the default value is the name of global variable. In the next example, the default value of `myProp` is `"global string"`, *not* `"oops"`:
@@ -76,3 +76,8 @@ Ensure that string values are quoted; there is a slim possibility that ooml cann
 ```
 
 ## Instance and array default values
+
+Only properties with a class type can declare their default values using JSON. Their default values can also be null. If they are not null:
+
+- For [array properties](#Array properties), the topmost level of the JSON structure must be a JSON array
+- Otherwise, the topmost level of the JSON structure must be a JSON object

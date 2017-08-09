@@ -1,3 +1,4 @@
-**Objects** represent these instances in JavaScript logic. They hold the state of the instance, and abstract away the underlying DOM logic.
-
-Properties
+- JS Constructor
+- Assignment from object literal (conversion, not original reference)
+- Assignment from ooml instance
+- `ooml-instantiate`
