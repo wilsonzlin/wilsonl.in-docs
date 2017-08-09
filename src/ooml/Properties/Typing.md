@@ -29,3 +29,5 @@ Union types cannot have class subtypes. They also cannot have any duplicate or o
 Since union types can only be composed of primitive subtypes, they are also primitive types themselves. A union type is still interpreted as one atomic type.
 
 If a property does not have a type declaration, it has the default type of `number|string|boolean|null`, i.e. it takes primitive values only.
+
+The [default value](#Default property values) of a property must be compatible with the type of the property.

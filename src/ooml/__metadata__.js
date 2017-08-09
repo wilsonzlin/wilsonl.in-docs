@@ -9,10 +9,10 @@ module.exports = {
             entries: [
                 "Welcome",
                 "About ooml",
-                "Compatibility and support", // 1) Browser support. 2) Reporting bugs and ideas. 3) Webpack, browserify, require, babel (no need). 4) Building from source.
+                "Compatibility and support", // 1) Version lifespan and development cycle. 2) Reporting bugs and ideas.
                 "Core principles",
                 "How it works",
-                "Environment, setup and usage",
+                "Environment, setup and usage", // 1) Webpack, browserify, require, babel (no need). 2) Building from source.
                 "Terminology",
             ],
         },
@@ -20,6 +20,7 @@ module.exports = {
             name: "Namespaces",
             entries: [
                 "Declaring namespaces",
+                "Parsing and JavaScript representation",
             ],
         },
         {
@@ -31,8 +32,7 @@ module.exports = {
                 "View extension",
                 "Serialisation and deserialisation",
                 "Constructors",
-                "Instance dispatch events",
-                "Instance mutation events",
+                "Dispatch events",
             ],
         },
         {
@@ -42,6 +42,8 @@ module.exports = {
                 "Default property values",
                 "Typing",
                 "Transient properties",
+                "Array properties",
+                "Attribute properties",
                 "Getters, setters, and change listeners",
                 "Binding",
             ],
@@ -71,14 +73,13 @@ module.exports = {
             entries: [
                 "Instantiating", // ooml-instantiate and new SomeClass(initState)
                 "Initial state",
+                "Attachment",
             ]
         },
         {
             name: "Arrays",
             entries: [
                 "Instantiating",
-                "Instance dispatch events",
-                "Instance mutation events",
             ],
         },
         {
@@ -91,11 +92,12 @@ module.exports = {
         {
             name: "Additional information",
             entries: [
-                "Older versions",
-                "Exceptions",
+                "External event handlers",
+                "Errors",
                 "Identifiers", // Recommendations and restrictions on names for attributes, properties, methods, and classes
                 "Abstractions", // Topics: 1) Don't be stupid. 2) Don't try to circumvent OOML. 3) Things that might trip you up (e.g. setTimeout on attrs). 4) There's probably a way to do it -- it's your fault.
                 "Pitfalls", // 1) Single-line comments in ooml methods will break the method if the HTML is minified. 2) Escape HTML special chars in default values, inline code and method functions.
+                "Older versions",
             ]
         },
         {
