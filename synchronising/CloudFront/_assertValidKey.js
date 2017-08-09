@@ -1,8 +1,8 @@
 "use strict";
 
 const _assertValidKey = key => {
-    if (key[0] != '/') {
-        throw new SyntaxError("CloudFront keys must start with a forward slash");
+    if (typeof key != "string" || key[0] != '/') {
+        throw new SyntaxError(`CloudFront keys must be a string and start with a forward slash (got "${ key }")`);
     }
 };
 

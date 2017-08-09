@@ -17,7 +17,7 @@ const list = settings => {
         s3.listObjectsV2({
             Bucket: APP_AWS_RESOURCES_INFO.S3_BUCKET_NAME,
             Prefix: settings.prefix,
-            MaxKeys: 100000,
+            MaxKeys: settings.maxKeys || 100000,
         }, (err, data) => {
             if (err) {
                 reject(err);
