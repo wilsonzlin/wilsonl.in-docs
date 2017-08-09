@@ -2,9 +2,9 @@
 
 const Crypto = require('crypto');
 
-const hashStream = (hash, stream, metadata) => {
+const hashStream = (hashType, stream, metadata) => {
     return new Promise((resolve, reject) => {
-        let hash = Crypto.createHash(hash);
+        let hash = Crypto.createHash(hashType);
         let sha512 = "";
 
         hash.on('readable', () => {

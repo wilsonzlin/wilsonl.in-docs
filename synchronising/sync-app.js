@@ -100,7 +100,7 @@ list({
         let localFiles = new Set(localFileNames);
 
         function addS3ObjectToInvalidate(s3key) {
-            let invalidation = '/docs/' + s3key;
+            let invalidation = '/' + APP_URL_PATH_PREFIX + s3key;
             pathsToInvalidate.push(invalidation);
             if (/\/index\.html$/.test(invalidation)) {
                 pathsToInvalidate.push(Path.dirname(invalidation));
@@ -158,13 +158,14 @@ list({
     .then(answer => {
         if (answer.toLocaleLowerCase() != 'y') {
             console.log("Aborting...");
+            // WARNING: Script exits here
             process.exit(1);
         }
     })
     .then(() => {
         console.log("\n=============== DELETING FILES ===============\n");
         if (extraCloudFiles.length) {
-            return remove(...extraCloudFiles.map(f => `docs/${f}`));
+            return remove(...extraCloudFiles.map(f => APP_URL_PATH_PREFIX + f));
         }
     })
     .then(() => {
@@ -172,7 +173,7 @@ list({
         return Promise.all(missingCloudFiles.concat(hashMismatchCloudFiles).map(file => {
             return upload({
                 key: APP_URL_PATH_PREFIX + file,
-                dataStream: fs.createReadStream(__dirname + '/dist/' + file),
+                dataStream: fs.createReadStream(COMPILED_DIR + file),
                 contentType: ContentType(Path.extname(file)),
                 metadata: {
                     sha512: localHashes.get(file),
