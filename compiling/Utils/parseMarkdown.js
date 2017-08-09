@@ -26,6 +26,13 @@ const parseMarkdown = (mdText, removeParagraphTags, internalLinkCallback) => {
         return `<pre>${ html }</pre>`;
     };
 
+    renderer.heading = (text, level) => {
+        let ret = marked(text).slice(3, -5); // Remove <p> wrapping
+        ret = ret.replace(/ </g, "<zc-space /><").replace(/> /g, "><zc-space />");
+        let tag = `h${ level }`;
+        return `<${ tag }>${ ret }</${ tag }>`;
+    };
+
     renderer.paragraph = text => {
         let ret = marked(text);
         if (removeParagraphTags) {

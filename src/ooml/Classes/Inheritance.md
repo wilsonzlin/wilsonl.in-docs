@@ -36,4 +36,4 @@ To override a property or method, just declare it again:
 </template>
 ```
 
-The view of a class can also be inherited — see [View extension](#View extension) for more details.
+The view of a class can also be inherited — see [View extension](#View extension) for details.
