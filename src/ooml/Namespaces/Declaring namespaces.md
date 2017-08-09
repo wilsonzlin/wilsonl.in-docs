@@ -37,7 +37,7 @@ MyNamespace = new OOML.Namespace(`
 MyNamespace = new OOML.Namespace();
 ```
 
-If provided a DOM element, an error will be thrown if an ancestor or descendant of that element was used previously to construct an OOML.Namespace.  
+If provided a DOM element, an error will be thrown if an ancestor or descendant of that element was used previously to construct an ooml namespace.  
 
 For an app, generally only one namespace is needed.
 
