@@ -4,7 +4,7 @@
 - Allowing type declarations to ensure type safety at runtime
 - Preventing the assignment of properties that have not been declared
 
-To declare a property called "myProp" in a class, use an `ooml-property` tag:
+To declare a property called "myProp" for a class, use an `ooml-property` tag:
 
 ```html
 <template ooml-class="MyClass">

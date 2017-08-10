@@ -50,6 +50,7 @@ module.exports = {
         {
             name: "Methods",
             entries: [
+                "Declaring methods",
                 "Using methods",
                 "Static methods",
                 "Factory methods",
