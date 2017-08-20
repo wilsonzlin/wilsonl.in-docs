@@ -10,7 +10,7 @@ module.exports = {
                 "Welcome",
                 "About ooml",
                 "Core principles",
-                "Compatibility and support", // 1) Version lifespan and development cycle. 2) Reporting bugs and ideas.
+                "Compatibility and versioning",
                 "Environment, setup and usage", // 1) Webpack, browserify, require, babel (no need). 2) Building from source.
                 "Terminology",
             ],

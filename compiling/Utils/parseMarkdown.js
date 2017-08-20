@@ -57,7 +57,8 @@ const parseMarkdown = (mdText, removeParagraphTags, internalLinkCallback) => {
         } else {
             href = internalLinkCallback(href.slice(1));
         }
-        html += 'href="' + escapeHTML(href) + '" ';
+        // Don't need to escape href, as it already is by renderer
+        html += 'href="' + href + '" ';
 
         title = (title || "").trim();
         if (title) {
@@ -72,7 +73,9 @@ const parseMarkdown = (mdText, removeParagraphTags, internalLinkCallback) => {
         return html;
     };
 
-    return marked(mdText, { renderer: renderer });
+    return marked(mdText, {
+        renderer: renderer,
+    });
 };
 
 module.exports = parseMarkdown;
