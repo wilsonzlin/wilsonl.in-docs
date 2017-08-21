@@ -1,6 +1,8 @@
 "use strict";
 
 const createURLPathComponent = path => {
+    path = "" + path;
+
     // Allowed: $ .
     path = path.replace(/[`~!@#%\^&\*\(\)\+=\{\}\[\]\|\\:;'"<>\?,\/]/g, '');
     path = path.replace(/ /g, '-');

@@ -1,14 +1,10 @@
 "use strict";
 
-const ARTICLE_TYPE_REFERENCE = "reference";
-const ARTICLE_TYPE_CONTENT = "content";
-
 const fs = require('fs-extra');
 const zc = require('zcompile');
 const parseMarkdown = require('./Utils/parseMarkdown');
 const parseTypedCodeLine = require('./Utils/parseTypedCodeLine');
-const sortOrderPrefixedFilenames = require('./Utils/sortOrderPrefixedFilenames');
-const createURLPathComponent = require('./Utils/createURLPathComponent');
+const loadDocumentation = require('./Utils/loadDocumentation');
 
 const ContentArticle = require('./Views/ContentArticle');
 const HeaderDocumentationsListItem = require('./Views/HeaderDocumentationsListItem');
@@ -20,273 +16,138 @@ const ReferenceArticleArgument = require('./Views/ReferenceArticleArgument');
 const ReferenceArticleReturn = require('./Views/ReferenceArticleReturn');
 const ReferenceArticleSignature = require('./Views/ReferenceArticleSignature');
 
-// All directory paths should have a trailing slash
-const PROJECT_DIR = __dirname + '/../';
-const SOURCE_DIR = PROJECT_DIR + 'src/';
-const INTERMEDIATE_DIR = PROJECT_DIR + 'tmp/';
-const OUTPUT_DIR = PROJECT_DIR + 'dist/';
+const {
 
-const URL_PATH_PREFIX = '/docs';
+    SOURCE_DIR,
+    INTERMEDIATE_DIR,
+    OUTPUT_DIR,
 
-const DOCUMENTATION_NAMES = ['ooml', 'zQuery'];
-const METADATA_FILE_NAME = '__metadata__.js';
+    DOCUMENTATION_NAMES,
+
+    ARTICLE_TYPE_CONTENT,
+    ARTICLE_TYPE_REFERENCE,
+
+    URL_PATH_PREFIX,
+
+} = require('./constants');
 
 // Ensure clean intermediate and output directories
 fs.removeSync(INTERMEDIATE_DIR);
 fs.removeSync(OUTPUT_DIR);
 
-let documentations = DOCUMENTATION_NAMES.map(documentationName => {
-    let documentationSourceDir = SOURCE_DIR + documentationName + '/';
-    let documentationMetadata = require(documentationSourceDir + METADATA_FILE_NAME);
-    let documentationLandingArticle = documentationMetadata.landingArticle;
-    let documentationCategories = documentationMetadata.categories;
-
-    return Object.freeze({
-        name: documentationName,
-        landingArticle: Object.freeze(documentationLandingArticle),
-        categories: documentationCategories.map(category => {
-            let categoryName = category.name;
-            let categorySourceDir = documentationSourceDir + categoryName + '/';
-            let categoryEntries = category.entries;
-
-            let extraneousFilesInCategorySourceDir = new Set(fs.readdirSync(categorySourceDir));
-
-            let processedEntries = categoryEntries.map(entryName => {
-                let entryFilename = entryName + '.md';
-                let entryFilePath = categorySourceDir + entryFilename;
-                extraneousFilesInCategorySourceDir.delete(entryFilename);
-
-                let stats;
-                try {
-                    stats = fs.lstatSync(entryFilePath);
-                } catch (e) {
-                    if (e.code === 'ENOENT') {
-                        console.warn(entryFilePath + ' not found, creating...');
-                        fs.writeFileSync(entryFilePath, '');
-                        stats = fs.lstatSync(entryFilePath);
-                    }
-                }
-
-                if (stats.isDirectory()) {
-                    // If it's a directory, then it's a reference article
-                    let entrySourceDir = entryFilePath + '/';
-
-                    let description = fs.readFileSync(entrySourceDir + 'description.txt', 'utf8').trim();
-
-                    let signatures = [];
-                    if (fs.existsSync(entrySourceDir + 'signatures')) {
-                        signatures = fs.readdirSync(entrySourceDir + 'signatures').filter(p => /\.txt$/.test(p)).sort(sortOrderPrefixedFilenames).map(f => {
-                            let code = fs.readFileSync(entrySourceDir + 'signatures/' + f, 'utf8');
-
-                            return Object.freeze({
-                                definition: code,
-                            });
-                        });
-                    }
-
-                    let parameters = [];
-                    if (fs.existsSync(entrySourceDir + 'arguments')) {
-                        parameters = fs.readdirSync(entrySourceDir + 'arguments').filter(p => /\.md/.test(p)).sort(sortOrderPrefixedFilenames).map(f => {
-                            let name = f.slice(f.indexOf('.') + 1, f.lastIndexOf('.'));
-                            let markdown = fs.readFileSync(entrySourceDir + 'arguments/' + f, 'utf8');
-
-                            return Object.freeze({
-                                name: name,
-                                definition: markdown,
-                            });
-                        });
-                    }
-
-                    let returns = [];
-                    if (fs.existsSync(entrySourceDir + 'returns')) {
-                        returns = fs.readdirSync(entrySourceDir + 'returns').filter(p => /\.md/.test(p)).sort(sortOrderPrefixedFilenames).map(f => {
-                            let markdown = fs.readFileSync(entrySourceDir + 'returns/' + f, 'utf8');
-
-                            return Object.freeze({
-                                definition: markdown,
-                            });
-                        });
-                    }
-
-                    return Object.freeze({
-                        name: entryName,
-                        type: ARTICLE_TYPE_REFERENCE,
-                        description: description,
-                        signatures: signatures,
-                        parameters: parameters,
-                        returns: returns,
-                    });
-
-                } else {
-                    // Otherwise, it's a content article
-                    let content = fs.readFileSync(entryFilePath, 'utf8');
-
-                    return Object.freeze({
-                        name: entryName,
-                        type: ARTICLE_TYPE_CONTENT,
-                        content: content,
-                    });
-                }
-            });
-
-            if (extraneousFilesInCategorySourceDir.size > 0) {
-                throw new Error(`Extraneous files in "${ categoryName }": ${ Array.from(extraneousFilesInCategorySourceDir).join(', ') }`);
-            }
-
-            return Object.freeze({
-                name: categoryName,
-                entries: processedEntries,
-            });
-        }),
-    });
-});
-
 let generatedHtmlFiles = [];
+let redirects = [];
 
-for (let documentation of documentations) {
-    let documentationName = documentation.name;
-    let documentationLandingArticle = documentation.landingArticle;
-    let documentationCategories = documentation.categories;
+for (let documentationName of DOCUMENTATION_NAMES) {
+    let versions = loadDocumentation(documentationName);
 
-    let documentationsListItemsHtml = documentations.map(d => HeaderDocumentationsListItem({
-        name: d.name,
-        url: `${ URL_PATH_PREFIX }/${ d.name }`,
-        isActive: documentationName == d.name,
+    // Regenerate the documentations list for every documentation name, as isActive changes each time
+    let documentationsListItemsHtml = DOCUMENTATION_NAMES.map(d => HeaderDocumentationsListItem({
+        name: d,
+        // TODO Refactor so that it gets proper path for Documentation.urlDirPath
+        url: URL_PATH_PREFIX + '/' + d,
+        isActive: documentationName === d,
     })).join('');
 
-    let articlePathsRelToUrlPrefix = Object.create(null);
-    for (let category of documentationCategories) {
-        let categoryName = category.name;
-        let categoryEntries = category.entries;
+    for (let doc of versions) {
 
-        if (!articlePathsRelToUrlPrefix[categoryName]) {
-            articlePathsRelToUrlPrefix[categoryName] = Object.create(null);
-        }
+        // Called when a link in a documentation is an internal one
+        let internalLinkCallback = id => {
 
-        for (let entry of categoryEntries) {
-            let entryName = entry.name;
-
-            // Don't put trailing slash at end of directory path, as this is used for all the URLs
-            let articleDirRelPath = ['', documentationName, createURLPathComponent(categoryName), createURLPathComponent(entryName)].join('/');
-            articlePathsRelToUrlPrefix[categoryName][entryName] = {
-                file: articleDirRelPath + '/index.html',
-                directory: articleDirRelPath,
-            };
-        }
-    }
-
-    let internalLinkCallback = id => {
-        let category;
-        let entry;
-        documentationCategories.some(c => {
-            return c.entries.some(e => {
-                if (e.name == id) {
-                    category = c.name;
-                    entry = e.name;
-
-                    return true;
+            for (let article of doc.articles) {
+                if (article.name === id) {
+                    return URL_PATH_PREFIX + article.urlDirPath;
                 }
-            });
-        });
-
-        if (!category) {
-            throw new ReferenceError(`Non-existent internal link reference "${ id }"`);
-        }
-
-        return URL_PATH_PREFIX + articlePathsRelToUrlPrefix[category][entry].directory;
-    };
-
-    let documentationLandingArticleCategory = documentationLandingArticle.category;
-    let documentationLandingArticleEntry = documentationLandingArticle.entry;
-
-    fs.ensureDirSync(INTERMEDIATE_DIR + documentationName);
-    fs.writeFileSync(INTERMEDIATE_DIR + documentationName + '/index.html', `
-        <meta http-equiv="refresh" content="0; URL=${ URL_PATH_PREFIX + articlePathsRelToUrlPrefix[documentationLandingArticleCategory][documentationLandingArticleEntry].directory }">
-    `);
-    generatedHtmlFiles.push(documentationName + '/index.html');
-
-    for (let category of documentationCategories) {
-        let categoryName = category.name;
-        let categoryEntries = category.entries;
-
-        for (let entry of categoryEntries) {
-            let entryName = entry.name;
-            let entryType = entry.type;
-
-            let articleHtml;
-
-            if (entryType == ARTICLE_TYPE_REFERENCE) {
-
-                let { description, signatures, parameters, returns } = entry;
-
-                let signaturesHtml = signatures.map(s => ReferenceArticleSignature(parseTypedCodeLine(s.definition))).join('');
-
-                let argumentsHtml = parameters.map(p => ReferenceArticleArgument(p.name, parseMarkdown(p.definition, true, internalLinkCallback))).join('');
-
-                let returnsHtml = returns.map(r => ReferenceArticleReturn(parseMarkdown(r.definition, true, internalLinkCallback))).join('');
-
-                articleHtml = ReferenceArticle({
-                    category: categoryName,
-                    name: entryName,
-                    description: description,
-                    signaturesHtml: signaturesHtml,
-                    argumentsHtml: argumentsHtml,
-                    returnsHtml: returnsHtml,
-                });
-
-            } else if (entryType == ARTICLE_TYPE_CONTENT) {
-
-                let { content } = entry;
-
-                let contentHtml = parseMarkdown(content, false, internalLinkCallback);
-
-                articleHtml = ContentArticle({
-                    category: categoryName,
-                    name: entryName,
-                    contentHtml: contentHtml,
-                });
-
-            } else {
-                throw new Error(`Unrecognised article type "${ entryType }"`);
             }
 
-            // Yes, this is inefficient
-            let tocCategoriesHtml = "";
-            for (let tocCategory of documentationCategories) {
-                let tocCategoryName = tocCategory.name;
-                let tocCategoryEntries = tocCategory.entries;
+            if (!category) {
+                throw new ReferenceError(`Non-existent internal link reference "${ id }"`);
+            }
+        };
 
+        let landingArticle = doc.getLandingArticle();
+
+        // Add redirect from "/ooml/14/1" to "/ooml/14/1/Introduction/Welcome"
+        redirects.push({
+            from: doc.urlDirPath,
+            to: landingArticle.urlDirPath,
+            // Make it so that "/ooml/14/1" and "/ooml/14/1/" both redirect
+            coverAllTrailingSlashes: true,
+        });
+
+        for (let article of doc.articles) {
+
+            // Regenerate the table of contents for every article, as isActive changes every time
+            let tocCategoriesHtml = "";
+
+            for (let tocCategoryName of doc.orderOfCategories) {
                 let tocCategoryEntriesHtml = "";
 
-                for (let tocEntry of tocCategoryEntries) {
+                for (let tocEntry of doc.articlesByCategory.get(tocCategoryName)) {
                     let tocEntryName = tocEntry.name;
                     let tocEntryDescription = tocEntry.description || tocEntryName;
-                    let tocArticlePathRelToUrlPrefix = articlePathsRelToUrlPrefix[tocCategoryName][tocEntryName].directory;
+                    let tocArticlePathRelToUrlPrefix = tocEntry.urlDirPath;
 
                     tocCategoryEntriesHtml += PaneTocCategoryEntry({
                         url: URL_PATH_PREFIX + tocArticlePathRelToUrlPrefix,
                         name: tocEntryName,
                         description: tocEntryDescription,
-                        isActive: tocCategoryName == categoryName && entryName == tocEntryName,
+                        isActive: tocCategoryName == article.category && article.name == tocEntryName,
                     });
                 }
 
                 tocCategoriesHtml += PaneTocCategory(tocCategoryName, tocCategoryEntriesHtml);
             }
 
-            let articlePathRelToUrlPrefix = articlePathsRelToUrlPrefix[categoryName][entryName];
+            let articleHtml;
+
+            if (article.type == ARTICLE_TYPE_REFERENCE) {
+
+                let signaturesHtml = article.signatures.map(s => ReferenceArticleSignature(parseTypedCodeLine(s.definition))).join('');
+
+                let argumentsHtml = article.parameters.map(p => ReferenceArticleArgument(p.name, parseMarkdown(p.definition, true, internalLinkCallback))).join('');
+
+                let returnsHtml = article.returns.map(r => ReferenceArticleReturn(parseMarkdown(r.definition, true, internalLinkCallback))).join('');
+
+                articleHtml = ReferenceArticle({
+                    category: article.category,
+                    name: article.name,
+                    description: description,
+                    signaturesHtml: signaturesHtml,
+                    argumentsHtml: argumentsHtml,
+                    returnsHtml: returnsHtml,
+                });
+
+            } else if (article.type == ARTICLE_TYPE_CONTENT) {
+
+                let contentHtml = parseMarkdown(article.content, false, internalLinkCallback);
+
+                articleHtml = ContentArticle({
+                    category: article.category,
+                    name: article.name,
+                    contentHtml: contentHtml,
+                });
+
+            } else {
+
+                throw new Error(`Unrecognised article type "${ entryType }"`);
+
+            }
 
             let pageHtml = Page({
-                url: URL_PATH_PREFIX + articlePathRelToUrlPrefix.directory,
-                viewportTitle: `${ entryName } | ${ documentationName }`,
+                url: URL_PATH_PREFIX + article.urlDirPath,
+                viewportTitle: `${ article.name } | ${ documentationName }`,
                 documentationsListItemsHtml: documentationsListItemsHtml,
                 tocCategoriesHtml: tocCategoriesHtml,
                 articleHtml: articleHtml,
             });
 
-            fs.ensureDirSync(INTERMEDIATE_DIR + articlePathRelToUrlPrefix.directory);
-            fs.writeFileSync(INTERMEDIATE_DIR + articlePathRelToUrlPrefix.file, pageHtml);
-            generatedHtmlFiles.push(articlePathRelToUrlPrefix.file);
+            let articleUrlFilePath = article.urlDirPath + '/index.html';
+
+            fs.ensureDirSync(INTERMEDIATE_DIR + article.urlDirPath);
+            fs.writeFileSync(INTERMEDIATE_DIR + articleUrlFilePath, pageHtml);
+            generatedHtmlFiles.push(articleUrlFilePath);
+
         }
     }
 }
@@ -319,5 +180,7 @@ zc({
     },
     files: generatedHtmlFiles,
 });
+
+fs.writeJsonSync(OUTPUT_DIR + 'redirects.json', redirects);
 
 fs.removeSync(INTERMEDIATE_DIR);
