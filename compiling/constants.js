@@ -9,9 +9,11 @@ const SOURCE_DIR = PROJECT_DIR + 'src/';
 const INTERMEDIATE_DIR = PROJECT_DIR + 'tmp/';
 const OUTPUT_DIR = PROJECT_DIR + 'dist/';
 
+// URL path prefix should not have trailing slash,
+// as all urlDirPath values have leading slash
 const URL_PATH_PREFIX = '/docs';
 
-const DOCUMENTATION_NAMES = ['ooml', 'zQuery'];
+const DOCUMENTATION_NAMES = ['ooml'];
 const METADATA_FILE_NAME = '__metadata__.js';
 
 module.exports = Object.freeze({

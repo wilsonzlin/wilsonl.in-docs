@@ -5,6 +5,7 @@ const zc = require('zcompile');
 const parseMarkdown = require('./Utils/parseMarkdown');
 const parseTypedCodeLine = require('./Utils/parseTypedCodeLine');
 const loadDocumentation = require('./Utils/loadDocumentation');
+const createURLPathComponent = require('./Utils/createURLPathComponent');
 
 const ContentArticle = require('./Views/ContentArticle');
 const HeaderDocumentationsListItem = require('./Views/HeaderDocumentationsListItem');
@@ -40,12 +41,34 @@ let redirects = [];
 
 for (let documentationName of DOCUMENTATION_NAMES) {
     let versions = loadDocumentation(documentationName);
+    let latestVersionDoc = Array.from(versions).sort((a, b) => {
+        if (a.major < b.major) {
+            return -1;
+        }
+        if (a.major === b.major) {
+            if (a.minor < b.minor) {
+                return -1;
+            }
+            if (a.minor === b.minor) {
+                return 0;
+            }
+        }
+        return 1;
+    }).pop();
+
+    let documentationNoVersionUrlPath = URL_PATH_PREFIX + '/' + createURLPathComponent(documentationName) + '/';
+    // Redirect from "/ooml/" to "/ooml/14/1/"
+    redirects.push({
+        from: documentationNoVersionUrlPath,
+        to: latestVersionDoc.urlDirPath,
+        // Make it so that "/ooml" and "/ooml/" both redirect
+        coverAllTrailingSlashes: true,
+    });
 
     // Regenerate the documentations list for every documentation name, as isActive changes each time
     let documentationsListItemsHtml = DOCUMENTATION_NAMES.map(d => HeaderDocumentationsListItem({
         name: d,
-        // TODO Refactor so that it gets proper path for Documentation.urlDirPath
-        url: URL_PATH_PREFIX + '/' + d,
+        url: URL_PATH_PREFIX + '/' + createURLPathComponent(d) + '/',
         isActive: documentationName === d,
     })).join('');
 
@@ -67,7 +90,7 @@ for (let documentationName of DOCUMENTATION_NAMES) {
 
         let landingArticle = doc.getLandingArticle();
 
-        // Add redirect from "/ooml/14/1" to "/ooml/14/1/Introduction/Welcome"
+        // Add redirect from "/ooml/14/1/" to "/ooml/14/1/Introduction/Welcome/"
         redirects.push({
             from: doc.urlDirPath,
             to: landingArticle.urlDirPath,
@@ -142,7 +165,7 @@ for (let documentationName of DOCUMENTATION_NAMES) {
                 articleHtml: articleHtml,
             });
 
-            let articleUrlFilePath = article.urlDirPath + '/index.html';
+            let articleUrlFilePath = article.urlDirPath + 'index.html';
 
             fs.ensureDirSync(INTERMEDIATE_DIR + article.urlDirPath);
             fs.writeFileSync(INTERMEDIATE_DIR + articleUrlFilePath, pageHtml);
@@ -180,7 +203,5 @@ zc({
     },
     files: generatedHtmlFiles,
 });
-
-fs.writeJsonSync(OUTPUT_DIR + 'redirects.json', redirects);
 
 fs.removeSync(INTERMEDIATE_DIR);

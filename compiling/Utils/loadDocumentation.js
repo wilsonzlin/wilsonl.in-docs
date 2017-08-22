@@ -55,7 +55,8 @@ class Article {
         this.name = name;
 
         let pathComponents = [category, name];
-        this.urlDirPath = documentation.urlDirPath + '/' + pathComponents.map(createURLPathComponent).join('/');
+        // urlDirPath must have trailing slash, as S3 Website will redirect no-trailing-slash to trailing-slash
+        this.urlDirPath = documentation.urlDirPath + pathComponents.map(createURLPathComponent).join('/') + '/';
     }
 }
 
@@ -104,7 +105,8 @@ class Documentation {
         this.articlesByCategory = new Map();
 
         this.articles = new Set();
-        this.urlDirPath = '/' + [name, major, minor].map(createURLPathComponent).join('/');
+        // urlDirPath must have trailing slash, as S3 Website will redirect no-trailing-slash to trailing-slash
+        this.urlDirPath = '/' + [name, major, minor].map(createURLPathComponent).join('/') + '/';
 
         Object.seal(this);
     }

@@ -12,7 +12,7 @@ server.use(compression());
 server.use(APP_URL_PATH_PREFIX, express.static(__dirname + '/dist', {
     dotfiles: "allow",
     index: "index.html",
-    redirect: true,
+    redirect: false,
 }));
 
 server.get('/', (req, res) => {
