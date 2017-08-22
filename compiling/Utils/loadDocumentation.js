@@ -167,6 +167,22 @@ const loadDocumentation = (documentationName) => {
             let orderOfCategories = metadata.categories.map(c => c.name);
             doc.setCategories(orderOfCategories);
 
+            let substituteVariables = content => {
+                return content
+                    .replace(/<VAR\[([A-Z0-9\-_]+)\]>/g, (_, variableName) => {
+                        switch (variableName) {
+                            case "VERSION-MAJOR":
+                                return majorNumber;
+
+                            case "VERSION-MINOR":
+                                return minorNumber;
+
+                            default:
+                                throw new ReferenceError(`Unrecognised variable "${ variableName }"`);
+                        }
+                    });
+            };
+
             metadata.categories.forEach(categoryMetadata => {
                 let categoryName = categoryMetadata.name;
                 let categorySourceDir = minorSourceDir + categoryName + '/';
@@ -240,7 +256,7 @@ const loadDocumentation = (documentationName) => {
 
                         article = new ContentArticle(doc, categoryName, entryName);
 
-                        article.content = fs.readFileSync(entryFSPath, 'utf8');
+                        article.content = substituteVariables(fs.readFileSync(entryFSPath, 'utf8'));
                     }
 
                     doc.addArticle(article);

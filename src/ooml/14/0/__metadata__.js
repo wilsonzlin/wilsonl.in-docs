@@ -98,7 +98,6 @@ module.exports = {
                 "Identifiers", // Recommendations and restrictions on names for attributes, properties, methods, and classes
                 "Abstractions", // Topics: 1) Don't be stupid. 2) Don't try to circumvent OOML. 3) Things that might trip you up (e.g. setTimeout on attrs). 4) There's probably a way to do it -- it's your fault.
                 "Pitfalls", // 1) Single-line comments in ooml methods will break the method if the HTML is minified. 2) Escape HTML special chars in default values, inline code and method functions.
-                "Older versions",
             ]
         },
         {

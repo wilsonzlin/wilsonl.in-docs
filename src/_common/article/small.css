@@ -1,22 +1,11 @@
 #article {
     padding: 1rem;
-    /* Although unlikely, if an article has no/near no content, #article width collapses */
+    /* Although unlikely, if an article has no/almost no content, #article width collapses */
     width: 100%;
 }
 
 #article .category {
     display: block;
-}
-
-#article > header > h1 {
-    margin: 0 0 1rem 0;
-}
-
-#article p,
-#article pre,
-#article dl,
-#article ul {
-    margin: 0 0 0.75rem 0;
 }
 
 #article dd {

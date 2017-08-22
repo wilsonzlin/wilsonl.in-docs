@@ -24,17 +24,23 @@ Because the value is inferred by evaluating the tag contents as JavaScript, stri
 <ooml-property name="myProp">default string</ooml-property>
 <!-- Should be -->
 <ooml-property name="myProp">"default string"</ooml-property>
+```
 
+```html
 <!-- INVALID -->
 <ooml-property name="myProp">"And they said, "let there be light""</ooml-property>
 <!-- Should be -->
 <ooml-property name="myProp">"And they said, \"let there be light\""</ooml-property>
+```
 
+```html
 <!-- INVALID -->
 <ooml-property name="myProp">"C:\Windows\system32\"</ooml-property>
 <!-- Should be -->
 <ooml-property name="myProp">"C:\\Windows\\system32\\"</ooml-property>
+```
 
+```html
 <!-- INVALID -->
 <ooml-property name="myProp">"
     Roses are red
@@ -56,7 +62,9 @@ Because the value is inferred by evaluating the tag contents as JavaScript, stri
     "Insert rest of quote\n" +
     "here"
 </ooml-property>
+```
 
+```html
 <!-- INVALID -->
 <ooml-property name="myProp">"Are 4 & 5 < 6?"</ooml-property>
 <!-- Should be -->
