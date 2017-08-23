@@ -4,7 +4,7 @@ const express = require('express');
 const compression = require('compression');
 
 const SERVER_PORT = 3072;
-const APP_URL_PATH_PREFIX = '/docs';
+const APP_URL_PATH_PREFIX = '/docs/';
 
 let server = express();
 

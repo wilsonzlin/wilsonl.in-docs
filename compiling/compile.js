@@ -83,9 +83,7 @@ for (let documentationName of DOCUMENTATION_NAMES) {
                 }
             }
 
-            if (!category) {
-                throw new ReferenceError(`Non-existent internal link reference "${ id }"`);
-            }
+            throw new ReferenceError(`Non-existent internal link reference "${ id }"`);
         };
 
         let landingArticle = doc.getLandingArticle();

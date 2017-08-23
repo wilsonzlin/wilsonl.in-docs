@@ -13,7 +13,7 @@ ooml's versioning follows [semver](http://semver.org/). For example, with versio
 - **9** is the minor number
 - **33** is the patch number
 
-When comparing two version identifiers:
+When comparing two versions:
 
 - A change in the major number denotes that there are incompatible differences between them.
 - A change in the minor number but not the major number usually denotes that new features were added in the greater version.

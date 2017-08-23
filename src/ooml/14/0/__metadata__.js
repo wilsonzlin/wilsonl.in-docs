@@ -8,8 +8,6 @@ module.exports = {
             name: "Introduction",
             entries: [
                 "Welcome",
-                "About ooml",
-                "Core principles",
                 "Compatibility and versioning",
                 "Environment, setup and usage", // 1) Webpack, browserify, require, babel (no need). 2) Building from source.
                 "Terminology",
@@ -19,6 +17,9 @@ module.exports = {
             name: "Namespaces",
             entries: [
                 "Declaring namespaces",
+                "Initialising namespaces",
+                "Imports",
+                "Initial instantiations",
                 "Parsing and JavaScript representation",
             ],
         },
