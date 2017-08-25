@@ -9,8 +9,7 @@ module.exports = {
             entries: [
                 "Welcome",
                 "Compatibility and versioning",
-                "Environment, setup and usage", // 1) Webpack, browserify, require, babel (no need). 2) Building from source.
-                "Terminology",
+                "Environment, setup, and usage",
             ],
         },
         {
@@ -19,8 +18,8 @@ module.exports = {
                 "Declaring namespaces",
                 "Initialising namespaces",
                 "Imports",
-                "Initial instantiations",
                 "Parsing and JavaScript representation",
+                "Initial instantiations",
             ],
         },
         {

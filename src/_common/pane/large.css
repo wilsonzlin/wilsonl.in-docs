@@ -1,15 +1,6 @@
 #pane {
     padding: 2rem;
     width: 18rem;
-
-    opacity: 0.25;
-    filter: blur(2px);
-    transition: opacity 0.2s;
-}
-
-#pane:hover {
-    opacity: 1;
-    filter: none;
 }
 
 .toc-category-entry:hover {

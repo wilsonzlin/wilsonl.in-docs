@@ -1,6 +1,6 @@
 After a namespace has been declared, the next step is for it to be parsed, otherwise it's just some plain text in some weird tags.
 
-Namespaces are created by initialising a new OOML.Namespace instance with the DOM element containing the ooml class declarations.
+Namespaces are created by initialising a new `OOML.Namespace` instance with the DOM element containing the ooml class declarations.
 
 Here is an example of a namespace containing two (empty) classes:
 
@@ -27,13 +27,13 @@ let MyNamespace;
 // Provide the selector directly
 MyNamespace = new OOML.Namespace("#my-namespace");
 
-// Provide the HTML directly (note: the containing element should not be provided)
+// Provide the HTML directly (note: the container tag should not be provided)
 MyNamespace = new OOML.Namespace(`
     <template ooml-class="Class1"></template>
     <template ooml-class="Class2"></template>
 `);
 
-// Use document.body
+// Use document.body by default
 MyNamespace = new OOML.Namespace();
 ```
 

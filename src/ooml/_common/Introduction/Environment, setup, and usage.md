@@ -15,7 +15,6 @@ Every version of ooml is available directly from a CDN. They can be accessed usi
 
 Alternatively, ooml also available as a package on [npm](https://www.npmjs.com/package/ooml) and [yarn](https://yarn.fyi/ooml) (both point to the same package). The ooml.js file is located at `dist/ooml.js` in the package; it is already minified and optimised, and can be loaded directly in the browser. ooml is compatible with most bundling and loader tools.
 
-Directions for compiling ooml.js from source is described on the [project's README on GitHub](https://github.com/lerouche/ooml).
+Directions for compiling ooml.js from source can be found on the [project's README on GitHub](https://github.com/lerouche/ooml).
 
-ooml has no dependencies, and does not require the use of any specific tool or toolchain.
-However, ooml's requirement that all classes be declared in one tag may not be desired. To help with this, [zc](https://wilsonl.in/zc/) (another project) is a preprocessor that can combine multiple files and run optimisations, essentially acting as a bundler. This allows a namespace declaration to be broken up into separate, self-containing files.
+ooml has no dependencies, and does not require the use of any specific tool or toolchain. However, ooml's requirement that all classes be declared in one file may not be desired. To help with this, [zc](https://wilsonl.in/zc/) (another project) is a preprocessor that can combine multiple files and run optimisations, essentially acting as a bundler. This allows a namespace declaration to be broken up into separate, self-containing folders and/or files. This is described on the [Using with zc](https://wilsonl.in/ooml/guides/using-with-zc/) ooml guide.

@@ -68,7 +68,13 @@ const parseMarkdown = (mdText, removeParagraphTags, internalLinkCallback) => {
         html += '>';
         if (text) {
             // No need to escape text, as it already is by renderer
-            html += text;
+            // OVERRIDE: Unless text is HTML code, then it doesn't escape it,
+            // as direct HTML is allowed in Markdown
+            if (text[0] == '<') {
+                html += escapeHTML(text);
+            } else {
+                html += text;
+            }
         }
         html += "</a>";
         return html;
