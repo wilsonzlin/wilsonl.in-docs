@@ -29,6 +29,7 @@ const {
     ARTICLE_TYPE_REFERENCE,
 
     URL_PATH_PREFIX,
+    REDIRECTS_MAP_JSON_PATH,
 
 } = require('./constants');
 
@@ -56,10 +57,9 @@ for (let documentationName of DOCUMENTATION_NAMES) {
         return 1;
     }).pop();
 
-    let documentationNoVersionUrlPath = URL_PATH_PREFIX + '/' + createURLPathComponent(documentationName) + '/';
     // Redirect from "/ooml/" to "/ooml/14/1/"
     redirects.push({
-        from: documentationNoVersionUrlPath,
+        from: '/' + createURLPathComponent(documentationName) + '/',
         to: latestVersionDoc.urlDirPath,
         // Make it so that "/ooml" and "/ooml/" both redirect
         coverAllTrailingSlashes: true,
@@ -201,5 +201,21 @@ zc({
     },
     files: generatedHtmlFiles,
 });
+
+let redirectsJson = {};
+for (let redirect of redirects) {
+    let { from, to, coverAllTrailingSlashes } = redirect;
+
+    if (coverAllTrailingSlashes) {
+        let noSlash = from.replace(/\/+$/, "");
+        let withSlash = noSlash + '/';
+
+        redirectsJson[URL_PATH_PREFIX + noSlash] = URL_PATH_PREFIX + to;
+        redirectsJson[URL_PATH_PREFIX + withSlash] = URL_PATH_PREFIX + to;
+    } else {
+        redirectsJson[URL_PATH_PREFIX + from] = URL_PATH_PREFIX + to;
+    }
+}
+fs.writeJsonSync(REDIRECTS_MAP_JSON_PATH, redirectsJson);
 
 fs.removeSync(INTERMEDIATE_DIR);
