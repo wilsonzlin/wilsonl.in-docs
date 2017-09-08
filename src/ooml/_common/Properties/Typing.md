@@ -24,7 +24,7 @@ Union types are allowed. Union types are composed of more than one primitive sub
 <ooml-property name="aStringOrNaturalProperty" type="string|natural">1.41</ooml-property>
 ```
 
-Union types cannot have class subtypes. They also cannot have any duplicate or overlapping types.
+Union types cannot have class subtypes. They also cannot have any duplicate or overlapping subtypes.
 
 Since union types can only be composed of primitive subtypes, they are also primitive types themselves. A union type is still interpreted as one atomic type.
 

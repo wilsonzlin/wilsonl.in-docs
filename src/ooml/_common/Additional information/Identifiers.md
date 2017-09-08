@@ -1,6 +1,4 @@
-An **identifier** is the name given to a property, method, or class.
-
-There are limitations on what an identifier can be.
+The name given to a property, method, or class is known as an **identifier**. There are limitations on what an identifier can be.
 
 An identifier cannot:
 

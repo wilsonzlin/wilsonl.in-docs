@@ -12,4 +12,4 @@ To declare a property called "myProp" for a class, use an `ooml-property` tag:
 </template>
 ```
 
-The name of the property is declared using the `name` attribute. It is recommended to use camelCase when naming properties. There are restrictions on names for properties and other identifiers — see [Identifiers](#Identifiers) for more details.
+The name of the property is declared using the `name` attribute. It is recommended to use [camelCase](https://en.wikipedia.org/wiki/Camel_case) when naming properties. There are restrictions on names for properties and other identifiers — see [Identifiers](#Identifiers) for more details.

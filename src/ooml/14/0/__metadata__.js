@@ -18,7 +18,6 @@ module.exports = {
                 "Declaring namespaces",
                 "Initialising namespaces",
                 "Imports",
-                "Parsing and JavaScript representation",
                 "Initial instantiations",
             ],
         },

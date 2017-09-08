@@ -1,7 +1,11 @@
-Sometimes, external classes need to be used inside a namespace. To import classes and use them like regular classes, pass an object as the second argument to the OOML.Namespace constructor:
+Sometimes, external classes need to be used inside a namespace. To import classes and use them like regular classes, pass an object as the second argument to the `OOML.Namespace` constructor:
 
 ```javascript
-let CoolLibrary = new OOML.Namespace("...insert library code here...");
+// Assume CoolLibrary points to the OOML.Namespace instance of the external library
+let CoolLibrary = new OOML.Namespace(`
+    <template ooml-class="CoolClass"></template>
+    <template ooml-class="MediocreClass"></template>
+`);
 
 let MyNamespace = new OOML.Namespace(document.body, {
     imports: {

@@ -10,9 +10,14 @@ const REDIRECTS_JSON_PATH = __dirname + '/static-server-redirects.json';
 
 let redirects = {};
 
+let reloadRedirectsSetTimeout;
 function reloadRedirects() {
+    // Use setTimeout as FS event could be triggered when deleting file or before overwriting file has finished
     console.log(`Reloading redirects...`);
-    redirects = JSON.parse(fs.readFileSync(REDIRECTS_JSON_PATH, 'utf8'));
+    clearTimeout(reloadRedirectsSetTimeout);
+    reloadRedirectsSetTimeout = setTimeout(() => {
+        redirects = JSON.parse(fs.readFileSync(REDIRECTS_JSON_PATH, 'utf8'));
+    }, 100);
 }
 
 reloadRedirects();

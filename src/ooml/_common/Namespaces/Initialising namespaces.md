@@ -1,6 +1,6 @@
-After a namespace has been declared, the next step is for it to be parsed, otherwise it's just some plain text in some weird tags.
+After a namespace has been declared, the next step is for it to be parsed, otherwise it's just some plain text HTML.
 
-Namespaces are created by initialising a new `OOML.Namespace` instance with the DOM element containing the ooml class declarations.
+Namespaces are parsed by creating a new `OOML.Namespace` instance with the DOM element containing the ooml class declarations.
 
 Here is an example of a namespace containing two (empty) classes:
 
@@ -19,7 +19,7 @@ let MyNamespace = new OOML.Namespace(document.querySelector("#my-namespace"));
 
 By default, if no DOM element is specified (i.e. if the first argument is not provided), the DOM element used defaults to `document.body` (i.e. the `<body>` tag).
 
-Here are the other ways to call the constructor:
+There are also other ways to call the constructor:
 
 ```javascript
 let MyNamespace;
@@ -37,4 +37,15 @@ MyNamespace = new OOML.Namespace(`
 MyNamespace = new OOML.Namespace();
 ```
 
-If a DOM element is provided, an error will be thrown if an ancestor or descendant of that element was used previously to construct an ooml namespace.
+If a DOM element is provided, an error will be thrown if an ancestor or descendant of that element was previously used to create an `OOML.Namespace` instance.
+
+`OOML.Namespace` instances have two properties: **instances** and **classes**. See [Initial instantiations](#Initial instantiations) for information about the **instances** property.
+
+The **classes** property is an object containing all the parsed classes. The keys are the names of the classes, and their values are `OOML.Class` instances. Using the previous examples, the structure would look like:
+
+```javascript
+MyNamespace.classes === {
+    Class1: [object OOML.Class],
+    Class2: [object OOML.Class],
+}
+```

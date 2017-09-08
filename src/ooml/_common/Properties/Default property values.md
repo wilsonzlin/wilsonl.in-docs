@@ -17,7 +17,7 @@ Only properties with a [primitive type](#Typing) can have a non-null primitive d
 <ooml-property name="myProp">-Infinity</ooml-property>
 ```
 
-Because the value is inferred by evaluating the tag contents as JavaScript, strings must be proper JavaScript strings (i.e. quoted, properly escaped, and on a single line) **and** HTML text data (i.e. HTML escaped):
+Because the value is inferred by evaluating the tag contents as JavaScript, strings must be proper JavaScript strings (i.e. quoted, properly escaped, and on a single line) **and** HTML text data (i.e. HTML entity escaped):
 
 ```html
 <!-- INVALID -->
@@ -28,9 +28,9 @@ Because the value is inferred by evaluating the tag contents as JavaScript, stri
 
 ```html
 <!-- INVALID -->
-<ooml-property name="myProp">"And they said, "let there be light""</ooml-property>
+<ooml-property name="myProp">"And they said, "Hello, world!""</ooml-property>
 <!-- Should be -->
-<ooml-property name="myProp">"And they said, \"let there be light\""</ooml-property>
+<ooml-property name="myProp">"And they said, \"Hello, world!\""</ooml-property>
 ```
 
 ```html
@@ -85,7 +85,29 @@ Ensure that string values are quoted; there is a slim possibility that ooml cann
 
 ## Instance and array default values
 
-Only properties with a class type can declare their default values using JSON. Their default values can also be null. If they are not null:
+Only properties with a class type can declare their default values as object or array literals. Their default values can also be null. The default value can be thought of as the default [inital state](#Initial state) of the property's instance or array.
 
-- For [array properties](#Array properties), the topmost level of the JSON structure must be a JSON array
-- Otherwise, the topmost level of the JSON structure must be a JSON object
+In the below example, if no array is provided as `items` in the initial state when creating a new instance of `List`, the `items` property of the new instance will be an array containing three `Item` instances with placeholder names:
+```html
+<template ooml-class="Item">
+    <ooml-property name="name" type="string">""</ooml-property>
+</template>
+
+<template ooml-class="List">
+    <ooml-property name="name" type="string">""</ooml-property>
+    <ooml-property array name="items" type="Item">[
+        { name: "Placeholder 1" },
+        { name: "Placeholder 2" },
+        { name: "Placeholder 3" },
+    ]</ooml-property>
+</template>
+```
+
+Similarly, in the below example, if no instance is provided as `list` in the initial state when creating a new `App`, the new instance will automatically create a `List` instance with a generic name. Since no `items` property is declared in the default value of `list`, the list will have the three placeholder items (see previous example):
+```html
+<template ooml-class="App">
+    <ooml-property name="list" type="List">{
+        name: "My list 1",
+    }</ooml-property>
+</template>
+```

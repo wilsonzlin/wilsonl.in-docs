@@ -1,6 +1,6 @@
 ooml instances can be used in many different ways for different purposes, but most of the time, they are used to hold data and have a view that represents that data. This is done by accessing and assigning values to properties on the instance. However, sometimes values need to be stored on an instance that is not data but is related to its state. Some examples are:
 
-- Holding an instance of a graph when using a graph library to show a graph in the view of a class
+- Holding a JavaScript instance object of a graph when using a non-ooml graph library to show a graph in the view of a class
 - Allowing easy configuration of the view's styling through the use of assignable properties
 - Having placeholder properties that allow references to external things to be placed (e.g. callbacks)
 
