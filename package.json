@@ -8,6 +8,7 @@
     "marked": "0.3.x",
     "mime-types": "2.x",
     "recursive-readdir-sync": "1.x",
+    "request": "2.x",
     "zcompile": "4.x"
   }
 }
