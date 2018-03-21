@@ -5,7 +5,7 @@ Lists can be declared literally by separating each element with a comma and addi
 |Code|Length|Elements|
 |---|---|---|
 |`[]`|0||
-|`[1]`|1|`1`|
-|``[3.14, Math.PI, true, {}, [1, 2, `three`, four]]``|5|`3.14`, `Math.PI`, `true`, `{}`, ``[1, 2, `three`, four]``|
+|`[1]`|1|<ol><li>`1`</ol>|
+|``[3.14, Math.PI, true, {}, [1, 2, `three`, four]]``|5|<ol><li>`3.14`<li>`Math.PI`<li>`true`<li>`{}`<li>``[1, 2, `three`, four]``</ol>|
 
 Lists can hold any data type, and do not require all elements to be the same type. Lists can hold lists, allowing multi-dimensional and nested lists.

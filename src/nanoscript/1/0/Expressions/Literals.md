@@ -9,4 +9,4 @@
 - Object (see [Object](#Object), specifically **anonymous objects**)
 - Callable (see [Scoped functions](#Scoped functions))
 
-Iterators do not have a literal representation. **Class declarations** are not considered literals but are expressions, not statements. See [Classes](#Classes) for information on declaring classes.
+Iterators do not have a literal representation, and classes are declared using statements, not expressions.

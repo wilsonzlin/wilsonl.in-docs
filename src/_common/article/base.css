@@ -48,6 +48,10 @@
     padding: 0.5rem 0.75rem;
 }
 
+article .table-container {
+  overflow: auto;
+}
+
 article table {
   border-collapse: collapse;
   min-width: 100%;

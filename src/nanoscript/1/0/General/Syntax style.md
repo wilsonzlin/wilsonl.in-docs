@@ -1,1 +1,1 @@
-nanoscript prefers PascalCase for names of types and snake_case for everything else. There is no recommendations or enforcement around indentation. Whitespace characters are not significant in nanoscript's syntax.
+nanoscript prefers **PascalCase** for names of types and **snake_case** for everything else. There are no recommendations or enforcement around indentation. Whitespace characters are not significant in nanoscript's syntax.

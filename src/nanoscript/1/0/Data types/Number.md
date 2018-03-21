@@ -11,7 +11,7 @@ For base 10, the format is simply one or more digits, followed optionally by a d
 |`0`|0|
 |`131`|131|
 |`3.14`|3.14|
-|`-65535.0`|-65535|
+|`-65535.000`|-65535|
 
 It can have an exponent part at the end, which is the character `e` followed by one or more digits. Some examples:
 

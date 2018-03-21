@@ -30,7 +30,7 @@ const parseMarkdown = (mdText, removeParagraphTags, internalLinkCallback) => {
 
     renderer.heading = (text, level) => {
         let ret = marked(text).slice(3, -5); // Remove <p> wrapping
-        ret = ret.replace(/ </g, "<zc-space /><").replace(/> /g, "><zc-space />");
+        ret = ret;
         let tag = `h${ level }`;
         return `<${ tag }>${ ret }</${ tag }>`;
     };
@@ -40,13 +40,11 @@ const parseMarkdown = (mdText, removeParagraphTags, internalLinkCallback) => {
         if (removeParagraphTags) {
             ret = ret.slice(3, -5); // Remove <p> wrapping
         }
-        ret = ret.replace(/ </g, "<zc-space /><").replace(/> /g, "><zc-space />");
         return ret;
     };
 
     renderer.list = (body, ordered) => {
-        let ret = marked(body, ordered);
-        ret = ret.replace(/ </g, "<zc-space /><").replace(/> /g, "><zc-space />");
+        let ret = marked(body);
         let tagName = ordered ? 'ol' : 'ul';
         return `<${ tagName }>${ ret }</${ tagName }>`;
     };
@@ -84,7 +82,10 @@ const parseMarkdown = (mdText, removeParagraphTags, internalLinkCallback) => {
 
     return marked(mdText, {
         renderer: renderer,
-    });
+    })
+      .replace(/ </g, "<zc-space /><").replace(/> /g, "><zc-space />")
+      .replace(/<table>/g, `<div class=table-container><table>`)
+      .replace(/<\/table>/g, `</table></div>`);
 };
 
 module.exports = parseMarkdown;

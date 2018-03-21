@@ -67,7 +67,7 @@ module.exports = {
       name: "Expressions",
       entries: [
         "Operations",
-        "Literals and class declarations",
+        "Literals",
         "Complete conditional branching",
         "Identifiers and `self`",
       ],
@@ -76,11 +76,11 @@ module.exports = {
       name: "Statements",
       entries: [
         "Conditional branching",
-        "Variables",
-        "Errors",
-        "Classes",
-        "Modules",
-        "Expressions",
+        "Declaring and setting variables",
+        "Error handling statements",
+        "Class declarations",
+        "Module statements",
+        "Expression statements",
         "Looping and iteration",
         "Returning"
       ]

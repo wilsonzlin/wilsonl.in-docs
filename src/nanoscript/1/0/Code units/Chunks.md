@@ -2,7 +2,7 @@ The largest unit of source code in nanoscript is the **chunk**. A chunk is simpl
 
 This "sequence of statements" can be from anywhere -- it's not relevant to the interpreter. It could be a whole or part of a file on a disk, the text in a text control in a GUI app, or the stream of characters being typed into a live interpreter running in a terminal session.
 
-Example of a chunk of code, stored in a file called "hello-world.ns":
+Example of a chunk of code, stored in a file called *hello-world.ns*:
 
 ```nanoscript
 print("Hello world")
