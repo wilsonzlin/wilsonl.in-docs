@@ -14,7 +14,7 @@ const invalidate = (...keys) => {
   return new Promise((resolve, reject) => {
     request({
       method: 'DELETE',
-      url: `https://api.cloudflare.com/client/v4/zones/${APP_RESOURCES_INFO.CLOUDFLARE_ZONE}/purge_cache`,
+      url: `https://api.cloudflare.com/client/v4/zones/${APP_RESOURCES_INFO.CLOUDFLARE_ZONE_ID}/purge_cache`,
       headers: {
         'X-Auth-Email': CREDENTIALS.CLOUDFLARE_EMAIL,
         'X-Auth-Key': CREDENTIALS.CLOUDFLARE_GLOBAL_API_KEY,

@@ -4,5 +4,6 @@ node_modules/
 /dist/
 /.idea/
 *.iml
+/.vscode/
 package-lock.json*
 /static-server-redirects.json

@@ -48,6 +48,16 @@
     padding: 0.5rem 0.75rem;
 }
 
+article table {
+  border-collapse: collapse;
+  min-width: 100%;
+}
+
+article td, article th {
+  border: 0.125rem solid #ddd;
+  padding: 0.25rem 0.375rem;
+}
+
 #article ul {
     padding-left: 2.5rem;
 }

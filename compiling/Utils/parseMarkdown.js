@@ -17,6 +17,8 @@ const parseMarkdown = (mdText, removeParagraphTags, internalLinkCallback) => {
                     html = parseTypedCodeLine(code);
                     break;
             }
+        } else if (language == "nanoscript") {
+            html = hljs.highlight("python", code, true).value;
         } else if (language) {
             html = hljs.highlight(language, code, true).value;
         } else {
