@@ -12,7 +12,6 @@ const OUTPUT_DIR = PROJECT_DIR + 'dist/';
 // URL path prefix should not have trailing slash,
 // as all urlDirPath values have leading slash
 const URL_PATH_PREFIX = '/docs';
-const REDIRECTS_MAP_JSON_PATH = PROJECT_DIR + 'static-server-redirects.json';
 
 const DOCUMENTATION_NAMES = ['ooml', 'nanoscript'];
 const METADATA_FILE_NAME = '__metadata__.js';
@@ -27,7 +26,6 @@ module.exports = Object.freeze({
   OUTPUT_DIR,
 
   URL_PATH_PREFIX,
-  REDIRECTS_MAP_JSON_PATH,
 
   DOCUMENTATION_NAMES,
   METADATA_FILE_NAME,

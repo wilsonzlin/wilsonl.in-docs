@@ -6,6 +6,7 @@ const parseMarkdown = require('./Utils/parseMarkdown');
 const parseTypedCodeLine = require('./Utils/parseTypedCodeLine');
 const loadDocumentation = require('./Utils/loadDocumentation');
 const createURLPathComponent = require('./Utils/createURLPathComponent');
+const createRedirectHTML = require('./Utils/createRedirectHTML');
 
 const ContentArticle = require('./Views/ContentArticle');
 const HeaderDocumentationsListItem = require('./Views/HeaderDocumentationsListItem');
@@ -29,7 +30,6 @@ const {
   ARTICLE_TYPE_REFERENCE,
 
   URL_PATH_PREFIX,
-  REDIRECTS_MAP_JSON_PATH,
 
 } = require('./constants');
 
@@ -57,12 +57,10 @@ for (let documentationName of DOCUMENTATION_NAMES) {
     return 1;
   }).pop();
 
-  // Redirect from "/ooml/" to "/ooml/14/1/"
+  // Redirect from "/ooml" to "/ooml/14/1"
   redirects.push({
-    from: '/' + createURLPathComponent(documentationName) + '/',
+    from: '/' + createURLPathComponent(documentationName),
     to: latestVersionDoc.urlDirPath,
-    // Make it so that "/ooml" and "/ooml/" both redirect
-    coverAllTrailingSlashes: true,
   });
 
   // Regenerate the documentations list for every documentation name, as isActive changes each time
@@ -88,12 +86,10 @@ for (let documentationName of DOCUMENTATION_NAMES) {
 
     let landingArticle = doc.getLandingArticle();
 
-    // Add redirect from "/ooml/14/1/" to "/ooml/14/1/Introduction/Welcome/"
+    // Add redirect from "/ooml/14/1" to "/ooml/14/1/Introduction/Welcome"
     redirects.push({
       from: doc.urlDirPath,
       to: landingArticle.urlDirPath,
-      // Make it so that "/ooml/14/1" and "/ooml/14/1/" both redirect
-      coverAllTrailingSlashes: true,
     });
 
     for (let article of doc.articles) {
@@ -202,20 +198,15 @@ zc({
   files: generatedHtmlFiles,
 });
 
-let redirectsJson = {};
 for (let redirect of redirects) {
-  let { from, to, coverAllTrailingSlashes } = redirect;
+  let { from, to } = redirect;
 
-  if (coverAllTrailingSlashes) {
-    let noSlash = from.replace(/\/+$/, "");
-    let withSlash = noSlash + '/';
+  let from_noslash = from.replace(/\/+$/, "");
+  let from_slash = from_noslash + '/';
+  let to_noslash = to.replace(/\/+$/, "");
+  let to_slash = to_noslash + '/';
 
-    redirectsJson[URL_PATH_PREFIX + noSlash] = URL_PATH_PREFIX + to;
-    redirectsJson[URL_PATH_PREFIX + withSlash] = URL_PATH_PREFIX + to;
-  } else {
-    redirectsJson[URL_PATH_PREFIX + from] = URL_PATH_PREFIX + to;
-  }
+  fs.writeFileSync(OUTPUT_DIR + from_slash + 'index.html', createRedirectHTML(URL_PATH_PREFIX + to_slash));
 }
-fs.writeJsonSync(REDIRECTS_MAP_JSON_PATH, redirectsJson);
 
 fs.removeSync(INTERMEDIATE_DIR);

@@ -7,9 +7,8 @@ const escapeHTML = str => {
         ">": "&gt;",
         '"': '&quot;',
         "'": '&#39;',
-        "/": '&#x2F;'
     };
-    return ("" + str).replace(/[&<>"'\/]/g, entity => entityMap[entity]);
+    return ("" + str).replace(/[&<>"']/g, entity => entityMap[entity]);
 };
 
 module.exports = escapeHTML;

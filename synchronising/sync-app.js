@@ -29,14 +29,13 @@ console.log("======================= COMPILING ====================\n");
 require('../compiling/compile.js');
 console.log("\n=============== COMPILATION FINISHED ===============\n");
 
-
 // Hashes of files in the cloud
 let objectHashes = new Map(); // { "music/lib/ooml.js" => F90DDD77E400DFE... }
 
 // Paths of all the files in the cloud
 let objectKeys; // [ music/index.html, music/lib/ooml.js, ... ]
 
-// Paths of all the files stored locally
+// Paths of all the files stored locally (folders not included)
 let localFileNames = RecursiveReaddir(COMPILED_DIR).map(path => Path.relative(COMPILED_DIR, path));// [ index.html, lib/ooml.js, ... ]
 
 // Hashes of files stored locally
@@ -51,8 +50,8 @@ list({
   prefix: APP_URL_PATH_PREFIX,
 })
   .then(data => {
-    // Get all object keys that don't end with a slash (i.e. aren't folders)
-    objectKeys = data.Contents.map(o => o.Key).filter(k => !/\/$/.test(k));
+    // Get all object keys, including ones that end with a slash (they should not be there)
+    objectKeys = data.Contents.map(o => o.Key);
 
     return Promise.all(objectKeys.map(obj => getMetadata(obj)));
   })
@@ -79,7 +78,7 @@ list({
       return copy({
         keyFrom: metadata.key,
         keyTo: metadata.key,
-        contentType: ContentType(Path.extname(metadata.key)),
+        contentType: ContentType(Path.extname(metadata.key)) || 'application/octet-stream',
         metadata: {
           sha512: hash,
         },

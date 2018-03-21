@@ -15,31 +15,31 @@ AWS.config.region = APP_RESOURCES_INFO.S3_BUCKET_REGION;
 let s3 = new AWS.S3();
 
 const upload = settings => {
-    let key = settings.key;
-    let dataStream = settings.dataStream;
-    let contentType = settings.contentType;
-    let metadata = settings.metadata;
+  let key = settings.key;
+  let dataStream = settings.dataStream;
+  let contentType = settings.contentType;
+  let metadata = settings.metadata;
 
-    assertValidKey(key);
+  assertValidKey(key);
 
-    return new Promise((resolve, reject) => {
-        s3.upload({
-            Bucket: APP_RESOURCES_INFO.S3_BUCKET_NAME,
-            Key: key,
-            Body: dataStream,
-            ContentType: contentType,
-            Metadata: metadata,
-        }, (err, res) => {
-            if (err) {
-                reject(err);
-                return;
-            }
+  return new Promise((resolve, reject) => {
+    s3.upload({
+      Bucket: APP_RESOURCES_INFO.S3_BUCKET_NAME,
+      Key: key,
+      Body: dataStream,
+      ContentType: contentType,
+      Metadata: metadata,
+    }, (err, res) => {
+      if (err) {
+        reject(err);
+        return;
+      }
 
-            console.log(`Uploaded ${key}`);
+      console.log(`Uploaded ${key}`);
 
-            resolve();
-        })
-    });
+      resolve();
+    })
+  });
 };
 
 module.exports = upload;

@@ -6,4 +6,3 @@ node_modules/
 *.iml
 /.vscode/
 package-lock.json*
-/static-server-redirects.json
