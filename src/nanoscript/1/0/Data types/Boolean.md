@@ -7,11 +7,9 @@
 
 # Operations
 
-## Convert to boolean
+Note that `Test emptyness` is **not** implemented.
 
-Gives itself.
-
-## Convert to string
+## Represent
 
 Gives its string representation:
 
@@ -19,3 +17,7 @@ Gives its string representation:
 |---|---|
 |True|`true`|
 |False|`false`|
+
+## Serialise
+
+Gives itself.

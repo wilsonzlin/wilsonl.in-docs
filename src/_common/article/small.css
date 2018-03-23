@@ -8,6 +8,10 @@
     display: block;
 }
 
+#article .category::before {
+    content: '<   ';
+}
+
 #article dd {
     margin-left: 0;
 }

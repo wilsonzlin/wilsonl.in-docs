@@ -3,10 +3,11 @@ module.exports = {
     {
       name: "General",
       entries: [
-        "Paradigm and principles",
+        "Introduction",
+        "Features and design",
         "Syntax style",
-        "Conventions",
         "Comments",
+        "Quick start",
       ],
     },
     {
@@ -61,6 +62,7 @@ module.exports = {
         "Comparison",
         "Logic",
         "Null-related",
+        "Empty-related",
       ],
     },
     {

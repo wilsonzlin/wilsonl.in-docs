@@ -4,10 +4,10 @@ The only literal is `null`.
 
 # Operations
 
-## Convert to boolean
+## Test emptyness
 
-Gives `false`.
+Gives `true`.
 
-## Convert to string
+## Represent
 
 Gives the string `null`.

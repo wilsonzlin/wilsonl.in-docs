@@ -1,0 +1,7 @@
+#documentations-list > li:not(.active) {
+  display: none;
+}
+
+#header-controls {
+  display: none;
+}

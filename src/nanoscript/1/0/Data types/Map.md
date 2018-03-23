@@ -9,3 +9,9 @@ Maps can be declared literally by separating each entry with a comma and adding 
 |``{``<br>```pi` as 3.14,``<br>``Math.PI as `pi`,``<br>``42 as true,``<br>``{} as {},``<br>`` `a list` as [1, 2, `three`, four] ``<br>`}`|5|<table><tr><th>`` `pi` ``<td>`3.14`<tr><th>`Math.PI`<td>`` `pi` ``<tr><th>`42`<td>`true`<tr><th>`{}`<td>`{}`<tr><th>`` `a list` ``<td>``[1, 2, `three`, four]``</table>|
 
 Map keys and values can be of any type, and do not have to be the same. Maps do not have to have the same types of keys or values.
+
+# Operations
+
+## Test emptyness
+
+Gives `true` if it has no entries, and `false` otherwise.

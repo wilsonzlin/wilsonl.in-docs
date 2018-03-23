@@ -124,6 +124,9 @@ article td, article th {
 
 #article code {
     color: #4d4d4d;
-    display: inline-block;
     font-size: 0.875rem;
+}
+
+#article a code {
+    color: inherit;
 }

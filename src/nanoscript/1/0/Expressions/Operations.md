@@ -18,8 +18,9 @@ All [data types](#Data types) have **operations** that can be performed on their
 |Update|Terms|Any|Update associated data of terms in data|
 |Access|Member|Any|Access a member of data|
 |Assign|Member, Value|N/A|Assign value to a member of data|
-|Convert to boolean||Boolean|Convert data to a boolean value|
-|Convert to string||String|Convert data to a string value|
+|Test emptyness||Boolean|Check if data is empty|
+|Represent||String|Convert data to a string value|
+|Serialise||Any|Represent data as a primitive or serialisable value|
 
 All data types except objects implement some or all of these operations according to the official specifications, and their implementation cannot be changed.
 

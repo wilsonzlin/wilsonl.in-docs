@@ -5,7 +5,7 @@ ooml has built-in polyfills for features missing in the browser (detected using 
 - [Data attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*)
 - [Set](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Set)
 - [Symbol.iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator)
-- [<template>](https://developer.mozilla.org/en/docs/Web/HTML/Element/template)
+- [&lt;template&gt;](https://developer.mozilla.org/en/docs/Web/HTML/Element/template)
 
 ooml's versioning follows [semver](http://semver.org/). For example, with version *15.9.33*:
 

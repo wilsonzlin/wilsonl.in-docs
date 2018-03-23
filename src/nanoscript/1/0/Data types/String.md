@@ -6,7 +6,7 @@ They may contain any characters, including line terminators. All characters, inc
 
 To include a backtick as part of the data and not have it become a delimiter, insert a backslash before it. This is known as escaping. To use a backslash before a backtick literally (i.e. not to escape the backtick), escape it by adding a backslash before it.
 
-Some characters are hard to type or represent literally. To help, a character can also be represented using its Unicode code point. To do this, instead of inserting a character, insert `\x{ XXXXXX }`, where `XXXXXX` is the hexadecimal code point of the character (which is 2 to 6 digits long). When parsed, it will be replaced with the actual character data.
+Some characters are hard to type or represent literally. To help, a character can also be represented using its Unicode code point. To do this, instead of inserting a character, insert `\x{XXXXXX}`, where `XXXXXX` is the hexadecimal code point of the character (which is 2 to 6 digits long). When parsed, it will be replaced with the actual character data.
 
 # Operations
 
@@ -26,11 +26,15 @@ Every character from first to last is compared to its corresponding character at
 
 Gives the length (i.e. amount of characters).
 
-## Convert to boolean
+## Test emptyness
 
-Gives `true`.
+Gives `true` if it has a length of zero, and `false` otherwise.
 
-## Convert to string
+## Represent
+
+Gives itself.
+
+## Serialise
 
 Gives itself.
 

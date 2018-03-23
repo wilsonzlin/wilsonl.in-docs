@@ -97,3 +97,11 @@ button {
     <ZC-IMPORT[main/small.css]>
     <ZC-IMPORT[pane/small.css]>
 }
+
+@media print {
+  <ZC-IMPORT[feedback/print.css]>
+  <ZC-IMPORT[article/print.css]>
+  <ZC-IMPORT[header/print.css]>
+  <ZC-IMPORT[main/print.css]>
+  <ZC-IMPORT[pane/print.css]>
+}

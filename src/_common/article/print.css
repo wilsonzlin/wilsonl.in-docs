@@ -1,0 +1,14 @@
+#article .category {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+#article .category::before {
+  display: none;
+}
+
+#article h2,
+#article h3 {
+  padding-left: 0;
+  padding-right: 0;
+}

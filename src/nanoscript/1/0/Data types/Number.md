@@ -74,11 +74,11 @@ Gives `true` if it has the same value as `other`, otherwise gives `false`.
 
 Gives a negative number if it is less than `other`, zero if it is the same as `other`, and a positive number if it is greater than `other`.
 
-## Convert to boolean
+## Test emptyness
 
-Gives `true`.
+Gives `true` if it is zero, and `false` otherwise.
 
-## Convert to string
+## Represent
 
 Gives the string representation of it.
 

@@ -24,10 +24,12 @@ The following table is sorted by precedence, with the highest precedence operato
 |Compare|Compare|`<=>`|Binary|Left|
 |Type of|Test ancestry|`typeof`|Binary|Left|
 |Not type of|Test ancestry|`not typeof`|Binary|Left|
+|Empty|Test emptyness|`empty`|Unary|Right|
 |Not||`not`|Unary|Right|
 |And||`and`|Binary|Left|
 |Or||`or`|Binary|Left|
 |Null coalescing||`??`|Binary|Right|
+|Empty coalescing||`?:`|Binary|Right|
 
 ## Precedence levels
 
@@ -41,6 +43,7 @@ Operators in the same row have the same precedence. The following table is sorte
 |Multiply, divide, modulo|
 |Plus, minus|
 |Equals, not equals, less than, less than or equal to, greater than, greater than or equal to, compare, type of, not type of|
+|Empty|
 |Not|
 |And|
 |Or|
