@@ -74,11 +74,19 @@ for (let documentationName of DOCUMENTATION_NAMES) {
 
     // Called when a link in a documentation is an internal one
     let internalLinkCallback = id => {
+      let match;
 
       for (let article of doc.articles) {
         if (article.name === id) {
-          return URL_PATH_PREFIX + article.urlDirPath;
+          if (match != undefined) {
+            throw new ReferenceError(`Conflicting internal link reference "${id}"`);
+          }
+          match = URL_PATH_PREFIX + article.urlDirPath;
         }
+      }
+
+      if (match != undefined) {
+        return match;
       }
 
       throw new ReferenceError(`Non-existent internal link reference "${id}"`);
@@ -129,7 +137,7 @@ for (let documentationName of DOCUMENTATION_NAMES) {
         articleHtml = ReferenceArticle({
           category: article.category,
           name: article.name,
-          description: description,
+          description: article.description,
           signaturesHtml: signaturesHtml,
           argumentsHtml: argumentsHtml,
           returnsHtml: returnsHtml,

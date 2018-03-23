@@ -2,7 +2,7 @@ All properties have a default value. It is used as the value for a property when
 
 ooml properties must have a default value. Generally, if you don't have a specific default value in mind, consider `null`, `0`, `false`, or `""`. The default value must be compatible with the [type](#Typing) of the property.
 
-## Primitive default values
+# Primitive default values
 
 Only properties with a [primitive type](#Typing) can have a non-null primitive default value. Examples of primitive default values are:
 
@@ -83,7 +83,7 @@ Ensure that string values are quoted; there is a slim possibility that ooml cann
 </template>
 ```
 
-## Instance and array default values
+# Instance and array default values
 
 Only properties with a class type can declare their default values as object or array literals. Their default values can also be null. The default value can be thought of as the default [inital state](#Initial state) of the property's instance or array.
 

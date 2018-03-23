@@ -13,7 +13,7 @@ const OUTPUT_DIR = PROJECT_DIR + 'dist/';
 // as all urlDirPath values have leading slash
 const URL_PATH_PREFIX = '/docs';
 
-const DOCUMENTATION_NAMES = ['ooml', 'nanoscript'];
+const DOCUMENTATION_NAMES = ['ooml', 'nanoscript', 'zQuery'];
 const METADATA_FILE_NAME = '__metadata__.js';
 
 module.exports = Object.freeze({
