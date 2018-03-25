@@ -7,6 +7,7 @@ module.exports = {
         "Features and design",
         "Syntax style",
         "Comments",
+        "Identifiers",
         "Quick start",
       ],
     },
@@ -16,12 +17,14 @@ module.exports = {
         "Chunks",
         "Statements",
         "Expressions",
+        "Blocks",
       ],
     },
     {
-      name: "Data types",
+      name: "Data",
       entries: [
         "Data types",
+        "Members",
         "Null",
         "Boolean",
         "Number",
@@ -46,15 +49,25 @@ module.exports = {
       name: "Functions",
       entries: [
         "Built-in functions",
-        "Scoped functions",
+        "Lambdas",
         "Class functions",
       ],
     },
     {
-      name: "Operators",
+      name: "Expressions",
       entries: [
+        "Operation execution",
+        "Literals",
+        "Complete conditional branching",
+        "References",
+      ],
+    },
+    {
+      name: "Operations",
+      entries: [
+        "Operations",
         "Operators",
-        "Members",
+        "Access",
         "Lookups",
         "Calling",
         "Measure",
@@ -66,23 +79,14 @@ module.exports = {
       ],
     },
     {
-      name: "Expressions",
-      entries: [
-        "Operations",
-        "Literals",
-        "Complete conditional branching",
-        "Identifiers and `self`",
-      ],
-    },
-    {
       name: "Statements",
       entries: [
-        "Conditional branching",
+        "Branching",
         "Declaring and setting variables",
-        "Error handling statements",
+        "`try` and `catch`",
         "Class declarations",
-        "Module statements",
-        "Expression statements",
+        "`import` and `export`",
+        "Standalone expressions",
         "Looping and iteration",
         "Returning"
       ]
@@ -94,6 +98,7 @@ module.exports = {
         "Built-in classes",
         "User-defined classes",
         "Constructors",
+        "Object operations",
         "Inheritance",
         "Type hierarchy",
         "Polymorphism",

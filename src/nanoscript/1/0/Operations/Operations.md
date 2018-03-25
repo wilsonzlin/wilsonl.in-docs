@@ -22,9 +22,9 @@ All [data types](#Data types) have **operations** that can be performed on their
 |Represent||String|Convert data to a string value|
 |Serialise||Any|Represent data as a primitive or serialisable value|
 
-All data types except objects implement some or all of these operations according to the official specifications, and their implementation cannot be changed.
+All data types except objects implement some or all of these operations according to the official specifications, and their implementation cannot be changed. Classes [define their own](#Object operations) implementations of operations for objects of their type.
 
-Operations are done with operation expressions and involves an [operator](#Operators) and one or more operands. For example:
+Operations are executed with operation expressions and involves an [operator](#Operators) and one or more operands. For example:
 
 ```nanoscript
 create a as 1 + 2

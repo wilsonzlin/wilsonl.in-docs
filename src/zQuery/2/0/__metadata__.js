@@ -1,8 +1,4 @@
 module.exports = {
-    landingArticle: {
-        category: "Instance tools",
-        entry: "for...of",
-    },
     categories: [
         {
             "name": "Instance tools",

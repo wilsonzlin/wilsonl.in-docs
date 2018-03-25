@@ -1,8 +1,4 @@
 module.exports = {
-  landingArticle: {
-    category: "Introduction",
-    entry: "Welcome",
-  },
   categories: [
     {
       name: "Introduction",

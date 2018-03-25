@@ -7,6 +7,6 @@
 - List (see [List](#List))
 - Map (see [Map](#Map))
 - Object (see [Object](#Object), specifically **anonymous objects**)
-- Callable (see [Scoped functions](#Scoped functions))
+- Callable (see [Callable](#Lambdas))
 
 Iterators do not have a literal representation, and classes are declared using statements, not expressions.

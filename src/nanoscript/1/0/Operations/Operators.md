@@ -35,19 +35,20 @@ The following table is sorted by precedence, with the highest precedence operato
 
 Operators in the same row have the same precedence. The following table is sorted by precedence, with the highest precedence operators at the top.
 
-|Operators|
-|---|
-|Accessor, null-safe accessor, lookup, null-safe lookup, call, null-safe call|
-|Measure|
-|Exponentiate|
-|Multiply, divide, modulo|
-|Plus, minus|
-|Equals, not equals, less than, less than or equal to, greater than, greater than or equal to, compare, type of, not type of|
-|Empty|
-|Not|
-|And|
-|Or|
-|Null coalescing|
+|Operators|Syntax|
+|---|---|
+|Accessor, null-safe accessor, lookup, null-safe lookup, call, null-safe call|`.` `?.` `[` `?[` `(` `?(`|
+|Measure|`#`|
+|Exponentiate|`^`|
+|Multiply, divide, modulo|`*` `/` `%`|
+|Plus, minus|`+` `-`|
+|Equals, not equals, less than, less than or equal to, greater than, greater than or equal to, compare, type of, not type of|`==` `!=` `<` `<=` `>` `>=` `<=>` `typeof` `not typeof`|
+|Empty|`empty`|
+|Not|`not`|
+|And|`and`|
+|Or|`or`|
+|Null coalescing|`??`|
+|Empty coalescing|`?:`|
 
 ## Arity
 
