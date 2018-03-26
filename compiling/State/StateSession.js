@@ -74,38 +74,6 @@ class StateSession {
     return delete data[entry];
   }
 
-  syncDir(dir) {
-    let queue = [{
-      dir: dir,
-      map: this._data,
-    }];
-
-    while (queue.length) {
-      let toProcess = queue.shift();
-      for (let exist_file of fs.readdirSync(toProcess.dir)) {
-        let exist_path = `${toProcess.dir}/${exist_file}`;
-        let is_dir = fs.lstatSync(exist_path).isDirectory();
-        let exist_name = is_dir ?
-          exist_file :
-          exist_file.replace(/\.html$/, "");
-
-        let map_entry = toProcess[exist_name];
-
-        if (!map_entry) {
-          fs.removeSync(exist_path);
-          console.log(`Removed ${exist_path}`);
-        } else {
-          if (is_dir) {
-            queue.push({
-              dir: exist_path,
-              map: map_entry,
-            });
-          }
-        }
-      }
-    }
-  }
-
   end() {
     fs.writeJsonSync(STATE_PATH, this._data);
     this._data = null;
