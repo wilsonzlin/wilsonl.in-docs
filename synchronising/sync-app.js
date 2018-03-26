@@ -5,6 +5,8 @@ const ContentType = require('mime-types').contentType;
 const Path = require('path');
 const RecursiveReaddir = require('recursive-readdir-sync');
 
+const compile = require('../compiling/compile.js');
+
 const ask = require('./Utils/ask');
 const hashStream = require('./Utils/hashStream');
 
@@ -26,7 +28,7 @@ const COMPILED_DIR = PROJECT_DIR + 'dist/';
 
 // Compile app
 console.log("======================= COMPILING ====================\n");
-require('../compiling/compile.js');
+compile.start({ FLAG_CLEAN: true });
 console.log("\n=============== COMPILATION FINISHED ===============\n");
 
 // Hashes of files in the cloud

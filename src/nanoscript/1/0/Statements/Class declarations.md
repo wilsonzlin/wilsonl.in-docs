@@ -8,7 +8,7 @@ class Name : FirstParent + SecondParent + ThirdParent + FourthParent begin
 endclass
 ```
 
-The class body is made up of class body units; these are declarations for the class's [variables](#Class variables), [functions](#Class functions), [constructor](#Constructors), and [operations](#Object operations); see their respective documentation articles for their syntax. Here is an example of a class:
+The class body is made up of class body units; these are declarations for the class's [variables](#Class variables), [functions](#Class functions), [constructor](#Constructors), [operations](#Object operations), and [extension handlers](#Extensions); see their respective documentation articles for their syntax. Here is an example of a class:
 
 ```nanoscript
 class Name : FirstParent + SecondParent begin
@@ -16,28 +16,41 @@ class Name : FirstParent + SecondParent begin
   variable b : Number as 2 + a
   variable C : shared as 3.14
   variable D : shared String as `John`
+  variable others as Map()
 
   constructor (self, arg_one, arg_two)
     set self.a to self.a + arg_one
     set self.b to arg_two
   endconstructor
 
-  method x (self, a, b)
+  extension getter (self, name)
+    return others[name]
+  endgetter
+
+  extension setter (self, name, value)
+    set others[name] to value
+  endsetter
+
+  function x (self, a, b)
     set self.a to a
     set self.b to b
-  endmethod
+  endfunction
 
-  method y : Number (self, p : Boolean)
+  function y : Number (self, p : Boolean)
     if p then
       return self.a
     otherwise
       return self.b
     endif
-  endmethod
+  endfunction
 
-  method Z : null ()
+  function Z : null ()
     print(`Hello, world! I am ` + Name.D)
-  endmethod
+  endfunction
+
+  operation lhs add (self, other : Name)
+    return A(self.a + other.a, self.b + other.b)
+  endoperation
 endclass
 ```
 

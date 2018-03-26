@@ -6,3 +6,5 @@ node_modules/
 *.iml
 /.vscode/
 package-lock.json*
+/compiling/state.json
+/compiling/state.json.lock

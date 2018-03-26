@@ -8,8 +8,10 @@ const loadDocumentation = require('./Utils/loadDocumentation');
 const createURLPathComponent = require('./Utils/createURLPathComponent');
 const createRedirectHTML = require('./Utils/createRedirectHTML');
 
+const StateSession = require('./State/StateSession');
+
 const ContentArticle = require('./Views/ContentArticle');
-const HeaderDocumentationsListItem = require('./Views/HeaderDocumentationsListItem');
+const HeaderProjectsListItem = require('./Views/HeaderProjectsListItem');
 const Page = require('./Views/Page');
 const PaneTocCategory = require('./Views/PaneTocCategory');
 const PaneTocCategoryEntry = require('./Views/PaneTocCategoryEntry');
@@ -24,7 +26,9 @@ const {
   INTERMEDIATE_DIR,
   OUTPUT_DIR,
 
-  DOCUMENTATION_NAMES,
+  STATE_PATH,
+
+  PROJECT_NAMES,
 
   ARTICLE_TYPE_CONTENT,
   ARTICLE_TYPE_REFERENCE,
@@ -33,15 +37,22 @@ const {
 
 } = require('./constants');
 
-// Ensure clean intermediate and output directories
+const start = ({ FLAG_CLEAN }) => {
+
+// Ensure clean intermediate directory
+// WARNING: Don't erase output directory if not FLAG_CLEAN, otherwise state is lost
 fs.removeSync(INTERMEDIATE_DIR);
-fs.removeSync(OUTPUT_DIR);
+if (FLAG_CLEAN) {
+  console.warn(`====================== CLEAN COMPILE ======================`);
+  fs.writeFileSync(STATE_PATH, '{}');
+  fs.removeSync(OUTPUT_DIR);
+}
 
 let generatedHtmlFiles = [];
 let redirects = [];
 
-for (let documentationName of DOCUMENTATION_NAMES) {
-  let versions = loadDocumentation(documentationName);
+for (let projectName of PROJECT_NAMES) {
+  let versions = loadDocumentation(projectName);
   let latestVersionDoc = Array.from(versions).sort((a, b) => {
     if (a.major < b.major) {
       return -1;
@@ -59,15 +70,15 @@ for (let documentationName of DOCUMENTATION_NAMES) {
 
   // Redirect from "/ooml" to "/ooml/14/1"
   redirects.push({
-    from: '/' + createURLPathComponent(documentationName),
+    from: '/' + createURLPathComponent(projectName),
     to: latestVersionDoc.urlDirPath,
   });
 
-  // Regenerate the documentations list for every documentation name, as isActive changes each time
-  let documentationsListItemsHtml = DOCUMENTATION_NAMES.map(d => HeaderDocumentationsListItem({
+  // Regenerate the projects list for every project name, as isActive changes each time
+  let documentationsListItemsHtml = PROJECT_NAMES.map(d => HeaderProjectsListItem({
     name: d,
     url: URL_PATH_PREFIX + '/' + createURLPathComponent(d) + '/',
-    isActive: documentationName === d,
+    isActive: projectName === d,
   })).join('');
 
   for (let doc of versions) {
@@ -78,15 +89,8 @@ for (let documentationName of DOCUMENTATION_NAMES) {
 
       for (let article of doc.articles) {
         if (article.name === id) {
-          if (match != undefined) {
-            throw new ReferenceError(`Conflicting internal link reference "${id}"`);
-          }
-          match = URL_PATH_PREFIX + article.urlDirPath;
+          return URL_PATH_PREFIX + article.urlDirPath;
         }
-      }
-
-      if (match != undefined) {
-        return match;
       }
 
       throw new ReferenceError(`Non-existent internal link reference "${id}"`);
@@ -102,76 +106,81 @@ for (let documentationName of DOCUMENTATION_NAMES) {
 
     for (let article of doc.articles) {
 
-      // Regenerate the table of contents for every article, as isActive changes every time
-      let tocCategoriesHtml = "";
+      if (article.stateChanged) {
+        console.log(`${ article.urlDirPath } has changed, recompiling...`);
 
-      for (let tocCategoryName of doc.orderOfCategories) {
-        let tocCategoryEntriesHtml = "";
+        // Regenerate the table of contents for every article, as isActive changes every time
+        let tocCategoriesHtml = "";
 
-        for (let tocEntry of doc.articlesByCategory.get(tocCategoryName)) {
-          let tocEntryName = tocEntry.name;
-          let tocEntryDescription = tocEntry.description || tocEntryName;
-          let tocArticlePathRelToUrlPrefix = tocEntry.urlDirPath;
+        for (let tocCategoryName of doc.orderOfCategories) {
+          let tocCategoryEntriesHtml = "";
 
-          tocCategoryEntriesHtml += PaneTocCategoryEntry({
-            url: URL_PATH_PREFIX + tocArticlePathRelToUrlPrefix,
-            name: tocEntryName,
-            description: tocEntryDescription,
-            isActive: tocCategoryName == article.category && article.name == tocEntryName,
-          });
+          for (let tocEntry of doc.articlesByCategory.get(tocCategoryName)) {
+            let tocEntryName = tocEntry.name;
+            let tocEntryDescription = tocEntry.description || tocEntryName;
+            let tocArticlePathRelToUrlPrefix = tocEntry.urlDirPath;
+
+            tocCategoryEntriesHtml += PaneTocCategoryEntry({
+              url: URL_PATH_PREFIX + tocArticlePathRelToUrlPrefix,
+              name: tocEntryName,
+              description: tocEntryDescription,
+              isActive: tocCategoryName == article.category && article.name == tocEntryName,
+            });
+          }
+
+          tocCategoriesHtml += PaneTocCategory(tocCategoryName, tocCategoryEntriesHtml);
         }
 
-        tocCategoriesHtml += PaneTocCategory(tocCategoryName, tocCategoryEntriesHtml);
-      }
+        let articleHtml;
 
-      let articleHtml;
+        if (article.type == ARTICLE_TYPE_REFERENCE) {
 
-      if (article.type == ARTICLE_TYPE_REFERENCE) {
+          let signaturesHtml = article.signatures.map(s => ReferenceArticleSignature(parseTypedCodeLine(s.definition))).join('');
 
-        let signaturesHtml = article.signatures.map(s => ReferenceArticleSignature(parseTypedCodeLine(s.definition))).join('');
+          let argumentsHtml = article.parameters.map(p => ReferenceArticleArgument(p.name, parseMarkdown(p.definition, true, internalLinkCallback))).join('');
 
-        let argumentsHtml = article.parameters.map(p => ReferenceArticleArgument(p.name, parseMarkdown(p.definition, true, internalLinkCallback))).join('');
+          let returnsHtml = article.returns.map(r => ReferenceArticleReturn(parseMarkdown(r.definition, true, internalLinkCallback))).join('');
 
-        let returnsHtml = article.returns.map(r => ReferenceArticleReturn(parseMarkdown(r.definition, true, internalLinkCallback))).join('');
+          articleHtml = ReferenceArticle({
+            category: article.category,
+            name: article.name,
+            description: article.description,
+            signaturesHtml: signaturesHtml,
+            argumentsHtml: argumentsHtml,
+            returnsHtml: returnsHtml,
+          });
 
-        articleHtml = ReferenceArticle({
-          category: article.category,
-          name: article.name,
-          description: article.description,
-          signaturesHtml: signaturesHtml,
-          argumentsHtml: argumentsHtml,
-          returnsHtml: returnsHtml,
+        } else if (article.type == ARTICLE_TYPE_CONTENT) {
+
+          let contentHtml = parseMarkdown(article.content, false, internalLinkCallback);
+
+          articleHtml = ContentArticle({
+            category: article.category,
+            name: article.name,
+            contentHtml: contentHtml,
+          });
+
+        } else {
+
+          throw new Error(`Unrecognised article type "${entryType}"`);
+
+        }
+
+        let pageHtml = Page({
+          url: URL_PATH_PREFIX + article.urlDirPath,
+          viewportTitle: `${article.name} | ${projectName}`,
+          documentationsListItemsHtml: documentationsListItemsHtml,
+          tocCategoriesHtml: tocCategoriesHtml,
+          articleHtml: articleHtml,
         });
 
-      } else if (article.type == ARTICLE_TYPE_CONTENT) {
+        let articleUrlFilePath = article.urlDirPath + 'index.html';
 
-        let contentHtml = parseMarkdown(article.content, false, internalLinkCallback);
-
-        articleHtml = ContentArticle({
-          category: article.category,
-          name: article.name,
-          contentHtml: contentHtml,
-        });
-
-      } else {
-
-        throw new Error(`Unrecognised article type "${entryType}"`);
+        fs.ensureDirSync(INTERMEDIATE_DIR + article.urlDirPath);
+        fs.writeFileSync(INTERMEDIATE_DIR + articleUrlFilePath, pageHtml);
+        generatedHtmlFiles.push(articleUrlFilePath);
 
       }
-
-      let pageHtml = Page({
-        url: URL_PATH_PREFIX + article.urlDirPath,
-        viewportTitle: `${article.name} | ${documentationName}`,
-        documentationsListItemsHtml: documentationsListItemsHtml,
-        tocCategoriesHtml: tocCategoriesHtml,
-        articleHtml: articleHtml,
-      });
-
-      let articleUrlFilePath = article.urlDirPath + 'index.html';
-
-      fs.ensureDirSync(INTERMEDIATE_DIR + article.urlDirPath);
-      fs.writeFileSync(INTERMEDIATE_DIR + articleUrlFilePath, pageHtml);
-      generatedHtmlFiles.push(articleUrlFilePath);
 
     }
   }
@@ -194,17 +203,26 @@ zc({
   ],
 });
 
-zc({
-  source: INTERMEDIATE_DIR,
-  destination: OUTPUT_DIR,
+if (generatedHtmlFiles.length) {
+  zc({
+    source: INTERMEDIATE_DIR,
+    destination: OUTPUT_DIR,
 
-  minifySelectors: false,
-  minifyHTML: {
-    minifyInlineCSS: true,
-    minifyInlineJS: true,
-  },
-  files: generatedHtmlFiles,
-});
+    minifySelectors: false,
+    minifyHTML: {
+      minifyInlineCSS: true,
+      minifyInlineJS: true,
+    },
+    files: generatedHtmlFiles,
+  });
+}
+
+if (!FLAG_CLEAN) {
+// Remove old compiled articles that should no longer exist
+let stateSession = new StateSession();
+stateSession.syncDir(OUTPUT_DIR);
+stateSession.end(); // Release lock
+}
 
 for (let redirect of redirects) {
   let { from, to } = redirect;
@@ -214,7 +232,21 @@ for (let redirect of redirects) {
   let to_noslash = to.replace(/\/+$/, "");
   let to_slash = to_noslash + '/';
 
-  fs.writeFileSync(OUTPUT_DIR + from_slash + 'index.html', createRedirectHTML(URL_PATH_PREFIX + to_slash));
+  fs.ensureFileSync(OUTPUT_DIR + from_slash + 'index.html', createRedirectHTML(URL_PATH_PREFIX + to_slash));
 }
 
 fs.removeSync(INTERMEDIATE_DIR);
+
+}
+
+if (!module.parent) {
+	let args = process.argv.slice(2);
+
+	start({
+		FLAG_CLEAN: args.includes("clean"),
+	});
+} else {
+	module.exports = {
+		start,
+	};
+}

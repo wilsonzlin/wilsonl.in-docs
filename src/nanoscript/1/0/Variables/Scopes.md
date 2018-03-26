@@ -1,6 +1,6 @@
 A **scope** determines the visibility of scoped variables declared directly within it.
 
-Scopes are a bit tricky to explain but easy to understand, so here are 5 rules for understanding scopes:
+Scopes are a bit tricky to explain but easy to understand, so here are 6 rules for understanding scopes:
 
 # Several things have their own scope
 

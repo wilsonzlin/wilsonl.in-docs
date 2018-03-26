@@ -2,7 +2,7 @@
 
 const escapeHTML = require('../Utils/escapeHTML');
 
-const HeaderDocumentationsListItem = ({ name, url, isActive }) => {
+const HeaderProjectsListItem = ({ name, url, isActive }) => {
     return `
         <li class="${ isActive ? "active" : "" }">
             <a href="${ escapeHTML(url) }">${ escapeHTML(name) }</a>
@@ -10,4 +10,4 @@ const HeaderDocumentationsListItem = ({ name, url, isActive }) => {
     `;
 };
 
-module.exports = HeaderDocumentationsListItem;
+module.exports = HeaderProjectsListItem;

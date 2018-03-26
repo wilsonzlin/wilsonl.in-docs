@@ -99,11 +99,20 @@ module.exports = {
         "User-defined classes",
         "Constructors",
         "Object operations",
+        "Extensions",
         "Inheritance",
-        "Type hierarchy",
         "Polymorphism",
         "Operator overloading",
       ],
+    },
+    {
+      name: "Type system",
+      entries: [
+        "Type hierarchy",
+        "Type modifiers",
+        "Runtime type hinting",
+        "Static type checking",
+      ]
     },
     {
       name: "Errors",

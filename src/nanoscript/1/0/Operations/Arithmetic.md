@@ -26,7 +26,7 @@ Note that the exponentiate operator is right-associative. Here are some examples
 `hello` * 3  "gives `hellohellohello`"
 
 class A begin
-  operation add (other : A)
+  operation add (self, other : A)
     return @{
       completely as `random`
     }

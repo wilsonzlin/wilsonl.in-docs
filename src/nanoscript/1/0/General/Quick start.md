@@ -21,4 +21,4 @@ nanoscript is reasonably strict. All of the following actions will cause errors:
 - Attempting to execute an operation that does not exist or with operands that don't match its signature (e.g. comparing a string to a number)
 - Using a variable before it's declared
 
-Type annotations can be added to variables, functions (return type), and parameters. Depending on how the interpreter is run, they are ignored, used for runtime type checking, or required for compile-time type enforcement.
+Type modifiers can be added to variables, functions (return type), and parameters. Depending on how the interpreter is run, they are ignored, used for runtime type hinting, or required for compile-time static type checking.
