@@ -6,7 +6,6 @@ const sortOrderPrefixedFilenames = require('./sortOrderPrefixedFilenames');
 const nullableStat = require('./nullableStat');
 const nullableReaddir = require('./nullableReaddir');
 
-const StateSession = require('../State/StateSession');
 const ContentArticleState = require('../State/ContentArticleState');
 const ReferenceArticleState = require('../State/ReferenceArticleState');
 
@@ -28,9 +27,7 @@ const {
 
 } = require('../constants');
 
-const loadDocumentation = (projectName) => {
-  let stateSession = new StateSession();
-
+const loadDocumentation = (projectName, stateSession) => {
   let documentationSourceDir = SOURCE_DIR + projectName + '/';
   let documentationCommonSourceDir = documentationSourceDir + '_common/';
 
@@ -51,6 +48,7 @@ const loadDocumentation = (projectName) => {
       versions.add(doc);
 
       let metadata = require(minorSourceDir + METADATA_FILE_NAME);
+      let metadataStateChanged = stateSession.updateMetadataState(projectName, majorNumber, minorNumber, metadata);
 
       let orderOfCategories = metadata.categories.map(c => c.name);
       doc.setCategories(orderOfCategories);
@@ -110,7 +108,7 @@ const loadDocumentation = (projectName) => {
           }
           if (!stats) {
             entryFSPath = null;
-            throw new ReferenceError(`${entryFSPath} not found`);
+            throw new ReferenceError(`${originalEntryFSPath} not found`);
           }
 
           let articleLastState = stateSession.getState(projectName, majorNumber, minorNumber, categoryName, entryName);
@@ -161,7 +159,7 @@ const loadDocumentation = (projectName) => {
               returnMtimes: articleReturnMtimes,
             });
 
-            if (!articleLastState || articleLastState.isDiffTo(articleCurrentState)) {
+            if (metadataStateChanged || !articleLastState || articleLastState.isDiffTo(articleCurrentState)) {
               // Article state has changed, so need to load data and recompile
               article.stateChanged = true;
 
@@ -212,7 +210,7 @@ const loadDocumentation = (projectName) => {
               mtime: articleMtime,
             });
 
-            if (!articleLastState || articleLastState.isDiffTo(articleCurrentState)) {
+            if (metadataStateChanged || !articleLastState || articleLastState.isDiffTo(articleCurrentState)) {
               // Article state has changed, so need to load data and recompile
               article.stateChanged = true;
 
@@ -238,8 +236,6 @@ const loadDocumentation = (projectName) => {
       });
     });
   });
-
-  stateSession.end();
 
   return versions;
 };

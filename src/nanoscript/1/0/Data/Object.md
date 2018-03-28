@@ -42,6 +42,8 @@ set adv_anon to @{
 
 # Operations
 
+All but the following operations are not defined by nanoscript; every object can define their own behaviour using [object operation implmentations](#Object operation implementation).
+
 ## Test emptyness
 
 Gives `false`.

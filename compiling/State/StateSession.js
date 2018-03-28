@@ -1,6 +1,7 @@
 "use strict";
 
 const fs = require("fs-extra");
+const deepEquals = require("../Utils/deepEquals");
 
 const ContentArticleState = require('./ContentArticleState');
 const ReferenceArticleState = require('./ReferenceArticleState');
@@ -29,14 +30,32 @@ class StateSession {
     return data || null;
   }
 
-  _dig(levels) {
+  _dig(levels, value) {
     let data = this._data;
+    let last = levels.pop();
     while (levels.length) {
       let lvl = levels.shift();
       if (!data[lvl]) {
         data[lvl] = {};
       }
       data = data[lvl];
+    }
+    data[last] = value;
+  }
+
+  updateMetadataState(project, major, minor, metadata) {
+    let currentMeta = this._iter([project, major, minor, "__metadata__.js"]);
+
+    if (!currentMeta) {
+      this._dig([project, major, minor, "__metadata__.js"], metadata);
+      return true;
+    }
+
+    if (!deepEquals(currentMeta, metadata)) {
+      this._data[project][major][minor]["__metadata__.js"] = metadata;
+      return true;
+    } else {
+      return false;
     }
   }
 
@@ -59,8 +78,7 @@ class StateSession {
   }
 
   setState(project, major, minor, category, entry, state) {
-    this._dig([project, major, minor, category, entry]);
-    this._data[project][major][minor][category][entry] = state.toObject();
+    this._dig([project, major, minor, category, entry], state.toObject());
   }
 
   categoryEntryNames(project, major, minor, category) {
@@ -74,8 +92,10 @@ class StateSession {
     return delete data[entry];
   }
 
-  end() {
-    fs.writeJsonSync(STATE_PATH, this._data);
+  end(save) {
+    if (save) {
+      fs.writeJsonSync(STATE_PATH, this._data);
+    }
     this._data = null;
     fs.unlinkSync(STATE_LOCK_PATH);
   }

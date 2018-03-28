@@ -1,4 +1,4 @@
-Null-related operators include **[null-safe accessor](#Access)**, **[null-safe lookup](#Lookups)**, and **[null-safe call](#Calling)**, which are described on their respective non-null operator article.
+Null-related operators include **[null-safe accessor](#Access)**, **[null-safe lookup](#Look up)**, and **[null-safe call](#Call)**, which are described on their respective non-null operator article.
 
 **Null coalescing** operator is a binary operator that takes two operands and returns the right operand if the left operand is null, otherwise it returns the left operand. For example:
 

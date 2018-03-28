@@ -4,7 +4,7 @@ Documentation is available for every major and minor version combination. This d
 
 This documentation may change at any time in order to keep the accuracy and quality to a high standard.
 
-If you notice a mistake or have comments, please send them using the feedback tool, by pressing Feedback at the top right of every page.
+If you notice a mistake or have comments, please send them using the feedback tool, by pressing Feedback at the top right of any page.
 
 **Quick links:**
 
