@@ -33,7 +33,7 @@
     background: #999;
     color: white;
     font-size: 1rem;
-    font-weight: 200;
+    font-weight: 400;
     margin: 1rem 0;
     padding: 0.5rem 0.75rem;
 }
@@ -58,8 +58,8 @@ article table {
 }
 
 article td, article th {
+  padding: 0.5rem 0.75rem;
   border: 0.125rem solid #ddd;
-  padding: 0.25rem 0.375rem;
 }
 
 #article ul {

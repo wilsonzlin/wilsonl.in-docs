@@ -15,6 +15,7 @@ module.exports = {
         "Initialising namespaces",
         "Imports",
         "Initial instantiations",
+        "Accessing own namespace",
       ],
     },
     {
@@ -24,19 +25,28 @@ module.exports = {
         "Inheritance",
         "Abstract classes",
         "View extension",
-        "Serialisation and deserialisation",
+        "Serialisation",
+        "Deserialisation",
         "Constructors",
         "Dispatch events",
+        "Initialisation",
+      ],
+    },
+    {
+      name: "Fields",
+      entries: [
+        "Declaring fields",
+        "Special fields",
       ],
     },
     {
       name: "Properties",
       entries: [
         "Declaring properties",
-        "Default property values",
         "Typing",
-        "Transient properties",
         "Array properties",
+        "Transient properties",
+        "Default property values",
         "Attribute properties",
         "Getters, setters, and change listeners",
         "Binding",
@@ -46,10 +56,7 @@ module.exports = {
       name: "Methods",
       entries: [
         "Declaring methods",
-        "Using methods",
-        "Static methods",
-        "Factory methods",
-        "Serialisation methods",
+        "Special methods",
       ],
     },
     {

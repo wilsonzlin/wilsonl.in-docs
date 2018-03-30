@@ -1,55 +1,303 @@
+# Precedence levels
+
+# Arity
+
+# Associativity
+
+# Operators
+
 The following table is sorted by precedence, with the highest precedence operators at the top.
 
-|Name|Operation|Syntax|Arity|Associativity|
-|---|---|---|---|---|
-|Accessor|Access and assign|`.`|Binary|Left|
-|Null-safe accessor|Access|`?.`|Binary|Left|
-|Lookup|Access and assign|`[`|Unary|Left|
-|Null-safe lookup|Access|`?[`|Unary|Left|
-|Call|Call|`(`|Unary|Left|
-|Null-safe call|Call|`?(`|Unary|Left|
-|Measure|Measure|`#`|Unary|Right|
-|Exponentiate|Exponentiate|`^`|Binary|Right|
-|Multiply|Multiply|`*`|Binary|Left|
-|Divide|Divide|`/`|Binary|Left|
-|Modulo|Modulo|`%`|Binary|Left|
-|Plus|Add|`+`|Binary|Left|
-|Minus|Subtract|`-`|Binary|Left|
-|Equals|Test equality|`==`|Binary|Left|
-|Not equals|Test equality|`!=`|Binary|Left|
-|Less than|Compare|`<`|Binary|Left|
-|Less than or equal to|Compare|`<=`|Binary|Left|
-|Greater than|Compare|`>`|Binary|Left|
-|Greater than or equal to|Compare|`>=`|Binary|Left|
-|Compare|Compare|`<=>`|Binary|Left|
-|Type of|Test ancestry|`typeof`|Binary|Left|
-|Not type of|Test ancestry|`not typeof`|Binary|Left|
-|Empty|Test emptyness|`empty`|Unary|Right|
-|Not||`not`|Unary|Right|
-|And||`and`|Binary|Left|
-|Or||`or`|Binary|Left|
-|Null coalescing||`??`|Binary|Right|
-|Empty coalescing||`?:`|Binary|Right|
+<table>
+<thead>
+  <tr>
+    <th>
+    <th>Name
+    <th>Operation
+    <th>Syntax
+    <th>Arity
+    <th>Associativity
 
-## Precedence levels
+<tbody>
+  <tr>
+    <td rowspan="6">
+    <td>Accessor
+    <td>Access and assign to
+    <td><code>.</code>
+    <td>Binary
+    <td>Left
+  <tr>
+    <td>Null-safe accessor
+    <td>Access and assign to
+    <td><code>?.</code>
+    <td>Binary
+    <td>Left
+  <tr>
+    <td>Lookup
+    <td>Look up and update
+    <td><code>[</code>
+    <td>Unary
+    <td>Left
+  <tr>
+    <td>Null-safe lookup
+    <td>Look up and update
+    <td><code>?[</code>
+    <td>Unary
+    <td>Left
+  <tr>
+    <td>Call
+    <td>Call
+    <td><code>(</code>
+    <td>Unary
+    <td>Left
+  <tr>
+    <td>Null-safe call
+    <td>Call
+    <td><code>?(</code>
+    <td>Unary
+    <td>Left
 
-Operators in the same row have the same precedence. The following table is sorted by precedence, with the highest precedence operators at the top.
+  <tr>
+    <td rowspan="1">
+    <td>Await
+    <td>
+    <td><code>await</code>
+    <td>Unary
+    <td>Right
 
-|Operators|Syntax|
-|---|---|
-|Accessor, null-safe accessor, lookup, null-safe lookup, call, null-safe call|`.` `?.` `[` `?[` `(` `?(`|
-|Measure|`#`|
-|Exponentiate|`^`|
-|Multiply, divide, modulo|`*` `/` `%`|
-|Plus, minus|`+` `-`|
-|Equals, not equals, less than, less than or equal to, greater than, greater than or equal to, compare, type of, not type of|`==` `!=` `<` `<=` `>` `>=` `<=>` `typeof` `not typeof`|
-|Empty|`empty`|
-|Not|`not`|
-|And|`and`|
-|Or|`or`|
-|Null coalescing|`??`|
-|Empty coalescing|`?:`|
+  <tr>
+    <td rowspan="1">
+    <td>Exponentiate
+    <td>Exponentiate
+    <td><code>^</code>
+    <td>Binary
+    <td>Right
 
-## Arity
+  <tr>
+    <td rowspan="1">
+    <td>Bitwise NOT
+    <td>Bitwise NOT
+    <td><code>~</code>
+    <td>Unary
+    <td>Right
 
-## Associativity
+  <tr>
+    <td rowspan="1">
+    <td>Measure
+    <td>Measure
+    <td><code>#</code>
+    <td>Unary
+    <td>Right
+
+  <tr>
+    <td rowspan="3">
+    <td>Multiply
+    <td>Multiply
+    <td><code>*</code>
+    <td>Binary
+    <td>Left
+  <tr>
+    <td>Divide
+    <td>Divide
+    <td><code>/</code>
+    <td>Binary
+    <td>Left
+  <tr>
+    <td>Modulo
+    <td>Modulo
+    <td><code>%</code>
+    <td>Binary
+    <td>Left
+
+  <tr>
+    <td rowspan="2">
+    <td>Plus
+    <td>Add
+    <td><code>+</code>
+    <td>Binary
+    <td>Left
+  <tr>
+    <td>Minus
+    <td>Subtract
+    <td><code>-</code>
+    <td>Binary
+    <td>Left
+
+  <tr>
+    <td rowspan="3">
+    <td>Bitwise left shift
+    <td>Bitwise left shift
+    <td><code>&lt;&lt;</code>
+    <td>Binary
+    <td>Left
+  <tr>
+    <td>Bitwise right shift
+    <td>Bitwise right shift
+    <td><code>&gt;&gt;</code>
+    <td>Binary
+    <td>Left
+  <tr>
+    <td>Bitwise zero-fill right shift
+    <td>Bitwise zero-fill right shift
+    <td><code>&gt;&gt;&gt;</code>
+    <td>Binary
+    <td>Left
+
+  <tr>
+    <td rowspan="1">
+    <td>Bitwise AND
+    <td>Bitwise AND
+    <td><code>&amp;</code>
+    <td>Binary
+    <td>Left
+
+  <tr>
+    <td rowspan="1">
+    <td>Bitwise OR
+    <td>Bitwise OR
+    <td><code>|</code>
+    <td>Binary
+    <td>Left
+
+  <tr>
+    <td rowspan="1">
+    <td>Bitwise XOR
+    <td>Bitwise XOR
+    <td><code>\</code>
+    <td>Binary
+    <td>Left
+
+  <tr>
+    <td rowspan="14">
+    <td>In
+    <td>Check contents
+    <td><code>in</code>
+    <td>Binary
+    <td>Left
+  <tr>
+    <td>Not in
+    <td>Check contents
+    <td><code>not in</code>
+    <td>Binary
+    <td>Left
+  <tr>
+    <td>Empty
+    <td>Test emptyness
+    <td><code>empty</code>
+    <td>Unary
+    <td>Right
+  <tr>
+    <td>Is
+    <td>Test identity
+    <td><code>is</code>
+    <td>Binary
+    <td>Left
+  <tr>
+    <td>Is not
+    <td>Test identity
+    <td><code>is not</code>
+    <td>Binary
+    <td>Left
+  <tr>
+    <td>Equals
+    <td>Test equality
+    <td><code>==</code>
+    <td>Binary
+    <td>Left
+  <tr>
+    <td>Not equals
+    <td>Test equality
+    <td><code>~=</code>
+    <td>Binary
+    <td>Left
+  <tr>
+    <td>Less than
+    <td>Compare
+    <td><code><</code>
+    <td>Binary
+    <td>Left
+  <tr>
+    <td>Less than or equal to
+    <td>Compare
+    <td><code><=</code>
+    <td>Binary
+    <td>Left
+  <tr>
+    <td>Greater than
+    <td>Compare
+    <td><code>></code>
+    <td>Binary
+    <td>Left
+  <tr>
+    <td>Greater than or equal to
+    <td>Compare
+    <td><code>>=</code>
+    <td>Binary
+    <td>Left
+  <tr>
+    <td>Compare
+    <td>Compare
+    <td><code><=></code>
+    <td>Binary
+    <td>Left
+  <tr>
+    <td>Type of
+    <td>Test ancestry
+    <td><code>typeof</code>
+    <td>Binary
+    <td>Left
+  <tr>
+    <td>Not type of
+    <td>Test ancestry
+    <td><code>not typeof</code>
+    <td>Binary
+    <td>Left
+
+  <tr>
+    <td rowspan="1">
+    <td>Not
+    <td>
+    <td><code>not</code>
+    <td>Unary
+    <td>Right
+
+  <tr>
+    <td rowspan="1">
+    <td>And
+    <td>
+    <td><code>and</code>
+    <td>Binary
+    <td>Left
+
+  <tr>
+    <td rowspan="1">
+    <td>Or
+    <td>
+    <td><code>or</code>
+    <td>Binary
+    <td>Left
+
+  <tr>
+    <td rowspan="1">
+    <td>Null coalescing
+    <td>
+    <td><code>??</code>
+    <td>Binary
+    <td>Right
+
+  <tr>
+    <td rowspan="1">
+    <td>Empty coalescing
+    <td>
+    <td><code>?:</code>
+    <td>Binary
+    <td>Right
+
+  <tr>
+    <td rowspan="1">
+    <td>Yield
+    <td>
+    <td><code>yield</code>
+    <td>Unary
+    <td>Right
+</table>

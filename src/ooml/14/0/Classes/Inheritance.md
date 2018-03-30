@@ -16,24 +16,26 @@ To override a property or method, just declare it again:
 
 ```html
 <template ooml-class="ParentClass">
-    <ooml-property name="prop">"value"</ooml-property>
-    
-    <ooml-method name="method">
-        function() {
-            console.log("From ParentClass");
-        }
-    </ooml-property>
+  <ooml-property name="prop">"value"</ooml-property>
+
+  <ooml-method name="method">
+    function() {
+      console.log("From ParentClass");
+    }
+  </ooml-property>
 </template>
 
 <template ooml-class="ChildClass extends ParentClass">
-    <ooml-property name="prop">3.14</ooml-property>
-    
-    <ooml-method name="method">
-        function() {
-            console.log("From ChildClass");
-        }
-    </ooml-property>
+  <ooml-property name="prop">3.14</ooml-property>
+
+  <ooml-method name="method">
+    function() {
+      console.log("From ChildClass");
+    }
+  </ooml-property>
 </template>
 ```
 
-The view of a class can also be inherited — see [View extension](#View extension) for details.
+Use the standard [`super`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/super) JavaScript keyword to call the parent method from an overriden method.
+
+The view of a class can also be inherited — see [View extension](#View extension) for details. Fields are not inherited.

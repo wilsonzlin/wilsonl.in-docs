@@ -112,8 +112,6 @@ const start = ({ FLAG_CLEAN }) => {
         for (let article of doc.articles) {
 
           if (article.stateChanged) {
-            console.log(`${article.urlDirPath} has changed, recompiling...`);
-
             // Regenerate the table of contents for every article, as isActive changes every time
             let tocCategoriesHtml = "";
 

@@ -1,18 +1,17 @@
 Sometimes, external classes need to be used inside a namespace. To import classes and use them like regular classes, pass an object as the second argument to the `OOML.Namespace` constructor:
 
 ```javascript
-// Assume CoolLibrary points to the OOML.Namespace instance of the external library
 let CoolLibrary = new OOML.Namespace(`
-    <template ooml-class="CoolClass"></template>
-    <template ooml-class="MediocreClass"></template>
+  <template ooml-class="CoolClass"></template>
+  <template ooml-class="MediocreClass"></template>
 `);
 
 let MyNamespace = new OOML.Namespace(document.body, {
-    imports: {
-        // The name of the import does not have to be the same as the class's name
-        "CL.ClassA": CoolLibrary.classes.CoolClass,
-        "CL.ClassB": CoolLibrary.classes.MediocreClass,
-    },
+  imports: {
+    // The name of the import does not have to be the same as the class's name
+    "CL.ClassA": CoolLibrary.classes.CoolClass,
+    "CL.ClassB": CoolLibrary.classes.MediocreClass,
+  },
 });
 ```
 
@@ -23,3 +22,5 @@ Once imported, the class can be referred to using the import name. For example, 
 ```html
 <template ooml-class="MyClass extends CL.ClassA"></template>
 ```
+
+Imports are considered part of the namespace, so the `namespace.classes` object will contain them. This also means that declared classes in the namespace cannot have the same name as an import.

@@ -9,7 +9,7 @@ const deepEquals = (a, b) => {
   }
 
   if (typeof_a == null || typeof_a != "object") {
-    return typeof_a === typeof_b;
+    return a === b;
   }
 
   if (Object.getPrototypeOf(a) == Object.prototype) {

@@ -1,13 +1,13 @@
-After a namespace has been declared, the next step is for it to be parsed, otherwise it's just some plain text HTML.
+After a namespace has been declared, the next step is for it to be parsed, otherwise it's just some HTML.
 
-Namespaces are parsed by creating a new `OOML.Namespace` instance with the DOM element containing the ooml class declarations.
+Namespaces are parsed by creating a new `OOML.Namespace` instance with the namespace declaration's DOM element.
 
 Here is an example of a namespace containing two (empty) classes:
 
 ```html
 <div id="my-namespace">
-    <template ooml-class="Class1"></template>
-    <template ooml-class="Class2"></template>
+  <template ooml-class="Class1"></template>
+  <template ooml-class="Class2"></template>
 </div>
 ```
 
@@ -17,7 +17,7 @@ To initialise the above example namespace, the following JavaScript code would b
 let MyNamespace = new OOML.Namespace(document.querySelector("#my-namespace"));
 ```
 
-By default, if no DOM element is specified (i.e. if the first argument is not provided), the DOM element used defaults to `document.body` (i.e. the `<body>` tag).
+By default, if no DOM element is specified (i.e. if no arguments are provided), the DOM element used defaults to `document.body` (i.e. the `<body>` tag).
 
 There are also other ways to call the constructor:
 
@@ -29,8 +29,8 @@ MyNamespace = new OOML.Namespace("#my-namespace");
 
 // Provide the HTML directly (note: the container tag should not be provided)
 MyNamespace = new OOML.Namespace(`
-    <template ooml-class="Class1"></template>
-    <template ooml-class="Class2"></template>
+  <template ooml-class="Class1"></template>
+  <template ooml-class="Class2"></template>
 `);
 
 // Use document.body by default

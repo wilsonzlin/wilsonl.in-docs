@@ -2,11 +2,11 @@ Normally, when inheriting a class, the view of the parent class is not inherited
 
 ```html
 <template ooml-class="ParentClass">
-    <div>
-        <h1>ParentClass's view</h1>
-        <!-- Here's the extension point tag -->
-        <ooml-extension-point></ooml-extension-point>  
-    </div>
+  <div>
+    <h1>ParentClass's view</h1>
+    <!-- Here's the extension point tag -->
+    <ooml-extension-point></ooml-extension-point>
+  </div>
 </template>
 ```
 
@@ -14,22 +14,20 @@ Now, when classes inherit *ParentClass* (i.e. `extend ParentClass`), a copy of *
 
 ```html
 <template ooml-class="ChildClass extends ParentClass">
-    <p>
+  <p>
+    This is ChildClass's view.
+  </p>
+
+  <!--
+    ChildClass's actual view is:
+
+    <div>
+      <h1>ParentClass's view</h1>
+      <p>
         This is ChildClass's view.
-    </p>
-    
-    <!--
-    
-        ChildClass's **actual** view is:
-        
-        <div>
-            <h1>ParentClass's view</h1>
-            <p>
-                This is ChildClass's view.
-            </p>
-        </div>
-        
-    -->
+      </p>
+    </div>
+  -->
 </template>
 ```
 

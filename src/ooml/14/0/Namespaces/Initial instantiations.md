@@ -1,18 +1,18 @@
-While declaring a bunch of classes is nice, the final step of starting an application is to run something. In almost every language and program, this is done by creating a new instance of a "main class" and/or running some function immediately.
+The final step of starting an application is to run something. In almost every language and program, this is done by creating a new instance of a "main class" and/or running a "main" function immediately.
 
-Similarly, in ooml, some class is chosen to be instantiated immediately after parsing all the classes. The code to kickstart the app is then written in this class's constructor. These are known as **initial instantiations**.
+Similarly, in ooml, some class is chosen to be instantiated immediately after parsing all the classes. The code to kickstart the app is then written in this class's constructor. This is known as an **initial instantiation**.
 
 An initial instantiation is declared inside a namespace declaration. To declare one, use the `ooml-attribute` attribute on a tag:
 
 ```html
 <div id="my-namespace">
-    <template ooml-class="MyMainClass">
-        <article>
-            <h1>Hello, world!</h1>
-        </article>
-    </template>
-    
-    <article ooml-instantiate="MyMainClass myAppClass"></article>
+  <template ooml-class="MyMainClass">
+    <article>
+      <h1>Hello, world!</h1>
+    </article>
+  </template>
+
+  <article ooml-instantiate="MyMainClass myMainClass"></article>
 </div>
 ```
 

@@ -6,10 +6,10 @@ module.exports = {
         "Introduction",
         "Features and design",
         "Syntax style",
+        "Quick start",
         "Comment",
         "Keyword",
         "Identifier",
-        "Quick start",
       ],
     },
     {
@@ -53,6 +53,8 @@ module.exports = {
         "Built-in function",
         "Lambda",
         "Class function",
+        "Parameter",
+        "Argument",
       ],
     },
     {
@@ -88,13 +90,14 @@ module.exports = {
         "Branching",
         "Conditional loop",
         "Iterator loop",
-        "Returning"
+        "Returning",
       ]
     },
     {
       name: "Object orientation",
       entries: [
         "Class",
+        "Virtual class",
         "Built-in class",
         "User-defined class",
         "Constructor",

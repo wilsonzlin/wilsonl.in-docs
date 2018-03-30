@@ -2,6 +2,8 @@ All properties have a default value. It is used as the value for a property when
 
 ooml properties must have a default value. Generally, if you don't have a specific default value in mind, consider `null`, `0`, `false`, or `""`. The default value must be compatible with the [type](#Typing) of the property.
 
+Note that [transient properties](#Transient properties) can have any non-`undefined` default value. The rules below only apply to non-transient properties.
+
 # Primitive default values
 
 Only properties with a [primitive type](#Typing) can have a non-null primitive default value. Examples of primitive default values are:
