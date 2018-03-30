@@ -31,7 +31,7 @@
 }
 
 #article .category-label {
-  display: none;
+  font-size: 0px;
 }
 
 #article .category {
