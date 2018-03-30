@@ -1,4 +1,4 @@
-#article {
+#article-container {
     padding: 1rem;
     /* Although unlikely, if an article has no/almost no content, #article width collapses */
     width: 100%;
@@ -9,7 +9,7 @@
 }
 
 #article .category::before {
-    content: '<   ';
+    content: '☰   ';
 }
 
 #article dd {

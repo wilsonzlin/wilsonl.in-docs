@@ -11,7 +11,8 @@ class Documentation {
     this.orderOfCategories = undefined;
     this.articlesByCategory = new Map();
 
-    this.articles = new Set();
+    // Articles must be in order for navigation to work
+    this.articles = [];
     // urlDirPath must have trailing slash, as S3 Website will redirect no-trailing-slash to trailing-slash
     this.urlDirPath = '/' + [name, major, minor].map(createURLPathComponent).join('/') + '/';
 
@@ -39,7 +40,7 @@ class Documentation {
       throw new ReferenceError(`The "${category}" category does not exist`);
     }
 
-    this.articles.add(article);
+    this.articles.push(article);
     this.articlesByCategory.get(category).push(article);
   }
 

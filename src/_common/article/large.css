@@ -1,9 +1,18 @@
-#article {
-    max-width: 60rem;
-    width: calc(100% - 18rem);
-    padding: 2rem;
+.article-nav {
+  display: table;
+  width: 100%;
+}
+
+.article-nav > div {
+  display: table-cell;
+}
+
+#article-container {
+  max-width: 60rem;
+  width: calc(100% - 18rem);
+  padding: 2rem;
 }
 
 #article > header > h1::after {
-    margin-top: 0.5rem;
+  margin-top: 0.5rem;
 }

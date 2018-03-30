@@ -10,6 +10,7 @@ const createRedirectHTML = require('./Utils/createRedirectHTML');
 
 const StateSession = require('./State/StateSession');
 
+const ArticleNavigator = require('./Views/ArticleNavigator');
 const ContentArticle = require('./Views/ContentArticle');
 const HeaderProjectsListItem = require('./Views/HeaderProjectsListItem');
 const Page = require('./Views/Page');
@@ -109,7 +110,11 @@ const start = ({ FLAG_CLEAN }) => {
           to: landingArticle.urlDirPath,
         });
 
-        for (let article of doc.articles) {
+        for (let articleIdx = 0; articleIdx < doc.articles.length; articleIdx++) {
+
+          let prevArticle = articleIdx == 0 ? null : doc.articles[articleIdx - 1];
+          let article = doc.articles[articleIdx];
+          let nextArticle = articleIdx == doc.articles.length - 1 ? null : doc.articles[articleIdx + 1];
 
           if (article.stateChanged) {
             // Regenerate the table of contents for every article, as isActive changes every time
@@ -175,6 +180,16 @@ const start = ({ FLAG_CLEAN }) => {
               documentationsListItemsHtml: documentationsListItemsHtml,
               tocCategoriesHtml: tocCategoriesHtml,
               articleHtml: articleHtml,
+              articleNavPrev: prevArticle ? ArticleNavigator({
+                dir: ArticleNavigator.DIR_PREV,
+                href: URL_PATH_PREFIX + prevArticle.urlDirPath,
+                name: prevArticle.name,
+              }) : "",
+              articleNavNext: nextArticle ? ArticleNavigator({
+                dir: ArticleNavigator.DIR_NEXT,
+                href: URL_PATH_PREFIX + nextArticle.urlDirPath,
+                name: nextArticle.name,
+              }) : "",
             });
 
             let articleUrlFilePath = article.urlDirPath + 'index.html';

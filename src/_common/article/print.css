@@ -1,3 +1,7 @@
+.article-nav {
+  display: none;
+}
+
 #article .category {
   padding-left: 0;
   padding-right: 0;

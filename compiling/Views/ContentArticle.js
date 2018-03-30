@@ -2,15 +2,14 @@
 
 const escapeHTML = require('../Utils/escapeHTML');
 
-const ContentArticle = ({ category, name, contentHtml }) => {
-    return `
-        <header>
-            <a href="#pane" class="category">${ escapeHTML(category) }</a>
-            <h1>${ escapeHTML(name) }</h1>
-        </header>
+const ArticleHeader = require('./ArticleHeader');
 
-        <section>${ contentHtml }</section>
-    `;
+const ContentArticle = ({ category, name, contentHtml }) => {
+  return `
+    ${ArticleHeader({ category, name })}
+
+    <section>${contentHtml}</section>
+  `;
 };
 
 module.exports = ContentArticle;

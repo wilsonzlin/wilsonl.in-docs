@@ -1,78 +1,63 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html {
-    font-size: 16px;
-    line-height: 1.5;
+  background: #fafafa;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 body {
-    background: white;
-    min-height: 100%;
+  min-height: 100%;
 }
 
 a {
-    color: #61aeee;
-    text-decoration: none;
-    outline: none;
+  color: #61aeee;
+  text-decoration: none;
+  outline: none;
 }
 
 a:hover, a:focus {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 textarea {
-    resize: vertical;
+  resize: vertical;
 }
 
 body, button, select, input, textarea {
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Ubuntu, Cantarell, Oxygen, Droid Sans, Fira Sans, sans-serif;
-    border-radius: 0;
-    outline: none;
-    margin: 0;
-    color: #333;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Ubuntu, Cantarell, Oxygen, Droid Sans, Fira Sans, sans-serif;
+  border-radius: 0;
+  outline: none;
+  margin: 0;
+  color: #333;
 }
 
 button {
-    background: #e2e2e2;
-    border-radius: 2px;
-    border: 1px solid #aaa;
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
-    cursor: pointer;
+  background: #e2e2e2;
+  border-radius: 2px;
+  border: 1px solid #aaa;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  cursor: pointer;
 }
 
 ::-moz-focus-inner {
-    border: 0;
-    padding: 0;
+  border: 0;
+  padding: 0;
 }
 
 .no-select {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-#gradient-body-background {
-    background: white;
-    background: -moz-linear-gradient(top, #e8e8e8 0%, #ffffff 100%);
-    background: -webkit-linear-gradient(top, #e8e8e8 0%, #ffffff 100%);
-    background: linear-gradient(to bottom, #e8e8e8 0%, #ffffff 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e8e8e8', endColorstr='#ffffff', GradientType=0);
-
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: -10;
-}
-
-#pane, #article {
-    display: inline-block;
-    vertical-align: top;
+#pane, #article-container {
+  display: inline-block;
+  vertical-align: top;
 }
 
 <ZC-IMPORT[../../node_modules/highlight.js/styles/atom-one-dark.css]>
@@ -83,25 +68,25 @@ button {
 <ZC-IMPORT[pane/base.css]>
 
 @media (min-width: 1001px) {
-    <ZC-IMPORT[feedback/large.css]>
-    <ZC-IMPORT[article/large.css]>
-    <ZC-IMPORT[header/large.css]>
-    <ZC-IMPORT[main/large.css]>
-    <ZC-IMPORT[pane/large.css]>
+  <ZC-IMPORT[feedback/large.css]>
+  <ZC-IMPORT[article/large.css]>
+  <ZC-IMPORT[header/large.css]>
+  <ZC-IMPORT[main/large.css]>
+  <ZC-IMPORT[pane/large.css]>
 }
 
 @media (max-width: 1000px) {
-    <ZC-IMPORT[feedback/small.css]>
-    <ZC-IMPORT[article/small.css]>
-    <ZC-IMPORT[header/small.css]>
-    <ZC-IMPORT[main/small.css]>
-    <ZC-IMPORT[pane/small.css]>
+  <ZC-IMPORT[feedback/small.css]>
+  <ZC-IMPORT[article/small.css]>
+  <ZC-IMPORT[header/small.css]>
+  <ZC-IMPORT[main/small.css]>
+  <ZC-IMPORT[pane/small.css]>
 }
 
 @media print {
-  <ZC-IMPORT[feedback/print.css]>
-  <ZC-IMPORT[article/print.css]>
-  <ZC-IMPORT[header/print.css]>
-  <ZC-IMPORT[main/print.css]>
-  <ZC-IMPORT[pane/print.css]>
+<ZC-IMPORT[feedback/print.css]>
+<ZC-IMPORT[article/print.css]>
+<ZC-IMPORT[header/print.css]>
+<ZC-IMPORT[main/print.css]>
+<ZC-IMPORT[pane/print.css]>
 }
