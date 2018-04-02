@@ -3,6 +3,11 @@
     width: 18rem;
 }
 
+.toc-category-label:hover {
+    text-decoration: underline;
+}
+
 .toc-category-entry:hover {
-    background: rgba(180, 180, 180, 0.25);
+    /*background: rgba(180, 180, 180, 0.25);*/
+    text-decoration: underline;
 }

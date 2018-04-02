@@ -136,7 +136,8 @@ const start = ({ FLAG_CLEAN }) => {
                 });
               }
 
-              tocCategoriesHtml += PaneTocCategory(tocCategoryName, tocCategoryEntriesHtml);
+              tocCategoriesHtml += PaneTocCategory(tocCategoryName,
+                tocCategoryName == article.category, tocCategoryEntriesHtml);
             }
 
             let articleHtml;

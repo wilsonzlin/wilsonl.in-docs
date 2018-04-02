@@ -16,7 +16,7 @@ const STATE_LOCK_PATH = PROJECT_DIR + 'compiling/state.json.lock';
 // as all urlDirPath values have leading slash
 const URL_PATH_PREFIX = '/docs';
 
-const PROJECT_NAMES = ['ooml', 'nanoscript', 'zQuery'];
+const PROJECT_NAMES = ['ooml', 'nanoscript', 'zQuery', 'zc'];
 const METADATA_FILE_NAME = '__metadata__.js';
 
 module.exports = Object.freeze({

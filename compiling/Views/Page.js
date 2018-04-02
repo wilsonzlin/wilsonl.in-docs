@@ -1,8 +1,8 @@
 "use strict";
 
-const escapeHTML = require('../Utils/escapeHTML');
+const escapeHTML = require("../Utils/escapeHTML");
 
-const Page = ({ url, viewportTitle, documentationsListItemsHtml, tocCategoriesHtml, articleNavPrev, articleHtml, articleNavNext }) => {
+const Page = ({url, viewportTitle, documentationsListItemsHtml, tocCategoriesHtml, articleNavPrev, articleHtml, articleNavNext}) => {
   return `
     <!DOCTYPE html>
     <html>
@@ -113,10 +113,12 @@ const Page = ({ url, viewportTitle, documentationsListItemsHtml, tocCategoriesHt
 
       <main id="main">
         <nav id="pane" class="no-select">
-          <input id="toc-search" placeholder="Search for an article">
-          <dl id="toc-categories">
+          <label id="toc-search-wrapper">
+            <input id="toc-search" placeholder="Search for an article" title="Search for an article">
+          </label>
+          <div id="toc-categories">
             ${tocCategoriesHtml}
-          </dl>
+          </div>
         </nav>
 
         <div id="article-container">
