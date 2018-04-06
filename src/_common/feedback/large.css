@@ -1,18 +1,18 @@
 #feedback {
-    position: absolute;
+  position: absolute;
 
-    padding: 2rem;
+  padding: 2rem;
 
-    height: 34rem;
-    width: 39rem;
+  height: 34rem;
+  width: 39rem;
 }
 
 #feedback-close {
-    position: absolute;
-    right: 0;
-    /*
-        #feedback-cloes already has margin because #feedback-form > *
-        This just makes it centre vertically, accounting for existing margins
-     */
-    top: 0.25rem;
+  position: absolute;
+  right: 0;
+  /*
+    #feedback-close already has margin because #feedback-form > *
+    This just makes it centre vertically, accounting for existing margins
+   */
+  top: 0.25rem;
 }

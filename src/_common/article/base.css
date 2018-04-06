@@ -6,7 +6,7 @@
   background: #073642;
   color: white;
 
-  padding: 1.75rem 1.25rem;
+  padding: 1.5rem 1.25rem;
 }
 
 #article .category {
@@ -42,7 +42,8 @@
 #article h1 {
   font-size: 2.25rem;
 
-  line-height: 1;
+  /* Don't reduce too much, as otherwise multiple lines get cramped */
+  line-height: 1.25;
 }
 
 #article h2 {
@@ -65,7 +66,6 @@
 
 #article .table-container {
   overflow: auto;
-  margin: 1rem 0;
 }
 
 #article table {
@@ -91,45 +91,51 @@
   font-size: 0.875rem;
 }
 
-#article ul, #article ol {
-  padding-left: 1rem;
-}
-
-#article td ul, #article td ol {
+#article ul, /* List */
+#article ol  /* List */
+{
   padding-left: 1.5rem;
 }
 
-#article p,
-#article pre,
-#article dl,
-#article ul,
-#article ol {
-  margin: 1rem 0;
+#article p, /* Paragraph */
+#article pre, /* Block of code */
+#article dl, /* Definition list */
+#article ul, /* List (ordered) */
+#article ol, /* List (unordered) */
+#article .table-container /* Table */
+{
+  margin: 1.25rem 0; /* Left and right are 1.25rem, so match */
 }
 
-#article dt,
-#article dd,
-#article dd dl,
-#article li,
-#article li ul,
-#article li ol {
+#article dt, /* Definition title */
+#article dd, /* Definition value */
+#article dd dl, /* Definition list inside definition list */
+#article li, /* List item */
+#article li ul, /* List inside list */
+#article li ol /* List inside list */
+{
   margin: 0.5rem 0;
 }
 
-#article td ul,
-#article td ol {
+#article td ul, /* List inside table */
+#article td ol /* List inside table */
+{
   margin: 0;
 }
 
-#article dt {
+#article dt /* Definition title */
+{
   font-weight: 600;
 }
 
-#article pre, #article code {
+#article pre, /* Block of code */
+#article code /* Inline code */
+{
   font-size: 13px;
 }
 
-#article pre {
+#article pre /* Block of code */
+{
   background: rgba(255, 255, 255, 0.03);
 
   color: #777;
@@ -164,12 +170,14 @@
   color: #61aeee;
 }
 
-#article code {
+#article code /* Inline code */
+{
   color: #EEE8D5;
   padding: 3px 7px;
 }
 
-#article a code {
+#article a code /* Inline code in link */
+{
   color: inherit;
 }
 

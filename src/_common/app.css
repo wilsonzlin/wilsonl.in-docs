@@ -8,9 +8,16 @@
 }
 
 html {
-  background: #002B36;
+  /* Yes, do not change button, input, etc. font size (defaults look good) */
   font-size: 16px;
+  background: #002B36;
   line-height: 1.5;
+}
+
+@media print {
+  html {
+    font-size: 14px;
+  }
 }
 
 body, button, select, input, textarea {
@@ -23,16 +30,21 @@ body, button, select, input, textarea {
 }
 
 button {
-  background: #e2e2e2;
-  border-radius: 2px;
-  border: 1px solid #aaa;
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
+  background: transparent;
+  border: 0;
+  color: #268BD2;
+  font-size: 1rem;
+  padding: 0;
+
   cursor: pointer;
 }
 
+button:hover, button:focus {
+  text-decoration: underline;
+}
+
 textarea {
-  resize: vertical;
+  resize: none;
 }
 
 a {

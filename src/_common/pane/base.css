@@ -14,8 +14,8 @@
   display: block;
 
   position: absolute;
-  top: 0.45rem;
-  left: 0.6rem;
+  top: 7.5px;
+  left: 9.5px;
 
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
@@ -27,9 +27,10 @@
   border: 0;
   background: transparent;
 
-  display: block;
-
   padding: 0.75rem 0.5rem 0.75rem 1.875rem;
+
+  display: block;
+  width: 100%;
 
   outline: 0;
 }
@@ -106,7 +107,7 @@ input[name="toc-category-expanded"]:checked ~ .toc-category-entries,
 .toc-category-entry > a {
   text-decoration: none;
   display: block;
-  padding: 0.5rem 1rem 0.5rem 1.875rem;
+  padding: 0.5rem 1rem 0.5rem 1.625rem; /* #toc-search left padding minus border-width */
   font-size: 0.875rem;
 }
 
