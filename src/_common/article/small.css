@@ -1,17 +1,17 @@
 #article-container {
-    padding: 1rem;
-    /* Although unlikely, if an article has no/almost no content, #article width collapses */
-    width: 100%;
+  /* Although unlikely, if an article has no/almost no content, #article width collapses */
+  width: 100%;
 }
 
 #article .category {
-    display: block;
+  display: block;
 }
 
 #article .category::before {
-    content: '☰   ';
+  /* Only show in small as category is also shown in reader mode */
+  content: '☰   ';
 }
 
 #article dd {
-    margin-left: 0;
+  margin-left: 0;
 }

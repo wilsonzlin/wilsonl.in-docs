@@ -69,7 +69,7 @@ const loadDocumentation = (projectName, stateSession) => {
           });
       };
 
-      let articleNameCounts = new Map();
+      let duplicateArticleNames = new Set();
 
       metadata.categories.forEach(categoryMetadata => {
         let categoryName = categoryMetadata.name;
@@ -81,10 +81,10 @@ const loadDocumentation = (projectName, stateSession) => {
         let extraneousEntriesInCategoryState = stateSession.categoryEntryNames(projectName, majorNumber, minorNumber, categoryName);
 
         categoryEntriesMetadata.forEach(entryName => {
-          if (!articleNameCounts.has(entryName)) {
-            articleNameCounts.set(articleNameCounts, 1);
+          if (!duplicateArticleNames.has(entryName)) {
+            duplicateArticleNames.add(entryName);
           } else {
-            throw new Error(`Duplicate article name "${entryName}`);
+            throw new Error(`Duplicate article name "${entryName}"`);
           }
 
           let entryFSName = entryName + '.md';

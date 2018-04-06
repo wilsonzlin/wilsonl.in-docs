@@ -141,6 +141,16 @@ const start = ({ FLAG_CLEAN }) => {
             }
 
             let articleHtml;
+            let articleNavPrev = prevArticle ? ArticleNavigator({
+              dir: ArticleNavigator.DIR_PREV,
+              href: URL_PATH_PREFIX + prevArticle.urlDirPath,
+              name: prevArticle.name,
+            }) : "";
+            let articleNavNext = nextArticle ? ArticleNavigator({
+              dir: ArticleNavigator.DIR_NEXT,
+              href: URL_PATH_PREFIX + nextArticle.urlDirPath,
+              name: nextArticle.name,
+            }) : "";
 
             if (article.type == ARTICLE_TYPE_REFERENCE) {
 
@@ -157,6 +167,7 @@ const start = ({ FLAG_CLEAN }) => {
                 signaturesHtml: signaturesHtml,
                 argumentsHtml: argumentsHtml,
                 returnsHtml: returnsHtml,
+                articleNavPrev, articleNavNext
               });
 
             } else if (article.type == ARTICLE_TYPE_CONTENT) {
@@ -167,6 +178,7 @@ const start = ({ FLAG_CLEAN }) => {
                 category: article.category,
                 name: article.name,
                 contentHtml: contentHtml,
+                articleNavPrev, articleNavNext
               });
 
             } else {
@@ -181,16 +193,6 @@ const start = ({ FLAG_CLEAN }) => {
               documentationsListItemsHtml: documentationsListItemsHtml,
               tocCategoriesHtml: tocCategoriesHtml,
               articleHtml: articleHtml,
-              articleNavPrev: prevArticle ? ArticleNavigator({
-                dir: ArticleNavigator.DIR_PREV,
-                href: URL_PATH_PREFIX + prevArticle.urlDirPath,
-                name: prevArticle.name,
-              }) : "",
-              articleNavNext: nextArticle ? ArticleNavigator({
-                dir: ArticleNavigator.DIR_NEXT,
-                href: URL_PATH_PREFIX + nextArticle.urlDirPath,
-                name: nextArticle.name,
-              }) : "",
             });
 
             let articleUrlFilePath = article.urlDirPath + 'index.html';

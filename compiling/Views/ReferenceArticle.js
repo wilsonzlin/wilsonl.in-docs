@@ -3,8 +3,9 @@
 const escapeHTML = require('../Utils/escapeHTML');
 
 const ArticleHeader = require('./ArticleHeader');
+const ArticleFooter = require('./ArticleFooter');
 
-const ReferenceArticle = ({ category, name, description, signaturesHtml, argumentsHtml, returnsHtml }) => {
+const ReferenceArticle = ({ category, name, description, signaturesHtml, argumentsHtml, returnsHtml, articleNavPrev, articleNavNext }) => {
   return `
     ${ArticleHeader({ category, name })}
 
@@ -27,6 +28,8 @@ const ReferenceArticle = ({ category, name, description, signaturesHtml, argumen
             ${returnsHtml}
         </ul>
     </section>` }
+    
+    ${ArticleFooter({ articleNavPrev, articleNavNext })}
   `;
 };
 

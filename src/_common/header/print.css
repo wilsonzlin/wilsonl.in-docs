@@ -1,3 +1,7 @@
+#logo {
+  width: 3rem;
+}
+
 #documentations-list > li:not(.active) {
   display: none;
 }

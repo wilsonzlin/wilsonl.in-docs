@@ -12,10 +12,11 @@ The class body is made up of class body units; these are declarations for the cl
 
 ```nanoscript
 class Name : FirstParent + SecondParent begin
+  shared C as 3.14
+  shared D : String as `John`
+
   variable a as 1
   variable b : Number as 2 + a
-  variable C : shared as 3.14
-  variable D : shared String as `John`
   variable others as Map()
 
   constructor (self, arg_one, arg_two)

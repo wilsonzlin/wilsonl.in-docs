@@ -1,5 +1,7 @@
-nanoscript prefers **PascalCase** for names of types and **snake_case** for everything else. There are no recommendations or enforcement around indentation. Whitespace characters are not significant in nanoscript's syntax.
+nanoscript prefers **PascalCase** for names of classes and **snake_case** for everything else. There are no recommendations or enforcement around indentation. Whitespace characters are not significant in nanoscript's syntax.
 
 Unlike some other languages, nanoscript avoids the use of statement terminators (e.g. semicolons in C-like languages) and curly braces for code blocks. Outside of calls and grouping, parentheses are rarely used. The terminators of code blocks match the name of the block's type (e.g. `while` and `endwhile`, `for` and `endfor`, `fn` and `endfn`); this makes it easier to identify the block and its purpose when the beginning is not visible.
 
-Perhaps most different about nanoscript is that it uses keywords to declare and assign to variables.
+Perhaps most different about nanoscript is that it uses keywords to declare and assign to variables. Rather than `var name = value` or `Type name = value`, nanoscript uses `create name Type as value` to declare variables (although the type can be omitted). Similarly, instead of `name = new_value`, nanoscript uses `set name to value` to assign to variables.
+
+For a quick overview of syntax and terminology, see [Quick terminology](#Quick terminology) and [Quick start](#Quick start).

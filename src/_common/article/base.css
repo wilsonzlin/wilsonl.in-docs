@@ -1,37 +1,12 @@
-.article-nav {
-  font-size: 0.875rem;
-  font-weight: 600;
-
-  /* Put styling here instead of each cell because small doesn't use table layout */
-  background: #eee;
-
-  border-width: 1px 0;
-  border-style: solid;
-  border-color: #aaa;
-
-  padding: 0.25rem 0.5rem;
-
-  color: #999;
-}
-
-.article-nav:first-child {
-  margin-bottom: 0.75rem;
-}
-
-.article-nav:last-child {
-  margin: 1rem 0;
-}
-
-.article-nav-right {
-  text-align: right;
-}
-
 #article section:not(:last-of-type) {
   margin-bottom: 4rem;
 }
 
-#article .category-label {
-  font-size: 0px;
+#article header {
+  background: #073642;
+  color: white;
+
+  padding: 1.75rem 1.25rem;
 }
 
 #article .category {
@@ -39,72 +14,96 @@
 
   margin-bottom: 0.5rem;
 
-  background: #ddd;
-  color: gray;
   font-size: 0.75rem;
-  padding: 0.5rem 0.75rem;
   text-transform: uppercase;
-
-  white-space: pre-wrap;
 }
 
-#article > header > h1 {
-  font-size: 2rem;
-  font-weight: 400;
+#article .category-label {
+  /* For reader mode */
+  font-size: 0;
+}
+
+#article h1, h2, h3 {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
   margin: 0;
 }
 
-#article > header > h1::after {
-  background: #333;
-  content: '';
-  display: block;
-  height: 0.125rem;
+#article h2, h3 {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+#article > section > :not(h2):not(h3) {
+  margin-left: 1.25rem !important;
+  margin-right: 1.25rem !important;
+}
+
+#article h1 {
+  font-size: 2.25rem;
+
+  line-height: 1;
 }
 
 #article h2 {
-  background: #999;
-  color: white;
-  font-size: 1rem;
-  font-weight: 400;
-  margin: 1rem 0;
-  padding: 0.5rem 0.75rem;
+  background: #586E75;
+
+  font-size: 1.25rem;
+
+  padding-top: 0.875rem;
+  padding-bottom: 0.875rem;
 }
 
 #article h3 {
-  border: 1px solid #999;
-  background: #f2f2f2;
-  color: #666;
+  background: #93A1A1;
+
   font-size: 1rem;
-  font-weight: 200;
-  margin: 1rem 0;
-  padding: 0.5rem 0.75rem;
+
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
 
-article .table-container {
+#article .table-container {
   overflow: auto;
+  margin: 1rem 0;
 }
 
-article table {
+#article table {
   border-collapse: collapse;
   min-width: 100%;
 }
 
-article td, article th {
+#article td, #article th {
   padding: 0.5rem 0.75rem;
-  border: 0.125rem solid #ddd;
+  border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
-#article ul {
-  padding-left: 2.5rem;
+#article th {
+  text-align: left;
+  color: #859900;
 }
-#article li ul {
-  padding-left: 1.25rem;
+
+#article td td, #article td th {
+  padding: 0.25rem 0.75rem;
+}
+
+#article td thead th {
+  font-size: 0.875rem;
+}
+
+#article ul, #article ol {
+  padding-left: 1rem;
+}
+
+#article td ul, #article td ol {
+  padding-left: 1.5rem;
 }
 
 #article p,
 #article pre,
 #article dl,
-#article ul {
+#article ul,
+#article ol {
   margin: 1rem 0;
 }
 
@@ -112,22 +111,33 @@ article td, article th {
 #article dd,
 #article dd dl,
 #article li,
-#article li ul {
+#article li ul,
+#article li ol {
   margin: 0.5rem 0;
+}
+
+#article td ul,
+#article td ol {
+  margin: 0;
 }
 
 #article dt {
   font-weight: 600;
 }
 
+#article pre, #article code {
+  font-size: 13px;
+}
+
 #article pre {
-  background: #f2f2f2;
-  border: 1px solid #666;
-  color: #595959;
+  background: rgba(255, 255, 255, 0.03);
+
+  color: #777;
+
   display: block;
-  padding: 0.75rem;
   overflow: auto;
-  font-size: 0.875rem;
+
+  padding: 0.75rem;
 }
 
 #article pre.signature {
@@ -155,10 +165,29 @@ article td, article th {
 }
 
 #article code {
-  color: #4d4d4d;
-  font-size: 0.875rem;
+  color: #EEE8D5;
+  padding: 3px 7px;
 }
 
 #article a code {
   color: inherit;
+}
+
+.article-nav {
+  display: table;
+  width: 100%;
+
+  font-weight: 600;
+
+  padding: 0 1.25rem;
+  font-size: 0.875rem;
+  margin: 1.5rem 0;
+}
+
+.article-nav > div {
+  display: table-cell;
+}
+
+.article-nav-right {
+  text-align: right;
 }

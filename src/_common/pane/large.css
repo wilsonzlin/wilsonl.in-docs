@@ -1,13 +1,11 @@
 #pane {
-    padding: 2rem;
-    width: 18rem;
+  width: 16rem;
 }
 
-.toc-category-label:hover {
-    text-decoration: underline;
+.toc-category-name:hover {
+  text-decoration: underline;
 }
 
 .toc-category-entry:hover {
-    /*background: rgba(180, 180, 180, 0.25);*/
-    text-decoration: underline;
+  text-decoration: underline;
 }

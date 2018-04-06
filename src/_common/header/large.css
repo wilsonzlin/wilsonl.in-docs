@@ -1,8 +1,8 @@
 #logo {
-    width: 5.5rem;
-    padding-left: 1.25rem;
+  width: 5.5rem;
+  padding-left: 1.25rem;
 }
 
 #documentations-list > li:hover {
-    background: rgba(0, 0, 0, 0.12);
+  background: rgba(0, 0, 0, 0.12);
 }

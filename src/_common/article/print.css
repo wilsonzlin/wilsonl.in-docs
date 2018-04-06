@@ -1,5 +1,5 @@
-.article-nav {
-  display: none;
+#article header {
+  padding: 0;
 }
 
 #article .category {
@@ -12,8 +12,17 @@
 }
 
 #article h2,
-#article h3 {
+#article h3,
+#article pre {
   padding-left: 0;
   padding-right: 0;
-  border: 0;
+}
+
+#article > section > :not(h2):not(h3) {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.article-nav {
+  display: none;
 }

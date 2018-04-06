@@ -2,7 +2,7 @@ Members can be **accessed** by using the *accessor* (`.`) and *null-safe accesso
 
 If the member does not exist, a `ReferenceError` is thrown.
 
-Setting the value of a member uses the same syntax as setting a variable. Note that it's not possible to create new members on data except for maps and extensible objects, so there is no corresponding *create* syntax. Maps and extensible objects use the *set* syntax even if the member does not exist. Here are some examples:
+Setting the value of a member uses the same syntax as setting a variable. Note that it's not possible to create new members on values except for maps and extensible objects, so there is no corresponding *create* syntax. Maps and extensible objects use the *set* syntax even if the member does not exist. Here are some examples:
 
 ```nanoscript
 create list as [0, 1, 2, { three: 3 }]
@@ -26,7 +26,7 @@ list.get(3).three
 set list.get(3).three to `three`
 ```
 
-Sometimes, it's possible that the data being accessed might be null, in which case trying to access a member would result in an error. Instead of checking for null explicitly, the null-safe accessor can be used. It returns null if the data is null and won't try to access it, and otherwise returns the member's value. This is especially useful in chaining member accesses. Note that accessing an invalid member throws an error, which doesn't change under the null-safe accessor. Here is an example:
+Sometimes, it's possible that the value being accessed might be null, in which case trying to access a member would result in an error. Instead of checking for null explicitly, the null-safe accessor can be used. It returns null if the value is null and won't try to access it, and otherwise returns the member's value. This is especially useful in chaining member accesses. Note that accessing an invalid member throws an error, which doesn't change under the null-safe accessor. Here is an example:
 
 ```nanoscript
 create my_fun as fn (opt some_obj)

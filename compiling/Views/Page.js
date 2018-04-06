@@ -122,17 +122,9 @@ const Page = ({url, viewportTitle, documentationsListItemsHtml, tocCategoriesHtm
         </nav>
 
         <div id="article-container">
-          <div class="article-nav">
-            <div class="article-nav-left">${articleNavPrev}</div>
-            <div class="article-nav-right">${articleNavNext}</div>
-          </div>
           <article id="article">
             ${articleHtml}
           </article>
-          <div class="article-nav">
-            <div class="article-nav-left">${articleNavPrev}</div>
-            <div class="article-nav-right">${articleNavNext}</div>
-          </div>
         </div>
       </main>
     </body>

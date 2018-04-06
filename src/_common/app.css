@@ -3,39 +3,23 @@
 }
 
 *[hidden] {
+  /* For unsupported browsers */
   display: none;
 }
 
 html {
-  background: #fafafa;
+  background: #002B36;
   font-size: 16px;
   line-height: 1.5;
 }
 
-body {
-  min-height: 100%;
-}
-
-a {
-  color: #61aeee;
-  text-decoration: none;
-  outline: none;
-}
-
-a:hover, a:focus {
-  text-decoration: underline;
-}
-
-textarea {
-  resize: vertical;
-}
-
 body, button, select, input, textarea {
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Ubuntu, Cantarell, Oxygen, Droid Sans, Fira Sans, sans-serif;
+  /* Ubuntu font doesn't look good */
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Cantarell, Oxygen, Droid Sans, Fira Sans, Open Sans, Arial, sans-serif;
   border-radius: 0;
   outline: none;
   margin: 0;
-  color: #333;
+  color: #839496;
 }
 
 button {
@@ -45,6 +29,20 @@ button {
   padding: 0.5rem 1rem;
   font-size: 0.875rem;
   cursor: pointer;
+}
+
+textarea {
+  resize: vertical;
+}
+
+a {
+  color: #2AA198;
+  text-decoration: none;
+  outline: none;
+}
+
+a:hover, a:focus {
+  text-decoration: underline;
 }
 
 ::-moz-focus-inner {
@@ -59,8 +57,14 @@ button {
   user-select: none;
 }
 
+#main {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
 #pane, #article-container {
-  display: inline-block;
+  display: table-cell;
   vertical-align: top;
 }
 
@@ -68,22 +72,19 @@ button {
 <ZC-IMPORT[feedback/base.css]>
 <ZC-IMPORT[article/base.css]>
 <ZC-IMPORT[header/base.css]>
-<ZC-IMPORT[main/base.css]>
 <ZC-IMPORT[pane/base.css]>
 
-@media (min-width: 1001px) {
+@media screen and (min-width: 1001px) {
   <ZC-IMPORT[feedback/large.css]>
   <ZC-IMPORT[article/large.css]>
   <ZC-IMPORT[header/large.css]>
-  <ZC-IMPORT[main/large.css]>
   <ZC-IMPORT[pane/large.css]>
 }
 
-@media (max-width: 1000px) {
+@media screen and (max-width: 1000px) {
   <ZC-IMPORT[feedback/small.css]>
   <ZC-IMPORT[article/small.css]>
   <ZC-IMPORT[header/small.css]>
-  <ZC-IMPORT[main/small.css]>
   <ZC-IMPORT[pane/small.css]>
 }
 
@@ -91,6 +92,5 @@ button {
 <ZC-IMPORT[feedback/print.css]>
 <ZC-IMPORT[article/print.css]>
 <ZC-IMPORT[header/print.css]>
-<ZC-IMPORT[main/print.css]>
 <ZC-IMPORT[pane/print.css]>
 }

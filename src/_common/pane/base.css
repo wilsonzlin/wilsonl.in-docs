@@ -1,17 +1,12 @@
 #pane {
+  background: #101e26;
 }
 
 #toc-search-wrapper {
-  border: 1px solid #bfbfbf;
-  border-radius: 0.125rem;
-
-  background: white;
+  background: #073642;
 
   display: block;
   position: relative;
-
-  height: 1.75rem;
-  margin-bottom: 1.25rem;
 }
 
 #toc-search-wrapper::before {
@@ -19,8 +14,8 @@
   display: block;
 
   position: absolute;
-  top: 0;
-  left: 0.5rem;
+  top: 0.45rem;
+  left: 0.6rem;
 
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
@@ -34,10 +29,7 @@
 
   display: block;
 
-  padding: 0 0.5rem 0 1.75rem;
-
-  height: 100%;
-  width: calc(100% - 1.25rem);
+  padding: 0.75rem 0.5rem 0.75rem 1.875rem;
 
   outline: 0;
 }
@@ -51,43 +43,48 @@
 }
 
 .toc-category {
-  margin-bottom: 1.5rem;
   display: block;
 }
 
-.toc-category-label {
+.toc-category-name-wrapper {
   color: gray;
-  font-size: 0.75rem;
-  padding: 0.5rem;
   text-transform: uppercase;
 
-  position: relative;
+  font-size: 0.75rem;
+
+  padding: 0.75rem;
+
+  display: table;
+  max-width: 100%;
 
   cursor: pointer;
 }
 
-.toc-category-label.active {
+.toc-category-name-wrapper.active {
   font-weight: 600;
 }
 
-.toc-category-label::after {
-  /*content: '▶';*/
-  display: block;
-  position: absolute;
-  right: 0;
-  top: 5px;
+.toc-category-name, .toc-category-name-wrapper::after {
+  display: table-cell;
+  vertical-align: middle;
 }
 
-input[name="toc-category-expanded"]:checked + .toc-category-label::after {
+.toc-category-name-wrapper::after {
   content: '▼';
+  text-align: right;
+  padding-left: 0.325rem;
 }
 
-#pane[searching] .toc-category-label::after {
+input[name="toc-category-expanded"]:checked + .toc-category-name-wrapper::after {
+  content: '';
+}
+
+#pane[searching] .toc-category-name-wrapper::after {
   display: none;
 }
 
 .toc-category-entries {
-  margin: 0.5rem 0 0 0;
+  margin: 0;
   padding: 0;
   display: none;
 }
@@ -99,6 +96,7 @@ input[name="toc-category-expanded"]:checked ~ .toc-category-entries,
 
 .toc-category-entry {
   display: block;
+  border-left: 0.25rem solid transparent;
 }
 
 .toc-category-entry[hidden] {
@@ -107,12 +105,11 @@ input[name="toc-category-expanded"]:checked ~ .toc-category-entries,
 
 .toc-category-entry > a {
   text-decoration: none;
-  color: inherit;
   display: block;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1rem 0.5rem 1.875rem;
   font-size: 0.875rem;
 }
 
 .toc-category-entry.active {
-  background: rgba(180, 180, 180, 0.25);
+  border-color: #2AA198;
 }

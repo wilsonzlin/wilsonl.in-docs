@@ -1,8 +1,8 @@
-All data types except objects have their own operation implementations; they define what happens when they are operated upon.
+All values except objects have their own operation implementations; they define what happens when they are operated upon.
 
 Objects, however, can define what happens when they appear as an operand in some operation, by defining their own **object operation implementations**.
 
-[User-defined classes](#User-defined class) define these for objects of its type. [Anonymous objects](#Object) define these in their declaration.
+[User-defined classes](#User-defined class) define these for objects of its type. [Anonymous objects](#Object value) define these in their declaration.
 
 # Positioning
 

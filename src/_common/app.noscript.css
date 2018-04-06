@@ -1,12 +1,2 @@
-<ZC-IMPORT[header/base.noscript.css]>
-<ZC-IMPORT[main/base.noscript.css]>
 <ZC-IMPORT[pane/base.noscript.css]>
-
-@media (min-width: 1001px) {
-    <ZC-IMPORT[pane/large.noscript.css]>
-}
-
-@media (max-width: 1000px) {
-    <ZC-IMPORT[pane/small.noscript.css]>
-}
 

@@ -30,11 +30,12 @@ Normal HTML escaping:
 entities
 - Content should replace chevrons (`<` and `>`) with respective HTML
 entities
+- Ampersands should be replaced with its equivalent HTML entity (`&amp;`)
 
 ### How to avoid special interpretation
 
 Don't use a tag starting with `zc-`, it's not a valid tag; if literal
-required, replace (`<` with `&lt;`)
+required, replace `<` with `&lt;`.
 
 ### Order of processing:
 
@@ -49,18 +50,18 @@ literals would need double encoding.
 
 ### Format
 
-1. `&zc-` followed by the name and an opening parenthesis (`(`)
+1. `&zc-` followed by the name and an opening parenthesis
 1. the name, an equals, and the value for each argument, comma-separated
-1. a closing parenthesis and a semicolon `);`
+1. a closing parenthesis and a semicolon
 
 ```html
-<div id="&zc-set(name=hello, value=world);"></div>
+<div id="&zc-directive(arg1=val, arg2=val);"></div>
 ```
 
 ### Escapes
 
-Values do not need to be quoted. Commas and closing parentheses need to
-be replaced with equivalent HTML entities.
+Values do not need to be quoted. Commas and closing parentheses in a value
+need to be replaced with equivalent HTML entities.
 
 Ampersands and double quotes need to be replaced with equivalent HTML
 entities whether quoted or not.
