@@ -1,6 +1,6 @@
 Welcome to the documentation for ooml!
 
-Documentation is available for every major and minor version combination. This documentation applies to versions `<VAR[VERSION-MAJOR]>.<VAR[VERSION-MINOR]>.x` only. To see documentation for other versions, use the version picker above the table of contents. For more information about versioning, see [Compatibility and versioning](#Compatibility and versioning).
+Documentation is available for every major and minor version combination. This documentation applies to versions `<VAR[VERSION-MAJOR]>.<VAR[VERSION-MINOR]>.x` only. For more information about versioning, see [Compatibility and versioning](#Compatibility and versioning).
 
 This documentation may change at any time in order to keep the accuracy and quality to a high standard.
 

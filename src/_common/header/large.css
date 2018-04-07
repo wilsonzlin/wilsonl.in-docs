@@ -1,8 +1,52 @@
-#logo {
+#header-logo {
   width: 5.5rem;
   padding-left: 1.25rem;
 }
 
-#documentations-list > li:hover {
-  background: rgba(0, 0, 0, 0.12);
+#header-project-link-projects {
+  width: 9rem;
+}
+
+#header-project-link-versions {
+  width: 4.5rem;
+}
+
+.header-project-menu-container {
+  top: 3.75rem; /* (#header height / 2) + (.link height / 2) */
+  width: 13.5rem; /* Same as both links combined */
+  z-index: 1; /* Needed to overlap #pane */
+}
+
+.header-project-menu-container::before {
+  content: '';
+  display: block;
+  height: 0.125rem; /* Same as border-height */
+  background: #FDF6E3; /* Same as border-color */
+}
+
+.header-project-menu-container:first-of-type::before {
+  width: 4.5rem;
+  float: right;
+}
+
+.header-project-menu-container:last-of-type::before {
+  width: 9rem;
+  float: left;
+}
+
+.header-project-menu-container:target,
+.header-project-menu-container:target + .header-project-link {
+  border-color: #FDF6E3;
+}
+
+.header-project-menu-container:target {
+  border-top: 0;
+}
+
+.header-project-menu-container:target + .header-project-link {
+  border-bottom: 0;
+}
+
+.header-project-menu-title {
+  display: none;
 }

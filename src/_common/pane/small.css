@@ -7,7 +7,6 @@
   bottom: 0;
   right: 0;
   overflow: auto;
-  z-index: 5; /* Lower than #feedback */
 }
 
 #pane:target {

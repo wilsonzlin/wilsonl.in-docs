@@ -2,10 +2,10 @@
 
 const escapeHTML = require("../Utils/escapeHTML");
 
-const Page = ({url, viewportTitle, documentationsListItemsHtml, tocCategoriesHtml, articleNavPrev, articleHtml, articleNavNext}) => {
+const Page = ({url, viewportTitle, activeProject, tocCategoriesHtml, articleHtml}) => {
   return `
     <!DOCTYPE html>
-    <html>
+    <html lang="en-gb">
 
     <head>
       <meta charset="utf-8">
@@ -26,7 +26,10 @@ const Page = ({url, viewportTitle, documentationsListItemsHtml, tocCategoriesHtm
         <form id="feedback-form" method="post" action="https://fb.wilsonl.in/feedback">
           <input type="hidden" name="page" value="${escapeHTML(url)}">
 
-          <h2>Help improve this page</h2>
+          <div>
+            <a href="#" id="feedback-close">Close</a>
+            <h2>Help improve this page</h2>
+          </div>
 
           <label>
             <span class="feedback-form-section-heading">Title</span>
@@ -95,16 +98,13 @@ const Page = ({url, viewportTitle, documentationsListItemsHtml, tocCategoriesHtm
             </label>
           </div>
 
-          <button>Send feedback</button>
-          <a href="#" id="feedback-close">Close</a>
+          <button type="submit">Send feedback</button>
         </form>
       </div>
 
       <header id="header" class="no-select">
-        <span id="logo">w.l</span>
-        <ul id="documentations-list">
-          ${documentationsListItemsHtml}
-        </ul>
+        <span id="header-logo">w.l</span>
+        ${activeProject}
 
         <div id="header-controls">
           <a href="#feedback">Feedback</a>

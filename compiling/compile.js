@@ -12,7 +12,7 @@ const StateSession = require('./State/StateSession');
 
 const ArticleNavigator = require('./Views/ArticleNavigator');
 const ContentArticle = require('./Views/ContentArticle');
-const HeaderProjectsListItem = require('./Views/HeaderProjectsListItem');
+const HeaderActiveProject = require('./Views/HeaderActiveProject');
 const Page = require('./Views/Page');
 const PaneTocCategory = require('./Views/PaneTocCategory');
 const PaneTocCategoryEntry = require('./Views/PaneTocCategoryEntry');
@@ -59,7 +59,7 @@ const start = ({ FLAG_CLEAN }) => {
     try {
 
       let versions = loadDocumentation(projectName, stateSession);
-      let latestVersionDoc = Array.from(versions).sort((a, b) => {
+      let versionsSorted = Array.from(versions).sort((a, b) => {
         if (a.major < b.major) {
           return -1;
         }
@@ -72,7 +72,8 @@ const start = ({ FLAG_CLEAN }) => {
           }
         }
         return 1;
-      }).pop();
+      });
+      let latestVersionDoc = versionsSorted[versionsSorted.length - 1];
 
       // Redirect from "/ooml" to "/ooml/14/1"
       redirects.push({
@@ -80,19 +81,23 @@ const start = ({ FLAG_CLEAN }) => {
         to: latestVersionDoc.urlDirPath,
       });
 
-      // Regenerate the projects list for every project name, as isActive changes each time
-      let documentationsListItemsHtml = PROJECT_NAMES.map(d => HeaderProjectsListItem({
-        name: d,
-        url: URL_PATH_PREFIX + '/' + createURLPathComponent(d) + '/',
-        isActive: projectName === d,
-      })).join('');
-
       for (let doc of versions) {
+
+        let activeProject = HeaderActiveProject({
+          name: doc.name,
+          otherProjects: PROJECT_NAMES.filter(pn => doc.name !== pn).map(pn => ({
+            name: pn,
+            url: URL_PATH_PREFIX + '/' + createURLPathComponent(pn) + '/',
+          })),
+          activeVersion: `${latestVersionDoc.major}.${latestVersionDoc.minor}`,
+          otherVersions: versionsSorted.filter(v => !(v.major === doc.major && v.minor === doc.minor)).map(v => ({
+            url: v.urlDirPath,
+            name: `${v.major}.${v.minor}`,
+          })),
+        });
 
         // Called when a link in a documentation is an internal one
         let internalLinkCallback = id => {
-          let match;
-
           for (let article of doc.articles) {
             if (article.name === id) {
               return URL_PATH_PREFIX + article.urlDirPath;
@@ -190,7 +195,7 @@ const start = ({ FLAG_CLEAN }) => {
             let pageHtml = Page({
               url: URL_PATH_PREFIX + article.urlDirPath,
               viewportTitle: `${article.name} | ${projectName}`,
-              documentationsListItemsHtml: documentationsListItemsHtml,
+              activeProject: activeProject,
               tocCategoriesHtml: tocCategoriesHtml,
               articleHtml: articleHtml,
             });

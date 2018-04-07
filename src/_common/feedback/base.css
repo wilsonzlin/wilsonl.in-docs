@@ -11,7 +11,6 @@
 
   top: 0;
   right: 0;
-  z-index: 10; /* Higher than #pane */
 }
 
 #feedback:target {
@@ -27,12 +26,15 @@
   position: relative;
 
   background: #27343b;
-  box-shadow: 0.25rem 0.25rem 1rem rgb(0, 0, 0);
+  box-shadow: 0.25rem 0.25rem 1rem black;
 }
 
 #feedback-form > * {
   display: block;
-  margin: 1.5rem;
+}
+
+#feedback-close {
+  display: block;
 }
 
 .feedback-form-section-heading {

@@ -1,8 +1,16 @@
-#logo {
+#header-logo {
   width: 3rem;
 }
 
-#documentations-list > li:not(.active) {
+.header-project-menu-container {
+  display: none !important;
+}
+
+.header-project-link {
+  padding: 0 0.2rem;
+}
+
+.header-project-link::after {
   display: none;
 }
 
