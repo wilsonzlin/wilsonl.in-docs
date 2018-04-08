@@ -1,11 +1,11 @@
 #header {
   background: #101e26;
 
-  height: 5rem;
-
   display: table;
   width: 100%;
   table-layout: fixed;
+
+  height: 5rem; /* Fixed height so that menu popup is accurate */
 }
 
 #header > * {
@@ -14,34 +14,26 @@
 }
 
 #header-logo {
-  font-size: 2.25rem;
   font-weight: 600;
 }
 
 #header-project {
   white-space: nowrap;
-  padding: 0 0.5rem;
 
   overflow: auto;
 }
 
-.header-project-menu-container,
-.header-project-link {
-  border: 0.125rem solid transparent; /* For large :target + .link; also see menu-container::before height */
+.header-project-link,
+.header-project-menu-container {
+  background: black;
 }
 
 .header-project-link {
-  background: #0d181e;
   color: #FDF6E3;
-  text-decoration: none;
 
   display: inline-block;
   vertical-align: middle;
   font-weight: 600;
-
-  height: 2.5rem; /* Fixed height so that menu popup in large is accurately positioned */
-  line-height: 2.25rem; /* height - (2 * border) */
-  padding: 0 0.75rem;
 }
 
 .header-project-link::after {
@@ -50,8 +42,6 @@
 }
 
 .header-project-menu-container {
-  background: #0d181e;
-
   position: fixed;
 
   display: none;
@@ -100,6 +90,4 @@
 
 #header-controls {
   text-align: right;
-  padding-right: 2rem;
-  width: 8rem;
 }

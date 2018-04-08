@@ -1,12 +1,5 @@
 #pane {
-  position: fixed;
-
   display: none;
-  top: 5rem; /* Same as #header height */
-  left: 0;
-  bottom: 0;
-  right: 0;
-  overflow: auto;
 }
 
 #pane:target {

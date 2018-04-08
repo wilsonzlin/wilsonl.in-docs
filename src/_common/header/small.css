@@ -1,6 +1,12 @@
 #header-logo {
   width: 4.5rem;
   padding-left: 1rem;
+  font-size: 2rem;
+}
+
+.header-project-link {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.95rem;
 }
 
 .header-project-menu-container {
@@ -9,4 +15,10 @@
   right: 0;
   bottom: 0;
   overflow: auto;
+}
+
+#header-controls {
+  font-size: 0.875rem;
+  padding-right: 1rem;
+  width: 5.5rem;
 }

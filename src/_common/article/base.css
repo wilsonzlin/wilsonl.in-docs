@@ -131,7 +131,7 @@
 #article pre, /* Block of code */
 #article code /* Inline code */
 {
-  font-size: 13px;
+  font-size: 0.8125rem;
 }
 
 #article pre /* Block of code */
@@ -173,7 +173,7 @@
 #article code /* Inline code */
 {
   color: #EEE8D5;
-  padding: 3px 7px;
+  padding: 0.1875rem 0.4375rem;
 }
 
 #article a code /* Inline code in link */

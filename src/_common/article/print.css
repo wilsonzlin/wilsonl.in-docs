@@ -3,8 +3,7 @@
 }
 
 #article .category {
-  padding-left: 0;
-  padding-right: 0;
+  display: block;
 }
 
 #article .category::before {

@@ -58,10 +58,15 @@ literals would need double encoding.
 <div id="&zc-directive(arg1=val, arg2=val);"></div>
 ```
 
+Whitespace is sigificant in a value. The amount of whitespace before and
+after an argument's name, however, is not significant.
+
+Values can contain more directives in HTML entity form.
+
 ### Escapes
 
-Values do not need to be quoted. Commas and closing parentheses in a value
-need to be replaced with equivalent HTML entities.
+Values do not need to be quoted. Commas, equals, and closing parentheses
+in a value need to be replaced with equivalent HTML entities.
 
 Ampersands and double quotes need to be replaced with equivalent HTML
 entities whether quoted or not.
@@ -77,10 +82,10 @@ argument values as well:
 
 ```html
 <!-- This has two directives, one nested within another -->
-<div id="&zc-set(name='&zc-get(name=hello);');"></div>
+<div id="&zc-set(name=&zc-get(name=hello););"></div>
 
 <!-- This has one directive -->
-<div id="&zc-set(name='&amp;zc-get(name=hello);');"></div>
+<div id="&zc-set(name=&amp;zc-get(name=hello););"></div>
 ```
 
 ### Order of processing:

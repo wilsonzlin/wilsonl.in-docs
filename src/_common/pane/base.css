@@ -77,7 +77,7 @@
 }
 
 input[name="toc-category-expanded"]:checked + .toc-category-name-wrapper::after {
-  content: '';
+  display: none;
 }
 
 #pane[searching] .toc-category-name-wrapper::after {
