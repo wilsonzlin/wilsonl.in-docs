@@ -58,25 +58,20 @@
 .header-project-menu:empty::before {
   display: block;
   padding: 0 1rem;
-  margin: 1rem 0;
 }
 
 .header-project-menu-close-link {
   display: block;
   color: gray;
-  font-size: 0.75rem;
 }
 
 .header-project-menu-title {
   font-weight: 600;
-  font-size: 1.5rem;
 }
 
 .header-project-menu {
   padding: 0;
   margin: 0;
-
-  font-size: 0.9rem;
 }
 
 .header-project-menu:empty::before {

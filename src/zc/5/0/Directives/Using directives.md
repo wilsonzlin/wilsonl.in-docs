@@ -9,6 +9,8 @@ declare a directive to change how its return value is used.
 
 ## Tag
 
+### Concatenation
+
 ### Format
 
 1. A regular HTML tag called `zc-name`, where `name` is the directive's

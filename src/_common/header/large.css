@@ -59,6 +59,24 @@
   border-bottom: 0;
 }
 
+.header-project-menu-heading,
+.header-project-menu-entry-link,
+.header-project-menu:empty::before {
+  margin: 1rem 0;
+}
+
+.header-project-menu-close-link {
+  font-size: 0.75rem;
+}
+
+.header-project-menu-title {
+  font-size: 1.5rem;
+}
+
+.header-project-menu {
+  font-size: 0.9rem;
+}
+
 .header-project-menu-title {
   display: none;
 }

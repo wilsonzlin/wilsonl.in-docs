@@ -17,6 +17,20 @@
   overflow: auto;
 }
 
+.header-project-menu-heading,
+.header-project-menu-entry-link,
+.header-project-menu:empty::before {
+  margin: 1.25rem 0;
+}
+
+.header-project-menu-title {
+  font-size: 2rem;
+}
+
+.header-project-menu {
+  font-size: 1.125rem;
+}
+
 #header-controls {
   font-size: 0.875rem;
   padding-right: 1rem;
