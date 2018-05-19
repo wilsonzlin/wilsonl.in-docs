@@ -60,8 +60,11 @@ literals would need double encoding.
 <div id="&zc-directive(arg1=val, arg2=val);"></div>
 ```
 
-Whitespace is sigificant in a value. The amount of whitespace before and
-after an argument's name, however, is not significant.
+Whitespace is sigificant in a value. The amount of whitespace before
+an argument's name, however, is not significant.
+
+If there is nothing between an equals and a comma for an argument
+value, its value is an empty string.
 
 Values can contain more directives in HTML entity form.
 

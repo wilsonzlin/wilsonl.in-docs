@@ -1,4 +1,4 @@
-There are several value types in nanoscript. These are:
+There are several core value types in nanoscript. These are:
 
 - [Boolean](#Boolean value)
 - [Callable](#Callable value)

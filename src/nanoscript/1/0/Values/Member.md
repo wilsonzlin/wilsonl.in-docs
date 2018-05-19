@@ -5,4 +5,4 @@ There are two types of members:
 
 Members can be used using the [access](#Access) operators.
 
-All values except objects and classes have predefined **members**. These definitions can be found in their respective [value type](#Core type) documentation article. Objects and classes define their own member [variables](#Class variable) and [functions](#Class function).
+All values except objects and classes have predefined **members**. These definitions can be found in their respective [core type](#Core type) documentation article. Objects and classes define their own member [variables](#Class variable) and [functions](#Class function).
