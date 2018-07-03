@@ -1,0 +1,1 @@
+Delete an entry from a map

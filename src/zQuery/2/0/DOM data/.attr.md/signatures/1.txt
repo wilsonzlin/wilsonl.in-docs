@@ -1,1 +1,0 @@
-allElemsHaveAttr = zq.attr( string attrWithAsterisk )

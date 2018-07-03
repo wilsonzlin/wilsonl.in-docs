@@ -1,1 +1,0 @@
-zqAjax = $.ajax( object settings )

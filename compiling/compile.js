@@ -1,8 +1,11 @@
 "use strict";
 
 const referenza = require("referenza");
+const minimist = require("minimist");
 
-const FLAG_CLEAN = process.argv.slice(2).includes("clean");
+const args = minimist(process.argv.slice(2));
+
+const FLAG_CLEAN = args.clean;
 
 // All directory paths should have a trailing slash
 const PROJECT_DIR = __dirname + "/../";
@@ -12,7 +15,7 @@ const OUTPUT_DIR = PROJECT_DIR + "dist/";
 
 const STATE_PATH = PROJECT_DIR + "compiling/state.json";
 
-const PROJECT_NAMES = ["ooml", "nanoscript", "zQuery", "zc"];
+const PROJECT_NAMES = ["nanoscript", "zQuery", "nicehash"];
 const METADATA_FILE_NAME = "__metadata__.js";
 
 // URL path prefix should not have trailing slash,
@@ -30,7 +33,19 @@ referenza.compile({
 
   metadataFileName: METADATA_FILE_NAME,
 
-  projectNames: PROJECT_NAMES,
+  feedback: {
+    type: referenza.resources.feedback.type.GITHUB,
+    repoOwner: "wilsonzlin",
+    repoName: "wilsonl.in-docs",
+  },
 
-  urlPathPrefix: URL_PATH_PREFIX,
-});
+  logo: "w.l.",
+
+  projects: PROJECT_NAMES,
+
+  prefix: URL_PATH_PREFIX,
+})
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });

@@ -1,1 +1,0 @@
-zq = zq.attr( string attrName, string|null newValue )

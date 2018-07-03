@@ -1,1 +1,0 @@
-someElemsHaveAttr = zq.attr( string attrWithQuestion )

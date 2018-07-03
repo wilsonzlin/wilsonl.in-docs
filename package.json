@@ -2,9 +2,10 @@
   "dependencies": {
     "aws-sdk": "2.x",
     "mime-types": "2.x",
+    "minimist": "^1.2.0",
     "recursive-readdir-sync": "1.x",
-    "request": "2.x",
-    "referenza": "^0.0.1"
+    "referenza": "^0.0.1",
+    "request": "2.x"
   },
   "private": true
 }
