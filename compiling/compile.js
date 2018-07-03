@@ -11,7 +11,7 @@ const FLAG_CLEAN = args.clean;
 const PROJECT_DIR = __dirname + "/../";
 const SOURCE_DIR = PROJECT_DIR + "src/";
 const INTERMEDIATE_DIR = PROJECT_DIR + "tmp/";
-const OUTPUT_DIR = PROJECT_DIR + "dist/";
+const OUTPUT_DIR = args.out || PROJECT_DIR + "dist/";
 
 const STATE_PATH = PROJECT_DIR + "compiling/state.json";
 
