@@ -1,1 +1,0 @@
-Get the first or set every element's value for an attribute

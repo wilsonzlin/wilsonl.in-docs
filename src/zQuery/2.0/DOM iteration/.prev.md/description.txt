@@ -1,1 +1,0 @@
-Get the immediate element prior to each of the current elements, optionally matching the provided selector or element(s)

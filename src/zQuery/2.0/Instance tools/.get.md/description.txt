@@ -1,1 +1,0 @@
-Get one or all elements in the instance

@@ -1,1 +1,0 @@
-Get or set every element's text content

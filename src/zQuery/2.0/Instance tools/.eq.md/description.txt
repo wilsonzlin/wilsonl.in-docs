@@ -1,1 +1,0 @@
-Construct a new instance from an element in the current instance

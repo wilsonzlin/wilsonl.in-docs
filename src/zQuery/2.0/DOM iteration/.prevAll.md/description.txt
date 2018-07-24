@@ -1,1 +1,0 @@
-Get all preceding siblings for each of the current elements, optionally matching the provided selector or element(s)

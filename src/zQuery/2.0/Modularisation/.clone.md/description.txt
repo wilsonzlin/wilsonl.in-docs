@@ -1,1 +1,0 @@
-Deep-clone every element in the current instance

@@ -1,1 +1,0 @@
-Get all children, or get or check for children that match the provided selector or element(s)

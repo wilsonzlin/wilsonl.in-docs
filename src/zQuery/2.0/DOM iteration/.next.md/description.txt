@@ -1,1 +1,0 @@
-Get the immediate element following each of the current elements, optionally matching the provided selector or element(s)
